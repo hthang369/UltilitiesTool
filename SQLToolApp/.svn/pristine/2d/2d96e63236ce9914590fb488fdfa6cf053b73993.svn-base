@@ -1,0 +1,36 @@
+﻿[31/07/2016 - TT - 1.0.0.0]
+1. New Function:
+	Find Module: Ctrl + 1
+	Find Column In Table: Ctrl + F
+	View Data In Table: Alt + 1
+2. Fix Bug:
+	
+[01/08/2016 - QQ - 1.0.0.0]
+1. New Function:
+	Auto Resize Width ++ Column focus : M
+	Auto Resize Width -- Column focus : N
+	History data Search
+	Design frmData : Information Data Foreign 
+	Auto Resize all Foreign Column on Grid : Alt + B
+2. Fix Bug:
+	
+[04/08/2016 - QQ - 1.0.0.0]
+1. New Function:
+	Resize All width size FK_Column on Grid : shift + b
+	Resize "FK_" width size FK_Column on Grid : Alt + B
+	Copy Header to ClipBoard (Column Name) : Key H 
+	Show data column by condition search column : Key Alt + V
+	Show Notifycation!
+2. Fix Bug:
+	
+[12/08/2016 - TT - 1.0.0.0]
+1. New Function:
+	Create Module: Ctrl + Shift + A
+	ViewConnectSQL: Ctrl + 0
+2. Fix Bug:
+	
+[13/08/2016 - TT - 1.0.0.0]
+1. New Function:
+	Gen Script Create Table: Ctrl + Shift + T
+2. Fix Bug:
+	

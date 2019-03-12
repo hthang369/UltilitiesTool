@@ -1,0 +1,35 @@
+[SqlServer]
+ServerCount=5
+Descreiption1=GMC Internet
+Server1=115.79.212.186,1433
+UID1=sa
+PWD1=gmc$#@!1234zaqwsx
+DB_Old1=Expert_CLV_Develop
+
+Descreiption2=GMC Local 2k8
+Server2=10.6.8.3,1433
+UID2=sa
+PWD2=gmc$#@!1234zaqwsx
+DB_Old2=Expert_CLV_Develop
+
+Descreiption3=GMC Local 2k12
+Server3=10.6.8.3,1434
+UID3=sa
+PWD3=gmc$#@!1234zaqwsx
+DB_Old3=
+
+Descreiption4=GMC Local 2k14
+Server4=10.6.8.3,1435
+UID4=sa
+PWD4=gmc$#@!1234zaqwsx
+DB_Old4=Expert_SPV2014
+
+Descreiption5=SPV Internet
+Server5=118.69.235.170,1433
+UID5=sa
+PWD5=gmc$#@!1234zaqwsx
+DB_Old5=
+[DataSearchHistory]
+TableLast=APPOs
+[LoginHistory]
+ServerOld=GMC Internet

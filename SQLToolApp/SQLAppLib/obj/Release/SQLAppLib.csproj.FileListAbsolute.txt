@@ -1,0 +1,6 @@
+D:\gmc\UltilitiesTool\SQLQQ\SQLAppLib\bin\Release\SQLAppLib.dll
+D:\gmc\UltilitiesTool\SQLQQ\SQLAppLib\bin\Release\SQLAppLib.pdb
+D:\gmc\UltilitiesTool\SQLQQ\SQLAppLib\obj\Release\SQLAppLib.dll
+D:\gmc\UltilitiesTool\SQLQQ\SQLAppLib\obj\Release\SQLAppLib.pdb
+D:\gmc\UltilitiesTool\SQLQQ\SQLAppLib\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\gmc\UltilitiesTool\SQLQQ\SQLAppLib\obj\Release\SQLAppLib.csprojResolveAssemblyReference.cache

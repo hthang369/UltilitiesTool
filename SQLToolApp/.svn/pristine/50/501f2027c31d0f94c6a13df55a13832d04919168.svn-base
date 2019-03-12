@@ -1,0 +1,21 @@
+[1.0.0.0]
+New Function:
+	Find Module: Ctrl + 1
+	Find Column In Table: Ctrl + F
+	View Data In Table: Alt + 1
+	
+[01.08.16 - QQ]
+New Function
+	Auto Resize Width ++ Column focus : M
+    Auto Resize Width -- Column focus : N
+	History data Search
+	Design frmData : Information Data Foreign 
+	Auto Resize all Foreign Column on Grid : Alt + B
+	
+[04.08.16 - QQ]
+New Function
+	Resize All width size FK_Column on Grid : shift + b
+	Resize "FK_" width size FK_Column on Grid : Alt + B
+    Copy Header to ClipBoard (Column Name) : Key H 
+	Show data column by condition search column : Key Alt + V
+	Show Notifycation!

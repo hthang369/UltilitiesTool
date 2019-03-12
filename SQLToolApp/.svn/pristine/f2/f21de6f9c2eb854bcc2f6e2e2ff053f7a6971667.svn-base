@@ -1,0 +1,365 @@
+﻿namespace SQLQQ
+{
+    partial class frmSyncDB
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnSync = new System.Windows.Forms.Button();
+            this.btnCompare = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.cboDatabaseTo = new System.Windows.Forms.ComboBox();
+            this.cboDatabaseFrom = new System.Windows.Forms.ComboBox();
+            this.cboServerTo = new System.Windows.Forms.ComboBox();
+            this.cboServerFrom = new System.Windows.Forms.ComboBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageTable = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dgvTableFrom = new System.Windows.Forms.DataGridView();
+            this.dgvTableTo = new System.Windows.Forms.DataGridView();
+            this.tabPageColumn = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.dgvColFrom = new System.Windows.Forms.DataGridView();
+            this.dgvColTo = new System.Windows.Forms.DataGridView();
+            this._worker = new System.ComponentModel.BackgroundWorker();
+            this.lblProcess = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPageTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTableFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTableTo)).BeginInit();
+            this.tabPageColumn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvColFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvColTo)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblProcess);
+            this.panel1.Controls.Add(this.progressBar1);
+            this.panel1.Controls.Add(this.btnSync);
+            this.panel1.Controls.Add(this.btnCompare);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1236, 30);
+            this.panel1.TabIndex = 0;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(1058, 3);
+            this.progressBar1.MarqueeAnimationSpeed = 50;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(170, 23);
+            this.progressBar1.Step = 1;
+            this.progressBar1.TabIndex = 1;
+            // 
+            // btnSync
+            // 
+            this.btnSync.Location = new System.Drawing.Point(93, 3);
+            this.btnSync.Name = "btnSync";
+            this.btnSync.Size = new System.Drawing.Size(75, 23);
+            this.btnSync.TabIndex = 0;
+            this.btnSync.Text = "Sync";
+            this.btnSync.UseVisualStyleBackColor = true;
+            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
+            // 
+            // btnCompare
+            // 
+            this.btnCompare.Location = new System.Drawing.Point(12, 3);
+            this.btnCompare.Name = "btnCompare";
+            this.btnCompare.Size = new System.Drawing.Size(75, 23);
+            this.btnCompare.TabIndex = 0;
+            this.btnCompare.Text = "Compare";
+            this.btnCompare.UseVisualStyleBackColor = true;
+            this.btnCompare.Click += new System.EventHandler(this.btnCompare_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cboDatabaseTo);
+            this.panel2.Controls.Add(this.cboDatabaseFrom);
+            this.panel2.Controls.Add(this.cboServerTo);
+            this.panel2.Controls.Add(this.cboServerFrom);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 30);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1236, 38);
+            this.panel2.TabIndex = 1;
+            // 
+            // cboDatabaseTo
+            // 
+            this.cboDatabaseTo.FormattingEnabled = true;
+            this.cboDatabaseTo.Location = new System.Drawing.Point(830, 6);
+            this.cboDatabaseTo.Name = "cboDatabaseTo";
+            this.cboDatabaseTo.Size = new System.Drawing.Size(254, 24);
+            this.cboDatabaseTo.TabIndex = 3;
+            // 
+            // cboDatabaseFrom
+            // 
+            this.cboDatabaseFrom.FormattingEnabled = true;
+            this.cboDatabaseFrom.Location = new System.Drawing.Point(267, 6);
+            this.cboDatabaseFrom.Name = "cboDatabaseFrom";
+            this.cboDatabaseFrom.Size = new System.Drawing.Size(254, 24);
+            this.cboDatabaseFrom.TabIndex = 2;
+            // 
+            // cboServerTo
+            // 
+            this.cboServerTo.FormattingEnabled = true;
+            this.cboServerTo.Location = new System.Drawing.Point(613, 6);
+            this.cboServerTo.Name = "cboServerTo";
+            this.cboServerTo.Size = new System.Drawing.Size(200, 24);
+            this.cboServerTo.TabIndex = 1;
+            this.cboServerTo.SelectedIndexChanged += new System.EventHandler(this.cboServerTo_SelectedIndexChanged);
+            // 
+            // cboServerFrom
+            // 
+            this.cboServerFrom.FormattingEnabled = true;
+            this.cboServerFrom.Location = new System.Drawing.Point(12, 6);
+            this.cboServerFrom.Name = "cboServerFrom";
+            this.cboServerFrom.Size = new System.Drawing.Size(249, 24);
+            this.cboServerFrom.TabIndex = 0;
+            this.cboServerFrom.SelectedIndexChanged += new System.EventHandler(this.cboServerFrom_SelectedIndexChanged);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPageTable);
+            this.tabControl1.Controls.Add(this.tabPageColumn);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 68);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1236, 439);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPageTable
+            // 
+            this.tabPageTable.Controls.Add(this.splitContainer1);
+            this.tabPageTable.Location = new System.Drawing.Point(4, 25);
+            this.tabPageTable.Name = "tabPageTable";
+            this.tabPageTable.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTable.Size = new System.Drawing.Size(1228, 410);
+            this.tabPageTable.TabIndex = 0;
+            this.tabPageTable.Text = "Table";
+            this.tabPageTable.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvTableFrom);
+            this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dgvTableTo);
+            this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer1.Size = new System.Drawing.Size(1222, 404);
+            this.splitContainer1.SplitterDistance = 593;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // dgvTableFrom
+            // 
+            this.dgvTableFrom.AllowUserToAddRows = false;
+            this.dgvTableFrom.AllowUserToDeleteRows = false;
+            this.dgvTableFrom.AllowUserToOrderColumns = true;
+            this.dgvTableFrom.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvTableFrom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTableFrom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvTableFrom.Location = new System.Drawing.Point(0, 0);
+            this.dgvTableFrom.Name = "dgvTableFrom";
+            this.dgvTableFrom.ReadOnly = true;
+            this.dgvTableFrom.Size = new System.Drawing.Size(593, 404);
+            this.dgvTableFrom.TabIndex = 0;
+            // 
+            // dgvTableTo
+            // 
+            this.dgvTableTo.AllowUserToAddRows = false;
+            this.dgvTableTo.AllowUserToDeleteRows = false;
+            this.dgvTableTo.AllowUserToOrderColumns = true;
+            this.dgvTableTo.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvTableTo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTableTo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvTableTo.Location = new System.Drawing.Point(0, 0);
+            this.dgvTableTo.Name = "dgvTableTo";
+            this.dgvTableTo.ReadOnly = true;
+            this.dgvTableTo.Size = new System.Drawing.Size(625, 404);
+            this.dgvTableTo.TabIndex = 0;
+            // 
+            // tabPageColumn
+            // 
+            this.tabPageColumn.Controls.Add(this.splitContainer2);
+            this.tabPageColumn.Location = new System.Drawing.Point(4, 25);
+            this.tabPageColumn.Name = "tabPageColumn";
+            this.tabPageColumn.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageColumn.Size = new System.Drawing.Size(1228, 410);
+            this.tabPageColumn.TabIndex = 1;
+            this.tabPageColumn.Text = "Column";
+            this.tabPageColumn.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.dgvColFrom);
+            this.splitContainer2.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.dgvColTo);
+            this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer2.Size = new System.Drawing.Size(1222, 404);
+            this.splitContainer2.SplitterDistance = 604;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // dgvColFrom
+            // 
+            this.dgvColFrom.AllowUserToAddRows = false;
+            this.dgvColFrom.AllowUserToDeleteRows = false;
+            this.dgvColFrom.AllowUserToOrderColumns = true;
+            this.dgvColFrom.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvColFrom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvColFrom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvColFrom.Location = new System.Drawing.Point(0, 0);
+            this.dgvColFrom.Name = "dgvColFrom";
+            this.dgvColFrom.ReadOnly = true;
+            this.dgvColFrom.Size = new System.Drawing.Size(604, 404);
+            this.dgvColFrom.TabIndex = 0;
+            // 
+            // dgvColTo
+            // 
+            this.dgvColTo.AllowUserToAddRows = false;
+            this.dgvColTo.AllowUserToDeleteRows = false;
+            this.dgvColTo.AllowUserToOrderColumns = true;
+            this.dgvColTo.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvColTo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvColTo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvColTo.Location = new System.Drawing.Point(0, 0);
+            this.dgvColTo.Name = "dgvColTo";
+            this.dgvColTo.ReadOnly = true;
+            this.dgvColTo.Size = new System.Drawing.Size(614, 404);
+            this.dgvColTo.TabIndex = 0;
+            // 
+            // _worker
+            // 
+            this._worker.WorkerReportsProgress = true;
+            this._worker.WorkerSupportsCancellation = true;
+            this._worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Action_DoWork);
+            this._worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.Action_ProgressChanged);
+            this._worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Action_RunWorkerCompleted);
+            // 
+            // lblProcess
+            // 
+            this.lblProcess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProcess.AutoSize = true;
+            this.lblProcess.Location = new System.Drawing.Point(1015, 6);
+            this.lblProcess.Name = "lblProcess";
+            this.lblProcess.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblProcess.Size = new System.Drawing.Size(41, 16);
+            this.lblProcess.TabIndex = 2;
+            this.lblProcess.Text = "100%";
+            this.lblProcess.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // frmSyncDB
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1236, 507);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "frmSyncDB";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Text = "frmSyncDB";
+            this.Load += new System.EventHandler(this.frmSyncDB_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPageTable.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTableFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTableTo)).EndInit();
+            this.tabPageColumn.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvColFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvColTo)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnSync;
+        private System.Windows.Forms.Button btnCompare;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox cboServerTo;
+        private System.Windows.Forms.ComboBox cboServerFrom;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPageTable;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TabPage tabPageColumn;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.ComboBox cboDatabaseTo;
+        private System.Windows.Forms.ComboBox cboDatabaseFrom;
+        private System.Windows.Forms.DataGridView dgvTableFrom;
+        private System.Windows.Forms.DataGridView dgvTableTo;
+        private System.Windows.Forms.DataGridView dgvColFrom;
+        private System.Windows.Forms.DataGridView dgvColTo;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker _worker;
+        private System.Windows.Forms.Label lblProcess;
+    }
+}

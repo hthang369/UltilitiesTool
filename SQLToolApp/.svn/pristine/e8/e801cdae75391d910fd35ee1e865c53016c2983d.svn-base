@@ -1,0 +1,326 @@
+﻿using SQLAppLib;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace SQLQQ.Util
+{
+    public class FunctionList
+    {
+        private static string section = "SqlServer";
+        private static string serverCnt = "ServerCount";
+        private static string _serverDesc = "Descreiption";
+        private static string _serverName = "Server";
+        private static string _serverUID = "UID";
+        private static string _serverPWD = "PWD";
+        private static string strFileName = Application.StartupPath + "\\config.ini";
+        private static string strServer;
+        private static string strDatabase;
+        private static string strUserName;
+        private static string strPassWord;
+        public static string strPath = Application.StartupPath + "\\Scripts\\";
+        public static Dictionary<string, string> dicFuncLst;
+
+        #region function list
+        //Ctrl + 1 tìm module
+        public static void FindModule(Form frmParent)
+        {
+            PromptForm._frmParent = frmParent;
+            string moduleName = "";
+            DialogResult result = PromptForm.ShowText("Find Module", "ModuleName", ref moduleName);
+            if (result == DialogResult.Cancel) return;
+            string strQuery = SQLApp.GetFile(strPath + "FindModule.sql");
+            strQuery = strQuery.Replace("@ModuleName@", moduleName);
+            DataTable dt = SQLDBUtil.GetDataTable(strQuery);
+            if (dt == null) return;
+            dt.TableName = "STModules";
+            ShowResultData(frmParent, dt, strQuery);
+        }
+        //Ctrl + F Find Column
+        public static void FindColumn(Form frmParent)
+        {
+            PromptForm._frmParent = frmParent;
+            string tableName = "";
+            DialogResult result = PromptForm.ShowCombobox("ViewDataByNo", "TableName", ref tableName);
+            if (result == DialogResult.Cancel) return;
+            string colName = "";
+            result = PromptForm.ShowText("ViewDataByNo", "ColName", ref colName);
+            if (result == DialogResult.Cancel) return;
+            DataSet ds = SQLDBUtil.GetAllTableColumns(tableName, colName);
+            DataTable dtData = SQLDBUtil.GetDataTableByDataSet(ds);
+            if (dtData == null) return;
+            dtData.TableName = tableName;
+            ShowResultData(frmParent, dtData, "");
+        }
+        //Alt + 1 View Data by No
+        public static void GetViewDataByNo(Form frmParent)
+        {
+            PromptForm._frmParent = frmParent;
+            string tableName = "";
+            DialogResult result = PromptForm.ShowCombobox("ViewDataByNo", "TableName", ref tableName);
+            if (result == DialogResult.Cancel) return;
+            string colName = "";
+            result = PromptForm.ShowText("ViewDataByNo", "ColName", ref colName);
+            if (result == DialogResult.Cancel) return;
+            if (string.IsNullOrEmpty(colName)) colName = "*";
+            DataTable dtData = SQLDBUtil.GetDataByTable(tableName, colName, "WHERE AAStatus = 'Alive'");
+            if (dtData == null) return;
+            dtData.TableName = tableName;
+            ShowResultData(frmParent, dtData, "");
+        }
+        private static void ShowResultData(Form frmParent, DataTable dtSource, string strQuery)
+        {
+            frmData _frmData = new frmData(frmParent);
+            _frmData._strQuery_RecentData = strQuery;
+            _frmData._strTableName_SearchPublic = dtSource.TableName;
+            _frmData.Text = "Table Name : " + dtSource.TableName;
+            _frmData.Text += " - (Server : " + SQLDBUtil._strServer + " Database : " + SQLDBUtil._strDatabase + ")";
+            _frmData._iCountSearch = dtSource.Rows.Count;
+            _frmData._dgrSearch.DataSource = dtSource;
+            _frmData.StartPosition = FormStartPosition.CenterScreen;
+            frmParent.Hide();
+            _frmData.ShowDialog();
+        }
+        //Ctrl + 0 View Connect Sql
+        public static void GetViewConnectToSQL(Form frmParent)
+        {
+            string strQuery = SQLApp.GetFile(strPath + "ViewConnectSql.sql");
+            DataTable dtSource = SQLDBUtil.GetDataTable(strQuery);
+            ShowResultData(frmParent, dtSource, strQuery);
+        }
+
+        #region Sync DB
+        public static DataTable SynchronizeTable(string strDBFrom, string strDBTo)
+        {
+            return SQLDBUtil.GetDataTable(string.Format(@"SELECT name FROM [{0}].[sys].[tables]
+                                            EXCEPT
+                                            SELECT name FROM [{1}].[sys].[tables]", strDBFrom, strDBTo));
+        }
+        public static DataTable SynchronizeColumn(string strDBFrom, string strDBTo)
+        {
+            return SQLDBUtil.GetDataTable(string.Format(@"SELECT c.name ColName,t.name TableName FROM [{0}].[sys].[tables] t JOIN [{0}].[sys].[columns] c ON t.object_id = c.object_id
+                                            EXCEPT
+                                            SELECT c.name ColName,t.name TableName FROM [{1}].[sys].[tables] t JOIN [{1}].[sys].[columns] c ON t.object_id = c.object_id", strDBFrom, strDBTo));
+        }
+        public static string GetScriptDropColumn(string strTable, string strColumn)
+        {
+            return string.Format("ALTER TABLE [{0}] DROP COLUMN [{1}]", strTable, strColumn);
+        }
+        public static string GetScriptDropTable(string strTable)
+        {
+            return string.Format("DROP TABLE [{0}]", strTable);
+        }
+        public static string GetScriptCreateTable(string strDBName, string strTable)
+        {
+            string strQuery = SQLApp.GetFile(strPath + "CreateTable.sql");
+            strQuery = strQuery.Replace("@tablename@", strTable);
+            strQuery = strQuery.Replace("@schemaname@", strDBName);
+            DataTable dt = SQLDBUtil.GetDataTable(strQuery);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return string.Format("{0}", dt.Rows[0][0]);
+            }
+            return "";
+        }
+        public static string GetScriptCreateColumn(string strDBName, string strTable, string strColName)
+        {
+            string strQuery = SQLApp.GetFile(strPath + "CreateColumn.sql");
+            strQuery = strQuery.Replace("@TableName@", strTable);
+            strQuery = strQuery.Replace("@ColumnName@", strColName);
+            strQuery = strQuery.Replace("@schemaname@", strDBName);
+            DataTable dt = SQLDBUtil.GetDataTable(strQuery);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return string.Format("{0}", dt.Rows[0][0]);
+            }
+            return "";
+        }
+        #endregion
+
+        #region func list F10
+        public static void GetFunctionList()
+        {
+            dicFuncLst = new Dictionary<string, string>()
+            {
+                {"col_rename","COL RENAME" },{"col_replacename","COL REPLACENAME" },{"col_add","COL ADD" },{"col_alter","COL ALTER" },{"col_drop","COL DROP" },
+                { "idx_add","INDEX ADD" },{"idx_drop","INDEX DROP" },{"pk_add","PK ADD" },{"fk_add","FK ADD" },{"fk_drop","FK DROP" },{"tbl_rename","TABLE RENAME" },
+                {"tbl_add","TABLE ADD" },{"tbl_drop","TABLE DROP" },{"tbl_zap","TABLE ZAP" }
+            };
+        }
+        public static void ShowFunctionList()
+        {
+            GetFunctionList();
+            string[] lstSource = dicFuncLst.Values.ToArray();
+            string value = "";
+            DialogResult result = PromptForm.ShowCombobox("", "", lstSource, ref value);
+            if (result == DialogResult.Cancel) return;
+        }
+        #endregion
+        #endregion
+
+        #region config Connect
+        public static void GetConfigConnectSQL(string status, int idx = 0)
+        {
+            string cnt = SQLApp.GetIniFile(strFileName, section, serverCnt);
+            int index = Convert.ToInt32(cnt);
+            string strDesc = SQLApp.GetIniFile(strFileName, section, _serverDesc + idx);
+            DialogResult result = PromptForm.ShowText("Description", "Description", ref strDesc);
+            if (result == DialogResult.Cancel) return;
+            string strServer = SQLApp.GetIniFile(strFileName, section, _serverName + idx);
+            result = PromptForm.ShowText("Server", "Server", ref strServer);
+            if (result == DialogResult.Cancel) return;
+            string strUser = SQLApp.GetIniFile(strFileName, section, _serverUID + idx);
+            result = PromptForm.ShowText("User", "User", ref strUser);
+            if (result == DialogResult.Cancel) return;
+            string strPass = SQLApp.GetIniFile(strFileName, section, _serverPWD + idx);
+            result = PromptForm.ShowText("Pass", "Pass", ref strPass);
+            if (result == DialogResult.Cancel) return;
+            if (status == "add")
+            {
+                if (!string.IsNullOrEmpty(strDesc) && !string.IsNullOrEmpty(strServer) && !string.IsNullOrEmpty(strUser) && !string.IsNullOrEmpty(strPass))
+                {
+                    SQLApp.SetIniFile(strFileName, section, serverCnt, (index + 1).ToString());
+                    SQLApp.SetIniFile(strFileName, section, _serverDesc + index, strDesc);
+                    SQLApp.SetIniFile(strFileName, section, _serverName + index, strServer);
+                    SQLApp.SetIniFile(strFileName, section, _serverUID + index, strUser);
+                    SQLApp.SetIniFile(strFileName, section, _serverPWD + index, strPass);
+                }
+            }
+            else if (status == "edit")
+            {
+                if (!string.IsNullOrEmpty(strDesc) && !string.IsNullOrEmpty(strServer) && !string.IsNullOrEmpty(strUser) && !string.IsNullOrEmpty(strPass))
+                {
+                    SQLApp.SetIniFile(strFileName, section, _serverDesc + idx, strDesc);
+                    SQLApp.SetIniFile(strFileName, section, _serverName + idx, strServer);
+                    SQLApp.SetIniFile(strFileName, section, _serverUID + idx, strUser);
+                    SQLApp.SetIniFile(strFileName, section, _serverPWD + idx, strPass);
+                }
+            }
+            else
+            {
+                SQLApp.SetIniFile(strFileName, section, serverCnt, (index - 1).ToString());
+                SQLApp.SetIniFile(strFileName, section, _serverDesc + idx, null);
+                SQLApp.SetIniFile(strFileName, section, _serverName + idx, null);
+                SQLApp.SetIniFile(strFileName, section, _serverUID + idx, null);
+                SQLApp.SetIniFile(strFileName, section, _serverPWD + idx, null);
+            }
+        }
+        #endregion
+
+        #region Load config
+        public static void LoadConfigIniFromServer(ComboBox cbbData)
+        {
+            try
+            {
+                #region Code mới lấy thông tin từ file config
+                string count = SQLApp.GetIniFile(strFileName, section, serverCnt);
+                cbbData.Items.Clear();
+                for (int i = 0; i < Convert.ToInt32(count); i++)
+                {
+                    cbbData.Items.Add(SQLApp.GetIniFile(strFileName, section, _serverDesc + (i + 1)));
+                }
+                #endregion
+            }
+            catch
+            {
+
+            }
+        }
+        public static void LoadDatabaseByServer(ComboBox cboServer, ComboBox cboDataBase, int idx = -1)
+        {
+            try
+            {
+                if (idx != -1)
+                    cboServer.SelectedIndex = idx;
+                strServer = SQLApp.GetIniFile(strFileName, section, _serverName + (cboServer.SelectedIndex + 1));
+                strUserName = SQLApp.GetIniFile(strFileName, section, _serverUID + (cboServer.SelectedIndex + 1));
+                strPassWord = SQLApp.GetIniFile(strFileName, section, _serverPWD + (cboServer.SelectedIndex + 1));
+
+                SQLDBUtil.SwitchConnection(strServer, "", strUserName, strPassWord);
+
+                DataTable dtSource = SQLDBUtil.GetDataTableByDataSet(SQLDBUtil.GetAllDatabases());
+                if (dtSource != null)
+                {
+                    foreach (DataRow row in dtSource.Rows)
+                    {
+                        cboDataBase.Items.Add(row[0].ToString());
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        public static string GetServerConfig(int idx)
+        {
+            return SQLApp.GetIniFile(strFileName, section, _serverName + (idx + 1));
+        }
+        public static string GetUserNameConfig(int idx)
+        {
+            return SQLApp.GetIniFile(strFileName, section, _serverUID + (idx + 1));
+        }
+        public static string GetPassWordConfig(int idx)
+        {
+            return SQLApp.GetIniFile(strFileName, section, _serverPWD + (idx + 1));
+        }
+        #endregion
+    }
+
+    public class PromptForm
+    {
+        public static Form _frmParent;
+        public static DialogResult Show(string title, string promptText, ref string value, bool bIsText, bool bIsCombobox, bool isShowLstTbl, string[] lstFunctionList,
+                                        InputBoxValidation validation)
+        {
+            frmSearch frmInput = new frmSearch(_frmParent, bIsText, bIsCombobox, isShowLstTbl);
+            frmInput.SetCaption(promptText);
+            frmInput.Text = title;
+            frmInput.SetDataSourceCombobox(lstFunctionList);
+            if (bIsText)
+                frmInput.SetText(value);
+            else
+                frmInput.SetSelectedText(value);
+            frmInput.StartPosition = FormStartPosition.CenterScreen;
+            frmInput.ResumeLayout(false);
+            frmInput.PerformLayout();
+
+            string text = (bIsText) ? frmInput.GetText() : frmInput.GetSelectedText();
+            if (validation != null)
+            {
+                frmInput.FormClosing += delegate (object sender, FormClosingEventArgs e)
+                {
+                    if (frmInput.DialogResult == DialogResult.OK)
+                    {
+                        string errorText = validation(text);
+                        if (e.Cancel = (errorText != ""))
+                        {
+                            MessageBox.Show(frmInput, errorText, "Validation Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            frmInput.GetControlFocus();
+                        }
+                    }
+                };
+            }
+            DialogResult dialogResult = frmInput.ShowDialog();
+            value = (bIsText) ? frmInput.GetText() : frmInput.GetSelectedText();
+            return dialogResult;
+        }
+        public static DialogResult ShowText(string title, string promptText, ref string value)
+        {
+            return Show(title, promptText, ref value, true, false, false, null, null);
+        }
+        public static DialogResult ShowCombobox(string title, string promptText, ref string value)
+        {
+            return Show(title, promptText, ref value, false, true, true, null, null);
+        }
+        public static DialogResult ShowCombobox(string title, string promptText, string[] lstSource, ref string value)
+        {
+            return Show(title, promptText, ref value, false, true, false, lstSource, null);
+        }
+        public delegate string InputBoxValidation(string errorMessage);
+    }
+}

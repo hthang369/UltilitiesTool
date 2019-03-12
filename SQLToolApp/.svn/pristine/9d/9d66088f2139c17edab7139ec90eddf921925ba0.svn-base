@@ -1,0 +1,117 @@
+﻿using SQLAppLib;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace SQLQQ.Util
+{
+    public class FunctionList
+    {
+        public static string strPath = Application.StartupPath + "\\Scripts\\";
+        
+        //Ctrl + 1 tìm module
+        public static void FindModule(Form frmParent)
+        {
+            PromptForm._frmParent = frmParent;
+            string moduleName = "";
+            DialogResult result = PromptForm.ShowText("Find Module", "ModuleName", ref moduleName);
+            if (result == DialogResult.Cancel) return;
+            string strQuery = SQLApp.GetFile(strPath + "FindModule.sql");
+            strQuery = strQuery.Replace("@ModuleName@", moduleName);
+            DataTable dt = SQLDBUtil.GetDataTable(strQuery);
+            if (dt == null) return;
+            dt.TableName = "STModules";
+            ShowResultData(frmParent, dt);
+        }
+        //Ctrl + F
+        public static void FindColumn(Form frmParent)
+        {
+            PromptForm._frmParent = frmParent;
+            string tableName = "";
+            DialogResult result = PromptForm.ShowCombobox("ViewDataByNo", "TableName", ref tableName);
+            if (result == DialogResult.Cancel) return;
+            string colName = "";
+            result = PromptForm.ShowText("ViewDataByNo", "ColName", ref colName);
+            if (result == DialogResult.Cancel) return;
+            DataSet ds = SQLDBUtil.GetAllTableColumns(tableName, colName);
+            DataTable dtData = SQLDBUtil.GetDataTableByDataSet(ds);
+            if (dtData == null) return;
+            dtData.TableName = tableName;
+            ShowResultData(frmParent, dtData);
+        }
+        //Alt + 1
+        public static void GetViewDataByNo(Form frmParent)
+        {
+            PromptForm._frmParent = frmParent;
+            string tableName = "";
+            DialogResult result = PromptForm.ShowCombobox("ViewDataByNo", "TableName", ref tableName);
+            if (result == DialogResult.Cancel) return;
+            string colName = "";
+            result = PromptForm.ShowText("ViewDataByNo", "ColName", ref colName);
+            if (result == DialogResult.Cancel) return;
+            if (string.IsNullOrEmpty(colName)) colName = "*";
+            DataTable dtData = SQLDBUtil.GetDataByTable(tableName, colName, "WHERE AAStatus = 'Alive'");
+            if (dtData == null) return;
+            dtData.TableName = tableName;
+            ShowResultData(frmParent, dtData);
+        }
+        private static void ShowResultData(Form frmParent, DataTable dtSource)
+        {
+            frmData _frmData = new frmData(frmParent);
+            _frmData._strTableName_SearchPublic = dtSource.TableName;
+            _frmData._iCountSearch = dtSource.Rows.Count;
+            _frmData._dgrSearch.DataSource = dtSource;
+            _frmData.StartPosition = FormStartPosition.CenterScreen;
+            frmParent.Hide();
+            _frmData.ShowDialog();
+        }
+        
+    }
+
+    public class PromptForm
+    {
+        public static Form _frmParent;
+        public static DialogResult Show(string title, string promptText, ref string value, bool bIsText, bool bIsCombobox,
+                                        InputBoxValidation validation)
+        {
+            frmSearch frmInput = new frmSearch(_frmParent, bIsText, bIsCombobox);
+            frmInput.SetCaption(promptText);
+            frmInput.Text = title;
+            frmInput.StartPosition = FormStartPosition.CenterScreen;
+            frmInput.ResumeLayout(false);
+            frmInput.PerformLayout();
+            string text = (bIsText) ? frmInput.GetText() : frmInput.GetSelectedText();
+            if (validation != null)
+            {
+                frmInput.FormClosing += delegate (object sender, FormClosingEventArgs e)
+                {
+                    if (frmInput.DialogResult == DialogResult.OK)
+                    {
+                        string errorText = validation(text);
+                        if (e.Cancel = (errorText != ""))
+                        {
+                            MessageBox.Show(frmInput, errorText, "Validation Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            frmInput.GetControlFocus();
+                        }
+                    }
+                };
+            }
+            DialogResult dialogResult = frmInput.ShowDialog();
+            value = (bIsText) ? frmInput.GetText() : frmInput.GetSelectedText();
+            return dialogResult;
+        }
+        public static DialogResult ShowText(string title, string promptText, ref string value)
+        {
+            return Show(title, promptText, ref value, true, false, null);
+        }
+        public static DialogResult ShowCombobox(string title, string promptText, ref string value)
+        {
+            return Show(title, promptText, ref value, false, true, null);
+        }
+        public delegate string InputBoxValidation(string errorMessage);
+    }
+}

@@ -1,0 +1,600 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.IO;
+using SQLAppLib;
+
+namespace SQLQQ
+{
+    public partial class frmMain : Form
+    {
+        //#region Kết nối SQL
+
+        //public static SqlConnection sqlconn;
+        public static String strServer_Public;
+        public static String strDatabase_Public;
+        public static String strUserName_Public;
+        public static String strPassWord_Public;
+        private string section = "SqlServer";
+        private string serverCnt = "ServerCount";
+        private string _serverDesc = "Descreiption";
+        private string _serverName = "Server";
+        private string _serverUID = "UID";
+        private string _serverPWD = "PWD";
+        private string strFileName = Application.StartupPath + "\\config.ini";
+        public String _strQuery_Error;
+        frmSearch _frmSearch;
+        public static int iCheckShowFormMain = 1;
+
+        //public static SqlDataAdapter da;
+        //
+        ////public frmMain frmMain;
+
+        //#region Property
+
+        //frmMain _frmMain;
+
+        //public String _strServer_Public
+        //{
+        //    get
+        //    {
+        //        return strServer_Public;
+        //    }
+        //    set
+        //    {
+        //        strServer_Public = value;
+        //    }
+        //}
+
+        //public String _strDatabase_Public
+        //{
+        //    get
+        //    {
+        //        return strDatabase_Public;
+        //    }
+        //    set
+        //    {
+        //        strDatabase_Public = value;
+        //    }
+        //}
+
+        //public String _strQuery_Error
+        //{
+        //    get
+        //    {
+        //        return strQuery_Error;
+        //    }
+        //    set
+        //    {
+        //        strQuery_Error = value;
+        //    }
+        //}
+
+
+        ////public frmMain _frmMain
+        ////{
+        ////    get
+        ////    {
+        ////        return frmMain;
+        ////    }
+        ////    set
+        ////    {
+        ////        frmMain = value;
+        ////    }
+        ////}
+
+        //#endregion
+
+        //public void KetNoiCSDL(string svrname, string dbname, bool mode, string user, string pass)
+        //{
+        //    string strconn;
+        //    if (mode == true)
+        //    {
+        //        strconn = String.Format("data source={0};database={1}Integrated Security=true", svrname, dbname);
+        //    }
+        //    else
+        //    {
+        //        strconn = String.Format("data source={0};database={1};uid={2};pwd={3}", svrname, dbname, user, pass);
+        //    }
+        //    sqlconn = new SqlConnection(strconn);
+
+        //    try
+        //    {
+        //        sqlconn.Open();
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Connect Server Fail! - Please check Information");
+        //    }
+        //}
+
+        //public DataSet GetDataSet(string strsql)
+        //{
+        //    KetNoiCSDL(strServer_Public, strDatabase_Public, false, "sa", "gmc$#@!1234zaqwsx");
+        //    if (sqlconn.State.ToString() == "Open")
+        //    {
+        //        try
+        //        {
+        //            var sqlcom = new SqlCommand(strsql, sqlconn);
+        //            sqlcom.ExecuteNonQuery();
+        //        }
+        //        catch(Exception ex)
+        //        {
+        //            strQuery_Error = ex.Message.ToString();
+        //        }
+
+        //        da = new SqlDataAdapter(strsql, sqlconn);
+        //        var ds = new DataSet();
+        //        da.Fill(ds);
+
+        //        return ds;
+        //    }
+        //    else
+        //        return null;
+        //}
+
+        //public DataTable GetDataTable(string strsql)
+        //{
+        //    KetNoiCSDL(strServer_Public, strDatabase_Public, false, "sa", "gmc$#@!1234zaqwsx");
+        //    if (sqlconn.State.ToString() == "Open")
+        //    {
+        //        try
+        //        {
+        //            var sqlcom = new SqlCommand(strsql, sqlconn);
+        //            sqlcom.ExecuteNonQuery();
+        //        }
+        //        catch (Exception ex)
+        //        { 
+        //            strQuery_Error = ex.Message.ToString(); 
+        //        }
+
+        //        da = new SqlDataAdapter(strsql, sqlconn);
+        //        var ds = new DataSet();
+
+        //        try
+        //        {
+        //            da.Fill(ds);
+        //        }
+        //        catch { return null; }
+
+        //        return ds.Tables[0];
+        //    }
+        //    else
+        //        return null;
+        //}
+
+        //public DataInfo GetObjectByIDAndTableName(int iID, String strTableName)
+        //{
+        //    SQLQQ.DataInfo obj = new SQLQQ.DataInfo();
+        //    String StrColumnNameByID = strTableName.Substring(0, strTableName.Length - 1) + "ID";
+        //    String StrColumnNameByNo = strTableName.Substring(0, strTableName.Length - 1) + "No";
+        //    String StrColumnNameByName = strTableName.Substring(0, strTableName.Length - 1) + "Name";
+        //    String StrColumnNameByDate = strTableName.Substring(0, strTableName.Length - 1) + "Date";
+
+        //    String strsql = String.Format(@"select * from {0} Where {1} = {2}", strTableName, StrColumnNameByID, iID);
+
+        //    KetNoiCSDL(strServer_Public, strDatabase_Public, false, "sa", "gmc$#@!1234zaqwsx");
+        //    if (sqlconn.State.ToString() == "Open")
+        //    {
+        //        try
+        //        {
+        //            var sqlcom = new SqlCommand(strsql, sqlconn);
+        //            sqlcom.ExecuteNonQuery();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            strQuery_Error = ex.Message.ToString();
+        //        }
+
+        //        da = new SqlDataAdapter(strsql, sqlconn);
+        //        var ds = new DataSet();
+
+        //        try
+        //        {
+        //            da.Fill(ds);
+
+        //            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        //            {
+        //                try
+        //                {
+        //                    obj.strNo = ds.Tables[0].Rows[0][StrColumnNameByNo].ToString();
+        //                    obj.strName = ds.Tables[0].Rows[0][StrColumnNameByName].ToString();
+        //                    obj.dtDate = Convert.ToDateTime(ds.Tables[0].Rows[0][StrColumnNameByDate]);
+        //                }
+        //                catch { }
+        //            }
+
+        //            return obj;
+        //        }
+        //        catch { return null; }
+        //    }
+        //    else
+        //        return null;
+        //}
+
+        //#endregion
+
+        public frmMain()
+        {
+            InitializeComponent();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            _frmSearch = new frmSearch();
+
+            //frmMain = new frmMain();
+            // Fill out data in Combobox Sever
+            SQLAppWaitingDialog.ShowWaitForm();
+            Util.FunctionList.LoadConfigIniFromServer(cbbServer);
+
+            // Login Server and Database from Login Oldest.
+            ReadFromFileTextForLogin();
+            cbbDatabase.SelectedText =  SQLApp.GetIniFile(Application.StartupPath + "\\config.ini", "LoginHistory", "DB_Old");
+            if (cbbDatabase.Text != "")
+            {
+                strDatabase_Public = cbbDatabase.Text;
+                SQLDBUtil.ChangeDatabase(strDatabase_Public);
+            }
+                
+            //notifyIcon1.Click += new EventHandler(notifyIcon1_Click);
+            //this.Resize += new EventHandler(frmMain_Resize);
+
+            cbbServer.SelectedIndexChanged += new EventHandler(cbbServer_SelectedIndexChanged);
+            cbbDatabase.SelectedIndexChanged += new EventHandler(cbbDatabase_SelectedIndexChanged);
+            cbbDatabase.Click += new EventHandler(cbbDatabase_Click);
+
+            //frmMain.FormClosing += new FormClosingEventHandler(_frmMain_FormClosing);
+
+            ShowNotifyIconMessage("Hello!", "Welcome my toolSQL");
+            //SQLApp.ShowNotifyIcon("Hello!", "Welcome my toolSQL");
+        }
+
+        void _frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
+            Application.Exit();
+        }
+
+        private void menutripSupport_Click(object sender, EventArgs e)
+        {
+            //frmSupport _frmSupport = new frmSupport();
+            //_frmSupport.ShowDialog();
+        }
+
+        #region Event
+
+        //void frmMain_Resize(object sender, EventArgs e)
+        //{
+        //    // Nếu Form đang Minimize thì ẩn luôn Form
+        //    if (FormWindowState.Minimized == WindowState)
+        //        Hide();
+        //}
+
+        //void notifyIcon1_Click(object sender, EventArgs e)
+        //{
+        //    Show();
+        //    WindowState = FormWindowState.Normal;
+        //}
+
+        private void cbbDatabase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            strDatabase_Public = cbbDatabase.Text;
+            if (strDatabase_Public != "")
+                SQLDBUtil.ChangeDatabase(strDatabase_Public);
+        }
+
+        private void cbbServer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbbDatabase.Items.Clear();
+            cbbDatabase.Text = string.Empty;
+            cbbDatabase.Refresh();
+
+            ReadFromFileTextForLogin(cbbServer.SelectedIndex);
+            GetAllDatabaseByServer();
+        }
+
+        void cbbDatabase_Click(object sender, EventArgs e)
+        {
+            //cbbDatabase.Items.Clear();
+            //cbbDatabase.Text = string.Empty;
+            //cbbDatabase.Refresh();
+
+            //strServer_Public = cbbServer.Text;
+
+            //strDatabase_Public = "";
+            //KetNoiCSDL(strServer_Public, strDatabase_Public, false, "sa", "gmc$#@!1234zaqwsx");
+
+            //if (sqlconn.State.ToString() == "Open")
+            //    GetAllDatabaseByServer();
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (cbbDatabase.Text != "" && cbbServer.Text != "")
+            {
+                #region Key Ctr 1 - Show all module
+
+                if (e.Control && e.KeyCode == Keys.D1)
+                {
+                    Util.FunctionList.FindModule(this);
+                }
+
+                #endregion
+
+                #region Key Alt + 1 - Search data By Table
+
+                if (e.Alt && e.KeyCode == Keys.D1)
+                {
+                    Util.FunctionList.GetViewDataByNo(this);
+                }
+
+                #endregion
+
+                #region Ctr + Q SQL Execute
+
+                frmQuery_SQL _frmQuery_SQL = new frmQuery_SQL();
+
+                if (e.Control && e.KeyCode == Keys.Q)
+                {
+                    _frmQuery_SQL.Show();
+                }
+
+                #endregion
+
+                #region Ctrl + F
+                if (e.Control && e.KeyCode == Keys.F)
+                {
+                    Util.FunctionList.FindColumn(this);
+                }
+                #endregion
+
+                #region Funtion List Extra F10
+                if (e.KeyCode == Keys.F10)
+                {
+                    Util.FunctionList.ShowFunctionList();
+                }
+                #endregion
+
+                #region Function list view connect sql Ctrl + 0
+                if (e.Control && e.KeyCode == Keys.D0)
+                {
+                    Util.FunctionList.GetViewConnectToSQL(this);
+                }
+                #endregion
+
+                #region Function List Ctrl + Shift + A Create Module
+                if (e.Control)
+                {
+                    if (e.Shift && e.KeyCode == Keys.A)
+                        Util.FunctionList.CreateMoudle();
+                }
+                #endregion
+                #region Function List Ctrl + Shift + T Gen Create Table
+                if (e.Control)
+                {
+                    if (e.Shift && e.KeyCode == Keys.T)
+                        Util.FunctionList.GenScriptCreateTable();
+                }
+                #endregion
+                #region Alt + Shift + F6
+                if(e.Alt && e.Shift && e.KeyCode == Keys.F6)
+                {
+                    frmUpdateVersion frmUpdate = new frmUpdateVersion();
+                    frmUpdate.ShowDialog();
+                }
+                #endregion  
+            }
+
+            #region Key Esc
+
+            if (e.KeyCode == (Keys.Back | Keys.RButton | Keys.LButton | Keys.ShiftKey))
+            {
+                ShowNotifyIconMessage("Goodbye!", "See you later...");
+
+                DialogResult dr = MessageBox.Show("Are you quit!", "Warning!", MessageBoxButtons.OKCancel);
+                if (dr == DialogResult.OK)
+                {
+                    SQLApp.SetIniFile(Application.StartupPath + "\\config.ini", "LoginHistory", "DB_Old", cbbDatabase.Text);
+                    Application.Exit();
+                }
+            }
+
+            #endregion
+
+            #region Show Main
+
+            //if (e.Control && e.KeyCode == Keys.M)
+            //{
+            //    frmMain.Show();
+            //}
+
+            #endregion
+        }
+
+        #endregion
+
+        #region Functions
+        private void ReadFromFileTextForLogin(int idx = 0)
+        {
+            try
+            {
+                cbbServer.SelectedIndex = idx;
+                strServer_Public = SQLApp.GetIniFile(strFileName, section, _serverName + (cbbServer.SelectedIndex + 1));
+                strUserName_Public = SQLApp.GetIniFile(strFileName, section, _serverUID + (cbbServer.SelectedIndex + 1));
+                strPassWord_Public = SQLApp.GetIniFile(strFileName, section, _serverPWD + (cbbServer.SelectedIndex + 1));
+
+                SQLDBUtil.SwitchConnection(strServer_Public, "", strUserName_Public, strPassWord_Public);
+                GetAllDatabaseByServer();
+
+            }
+            catch
+            {
+
+            }
+        }
+
+        public void UpdateHistoryServerAndData()
+        {
+            try
+            {
+                #region Code cũ
+                string strServer;
+                System.IO.StreamReader docFile = new System.IO.StreamReader(Application.StartupPath + "\\config.ini");
+
+                String strLine = docFile.ReadLine();
+                while (strLine != null && strLine != "")
+                {
+                    if (strLine.Contains("DB_Old"))
+                    {
+                        using (System.IO.StreamWriter file =new System.IO.StreamWriter(Application.StartupPath + "\\config.ini"))
+                        {
+                            strLine = "DB_Old=" + cbbDatabase.Text;
+                            file.WriteLine(strLine);
+                        }
+                    }
+                }
+                
+
+                strServer = docFile.ReadLine();
+
+                docFile.Close();
+                docFile.Dispose();
+                #endregion
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void CreateLogFile_Login()
+        {
+            String strPathFile = Application.StartupPath + "\\config.ini";
+
+            try
+            {
+                if (File.Exists(strPathFile))
+                {
+                    File.Delete(strPathFile);
+                }
+
+                FileStream fs = new FileStream(strPathFile, FileMode.Create);//Tạo file mới tên là test.txt
+                StreamWriter sWriter = new StreamWriter(fs, Encoding.UTF8);//fs là 1 FileStream 
+                TextWriter tw = new StreamWriter(fs);
+
+                tw.WriteLine(@"ServerName={0}", cbbServer.Text);
+                tw.WriteLine(@"Database={0}", cbbDatabase.Text);
+
+                tw.Close();
+            }
+            catch
+            { }
+        }
+
+        private void GetAllDatabaseByServer()
+        {
+            //String strQueryDB = @"  SELECT name
+            //                            FROM sys.databases
+            //                            WHERE name != 'master' AND name != 'tempdb' AND name != 'model' AND name != 'msdb'";
+
+            cbbDatabase.Items.Clear();
+            DataSet ds = SQLDBUtil.GetAllDatabases();
+            //DataTable dtDatabase = ds.Tables[0];
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    cbbDatabase.Items.Add(dr[0].ToString());
+                }
+            }
+        }
+        public void ShowAllTableNameByComboBox()
+        {
+
+        }
+
+        public void UpdateData(DataGridView dgrData)
+        {
+            for (int i = 0; i < dgrData.Columns.Count - 1; i++)
+            {
+                String strColumnName = dgrData.Columns[i].Name.ToString();
+                if (strColumnName.Contains("ID"))
+                {
+                    String strPrimaryKey = strColumnName;
+                    String strTableName = strPrimaryKey.Replace("ID", "s");
+                    String strDataUpdate = dgrData.CurrentCell.Value.ToString();
+                    String strColumnUpdate = dgrData.CurrentCell.OwningColumn.Name.ToString();
+                    int ID = (int)dgrData.CurrentRow.Cells[strPrimaryKey].Value;
+
+                    String strQueryUpdate = String.Format(@"
+                                                            UPDATE {0}
+                                                            SET    {1} = '{2}'
+                                                            WHERE  {3} =  {4}
+                                                          ", strTableName, strColumnUpdate, strDataUpdate, strPrimaryKey, dgrData.CurrentRow.Cells[strPrimaryKey].Value.ToString());
+
+
+                    try
+                    {
+                        //SqlCommand cmd = new SqlCommand(strQueryUpdate, sqlconn);
+                        //cmd.ExecuteNonQuery();
+                        SQLDBUtil.ExecuteNonQuery(strQueryUpdate);
+                    }
+                    catch
+                    { }
+                }
+            }
+        }
+
+        public void ShowWaiting()
+        {
+            frmWaiting _frmWaiting = new frmWaiting();
+            _frmWaiting.ShowDialog();
+        }
+
+        public void CloseWaiting()
+        {
+            frmWaiting _frmWaiting = new frmWaiting();
+            _frmWaiting.Close();
+        }
+
+        public void ShowNotifyIconMessage(String strTitle, String strMessage)
+        {
+            notifyIcon1.Icon = new Icon(String.Format(@"{0}\Notify.ico", Application.StartupPath));
+            notifyIcon1.Visible = true;
+            notifyIcon1.ShowBalloonTip(500, strTitle, strMessage, ToolTipIcon.Info);
+        }
+
+        #endregion
+
+        private void sQLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Util.FunctionList.GetConfigConnectSQL("add");
+        }
+
+        private void syncDBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSyncDB frmSync = new frmSyncDB();
+            frmSync.Show();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Util.FunctionList.GetConfigConnectSQL("edit", cbbServer.SelectedIndex + 1);
+        }
+    }
+
+
+}

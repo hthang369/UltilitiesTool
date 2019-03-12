@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportConfigTool", "ImportConfigTool\ImportConfigTool.csproj", "{276BB163-C13A-4E3D-A04C-AD9C38ADC177}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7BA09B57-C094-4768-A242-E015E68B9571} = {7BA09B57-C094-4768-A242-E015E68B9571}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLAppLib", "..\..\SQLToolApp\SQLAppLib\SQLAppLib.csproj", "{7BA09B57-C094-4768-A242-E015E68B9571}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{276BB163-C13A-4E3D-A04C-AD9C38ADC177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{276BB163-C13A-4E3D-A04C-AD9C38ADC177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{276BB163-C13A-4E3D-A04C-AD9C38ADC177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{276BB163-C13A-4E3D-A04C-AD9C38ADC177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA09B57-C094-4768-A242-E015E68B9571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA09B57-C094-4768-A242-E015E68B9571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA09B57-C094-4768-A242-E015E68B9571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA09B57-C094-4768-A242-E015E68B9571}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

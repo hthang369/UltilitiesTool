@@ -1,0 +1,184 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Diagnostics;
+using SQLAppLib;
+using System.IO;
+
+namespace SQLQQ
+{
+    public partial class frmSearch : Form
+    {
+        public Form _frmParent;
+
+        public frmSearch()
+        {
+            InitializeComponent();
+        }
+
+        public frmSearch(Form frmParent)
+        {
+            _frmParent = frmParent;
+            InitializeComponent();
+        }
+
+        #region Property
+
+        public ComboBox _cbbSearchData
+        {
+            get
+            {
+                return cbbSearchData;
+            }
+            set
+            {
+                cbbSearchData = value;
+            }
+        }
+
+        #endregion
+
+        private void frmSearch_Load(object sender, EventArgs e)
+        {
+            ShowAllTableNameByComboBox();
+        }
+
+        private void frmSearch_KeyDown(object sender, KeyEventArgs e)
+        { 
+            frmMain _frmMain = new frmMain();
+            frmData _frmData = new frmData(_frmParent);
+            frmModule _frmModule = new frmModule();
+
+            #region Key Enter - View data by condition for search of table name
+
+            if (cbbSearchData.Text != "")
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (cbbSearchData.Text == "STGridColumns")
+                    {
+                        String strQuery_AllModule = String.Format(@"  Select STModuleName
+                                                                      From STModules
+                                                                  ");
+
+                        DataTable dtAllModule = SQLDBUtil.GetDataTable(strQuery_AllModule);
+                        if (dtAllModule != null && dtAllModule.Rows.Count > 0)
+                        {
+                            _frmModule._cbbModule.DisplayMember = "STModuleName";
+                            _frmModule._cbbModule.DataSource = dtAllModule;
+                            _frmModule._cbbModule.Text = "Customer";
+                            _frmModule.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                        String strQuerySearchDataNotAlive = String.Format(@" SELECT * FROM {0}
+                                                              ", cbbSearchData.Text);
+
+                        String strQuerySearchDataByAlive = String.Format(@" SELECT * FROM {0} WHERE AAStatus = 'Alive'
+                                                              ", cbbSearchData.Text);
+                        DataTable dtData = new DataTable();
+
+                        dtData = SQLDBUtil.GetDataTable(strQuerySearchDataByAlive);
+                        if (dtData != null && dtData.Rows.Count > 0)
+                        {
+                            _frmData._iCountSearch = dtData.Rows.Count;
+                            _frmData._strQuery_RecentData = strQuerySearchDataByAlive;
+                            _frmData._sttRowCount.Text = "Row : " + dtData.Rows.Count.ToString();
+                            _frmData._dgrSearch.DataSource = dtData;
+                            _frmData._dgvData_Current = _frmData._dgrSearch;
+                            _frmData._strTableName_SearchPublic = cbbSearchData.Text;
+                            _frmData._dgrSearch.Refresh();
+                        }
+                        else
+                        {
+                            dtData = SQLDBUtil.GetDataTable(strQuerySearchDataNotAlive);
+                            if (dtData != null && dtData.Rows.Count > 0)
+                            {
+                                _frmData._iCountSearch = dtData.Rows.Count;
+                                _frmData._strQuery_RecentData = strQuerySearchDataNotAlive;
+                                _frmData._sttRowCount.Text = "Row : " + dtData.Rows.Count.ToString();
+                                _frmData._dgrSearch.DataSource = dtData;
+                                _frmData._dgvData_Current = _frmData._dgrSearch;
+                                _frmData._strTableName_SearchPublic = cbbSearchData.Text;
+                                _frmData._dgrSearch.Refresh();
+                            }
+                        }
+
+                        this.Hide();
+                        //this.Size = new System.Drawing.Size(1200, 700);
+                        _frmData.StartPosition = FormStartPosition.CenterScreen;
+                        _frmData.Text = " Information Data : " + cbbSearchData.Text;
+                        CreateLogFile_History();
+
+                        _frmData.Show();
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Key Esc - Close form
+
+            if (e.KeyCode == (Keys.Back | Keys.RButton | Keys.LButton | Keys.ShiftKey))
+            {
+                this.Hide();
+                _frmParent.Show();
+                //_frmMain.Show();
+                //_frmMain.WindowState = FormWindowState.Normal;
+            }
+
+            #endregion
+        }
+
+        #region Function
+
+        private void ShowAllTableNameByComboBox()
+        {
+            frmMain _frmMain = new frmMain();
+
+            String strQueryAllTableName = String.Format(@"SELECT name AS TableName FROM sys.tables ORDER BY TableName ");
+
+            cbbSearchData.Items.Clear();
+            DataTable dtTableName = SQLDBUtil.GetDataTable(strQueryAllTableName);
+            if (dtTableName != null && dtTableName.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dtTableName.Rows)
+                {
+                    cbbSearchData.Items.Add(dr[0].ToString());
+                }
+            }
+        }
+
+        public void CreateLogFile_History()
+        {
+            String strPathFile = Application.StartupPath + "\\HistoryData.txt";
+
+            try
+            {
+                if (File.Exists(strPathFile))
+                {
+                    File.Delete(strPathFile);
+                }
+
+                FileStream fs = new FileStream(strPathFile, FileMode.Create);//Tạo file mới tên là test.txt
+                StreamWriter sWriter = new StreamWriter(fs, Encoding.UTF8);//fs là 1 FileStream 
+                TextWriter tw = new StreamWriter(fs);
+
+                tw.WriteLine(@"TableSearch={0}", cbbSearchData.Text);
+
+                tw.Close();
+            }
+            catch
+            { }
+        }
+
+        #endregion
+
+    }
+}

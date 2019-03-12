@@ -1,0 +1,549 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
+using System.Data.SqlClient;
+using System.Data;
+using System.Data.Common;
+using System.Windows.Forms;
+using System.Reflection;
+using System.Diagnostics;
+
+namespace SQLAppLib
+{
+    public class SqlDatabaseHelper
+    {
+        private static string _companyName = string.Empty;
+        private static string _connectionString = string.Empty;
+        public static string AAStatusColumn = "AAStatus";
+        private static Timer autoTestConTimer;
+        public static SqlConnection CurrentDatabase = null;
+        private static Hashtable GMCDatabaseCollection = new Hashtable();
+        public static SqlTransaction Transaction = null;
+        private static Dictionary<string, DataSet> lstForeignColumns = new Dictionary<string, DataSet>();
+        private static Dictionary<string, string> lstPrimaryColumns = new Dictionary<string, string>();
+        private static Dictionary<string, DbCommand> MaxIDDbCommandList = new Dictionary<string, DbCommand>();
+        public static Dictionary<string, DbCommand> StoredProCommandList = new Dictionary<string, DbCommand>();
+        public static Dictionary<string, DataSet> TableColumnList = new Dictionary<string, DataSet>();
+        public static string TableName = string.Empty;
+        public static string strServer = string.Empty;
+        public static string strDatabase = string.Empty;
+        public static string strUser = string.Empty;
+        public static string strPass = string.Empty;
+
+        static SqlDatabaseHelper()
+        {
+            try
+            {
+                CurrentDatabase = new SqlConnection(GetConnectionString(strServer, strDatabase, strUser, strPass));
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private static void AutoTestConnectionTimer_Tick(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+            //if (TestConnection())
+            //{
+            //    //GMCWaitingDialog.Close();
+            //    autoTestConTimer.Enabled = false;
+            //}
+        }
+
+        protected static SqlTransaction BeginTransaction()
+        {
+            return CurrentDatabase.BeginTransaction();
+        }
+
+        protected static void CommitTransaction(SqlTransaction transaction)
+        {
+            transaction.Commit();
+        }
+
+        public static string GetConnectionString(String strServer, String strDatabase, String strUsername, String strPassword)
+        {
+            //return string.Format("Server={0};Database={1};User Id={2};Password={3};", strServer, strDatabase, strUsername, strPassword);
+            return string.Format("data source={0};database={1};uid={2};pwd={3}", strServer, strDatabase, strUsername, strPassword);
+        }
+
+        protected static string[] GetParameters(string strQueryCommand)
+        {
+            string[] array = new string[0];
+            string whereClause = GetWhereClause(strQueryCommand);
+            if (!string.IsNullOrEmpty(whereClause))
+            {
+                do
+                {
+                    whereClause = whereClause.Substring(whereClause.IndexOf("@"));
+                    string str2 = whereClause.Substring(1, whereClause.IndexOf(")") - 1);
+                    Array.Resize<string>(ref array, array.Length + 1);
+                    array[array.Length - 1] = str2;
+                    whereClause = whereClause.Substring(str2.Length + 1);
+                    if (whereClause.StartsWith(")"))
+                    {
+                        whereClause = whereClause.Substring(1);
+                    }
+                }
+                while (whereClause.Contains("@"));
+                return array;
+            }
+            return null;
+        }
+
+        protected static SqlCommand GetQuery(string strQueryCommand)
+        {
+            try
+            {
+                return new SqlCommand(strQueryCommand, CurrentDatabase);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        protected static SqlCommand GetStoredProcedure(string spName, params object[] values)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = CurrentDatabase;
+                command.CommandText = spName;
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlCommandBuilder.DeriveParameters(command);
+                command.Parameters.Remove(command.Parameters["@RETURN_VALUE"]);
+
+                // Add the input parameter and set value
+                for (int iIndex = 0; iIndex < command.Parameters.Count; iIndex++)
+                {
+                    if (values.Length > iIndex)
+                    {
+                        command.Parameters[iIndex].Value = values[iIndex];
+                    }
+                }
+                return command;
+            }
+            catch (Exception exception)
+            {
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return null;
+            }
+        }
+
+        private static string GetWhereClause(string strQueryCommand)
+        {
+            if (strQueryCommand.Contains("WHERE"))
+            {
+                return strQueryCommand.Substring(strQueryCommand.IndexOf("WHERE"));
+            }
+            return string.Empty;
+        }
+
+        private static void GMCWaitingDialog_StopDialogEvent()
+        {
+            Process.GetCurrentProcess().Kill();
+        }
+
+        protected static void RollbackTransaction(SqlTransaction transaction)
+        {
+            transaction.Rollback();
+        }
+
+        protected static DataSet RunQuery(string strQuery)
+        {
+            return RunQuery(GetQuery(strQuery));
+        }
+
+        protected static DataSet RunQuery(SqlCommand cmd)
+        {
+            try
+            {
+                if (CurrentDatabase == null)
+                    SwitchConnection(strServer, strDatabase, strUser, strPass);
+                if(CurrentDatabase.State.ToString() != "Open")
+                    CurrentDatabase.Open();
+                Transaction = BeginTransaction();
+                cmd.Transaction = Transaction;
+                DataSet ds = new DataSet();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(ds);
+                CommitTransaction(Transaction);
+                CurrentDatabase.Close();
+                return ds;
+            }
+            catch (Exception exception)
+            {
+                RollbackTransaction(Transaction);
+                CurrentDatabase.Close();
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return null;
+            }
+        }
+
+        protected static int RunQueryNonDataSet(SqlCommand cmd)
+        {
+            try
+            {
+                if (CurrentDatabase == null)
+                    SwitchConnection(strServer, strDatabase, strUser, strPass);
+                CurrentDatabase.Open();
+                Transaction = BeginTransaction();
+                cmd.Transaction = Transaction;
+                int idx = cmd.ExecuteNonQuery();
+                CommitTransaction(Transaction);
+                CurrentDatabase.Close();
+                return idx;
+            }
+            catch (Exception exception)
+            {
+                RollbackTransaction(Transaction);
+                CurrentDatabase.Close();
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return 0;
+            }
+        }
+
+        protected static DataSet RunStoredProcedure(SqlCommand cmd)
+        {
+            try
+            {
+                return RunQuery(cmd);
+            }
+            catch (Exception exception)
+            {
+                if ((exception is SqlException) && ((((SqlException)exception).ErrorCode == -2146232060) && exception.Message.Contains("TCP Provider")))
+                {
+                    return null;
+                }
+                return null;
+            }
+        }
+
+        protected static DataSet RunStoredProcedure(string spName)
+        {
+            try
+            {
+                SqlCommand storedProcCommand = GetStoredProcedure(spName);
+                return RunQuery(storedProcCommand);
+            }
+            catch (Exception exception)
+            {
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return null;
+            }
+        }
+
+        protected static DataSet RunStoredProcedure(string spName, params object[] values)
+        {
+            try
+            {
+                return RunQuery(GetStoredProcedure(spName, values));
+            }
+            catch (Exception exception)
+            {
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return null;
+            }
+        }
+
+        public static void SwitchConnection(string strConnectionString)
+        {
+            if (CurrentDatabase == null)
+                CurrentDatabase = new SqlConnection(strConnectionString);
+        }
+        public static void SwitchConnection(String strServers, String strDatabases, String strUsernames, String strPasswords)
+        {
+            strServer = strServers;
+            strDatabase = strDatabases;
+            strUser = strUsernames;
+            strPass = strPasswords;
+            CurrentDatabase = new SqlConnection(GetConnectionString(strServer, strDatabase, strUser, strPass));
+        }
+        public static void ChangeDatabase(string strDBName)
+        {
+            try
+            {
+                strDatabase = strDBName;
+                if (CurrentDatabase == null)
+                    SwitchConnection(strServer, strDBName, strUser, strPass);
+                if (CurrentDatabase.State.ToString() != "Open")
+                    CurrentDatabase.Open();
+                CurrentDatabase.ChangeDatabase(strDBName);
+            }
+            catch { }
+        }
+        public static Dictionary<string, DataSet> ForeignColumnsList
+        {
+            get { return lstForeignColumns; }
+        }
+
+        public static Dictionary<string, string> PrimaryColumnsList
+        {
+            get { return lstPrimaryColumns; }
+        }
+    }
+    public class SQLDBUtil : SqlDatabaseHelper
+    {
+        public static int ExecuteNonQuery(string strQuery)
+        {
+            return RunQueryNonDataSet(GetQuery(strQuery));
+        }
+        public static DataTable GetDataTable(string strQuery)
+        {
+            DataSet ds = RunQuery(strQuery);
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                return ds.Tables[0];
+            return null;
+        }
+        public static DataSet GetDataSet(string strQuery)
+        {
+            return RunQuery(strQuery);
+        }
+        public static DataSet GetAllDatabases()
+        {
+            return RunQuery("select name from sys.databases where name not in('master','model','msdb','tempdb') order by 1");
+        }
+        public static DataSet GetAllTableColumns(string strTableName, string strColumnName = "")
+        {
+            try
+            {
+                string strSub = "";
+                if (!string.IsNullOrEmpty(strColumnName))
+                    strSub = string.Format("and c.name = '{0}'", strColumnName);
+
+                string strQuery = string.Format(@"select t.name TableName,c.name ColumnName,tp.name + CASE WHEN tp.name IN ('varchar', 'char', 'varbinary', 'binary', 'text')
+							            THEN '(' + CASE WHEN c.max_length = -1 THEN 'MAX' ELSE CAST(c.max_length AS VARCHAR(5)) END + ')'
+							         WHEN tp.name IN ('nvarchar', 'nchar', 'ntext')
+							           THEN '(' + CASE WHEN c.max_length = -1 THEN 'MAX' ELSE CAST(c.max_length / 2 AS VARCHAR(5)) END + ')'
+							         WHEN tp.name IN ('datetime2', 'time2', 'datetimeoffset') 
+							           THEN '(' + CAST(c.scale AS VARCHAR(5)) + ')'
+							         WHEN tp.name = 'decimal' 
+							           THEN '(' + CAST(c.[precision] AS VARCHAR(5)) + ',' + CAST(c.scale AS VARCHAR(5)) + ')'
+							        ELSE ''
+						        END Type,c.max_length length,c.is_nullable Isnullable,c.column_id colorder,
+						        ReferenceTableName FKTableName,ReferenceColumnName FKCplumnName,
+						        isnull(ic.index_id,0) PK,delete_referential_action_desc
+                                from sys.tables t 
+	                                join sys.columns c on t.object_id = c.object_id
+	                                join sys.types tp on c.user_type_id = tp.user_type_id
+	                                left join(SELECT t.name TableName,c.name ColumnName,tr.name ReferenceTableName,cs.name ReferenceColumnName,f.delete_referential_action_desc
+				                                FROM sys.tables t JOIN sys.foreign_keys f ON t.OBJECT_ID = f.parent_object_id
+				                                JOIN sys.tables tr ON tr.OBJECT_ID = f.referenced_object_id
+				                                JOIN sys.foreign_key_columns fc ON f.OBJECT_ID = fc.constraint_object_id
+				                                JOIN sys.columns c ON c.OBJECT_ID = fc.parent_object_id AND c.column_id = fc.parent_column_id
+				                                JOIN sys.columns cs ON cs.OBJECT_ID = fc.referenced_object_id AND cs.column_id = fc.referenced_column_id
+				                                ) s on s.TableName = t.name and s.ColumnName = c.name
+	                                left join sys.key_constraints k on k.parent_object_id = t.object_id and k.type = 'PK'
+	                                left join sys.index_columns ic on c.object_id = ic.object_id and c.column_id = ic.column_id and ic.is_included_column = 0
+                                where t.name = '{0}' {1}", strTableName, strSub);
+                return RunQuery(strQuery);
+            }
+            catch (Exception exception)
+            {
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return null;
+            }
+        }
+        public static string GetPrimaryKeyColumn(string strTableName)
+        {
+            string strQuery = string.Format(@"select c.name 
+                                                from sys.tables t 
+                                                join sys.columns c on t.object_id = c.object_id
+                                                join sys.key_constraints k on k.parent_object_id = t.object_id and k.type = 'PK'
+                                                where t.name = '{0}'", strTableName);
+            DataSet ds = RunQuery(strQuery);
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                return Convert.ToString(ds.Tables[0].Rows[0]["name"]);
+            return string.Empty;
+        }
+        public static Dictionary<string, string> GetAllTablePrimaryColumns()
+        {
+            try
+            {
+                Dictionary<string, string> dictionary = new Dictionary<string, string>();
+                string str = "SELECT tc.TABLE_NAME,kcu.COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu,INFORMATION_SCHEMA.TABLE_CONSTRAINTS tc WHERE";
+                DataSet set = RunQuery(GetQuery(str + "(kcu.TABLE_NAME IN (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES\tWHERE(TABLE_TYPE='BASE TABLE')AND(TABLE_NAME<>'sysdiagrams')))" + " AND(kcu.CONSTRAINT_NAME=tc.CONSTRAINT_NAME)AND(tc.CONSTRAINT_TYPE='PRIMARY KEY')"));
+                if ((set != null) && (set.Tables.Count > 0))
+                {
+                    foreach (DataRow row in set.Tables[0].Rows)
+                    {
+                        string key = row["TABLE_NAME"].ToString();
+                        string str3 = row["COLUMN_NAME"].ToString();
+                        dictionary.Add(key, str3);
+                    }
+                }
+                return dictionary;
+            }
+            catch (Exception exception)
+            {
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return null;
+            }
+        }
+        public static bool ColumnIsExistInTable(string strTableName, string strColumnName)
+        {
+            try
+            {
+                TableName = strTableName;
+                DataSet set = RunQuery(string.Format(@"select c.name 
+                                                        from sys.tables t 
+                                                        join sys.columns c on t.object_id = c.object_id
+                                                        where t.name = '{0}' and c.name = '{1}'", strTableName, strColumnName));
+                return ((set != null) && (set.Tables.Count > 0) && (set.Tables[0].Rows.Count > 0));
+            }
+            catch (Exception exception)
+            {
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return true;
+            }
+        }
+        public static DataSet GetPrimaryTableWhichForeignKeyTable(string tblName, string colName = "")
+        {
+            string subQuery = string.Empty;
+            if (string.IsNullOrEmpty(colName))
+                string.Format(@"AND c.name like '{0}'", colName);
+
+            string strQuery = string.Format(@"SELECT t.name TableName,c.name ColumnName,tr.name ReferenceTableName,cs.name ReferenceColumnName
+                                            FROM sys.tables t JOIN sys.foreign_keys f ON t.OBJECT_ID = f.parent_object_id
+                                            JOIN sys.tables tr ON tr.OBJECT_ID = f.referenced_object_id
+                                            JOIN sys.foreign_key_columns fc ON f.OBJECT_ID = fc.constraint_object_id
+                                            JOIN sys.columns c ON c.OBJECT_ID = fc.parent_object_id AND c.column_id = fc.parent_column_id
+                                            JOIN sys.columns cs ON cs.OBJECT_ID = fc.referenced_object_id AND cs.column_id = fc.referenced_column_id
+                                            WHERE t.name like '{0}' {1}", tblName, subQuery);
+
+            return RunQuery(strQuery);
+        }
+        public static bool ColumnIsForeignKey(string strTableName, string strColumnName)
+        {
+            try
+            {
+                TableName = strTableName;
+                DataSet set = GetPrimaryTableWhichForeignKeyTable(strTableName, strColumnName);
+                return (((set != null) && (set.Tables.Count > 0)) && (set.Tables[0].Rows.Count > 0));
+            }
+            catch (Exception exception)
+            {
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return true;
+            }
+        }
+        public static bool ColumnIsPrimaryKey(string strTableName, string strColumnName)
+        {
+            try
+            {
+                TableName = strTableName;
+                DataSet set = RunQuery(string.Format(@"select t.name,c.name 
+                                                from sys.tables t 
+                                                join sys.columns c on t.object_id = c.object_id
+                                                join sys.key_constraints k on k.parent_object_id = t.object_id and k.type = 'PK'
+                                                where t.name = '{0}' and c.name = '{1}'", strTableName, strColumnName));
+                return (((set != null) && (set.Tables.Count > 0)) && (set.Tables[0].Rows.Count > 0));
+            }
+            catch (Exception exception)
+            {
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return false;
+            }
+        }
+        public static bool IsColumnAllowNull(string strTableName, string strColumnName)
+        {
+            try
+            {
+                TableName = strTableName;
+                DataSet set = RunQuery(string.Format(@"select c.name,c.is_nullable
+                                                from sys.tables t 
+                                                join sys.columns c on t.object_id = c.object_id
+                                                join sys.key_constraints k on k.parent_object_id = t.object_id and k.type = 'PK'
+                                                where t.name = '{0}'", new object[] { strTableName, strColumnName }));
+                if (((set != null) && (set.Tables.Count > 0)) && (set.Tables[0].Rows.Count > 0))
+                {
+                    return (set.Tables[0].Rows[0]["is_nullable"].ToString() == "1");
+                }
+                return true;
+            }
+            catch (Exception exception)
+            {
+                if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                return false;
+            }
+        }
+
+        #region QQuyen - Get Object By ID AND Table
+        public static DataInfo GetObjectByIDAndTableName(int iID, String strTableName)
+        {
+            DataInfo obj = new DataInfo();
+
+            String StrColumnNameByID = strTableName.Substring(0, strTableName.Length - 1) + "ID";
+            String StrColumnNameByNo = strTableName.Substring(0, strTableName.Length - 1) + "No";
+            String StrColumnNameByName = strTableName.Substring(0, strTableName.Length - 1) + "Name";
+            String StrColumnNameByDate = strTableName.Substring(0, strTableName.Length - 1) + "Date";
+
+            String str = String.Format(@"select * from {0} Where {1} = {2}", strTableName, StrColumnNameByID, iID);
+
+            DataSet ds = RunQuery(String.Format(@"select * from {0} Where {1} = {2}",strTableName,StrColumnNameByID,iID));
+            if ( ds != null && ds.Tables.Count >0 && ds.Tables[0].Rows.Count >0 )
+            {
+                obj.strNo = ds.Tables[0].Rows[0][StrColumnNameByNo].ToString();
+                obj.strName = ds.Tables[0].Rows[0][StrColumnNameByName].ToString();
+                obj.dtDate = Convert.ToDateTime(ds.Tables[0].Rows[0][StrColumnNameByDate]);
+            }
+
+            return obj;
+        }
+
+        #endregion
+        public static DataTable GetDataTableByDataSet(DataSet ds)
+        {
+            DataTable dt = null;
+            if (ds != null && ds.Tables.Count > 0)
+                dt = ds.Tables[0];
+            return dt;
+        }
+    }
+    public class DataInfo
+    {
+        public String strNo;
+        public String strName;
+        public DateTime dtDate;
+    }
+}

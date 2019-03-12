@@ -1,0 +1,142 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SQLAppLib
+{
+    public class SQLApp
+    {
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filepath);
+        [DllImport("kernel32")]
+        private static extern long GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filepath);
+        public static string GetIniFile(string szFile, string szSection, string szKey)
+        {
+            StringBuilder tmp = new StringBuilder(255);
+            long i = GetPrivateProfileString(szSection, szKey, "", tmp, 255, szFile);
+            return tmp.ToString();
+        }
+        public static void SetIniFile(string szFile, string szSection, string szKey, string szData)
+        {
+            WritePrivateProfileString(szSection, szKey, szData, szFile);
+        }
+
+        public static DialogResult Show(string title, string promptText, ref string value,
+                                        InputBoxValidation validation)
+        {
+            Form frmInput = new Form();
+            Label lblTitle = new Label();
+            TextBox txtInput = new TextBox();
+            Button btnOK = new Button();
+            Button btnCancel = new Button();
+
+            //Label
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblTitle.Location = new System.Drawing.Point(23, 12);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new System.Drawing.Size(51, 20);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "label1";
+
+            //TextBox
+            txtInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            txtInput.Location = new System.Drawing.Point(80, 9);
+            txtInput.Name = "textBox1";
+            txtInput.Size = new System.Drawing.Size(244, 26);
+            txtInput.TabIndex = 1;
+
+            //Button OK
+            btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btnOK.Location = new System.Drawing.Point(79, 39);
+            btnOK.Name = "button1";
+            btnOK.Size = new System.Drawing.Size(75, 30);
+            btnOK.TabIndex = 2;
+            btnOK.Text = "&OK";
+            btnOK.UseVisualStyleBackColor = true;
+
+            //Button Cancel
+            btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btnCancel.Location = new System.Drawing.Point(79, 39);
+            btnCancel.Name = "button1";
+            btnCancel.Size = new System.Drawing.Size(155, 39);
+            btnCancel.TabIndex = 2;
+            btnCancel.Text = "&OK";
+            btnCancel.UseVisualStyleBackColor = true;
+
+            //Input Form
+            frmInput.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            frmInput.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            frmInput.ClientSize = new System.Drawing.Size(336, 75);
+            frmInput.Controls.Add(btnCancel);
+            frmInput.Controls.Add(btnOK);
+            frmInput.Controls.Add(txtInput);
+            frmInput.Controls.Add(lblTitle);
+            frmInput.Name = "InputBox";
+            frmInput.Text = "InputBox";
+            frmInput.FormBorderStyle = FormBorderStyle.FixedDialog;
+            frmInput.StartPosition = FormStartPosition.CenterScreen;
+            frmInput.MaximizeBox = false;
+            frmInput.MinimizeBox = false;
+            frmInput.AcceptButton = btnOK;
+            frmInput.CancelButton = btnCancel;
+            frmInput.ResumeLayout(false);
+            frmInput.PerformLayout();
+            if (validation != null)
+            {
+                frmInput.FormClosing += delegate (object sender, FormClosingEventArgs e)
+                {
+                    if (frmInput.DialogResult == DialogResult.OK)
+                    {
+                        string errorText = validation(txtInput.Text);
+                        if (e.Cancel = (errorText != ""))
+                        {
+                            MessageBox.Show(frmInput, errorText, "Validation Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtInput.Focus();
+                        }
+                    }
+                };
+            }
+            DialogResult dialogResult = frmInput.ShowDialog();
+            value = txtInput.Text;
+            return dialogResult;
+        }
+        public static DialogResult Show(string title, string promptText, ref string value)
+        {
+            return Show(title, promptText, ref value, null);
+        }
+        public delegate string InputBoxValidation(string errorMessage);
+        public static bool IsNumber(string pText)
+        {
+            Regex regex = new Regex(@"^[-+]?[0-9]*\.?[0-9]+$");
+            return regex.IsMatch(pText);
+        }
+
+        public static string GetFile(string strFile)
+        {
+            string Content = "";
+            try
+            {
+                if (File.Exists(strFile))
+                {
+                    Content = File.ReadAllText(strFile);
+                }
+            }
+            catch (Exception ex) { }
+            return Content;
+        }
+        public static string GetTableNamePrefix(string strTableName)
+        {
+            return strTableName.Substring(0, strTableName.Length - 1);
+        }
+    }
+}

@@ -1,0 +1,2 @@
+ServerName=10.6.8.3,1433\SQLEXPRESS2008
+Database=Expert_CLV_Develop

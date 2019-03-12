@@ -1,0 +1,69 @@
+﻿namespace SQLQQ
+{
+    partial class frmSearch
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearch));
+            this.cbbSearchData = new System.Windows.Forms.ComboBox();
+            this.SuspendLayout();
+            // 
+            // cbbSearchData
+            // 
+            this.cbbSearchData.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbbSearchData.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbSearchData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cbbSearchData.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbbSearchData.FormattingEnabled = true;
+            this.cbbSearchData.Location = new System.Drawing.Point(0, 0);
+            this.cbbSearchData.Name = "cbbSearchData";
+            this.cbbSearchData.Size = new System.Drawing.Size(252, 21);
+            this.cbbSearchData.TabIndex = 3;
+            // 
+            // frmSearch
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(252, 19);
+            this.Controls.Add(this.cbbSearchData);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.Name = "frmSearch";
+            this.Text = "Table Name ";
+            this.Load += new System.EventHandler(this.frmSearch_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSearch_KeyDown);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ComboBox cbbSearchData;
+
+    }
+}

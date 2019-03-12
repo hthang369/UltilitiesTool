@@ -1,0 +1,74 @@
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmMain.resources
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.Properties.Resources.resources
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\bin\Debug\SQLQQ.exe
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\bin\Debug\SQLQQ.pdb
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.exe
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.pdb
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmData.resources
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmSearch.resources
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmConditionForSearch.resources
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmModule.resources
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmColumn.resources
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmQuery_SQL.resources
+C:\Users\QuocQuyen\documents\visual studio 2010\Projects\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmData_Foreign.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.exe
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.pdb
+D:\Project\SQLQQ\SQLQQ\bin\Debug\SQLQQ.exe
+D:\Project\SQLQQ\SQLQQ\bin\Debug\SQLQQ.pdb
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmColumn.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmConditionForSearch.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmData_Foreign.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmMain.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmData.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmModule.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmQuery_SQL.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmSearch.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.Properties.Resources.resources
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.csproj.GenerateResource.Cache
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.csprojResolveAssemblyReference.cache
+D:\Project\SQLQQ\SQLQQ\obj\x86\Debug\SQLQQ.frmWaiting.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.exe
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.pdb
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmColumn.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmConditionForSearch.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmData_Foreign.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmMain.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmData.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmModule.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmQuery_SQL.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmSearch.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmWaiting.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.Properties.Resources.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.csproj.GenerateResource.Cache
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\SQLQQ.exe
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\SQLQQ.pdb
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmSearchColumByTest.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.FormUtil.frmFunctionList.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmSyncDB.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.FormUtil.frmViewKQ.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.csprojResolveAssemblyReference.cache
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmUpdateVersion.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmNotifycation.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.SetTabIndex.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.FormUtil.DataGridViewUtil.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.FormUtil.TimerCount.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmUnPost.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.Formtext.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\SQLQQ.exe.config
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\CrystalDecisions.Windows.Forms.dll
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\Microsoft.ReportViewer.Common.dll
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\CrystalDecisions.Shared.dll
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\CrystalDecisions.ReportSource.dll
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\stdole.dll
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\Microsoft.ReportViewer.WinForms.xml
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\CustomFormStyle.dll
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\CustomFormStyle.pdb
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.frmImportConfig.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\obj\x86\Debug\SQLQQ.Form2.resources
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\GemBox.Spreadsheet.dll
+D:\gmc\UltilitiesTool\SQLToolApp\SQLQQ\bin\Debug\GemBox.Spreadsheet.xml

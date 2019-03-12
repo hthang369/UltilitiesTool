@@ -1,0 +1,16 @@
+[SqlServer]
+ServerCount=3
+Descreiption1=GMC Local 2k8
+Server1=10.6.8.3,1433
+UID1=sa
+PWD1=gmc$#@!1234zaqwsx
+
+Descreiption2=GMC Local 2k12
+Server2=10.6.8.3,1434
+UID2=sa
+PWD2=gmc$#@!1234zaqwsx
+
+Descreiption3=GMC Local 2k14
+Server3=10.6.8.3,1435
+UID3=sa
+PWD3=gmc$#@!1234zaqwsx

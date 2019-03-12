@@ -1,0 +1,443 @@
+﻿namespace SQLQQ
+{
+    partial class frmSyncDB
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCompare = new System.Windows.Forms.Button();
+            this.btnSync = new System.Windows.Forms.Button();
+            this.cboServerFrom = new System.Windows.Forms.ComboBox();
+            this.cboServerTo = new System.Windows.Forms.ComboBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageTable = new System.Windows.Forms.TabPage();
+            this.tabPageColumn = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.cboDatabaseFrom = new System.Windows.Forms.ComboBox();
+            this.cboDatabaseTo = new System.Windows.Forms.ComboBox();
+            this.lsvTableFrom = new System.Windows.Forms.ListView();
+            this.lsvTableTo = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lsvColumnFrom = new System.Windows.Forms.ListView();
+            this.lsvColumnTo = new System.Windows.Forms.ListView();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPageTable.SuspendLayout();
+            this.tabPageColumn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnSync);
+            this.panel1.Controls.Add(this.btnCompare);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1236, 30);
+            this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cboDatabaseTo);
+            this.panel2.Controls.Add(this.cboDatabaseFrom);
+            this.panel2.Controls.Add(this.cboServerTo);
+            this.panel2.Controls.Add(this.cboServerFrom);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 30);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1236, 38);
+            this.panel2.TabIndex = 1;
+            // 
+            // btnCompare
+            // 
+            this.btnCompare.Location = new System.Drawing.Point(12, 3);
+            this.btnCompare.Name = "btnCompare";
+            this.btnCompare.Size = new System.Drawing.Size(75, 23);
+            this.btnCompare.TabIndex = 0;
+            this.btnCompare.Text = "Compare";
+            this.btnCompare.UseVisualStyleBackColor = true;
+            this.btnCompare.Click += new System.EventHandler(this.btnCompare_Click);
+            // 
+            // btnSync
+            // 
+            this.btnSync.Location = new System.Drawing.Point(93, 3);
+            this.btnSync.Name = "btnSync";
+            this.btnSync.Size = new System.Drawing.Size(75, 23);
+            this.btnSync.TabIndex = 0;
+            this.btnSync.Text = "Sync";
+            this.btnSync.UseVisualStyleBackColor = true;
+            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
+            // 
+            // cboServerFrom
+            // 
+            this.cboServerFrom.FormattingEnabled = true;
+            this.cboServerFrom.Location = new System.Drawing.Point(12, 6);
+            this.cboServerFrom.Name = "cboServerFrom";
+            this.cboServerFrom.Size = new System.Drawing.Size(249, 24);
+            this.cboServerFrom.TabIndex = 0;
+            this.cboServerFrom.SelectedIndexChanged += new System.EventHandler(this.cboServerFrom_SelectedIndexChanged);
+            // 
+            // cboServerTo
+            // 
+            this.cboServerTo.FormattingEnabled = true;
+            this.cboServerTo.Location = new System.Drawing.Point(613, 6);
+            this.cboServerTo.Name = "cboServerTo";
+            this.cboServerTo.Size = new System.Drawing.Size(200, 24);
+            this.cboServerTo.TabIndex = 1;
+            this.cboServerTo.SelectedIndexChanged += new System.EventHandler(this.cboServerTo_SelectedIndexChanged);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPageTable);
+            this.tabControl1.Controls.Add(this.tabPageColumn);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 68);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1236, 439);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPageTable
+            // 
+            this.tabPageTable.Controls.Add(this.splitContainer1);
+            this.tabPageTable.Location = new System.Drawing.Point(4, 25);
+            this.tabPageTable.Name = "tabPageTable";
+            this.tabPageTable.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTable.Size = new System.Drawing.Size(1228, 410);
+            this.tabPageTable.TabIndex = 0;
+            this.tabPageTable.Text = "Table";
+            this.tabPageTable.UseVisualStyleBackColor = true;
+            // 
+            // tabPageColumn
+            // 
+            this.tabPageColumn.Controls.Add(this.splitContainer2);
+            this.tabPageColumn.Location = new System.Drawing.Point(4, 25);
+            this.tabPageColumn.Name = "tabPageColumn";
+            this.tabPageColumn.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageColumn.Size = new System.Drawing.Size(1228, 410);
+            this.tabPageColumn.TabIndex = 1;
+            this.tabPageColumn.Text = "Column";
+            this.tabPageColumn.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.lsvTableFrom);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.lsvTableTo);
+            this.splitContainer1.Size = new System.Drawing.Size(1222, 404);
+            this.splitContainer1.SplitterDistance = 593;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.lsvColumnFrom);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.lsvColumnTo);
+            this.splitContainer2.Size = new System.Drawing.Size(1222, 404);
+            this.splitContainer2.SplitterDistance = 604;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // cboDatabaseFrom
+            // 
+            this.cboDatabaseFrom.FormattingEnabled = true;
+            this.cboDatabaseFrom.Location = new System.Drawing.Point(267, 6);
+            this.cboDatabaseFrom.Name = "cboDatabaseFrom";
+            this.cboDatabaseFrom.Size = new System.Drawing.Size(254, 24);
+            this.cboDatabaseFrom.TabIndex = 2;
+            // 
+            // cboDatabaseTo
+            // 
+            this.cboDatabaseTo.FormattingEnabled = true;
+            this.cboDatabaseTo.Location = new System.Drawing.Point(830, 6);
+            this.cboDatabaseTo.Name = "cboDatabaseTo";
+            this.cboDatabaseTo.Size = new System.Drawing.Size(254, 24);
+            this.cboDatabaseTo.TabIndex = 3;
+            // 
+            // lsvTableFrom
+            // 
+            this.lsvTableFrom.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.lsvTableFrom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvTableFrom.Location = new System.Drawing.Point(0, 0);
+            this.lsvTableFrom.Name = "lsvTableFrom";
+            this.lsvTableFrom.Size = new System.Drawing.Size(593, 404);
+            this.lsvTableFrom.TabIndex = 0;
+            this.lsvTableFrom.UseCompatibleStateImageBehavior = false;
+            this.lsvTableFrom.View = System.Windows.Forms.View.Details;
+            // 
+            // lsvTableTo
+            // 
+            this.lsvTableTo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.lsvTableTo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvTableTo.Location = new System.Drawing.Point(0, 0);
+            this.lsvTableTo.Name = "lsvTableTo";
+            this.lsvTableTo.Size = new System.Drawing.Size(625, 404);
+            this.lsvTableTo.TabIndex = 0;
+            this.lsvTableTo.UseCompatibleStateImageBehavior = false;
+            this.lsvTableTo.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Status";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Table Name";
+            this.columnHeader2.Width = 111;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Script Add";
+            this.columnHeader3.Width = 102;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Script Drop";
+            this.columnHeader4.Width = 102;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Status";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Table Name";
+            this.columnHeader6.Width = 105;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Script Add";
+            this.columnHeader7.Width = 92;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Script Drop";
+            this.columnHeader8.Width = 110;
+            // 
+            // lsvColumnFrom
+            // 
+            this.lsvColumnFrom.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader17,
+            this.columnHeader11,
+            this.columnHeader12});
+            this.lsvColumnFrom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvColumnFrom.Location = new System.Drawing.Point(0, 0);
+            this.lsvColumnFrom.Name = "lsvColumnFrom";
+            this.lsvColumnFrom.Size = new System.Drawing.Size(604, 404);
+            this.lsvColumnFrom.TabIndex = 0;
+            this.lsvColumnFrom.UseCompatibleStateImageBehavior = false;
+            this.lsvColumnFrom.View = System.Windows.Forms.View.Details;
+            // 
+            // lsvColumnTo
+            // 
+            this.lsvColumnTo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader18,
+            this.columnHeader15,
+            this.columnHeader16});
+            this.lsvColumnTo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvColumnTo.Location = new System.Drawing.Point(0, 0);
+            this.lsvColumnTo.Name = "lsvColumnTo";
+            this.lsvColumnTo.Size = new System.Drawing.Size(614, 404);
+            this.lsvColumnTo.TabIndex = 0;
+            this.lsvColumnTo.UseCompatibleStateImageBehavior = false;
+            this.lsvColumnTo.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Status";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Column Name";
+            this.columnHeader10.Width = 162;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Script Add";
+            this.columnHeader11.Width = 90;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Script Drop";
+            this.columnHeader12.Width = 96;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Status";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Column Name";
+            this.columnHeader14.Width = 152;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Script Add";
+            this.columnHeader15.Width = 86;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Script Drop";
+            this.columnHeader16.Width = 97;
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.DisplayIndex = 1;
+            this.columnHeader17.Text = "Table Name";
+            this.columnHeader17.Width = 121;
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.DisplayIndex = 1;
+            this.columnHeader18.Text = "Table Name";
+            this.columnHeader18.Width = 119;
+            // 
+            // frmSyncDB
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1236, 507);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "frmSyncDB";
+            this.Text = "frmSyncDB";
+            this.Load += new System.EventHandler(this.frmSyncDB_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPageTable.ResumeLayout(false);
+            this.tabPageColumn.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnSync;
+        private System.Windows.Forms.Button btnCompare;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox cboServerTo;
+        private System.Windows.Forms.ComboBox cboServerFrom;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPageTable;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TabPage tabPageColumn;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.ComboBox cboDatabaseTo;
+        private System.Windows.Forms.ComboBox cboDatabaseFrom;
+        private System.Windows.Forms.ListView lsvTableFrom;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ListView lsvTableTo;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ListView lsvColumnFrom;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ListView lsvColumnTo;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
+    }
+}

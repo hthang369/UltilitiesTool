@@ -1,0 +1,17 @@
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.csprojResolveAssemblyReference.cache
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.frmColumn.resources
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.frmConditionForSearch.resources
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.frmData_Foreign.resources
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.frmMain.resources
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.frmData.resources
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.frmModule.resources
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.frmQuery_SQL.resources
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.frmSearch.resources
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.Properties.Resources.resources
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.csproj.GenerateResource.Cache
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\bin\Release\SQLQQ.exe
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\bin\Release\SQLQQ.pdb
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\bin\Release\SQLAppLib.dll
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\bin\Release\SQLAppLib.pdb
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.exe
+D:\gmc\UltilitiesTool\SQLQQ\SQLQQ\obj\x86\Release\SQLQQ.pdb

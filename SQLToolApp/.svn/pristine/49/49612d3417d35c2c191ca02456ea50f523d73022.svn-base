@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C7CCD26-1060-4CFF-A862-11D756CDE78D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SQLQQ</RootNamespace>
+    <AssemblyName>SQLQQ</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SQLAppLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SQLAppLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormUtil\frmSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUtil\frmSearch.Designer.cs">
+      <DependentUpon>frmSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmColumn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmColumn.Designer.cs">
+      <DependentUpon>frmColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConditionForSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConditionForSearch.Designer.cs">
+      <DependentUpon>frmConditionForSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmData_Foreign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmData_Foreign.Designer.cs">
+      <DependentUpon>frmData_Foreign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmData.Designer.cs">
+      <DependentUpon>frmData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmModule.Designer.cs">
+      <DependentUpon>frmModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuery_SQL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuery_SQL.Designer.cs">
+      <DependentUpon>frmQuery_SQL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSearchColumByTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchColumByTest.Designer.cs">
+      <DependentUpon>frmSearchColumByTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWaiting.Designer.cs">
+      <DependentUpon>frmWaiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\FunctionList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="FormUtil\frmSearch.resx">
+      <DependentUpon>frmSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmColumn.resx">
+      <DependentUpon>frmColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConditionForSearch.resx">
+      <DependentUpon>frmConditionForSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmData_Foreign.resx">
+      <DependentUpon>frmData_Foreign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmData.resx">
+      <DependentUpon>frmData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmModule.resx">
+      <DependentUpon>frmModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuery_SQL.resx">
+      <DependentUpon>frmQuery_SQL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchColumByTest.resx">
+      <DependentUpon>frmSearchColumByTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWaiting.resx">
+      <DependentUpon>frmWaiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmColumn.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmConditionForSearch.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmData.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmData_Foreign.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmMain.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmModule.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmQuery_SQL.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmSearch.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmWaiting.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.Properties.Resources.resources" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="bin\Debug\config.ini" />
+    <None Include="bin\Debug\SQLQQ.vshost.exe.manifest" />
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\x86\Debug\GenerateResource.read.1.tlog" />
+    <None Include="obj\x86\Debug\GenerateResource.write.1.tlog" />
+    <None Include="obj\x86\Debug\ResolveAssemblyReference.cache" />
+    <None Include="obj\x86\Debug\SQLQQ.csproj.GenerateResource.Cache" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\HistoryData.txt" />
+    <Content Include="bin\Debug\InsertTypeData.txt" />
+    <Content Include="bin\Debug\LastDataSearch.txt" />
+    <Content Include="bin\Debug\Login.txt" />
+    <Content Include="bin\Debug\Operation.txt" />
+    <Content Include="bin\Debug\Scripts\FindModule.sql" />
+    <Content Include="bin\Debug\SQL.txt" />
+    <Content Include="bin\Debug\SQLAppLib.dll" />
+    <Content Include="bin\Debug\SQLQQ.exe" />
+    <Content Include="bin\Debug\SQLQQ.pdb" />
+    <Content Include="bin\Debug\SQLQQ.vshost.exe" />
+    <Content Include="bin\Debug\Support.txt" />
+    <Content Include="Lib\SQLAppLib.dll" />
+    <Content Include="obj\x86\Debug\SQLQQ.csproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\x86\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

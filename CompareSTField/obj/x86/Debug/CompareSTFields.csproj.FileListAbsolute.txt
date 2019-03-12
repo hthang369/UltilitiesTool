@@ -1,0 +1,12 @@
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\bin\Debug\CompareSTFields.exe.config
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\bin\Debug\CompareSTFields.exe
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\bin\Debug\CompareSTFields.pdb
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\obj\x86\Debug\CompareSTFields.Form1.resources
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\obj\x86\Debug\CompareSTFields.Properties.Resources.resources
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\obj\x86\Debug\CompareSTFields.exe
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\obj\x86\Debug\CompareSTFields.pdb
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\bin\Debug\Interop.SQLDMO.dll
+c:\users\quocquyen\documents\visual studio 2010\Projects\CompareSTFields\CompareSTFields\obj\x86\Debug\CompareSTFields.exe.licenses

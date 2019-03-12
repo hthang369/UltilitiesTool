@@ -1,0 +1,14 @@
+---- create linked server
+DECLARE @serverName AS VARCHAR(50)
+DECLARE @serverAddress AS VARCHAR(50)
+DECLARE @serverUser AS VARCHAR(50)
+DECLARE @serverPass AS VARCHAR(50)
+
+SET @serverName = '@serverName@'
+SET @serverAddress = '@serverAddress@'
+SET @serverUser = '@serverUser@'
+SET @serverPass = '@serverPass@'
+
+EXEC master.dbo.sp_addlinkedserver @server = @serverName, @provider=N'SQLOLEDB', @datasrc = @serverAddress, @srvproduct = @serverName
+
+EXEC master.dbo.sp_addlinkedsrvlogin @rmtsrvname = @serverName, @useself=N'False', @locallogin=NULL, @rmtuser=@serverUser, @rmtpassword=@serverPass

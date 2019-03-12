@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using SQLAppLib;
+
+namespace SQLQQ
+{
+    public partial class SetTabIndex : Form
+    {
+        public SetTabIndex()
+        {
+            InitializeComponent();
+        }
+
+        private void SetTabIndex_Load(object sender, EventArgs e)
+        {
+            SetDataSourceByCombobox(cboModules, "STModules");
+            SetDataSourceByCombobox(cboUserGroup, "ADUserGroups");
+            if (Convert.ToInt32(cboUserGroup.SelectedText) != 0)
+            {
+                SetDataSourceByCombobox(cboScreens, "STScreens", string.Format("STModuleID = '{0}' AND STUserGroupID = '{1}'", cboModules.SelectedText, cboUserGroup.SelectedText));
+                SetDataSourceByCombobox(cboGroup, "STFields", string.Format("STScreenID = '{0}' AND STFieldType IN('GMCGroupControl','GMCPanelControl','GMCTabPageControl')", cboScreens.SelectedText));
+            }
+        }
+
+        private void SetDataSourceByCombobox(ComboBox cboDataSource, string strTableName, string strWhere = "", string strDisplayName = "", string strValueName = "")
+        {
+            if (string.IsNullOrEmpty(strDisplayName)) strDisplayName = SQLApp.GetTableNamePrefix(strTableName) + "Name";
+            if (string.IsNullOrEmpty(strValueName)) strValueName = SQLApp.GetTableNamePrefix(strTableName) + "ID";
+            DataTable dt = SQLDBUtil.GetDataByTable(strTableName, strWhere);
+            cboDataSource.DataSource = dt;
+            cboDataSource.DisplayMember = strDisplayName;
+            cboDataSource.ValueMember = strValueName;
+        }
+
+        private void cboControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cbo = (ComboBox)sender;
+            if (cbo == null) return;
+            if(cbo.Name.Contains("Module"))
+                SetDataSourceByCombobox(cboScreens, "STScreens", string.Format("STModuleID = '{0}' AND STUserGroupID = '{1}'", cboModules.SelectedValue, cboUserGroup.SelectedValue));
+        }
+        private void cboControl_Enter(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

@@ -1,0 +1,113 @@
+﻿using SQLAppLib;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace SQLQQ
+{
+    public partial class frmConditionForSearch : Form
+    {
+        public frmConditionForSearch()
+        {
+            InitializeComponent();
+        }
+
+        #region Property
+
+        public ComboBox _cbbConditionForSearchData
+        {
+            get
+            {
+                return cbbConditionFroSearchData;
+            }
+            set
+            {
+                cbbConditionFroSearchData = value;
+            }
+        }
+
+        #endregion
+
+        private void frmConditionForSearch_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmConditionForSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            frmMain _frmMain = new frmMain();
+            frmData _frmData = new frmData();
+
+            #region Esc - Thoát
+
+            if (e.KeyCode == (Keys.Back | Keys.RButton | Keys.LButton | Keys.ShiftKey))
+            {
+                this.Close();
+            }
+
+            #endregion
+
+            #region Key Enter - View data by condition for search of table name
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                String strQuerySearchDataByAlive = string.Empty;
+                String strQuerySearchDataNotAlive = string.Empty;
+
+                if (_frmData._strTableName == "STModules")
+                {
+                    String strConditionSearch = String.Format(@"    Where {0} LIKE N'{1}'", _frmData._strCurrentCellColumnName,cbbConditionFroSearchData.Text);
+                    strQuerySearchDataByAlive = _frmData._strQuery_RecentData + strConditionSearch;
+                }
+                else
+                {
+                    strQuerySearchDataByAlive = String.Format(@" Select *
+                                                                     From   {0}
+                                                                     Where {1} LIKE N'{2}'
+                                                              ", _frmData._strTableName, _frmData._strCurrentCellColumnName, cbbConditionFroSearchData.Text);
+
+                     strQuerySearchDataByAlive = String.Format(@"  Select *
+                                                                     From   {0}
+                                                                     Where  AAStatus = 'Alive' AND {1} LIKE N'{2}'
+                                                                      
+                                                              ", _frmData._strTableName, _frmData._strCurrentCellColumnName, cbbConditionFroSearchData.Text);
+                }
+
+                DataTable dtData = new DataTable();
+
+                dtData = SQLDBUtil.GetDataTable(strQuerySearchDataByAlive);
+                if (dtData != null && dtData.Rows.Count > 0)
+                {
+                    _frmData._iCountSearch = dtData.Rows.Count;
+                    _frmData._strQuery_RecentData = strQuerySearchDataByAlive;
+                    _frmData._sttRowCount.Text = "Row : " + _frmData._iCountSearch + "| ";
+                    _frmData._dgrSearch.DataSource = dtData;
+                    _frmData._dgrSearch.Refresh();
+                }
+                else
+                {
+                    dtData = SQLDBUtil.GetDataTable(strQuerySearchDataNotAlive);
+                    if (dtData != null && dtData.Rows.Count > 0)
+                    {
+                        _frmData._iCountSearch = dtData.Rows.Count;
+                        _frmData._strQuery_RecentData = strQuerySearchDataNotAlive;
+                        _frmData._sttRowCount.Text = "Row : " + _frmData._iCountSearch + "| ";
+                        _frmData._dgrSearch.DataSource = dtData;
+                        _frmData._dgrSearch.Refresh();
+                    }
+                }
+
+                this.Hide();
+                _frmData.ShowDialog();
+                _frmData.StartPosition = FormStartPosition.CenterParent;
+            }
+
+            #endregion
+        }
+    }
+}

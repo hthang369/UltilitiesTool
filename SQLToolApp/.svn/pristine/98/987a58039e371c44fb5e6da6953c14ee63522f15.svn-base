@@ -1,0 +1,197 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using SQLAppLib;
+using SQLQQ.Util;
+using System.IO;
+
+namespace SQLQQ
+{
+    public partial class SetTabIndex : Form
+    {
+        public SetTabIndex()
+        {
+            InitializeComponent();
+        }
+
+        private void SetTabIndex_Load(object sender, EventArgs e)
+        {
+            SetDataSourceByCombobox(cboModules, "STModules");
+            SetDataSourceByCombobox(cboUserGroup, "ADUserGroups");
+            if (Convert.ToInt32(cboUserGroup.SelectedValue) != 0)
+            {
+                SetDataSourceByCombobox(cboScreens, "STScreens", string.Format("STModuleID = '{0}' AND STUserGroupID = '{1}'", GetDataByCombobox(cboModules), GetDataByCombobox(cboUserGroup)), "STScreenText");
+                SetDataSourceByCombobox(cboGroup, "STFields", string.Format("STScreenID = '{0}' AND STFieldType IN('GMCGroupControl','GMCPanelControl','GMCTabPageControl')", GetDataByCombobox(cboScreens)), "STFieldText");
+            }
+        }
+        private object GetDataByCombobox(ComboBox cbo)
+        {
+            object iObjectID = 0;
+            if (cbo.SelectedValue == null) return iObjectID;
+            if (cbo.SelectedValue.GetType() == typeof(DataRowView)) return iObjectID;
+            iObjectID = cbo.SelectedValue;
+            return iObjectID;
+        }
+        private void SetDataSourceByCombobox(ComboBox cboDataSource, string strTableName, string strWhere = "", string strDisplayName = "", string strValueName = "")
+        {
+            if (string.IsNullOrEmpty(strDisplayName)) strDisplayName = SQLApp.GetTableNamePrefix(strTableName) + "Name";
+            if (string.IsNullOrEmpty(strValueName)) strValueName = SQLApp.GetTableNamePrefix(strTableName) + "ID";
+            DataTable dt = SQLDBUtil.GetDataByTable(strTableName, strWhere);
+            cboDataSource.DataSource = dt;
+            cboDataSource.DisplayMember = strDisplayName;
+            cboDataSource.ValueMember = strValueName;
+        }
+        private void SetDataSourceByGridView(DataGridView dgv, string strTableName, string strWhere = "")
+        {
+            DataTable dt = SQLDBUtil.GetDataByTable(strTableName, strWhere);
+            dgv.DataSource = dt;
+        }
+        private void cboControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cbo = (ComboBox)sender;
+            if (cbo == null) return;
+            if (cbo.Name.Contains("Module") || cbo.Name.Contains("UserGroup"))
+                SetDataSourceByCombobox(cboScreens, "STScreens", string.Format("STModuleID = '{0}' AND STUserGroupID = '{1}'", GetDataByCombobox(cboModules), GetDataByCombobox(cboUserGroup)), "STScreenText");
+            else if (cbo.Name.Contains("Screen"))
+            {
+                SetDataSourceByCombobox(cboGroup, "STFields", string.Format("STScreenID = '{0}' AND STFieldType IN('GMCGroupControl','GMCPanelControl','GMCTabPageControl')", GetDataByCombobox(cboScreens)), "STFieldText");
+                SetDataSourceByGridView(dgvData, "STFields", string.Format("STScreenID = '{0}'  AND STFieldParentID <> 0", GetDataByCombobox(cboScreens)));
+            }
+            else
+                SetDataSourceByGridView(dgvData, "STFields", string.Format("STScreenID = '{0}' AND STFieldParentID = {1}", GetDataByCombobox(cboScreens), GetDataByCombobox(cboGroup)));
+        }
+        private void cboControl_Enter(object sender, EventArgs e)
+        {
+
+        }
+        private void btnSetTabIndex_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.Name.Contains("Default"))
+            {
+                object iModuleID = GetDataByCombobox(cboModules);
+                DataTable dt = SQLDBUtil.GetDataByTable("STScreens", string.Format("STModuleID = '{0}'", iModuleID));
+                if (dt != null)
+                {
+                    string[] arrObjectID = dt.Select().Select(x => x["STScreenID"].ToString()).ToArray();
+                    SQLDBUtil.ExecuteNonQuery(string.Format("UPDATE STFields SET STFieldTabIndex = 1000 WHERE STScreenID IN('{0}')", string.Join("','", arrObjectID)));
+                }
+            }
+            else
+            {
+                string[] ListFilter = ReadStringFilter();
+                TreeFieldNode tree = new TreeFieldNode();
+                tree.STField = new STFieldsInfo();
+                int iScreenID = Convert.ToInt32(GetDataByCombobox(cboScreens));
+                if (!string.IsNullOrEmpty(cboGroup.Text))
+                {
+                    string AlignType = cboAlignType.SelectedItem.ToString();
+                    tree.STField.STFieldID = Convert.ToInt32(GetDataByCombobox(cboGroup));
+                    GetTreeNode(tree, iScreenID, AlignType);
+                    List<STFieldsInfo> ListField = new List<STFieldsInfo>();
+                    ReadChild(ref ListField, tree, ListFilter);
+                    if (ListField == null)
+                        return;
+                    int indexmin = ListField.Min(x => x.STFieldTabIndex);
+
+                    foreach (STFieldsInfo a in ListField)
+                    {
+                        a.STFieldTabIndex = indexmin++;
+                        UpdateTabIndex(a.STFieldID, a.STFieldTabIndex);
+                    }
+                    dgvData.DataSource = ListField;
+                }
+                else if (!string.IsNullOrEmpty(cboScreens.Text))
+                {
+                    SetTabIndexForOnlyOneScreen(tree, iScreenID, ListFilter);
+                }
+                else if (!string.IsNullOrEmpty(cboModules.Text))
+                {
+                    int STModuleID = Convert.ToInt32(GetDataByCombobox(cboModules));
+                    DataTable dt = SQLDBUtil.GetDataByTable("STScreens", string.Format("STModuleID = '{0}'", STModuleID));
+                    if (dt == null)
+                        return;
+                    foreach (DataRow r in dt.Select())
+                    {
+                        int idx = Convert.ToInt32(r["STScreenID"]);
+                        TreeFieldNode tfn = new TreeFieldNode();
+                        tfn.STField = new STFieldsInfo();
+                        SetTabIndexForOnlyOneScreen(tfn, idx, ListFilter);
+                    }
+                }
+            }
+        }
+        public String[] ReadStringFilter()
+        {
+            string filepath = Application.StartupPath + "\\stringfilter.txt";
+            String[] ListFilter;
+            //FileStream fs=new FileStream("C:\stringfilter.txt",FileMode.Open);
+            ListFilter = File.ReadAllLines(filepath);
+            return ListFilter;
+        }
+        public void ReadChild(ref List<STFieldsInfo> list, TreeFieldNode node, String[] listfilter)
+        {
+            foreach (TreeFieldNode n in node.ListTreeFieldNodeChild)
+            {
+                foreach (string s in listfilter)
+                {
+                    if (s == n.STField.STFieldType)
+                    {
+                        list.Add(n.STField);
+                        break;
+                    }
+                }
+                ReadChild(ref list, n, listfilter);
+            }
+        }
+        private void GetTreeNode(TreeFieldNode tfn, int scrennid, string aligntype)
+        {
+            DataTable dt = GetChildControl(tfn.STField.STFieldID, scrennid, aligntype);
+            if (dt != null)
+            {
+                foreach (DataRow row in dt.Select())
+                {
+                    STFieldsInfo objField = new STFieldsInfo();
+                    objField = (STFieldsInfo)SQLApp.GetObjectFromDataRow(row, objField);
+                    TreeFieldNode child = new TreeFieldNode();
+                    child.STField = objField;
+                    GetTreeNode(child, scrennid, aligntype);
+                    tfn.ListTreeFieldNodeChild.Add(child);
+                }
+            }
+        }
+        private DataTable GetChildControl(int stfieldparentID, int screenid, string aligntype)
+        {
+            string strQuery = "";
+            if (aligntype == "TopLeft")
+                strQuery = string.Format(@"SELECT * FROM STFields WHERE STFieldParentID = {0} AND STScreenID = {1} ORDER BY STFieldLocationY, STFieldLocationX", stfieldparentID, screenid);
+            else if (aligntype == "LeftTop")
+                strQuery = string.Format(@"SELECT * FROM STFields WHERE STFieldParentID = {0} AND STScreenID = {1} ORDER BY STFieldLocationX, STFieldLocationY", stfieldparentID, screenid);
+            return SQLDBUtil.GetDataTable(strQuery);
+        }
+        private void SetTabIndexForOnlyOneScreen(TreeFieldNode tree, int screenid, string[] ListFilter)
+        {
+            tree.STField.STFieldID = 0;
+            GetTreeNode(tree, screenid, "TopLeft");
+            List<STFieldsInfo> ListField = new List<STFieldsInfo>();
+            ReadChild(ref ListField, tree, ListFilter);
+            int i = 1;
+            foreach (STFieldsInfo a in ListField)
+            {
+                a.STFieldTabIndex = i++;
+                UpdateTabIndex(a.STFieldID, a.STFieldTabIndex);
+            }
+            dgvData.DataSource = ListField;
+        }
+        private void UpdateTabIndex(int STFieldID, int index)
+        {
+            string strQuery = String.Format(@"UPDATE STFields SET STFieldTabIndex = {0} WHERE STFieldID = {1}", index, STFieldID);
+            SQLDBUtil.ExecuteNonQuery(strQuery);
+        }
+    }
+}

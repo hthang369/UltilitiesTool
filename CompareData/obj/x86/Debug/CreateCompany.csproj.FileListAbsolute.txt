@@ -1,0 +1,140 @@
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\CreateCompany.exe.config
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\CreateCompany.exe
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\CreateCompany.pdb
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\Interop.SQLDMO.dll
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.Form2.resources
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.Properties.Resources.resources
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.exe.licenses
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.exe
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.pdb
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\GMCGATE.dll
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\ExpertERP.BaseProvider.dll
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\ExpertLib.dll
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\office.dll
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\Microsoft.Vbe.Interop.dll
+D:\GMC\R&D\SharpReport\CreateCompany\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\CreateCompany.exe.config
+D:\GMC\R&D\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.exe
+D:\GMC\R&D\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.pdb
+D:\GMC\R&D\CreateCompany\CreateCompany\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\GMC\R&D\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.Properties.Resources.resources
+D:\GMC\R&D\CreateCompany\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\GMC\R&D\CreateCompany\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+D:\GMC\R&D\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.exe.licenses
+D:\GMC\R&D\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.guiExpertDatabaseUtil.resources
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\CreateCompany.exe
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\CreateCompany.pdb
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\ExpertERP.BaseProvider.dll
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\ExpertLib.dll
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\GMCGATE.dll
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\office.dll
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\Microsoft.Vbe.Interop.dll
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\GMC\R&D\CreateCompany\CreateCompany\bin\Debug\Interop.SQLDMO.dll
+C:\Users\GMC-02\Desktop\CreateCompany\CreateCompany\CreateCompany\bin\Debug\CreateCompany.exe.config
+C:\Users\GMC-02\Desktop\CreateCompany\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.exe
+C:\Users\GMC-02\Desktop\CreateCompany\CreateCompany\CreateCompany\obj\x86\Debug\CreateCompany.pdb
+E:\Projects\DBUtil\CreateCompany\bin\Debug\CreateCompany.exe.config
+E:\Projects\DBUtil\CreateCompany\obj\x86\Debug\CreateCompany.exe
+E:\Projects\DBUtil\CreateCompany\obj\x86\Debug\CreateCompany.pdb
+E:\Projects\DBUtil\CreateCompany\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Projects\DBUtil\CreateCompany\obj\x86\Debug\CreateCompany.guiExpertDatabaseUtil.resources
+E:\Projects\DBUtil\CreateCompany\obj\x86\Debug\CreateCompany.Properties.Resources.resources
+E:\Projects\DBUtil\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+E:\Projects\DBUtil\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+E:\Projects\DBUtil\CreateCompany\obj\x86\Debug\CreateCompany.exe.licenses
+E:\Projects\DBUtil\CreateCompany\bin\Debug\CreateCompany.exe
+E:\Projects\DBUtil\CreateCompany\bin\Debug\CreateCompany.pdb
+E:\Projects\DBUtil\CreateCompany\bin\Debug\ExpertERP.BaseProvider.dll
+E:\Projects\DBUtil\CreateCompany\bin\Debug\ExpertLib.dll
+E:\Projects\DBUtil\CreateCompany\bin\Debug\GMCGATE.dll
+E:\Projects\DBUtil\CreateCompany\bin\Debug\Interop.SQLDMO.dll
+E:\Projects\DBUtil\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\Projects\DBUtil\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\CreateCompany.exe.config
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\CreateCompany.exe
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\CreateCompany.pdb
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\CreateCompany.exe
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\CreateCompany.pdb
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\ExpertERP.BaseProvider.dll
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\ExpertLib.dll
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\GMCGATE.dll
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Interop.SQLDMO.dll
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\CreateCompany.guiExpertDatabaseUtil.resources
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\CreateCompany.Properties.Resources.resources
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+E:\Projects\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\CreateCompany.exe.licenses
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\CreateCompany.exe.config
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\CreateCompany.exe
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\CreateCompany.pdb
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\CreateCompany.Properties.Resources.resources
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\CreateCompany.exe
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\CreateCompany.pdb
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\ExpertERP.BaseProvider.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\ExpertLib.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\GMCGATE.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Interop.SQLDMO.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\office.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.Vbe.Interop.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.SqlServer.Smo.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.SqlServer.SmoExtended.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.SqlServer.SqlEnum.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\System.Data.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\System.Deployment.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\System.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\System.Drawing.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\System.Windows.Forms.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\System.Xml.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\CreateCompany.Compare.resources
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.Data.v11.1.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.Printing.v11.1.Core.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.Utils.v11.1.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.XtraEditors.v11.1.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.XtraGrid.v11.1.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.XtraLayout.v11.1.dll
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.Data.v11.1.xml
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.Utils.v11.1.xml
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.XtraEditors.v11.1.xml
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.XtraGrid.v11.1.xml
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\DevExpress.XtraLayout.v11.1.xml
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.Office.Interop.Excel.xml
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\office.xml
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+E:\Project\DBUtil Giao Dien Moi\CreateCompany\bin\Debug\Microsoft.Office.Interop.Excel.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\CreateCompany.exe.config
+E:\GMC\UtilitiesTool\CreateCompany\obj\x86\Debug\CreateCompany.exe
+E:\GMC\UtilitiesTool\CreateCompany\obj\x86\Debug\CreateCompany.pdb
+E:\GMC\UtilitiesTool\CreateCompany\obj\x86\Debug\CreateCompany.csprojResolveAssemblyReference.cache
+E:\GMC\UtilitiesTool\CreateCompany\obj\x86\Debug\CreateCompany.CompareHiepData.resources
+E:\GMC\UtilitiesTool\CreateCompany\obj\x86\Debug\CreateCompany.Properties.Resources.resources
+E:\GMC\UtilitiesTool\CreateCompany\obj\x86\Debug\CreateCompany.csproj.GenerateResource.Cache
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\CreateCompany.exe
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\CreateCompany.pdb
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\ExpertLib.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\GMCGATE.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\Interop.SQLDMO.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\System.Data.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\System.Deployment.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\System.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\System.Drawing.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\System.Windows.Forms.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\System.Xml.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\GMC\UtilitiesTool\CreateCompany\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+E:\GMC\UtilitiesTool\CreateCompany\obj\x86\Debug\CreateCompany.GridColumn.resources

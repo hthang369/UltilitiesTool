@@ -1,0 +1,248 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Linq;
+
+namespace SQLAppLib
+{
+    public class SQLApp
+    {
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filepath);
+        [DllImport("kernel32")]
+        private static extern long GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filepath);
+        public static string GetIniFile(string szFile, string szSection, string szKey)
+        {
+            StringBuilder tmp = new StringBuilder(255);
+            long i = GetPrivateProfileString(szSection, szKey, "", tmp, 255, szFile);
+            return tmp.ToString();
+        }
+        public static void SetIniFile(string szFile, string szSection, string szKey, string szData)
+        {
+            WritePrivateProfileString(szSection, szKey, szData, szFile);
+        }
+        public static bool IsNumber(string pText)
+        {
+            Regex regex = new Regex(@"^[-+]?[0-9]*\.?[0-9]+$");
+            return regex.IsMatch(pText);
+        }
+        public static string GetFile(string strFile)
+        {
+            string Content = "";
+            try
+            {
+                if (File.Exists(strFile))
+                {
+                    Content = File.ReadAllText(strFile);
+                }
+            }
+            catch (Exception ex) { }
+            return Content;
+        }
+        public static string GetTableNamePrefix(string strTableName)
+        {
+            return strTableName.Substring(0, strTableName.Length - 1);
+        }
+        public static bool CheckColumnByDataGridView(DataGridView dgvView, string strCol)
+        {
+            return dgvView.Columns.Cast<DataGridViewColumn>().Where(x => x.Name.Contains(strCol)).Count() != 0;
+        }
+    }
+
+    public class SQLAppWaitingDialog
+    {
+        public static Thread CurrentThread;
+        private static SQLWaitingDialog _waitForm;
+        private static event HideDialogDelegate HideDialogEvent;
+        private static event ShowDialogDelegate ShowDialogEvent;
+        public static event StopDialogDelegate StopDialogEvent;
+        public static void ShowWaitForm()
+        {
+            StartThead(new ThreadStart(SQLAppWaitingDialog.Thread_CallBack_ShowWaitingDialog));
+            Application.Idle += OnLoaded;
+            Thread.Sleep(400);
+        }
+        public static void Show()
+        {
+            StartThead(new ThreadStart(SQLAppWaitingDialog.Thread_CallBack_ShowWaitingDialog));
+            Thread.Sleep(400);
+        }
+        public static void ShowDialog()
+        {
+            try
+            {
+                if (CurrentThread != null)
+                {
+                    IAsyncResult result = ShowDialogEvent.BeginInvoke(null, null);
+                    result.AsyncWaitHandle.WaitOne();
+                    ShowDialogEvent.EndInvoke(result);
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private static void Thread_CallBack_ShowWaitingDialog()
+        {
+            if (_waitForm != null && !_waitForm.IsDisposed)
+            {
+                return;
+            }
+            if (_waitForm == null)
+            {
+                _waitForm = new SQLWaitingDialog();
+                _waitForm.FormClosing += new FormClosingEventHandler(SQLAppWaitingDialog.Thread_DialogForm_FormClosing);
+                ShowDialogEvent += new ShowDialogDelegate(SQLAppWaitingDialog.Thread_ShowDialogEvent);
+                HideDialogEvent += new HideDialogDelegate(SQLAppWaitingDialog.Thread_HideDialogEvent);
+            }
+            Thread_ShowDialog();
+        }
+
+        private static void Thread_HideDialogEvent()
+        {
+            if (_waitForm != null)
+            {
+                _waitForm.Close();
+            }
+        }
+
+        private static void Thread_ShowDialogEvent()
+        {
+            Thread_ShowDialog();
+        }
+
+        private static void Thread_DialogForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                IAsyncResult result = StopDialogEvent.BeginInvoke(null, null);
+                result.AsyncWaitHandle.WaitOne();
+                StopDialogEvent.EndInvoke(result);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private static void Thread_ShowDialog()
+        {
+            try
+            {
+                if (_waitForm != null)
+                {
+                    _waitForm.TopMost = true;
+                    _waitForm.TopMost = true;
+                    _waitForm.ShowDialog();
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private static void StartThead(ThreadStart threadStart)
+        {
+            if (!((CurrentThread != null) && CurrentThread.IsAlive))
+            {
+                CurrentThread = new Thread(threadStart);
+                CurrentThread.IsBackground = true;
+                CurrentThread.Start();
+            }
+            else
+            {
+                ShowDialog();
+            }
+        }
+
+        private static void OnLoaded(object sender, EventArgs e)
+        {
+            Application.Idle -= OnLoaded;
+            HideDialog();
+        }
+        public static void CleanStopEventHandler()
+        {
+            try
+            {
+                if (StopDialogEvent != null)
+                {
+                    StopDialogDelegate delegate2 = (StopDialogDelegate)Delegate.Combine(new Delegate[] { StopDialogEvent });
+                    if (delegate2 != null)
+                    {
+                        foreach (StopDialogDelegate delegate3 in delegate2.GetInvocationList())
+                        {
+                            StopDialogEvent -= delegate3;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public static void Close()
+        {
+            try
+            {
+                CleanStopEventHandler();
+            }
+            catch (Exception)
+            {
+            }
+            try
+            {
+                HideDialog();
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public static void HideDialog()
+        {
+            try
+            {
+                if (CurrentThread != null)
+                {
+                    IAsyncResult result = HideDialogEvent.BeginInvoke(null, null);
+                    result.AsyncWaitHandle.WaitOne();
+                    HideDialogEvent.EndInvoke(result);
+                }
+            }
+            catch (Exception)
+            {
+                if (CurrentThread != null)
+                {
+                    CurrentThread.Abort();
+                    CurrentThread = null;
+                }
+            }
+        }
+        public static void Quit()
+        {
+            try
+            {
+                if (CurrentThread != null)
+                {
+                    while (CurrentThread.IsAlive)
+                    {
+                        CurrentThread.Abort();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private delegate void HideDialogDelegate();
+
+        private delegate void ShowDialogDelegate();
+
+        public delegate void StopDialogDelegate();
+    }
+}

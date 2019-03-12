@@ -1,0 +1,5 @@
+ARInvoiceID,AAStatus,ARInvoiceNo,ARInvoiceDate,ARInvoiceAmtTot,FK_ARCustomerID
+
+select ARInvoiceItemID, AAStatus,FK_ARInvoiceID,FK_ICProductID,ARInvoiceItemQty,ARInvoiceItemStkQty,ARInvoiceItemRQty,ARInvoiceItemUnitPrice,ARInvoiceItemFUnitPrice,ARInvoiceItemPrice,ARInvoiceItemFPrice,ARInvoiceItemAmtTot,ARInvoiceItemFAmtTot
+
+select PMProjectTaskDesc from PMProjectTasks where AAStatus = 'Alive'

@@ -1,0 +1,16 @@
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\obj\Debug\CustomerFormStyle.csprojResolveAssemblyReference.cache
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\obj\Debug\CustomerFormStyle.Form1.resources
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\obj\Debug\CustomerFormStyle.Properties.Resources.resources
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\obj\Debug\CustomerFormStyle.csproj.GenerateResource.Cache
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\bin\Debug\CustomerFormStyle.exe.config
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\bin\Debug\CustomerFormStyle.exe
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\bin\Debug\CustomerFormStyle.pdb
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\obj\Debug\CustomerFormStyle.exe
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\obj\Debug\CustomerFormStyle.pdb
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\obj\Debug\Interop.ADODB.dll
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\obj\Debug\CustomerFormStyle.csproj.ResolveComReference.cache
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\bin\Debug\DevExpress.Data.v15.1.dll
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\bin\Debug\DevExpress.Utils.v15.1.dll
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\bin\Debug\DevExpress.XtraEditors.v15.1.dll
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\obj\Debug\CustomerFormStyle.Form2.resources
+D:\gmc\UltilitiesTool\SQLToolApp\CustomerFormStyle\bin\Debug\DevExpress.Office.v15.1.Core.dll

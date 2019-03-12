@@ -1,0 +1,155 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
+
+namespace SQLQQ
+{
+    public partial class frmSyncDB : Form
+    {
+        string strServerFrom;
+        string strServerTo;
+        string strDatabaseFrom;
+        string strDatabaseTo;
+        public frmSyncDB()
+        {
+            InitializeComponent();
+        }
+
+        private void frmSyncDB_Load(object sender, EventArgs e)
+        {
+            Util.FunctionList.LoadConfigIniFromServer(cboServerFrom);
+            Util.FunctionList.LoadConfigIniFromServer(cboServerTo);
+            progressBar1.Visible = false;
+            lblProcess.Visible = false;
+        }
+
+        private void cboServerFrom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Util.FunctionList.LoadDatabaseByServer(cboServerFrom, cboDatabaseFrom);
+        }
+
+        private void cboServerTo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Util.FunctionList.LoadDatabaseByServer(cboServerTo, cboDatabaseTo);
+        }
+
+        private void btnCompare_Click(object sender, EventArgs e)
+        {
+            //progressBar1.PerformStep();
+            if (_worker.IsBusy)
+                _worker.CancelAsync();
+            else
+            {
+                strServerFrom = Util.FunctionList.GetServerConfig(cboServerFrom.SelectedIndex);
+                strServerTo = Util.FunctionList.GetServerConfig(cboServerTo.SelectedIndex);
+                strDatabaseFrom = Convert.ToString(cboDatabaseFrom.SelectedItem);
+                strDatabaseTo = Convert.ToString(cboDatabaseTo.SelectedItem);
+                progressBar1.Value = progressBar1.Minimum;
+                //Thread newThread = new Thread(ActionCompare);
+                _worker.RunWorkerAsync();
+                //newThread.Start();
+            }
+        }
+
+        private void SyncTable(DataGridView dgvView, string strDBFrom, string strDBTo)
+        {
+            DataTable dtFrom = Util.FunctionList.SynchronizeTable(strDBFrom, strDBTo);
+            if (dtFrom != null)
+            {
+                float length = dtFrom.Rows.Count;
+                progressBar1.Invoke((Action)(() => progressBar1.Maximum = (int)length));
+                float i = 0;
+                foreach (DataRow row in dtFrom.Rows)
+                {
+                    _worker.ReportProgress((int)(i / length * 100));
+                    row["Script Add"] = Util.FunctionList.GetScriptCreateTable(strDBFrom, Convert.ToString(row["Table Name"]));
+                    i++;
+                }
+                SetDataSource(dgvView, dtFrom);
+                _worker.ReportProgress(100);
+            }
+        }
+        private void SyncColumn(DataGridView dgvView, string strDBFrom, string strDBTo)
+        {
+            DataTable dtFrom = Util.FunctionList.SynchronizeColumn(strDBFrom, strDBTo);
+            if (dtFrom != null)
+            {
+                float length = dtFrom.Rows.Count;
+                progressBar1.Invoke((Action)(() => progressBar1.Maximum = (int)length));
+                float i = 0;
+                foreach (DataRow row in dtFrom.Rows)
+                {
+                    _worker.ReportProgress((int)(i / length * 100));
+                    string TblName = row["Table Name"].ToString();
+                    string ColName = row["Column Name"].ToString();
+                    row["Script Add"] = Util.FunctionList.GetScriptCreateColumn(strDBFrom, TblName, ColName);
+                    i++;
+                }
+                SetDataSource(dgvView, dtFrom);
+                _worker.ReportProgress(100);
+            }
+        }
+        private void SetDataSource(DataGridView dgvView, DataTable dt)
+        {
+            dgvView.Invoke((Action)(() =>
+            {
+                dgvView.DataSource = dt;
+                dgvView.Refresh();
+            }));
+        }
+        private void btnSync_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ActionCompare()
+        {
+            progressBar1.Invoke((Action)(() => progressBar1.Visible = true));
+            lblProcess.Invoke((Action)(() => lblProcess.Visible = true));
+            btnCompare.Invoke((Action)(() => btnCompare.Enabled = false));
+            btnSync.Invoke((Action)(() => btnSync.Enabled = false));
+            cboServerFrom.Invoke((Action)(() => cboServerFrom.Enabled = false));
+            cboServerTo.Invoke((Action)(() => cboServerTo.Enabled = false));
+            cboDatabaseFrom.Invoke((Action)(() => cboDatabaseFrom.Enabled = false));
+            cboDatabaseTo.Invoke((Action)(() => cboDatabaseTo.Enabled = false));
+            if (strServerFrom == strServerTo)
+            {
+                SyncTable(dgvTableFrom, strDatabaseFrom, strDatabaseTo);
+                SyncTable(dgvTableTo, strDatabaseTo, strDatabaseFrom);
+                SyncColumn(dgvColFrom, strDatabaseFrom, strDatabaseTo);
+                SyncColumn(dgvColTo, strDatabaseTo, strDatabaseFrom);
+            }
+            //progressBar1.Invoke((Action)(() => progressBar1.Visible = false));
+        }
+        private void Action_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            ActionCompare();
+
+        }
+
+        private void Action_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (!_worker.CancellationPending)
+            {
+                lblProcess.Text = e.ProgressPercentage + "%";
+                progressBar1.PerformStep();
+            }
+        }
+
+        private void Action_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            btnCompare.Enabled = true;
+            btnSync.Enabled = true;
+            cboDatabaseFrom.Enabled = true;
+            cboDatabaseTo.Enabled = true;
+            cboServerFrom.Enabled = true;
+            cboServerTo.Enabled = true;
+        }
+    }
+}

@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace SQLQQ
+{
+    public partial class frmSyncDB : Form
+    {
+        public frmSyncDB()
+        {
+            InitializeComponent();
+        }
+
+        private void frmSyncDB_Load(object sender, EventArgs e)
+        {
+            Util.FunctionList.LoadConfigIniFromServer(cboServerFrom);
+            Util.FunctionList.LoadConfigIniFromServer(cboServerTo);
+        }
+
+        private void cboServerFrom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Util.FunctionList.LoadDatabaseByServer(cboServerFrom, cboDatabaseFrom);
+        }
+
+        private void cboServerTo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Util.FunctionList.LoadDatabaseByServer(cboServerTo, cboDatabaseTo);
+        }
+
+        private void btnCompare_Click(object sender, EventArgs e)
+        {
+            string strServerFrom = Util.FunctionList.GetServerConfig(cboServerFrom.SelectedIndex);
+            string strServerTo = Util.FunctionList.GetServerConfig(cboServerTo.SelectedIndex);
+            if (strServerFrom == strServerTo)
+            {
+                SyncTable(lsvTableFrom, Convert.ToString(cboDatabaseFrom.SelectedItem), Convert.ToString(cboDatabaseTo.SelectedItem));
+                SyncTable(lsvTableTo, Convert.ToString(cboDatabaseTo.SelectedItem), Convert.ToString(cboDatabaseFrom.SelectedItem));
+                SyncColumn(lsvColumnFrom, Convert.ToString(cboDatabaseFrom.SelectedItem), Convert.ToString(cboDatabaseTo.SelectedItem));
+                SyncColumn(lsvColumnTo, Convert.ToString(cboDatabaseTo.SelectedItem), Convert.ToString(cboDatabaseFrom.SelectedItem));
+            }
+        }
+
+        private void SyncTable(ListView lstView, string strDBFrom, string strDBTo)
+        {
+            lstView.Items.Clear();
+            DataTable dtFrom = Util.FunctionList.SynchronizeTable(strDBFrom, strDBTo);
+            if (dtFrom != null)
+            {
+                foreach (DataRow row in dtFrom.Rows)
+                {
+                    ListViewItem item = new ListViewItem();
+                    string TblName = row["name"].ToString();
+                    item.SubItems.Add(TblName);
+                    item.SubItems.Add(Util.FunctionList.GetScriptCreateTable(strDBFrom, TblName));
+                    item.SubItems.Add(Util.FunctionList.GetScriptDropTable(TblName));
+                    lstView.Items.Add(item);
+                }
+            }
+        }
+        private void SyncColumn(ListView lstView, string strDBFrom, string strDBTo)
+        {
+            lstView.Items.Clear();
+            DataTable dtFrom = Util.FunctionList.SynchronizeColumn(strDBFrom, strDBTo);
+            if (dtFrom != null)
+            {
+                foreach (DataRow row in dtFrom.Rows)
+                {
+                    ListViewItem item = new ListViewItem();
+                    string TblName = row["TableName"].ToString();
+                    string ColName = row["ColName"].ToString();
+                    item.SubItems.Add(TblName);
+                    item.SubItems.Add(ColName);
+                    item.SubItems.Add(Util.FunctionList.GetScriptCreateColumn(strDBFrom, TblName, ColName));
+                    item.SubItems.Add(Util.FunctionList.GetScriptDropColumn(TblName, ColName));
+                    lstView.Items.Add(item);
+                }
+            }
+        }
+
+
+        private void btnSync_Click(object sender, EventArgs e)
+        {
+
+        }
+
+    }
+}

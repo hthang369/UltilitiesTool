@@ -1,0 +1,287 @@
+﻿using System;
+using System.Windows.Forms;
+
+namespace SQLQQ
+{
+    partial class frmData
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmData));
+            this.dgrSearch = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.sttRowCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sttID = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sttNo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sttDate = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sttName = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sttAction = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sttColorForeignColumn = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sttToolTipText = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.sttFrNo = new System.Windows.Forms.ToolStripLabel();
+            this.sttFrName = new System.Windows.Forms.ToolStripLabel();
+            this.sttFrDate = new System.Windows.Forms.ToolStripLabel();
+            this.sttProcBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrSearch)).BeginInit();
+            this.statusStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // dgrSearch
+            // 
+            this.dgrSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrSearch.Location = new System.Drawing.Point(0, 0);
+            this.dgrSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.dgrSearch.Name = "dgrSearch";
+            this.dgrSearch.Size = new System.Drawing.Size(1043, 419);
+            this.dgrSearch.TabIndex = 0;
+            this.dgrSearch.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrSearch_CellContentClick);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sttRowCount,
+            this.sttID,
+            this.sttNo,
+            this.sttDate,
+            this.sttName,
+            this.sttAction,
+            this.sttColorForeignColumn,
+            this.sttToolTipText});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 449);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.statusStrip1.Size = new System.Drawing.Size(1043, 22);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
+            // 
+            // sttRowCount
+            // 
+            this.sttRowCount.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sttRowCount.Name = "sttRowCount";
+            this.sttRowCount.Size = new System.Drawing.Size(45, 17);
+            this.sttRowCount.Text = "Count :";
+            // 
+            // sttID
+            // 
+            this.sttID.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sttID.Name = "sttID";
+            this.sttID.Size = new System.Drawing.Size(26, 17);
+            this.sttID.Text = "ID :";
+            // 
+            // sttNo
+            // 
+            this.sttNo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sttNo.Name = "sttNo";
+            this.sttNo.Size = new System.Drawing.Size(29, 17);
+            this.sttNo.Text = "No :";
+            // 
+            // sttDate
+            // 
+            this.sttDate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sttDate.Name = "sttDate";
+            this.sttDate.Size = new System.Drawing.Size(38, 17);
+            this.sttDate.Text = "Date :";
+            // 
+            // sttName
+            // 
+            this.sttName.Name = "sttName";
+            this.sttName.Size = new System.Drawing.Size(45, 17);
+            this.sttName.Text = "Name :";
+            // 
+            // sttAction
+            // 
+            this.sttAction.Name = "sttAction";
+            this.sttAction.Size = new System.Drawing.Size(71, 17);
+            this.sttAction.Text = "l Not Action";
+            this.sttAction.Click += new System.EventHandler(this.sttAction_Click);
+            // 
+            // sttColorForeignColumn
+            // 
+            this.sttColorForeignColumn.Name = "sttColorForeignColumn";
+            this.sttColorForeignColumn.Size = new System.Drawing.Size(103, 17);
+            this.sttColorForeignColumn.Text = "Color : Not Action";
+            // 
+            // sttToolTipText
+            // 
+            this.sttToolTipText.Name = "sttToolTipText";
+            this.sttToolTipText.Size = new System.Drawing.Size(115, 17);
+            this.sttToolTipText.Text = "ToolTip : Not Action";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dgrSearch);
+            this.panel2.Controls.Add(this.toolStrip1);
+            this.panel2.Controls.Add(this.statusStrip1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1043, 471);
+            this.panel2.TabIndex = 2;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.toolStripTextBox1,
+            this.toolStripSeparator1,
+            this.toolStripLabel2,
+            this.sttFrNo,
+            this.sttFrName,
+            this.sttFrDate,
+            this.sttProcBar,
+            this.toolStripLabel3});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 419);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip1.Size = new System.Drawing.Size(1043, 30);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(42, 27);
+            this.toolStripLabel1.Text = "Table :";
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(132, 30);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 30);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(83, 27);
+            this.toolStripLabel2.Text = "Foreign Data : ";
+            // 
+            // sttFrNo
+            // 
+            this.sttFrNo.Name = "sttFrNo";
+            this.sttFrNo.Size = new System.Drawing.Size(36, 27);
+            this.sttFrNo.Text = "Fr No";
+            // 
+            // sttFrName
+            // 
+            this.sttFrName.Name = "sttFrName";
+            this.sttFrName.Size = new System.Drawing.Size(52, 27);
+            this.sttFrName.Text = "Fr Name";
+            // 
+            // sttFrDate
+            // 
+            this.sttFrDate.Name = "sttFrDate";
+            this.sttFrDate.Size = new System.Drawing.Size(44, 27);
+            this.sttFrDate.Text = "Fr Date";
+            // 
+            // sttProcBar
+            // 
+            this.sttProcBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.sttProcBar.Name = "sttProcBar";
+            this.sttProcBar.Size = new System.Drawing.Size(160, 27);
+            this.sttProcBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(59, 27);
+            this.toolStripLabel3.Text = "Loading...";
+            // 
+            // frmData
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1043, 471);
+            this.Controls.Add(this.panel2);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "frmData";
+            this.Text = "Data Infomation";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmData_FormClosing);
+            this.Load += new System.EventHandler(this.frmSearch_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSearch_KeyDown_1);
+            ((System.ComponentModel.ISupportInitialize)(this.dgrSearch)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.DataGridView dgrSearch;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ToolStripStatusLabel sttAction;
+        private System.Windows.Forms.ToolStripStatusLabel sttRowCount;
+        private System.Windows.Forms.ToolStripStatusLabel sttColorForeignColumn;
+        private System.Windows.Forms.ToolStripStatusLabel sttToolTipText;
+        private System.Windows.Forms.ToolStripStatusLabel sttID;
+        private System.Windows.Forms.ToolStripStatusLabel sttName;
+        private System.Windows.Forms.ToolStripStatusLabel sttNo;
+        private System.Windows.Forms.ToolStripStatusLabel sttDate;
+        private System.Windows.Forms.ProgressBar probWaiting;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripLabel sttFrNo;
+        private System.Windows.Forms.ToolStripLabel sttFrName;
+        private System.Windows.Forms.ToolStripLabel sttFrDate;
+        private System.Windows.Forms.ToolStripProgressBar sttProcBar;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+    }
+}

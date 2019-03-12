@@ -1,0 +1,17 @@
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\CompareDatabaseNew.exe.config
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\CompareDatabaseNew.exe
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\CompareDatabaseNew.pdb
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\DevExpress.Data.v11.1.dll
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\DevExpress.Printing.v11.1.Core.dll
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\DevExpress.Utils.v11.1.dll
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\DevExpress.Data.v11.1.xml
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\DevExpress.Utils.v11.1.xml
+D:\gmc\UltilitiesTool\CompareDatabaseNew\obj\Debug\CompareDatabaseNew.csprojResolveAssemblyReference.cache
+D:\gmc\UltilitiesTool\CompareDatabaseNew\obj\Debug\CompareDatabaseNew.Form1.resources
+D:\gmc\UltilitiesTool\CompareDatabaseNew\obj\Debug\CompareDatabaseNew.Properties.Resources.resources
+D:\gmc\UltilitiesTool\CompareDatabaseNew\obj\Debug\CompareDatabaseNew.csproj.GenerateResource.Cache
+D:\gmc\UltilitiesTool\CompareDatabaseNew\obj\Debug\CompareDatabaseNew.exe
+D:\gmc\UltilitiesTool\CompareDatabaseNew\obj\Debug\CompareDatabaseNew.pdb
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\DevExpress.XtraEditors.v11.1.dll
+D:\gmc\UltilitiesTool\CompareDatabaseNew\bin\Debug\DevExpress.XtraEditors.v11.1.xml
+D:\gmc\UltilitiesTool\CompareDatabaseNew\obj\Debug\CompareDatabaseNew.exe.licenses

@@ -1,0 +1,168 @@
+﻿namespace SQLQQ.FormUtil
+{
+    partial class DataGridViewUtil
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.dgvResult = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCount = new System.Windows.Forms.Label();
+            this.lblRow = new System.Windows.Forms.Label();
+            this.timerCount = new SQLQQ.FormUtil.TimerCount();
+            this.lblFillter = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // dgvResult
+            // 
+            this.dgvResult.AllowUserToAddRows = false;
+            this.dgvResult.AllowUserToDeleteRows = false;
+            this.dgvResult.AllowUserToOrderColumns = true;
+            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvResult.Location = new System.Drawing.Point(0, 0);
+            this.dgvResult.Name = "dgvResult";
+            this.dgvResult.ReadOnly = true;
+            this.dgvResult.Size = new System.Drawing.Size(755, 341);
+            this.dgvResult.TabIndex = 0;
+            this.dgvResult.AllowUserToOrderColumnsChanged += new System.EventHandler(this.dgvResult_AllowUserToOrderColumnsChanged);
+            this.dgvResult.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvResult_CellFormatting);
+            this.dgvResult.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvResult_DataError);
+            this.dgvResult.SelectionChanged += new System.EventHandler(this.dgvResult_SelectionChanged);
+            this.dgvResult.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvResult_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 30);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Row :";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.progressBar.Location = new System.Drawing.Point(605, 0);
+            this.progressBar.MarqueeAnimationSpeed = 50;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(150, 30);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblFillter);
+            this.panel1.Controls.Add(this.lblCount);
+            this.panel1.Controls.Add(this.timerCount);
+            this.panel1.Controls.Add(this.lblRow);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.progressBar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(0, 341);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(755, 30);
+            this.panel1.TabIndex = 3;
+            // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblCount.Location = new System.Drawing.Point(427, 0);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.lblCount.Size = new System.Drawing.Size(123, 26);
+            this.lblCount.TabIndex = 5;
+            this.lblCount.Text = "| {0} | {1} | Count: {2}";
+            this.lblCount.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblRow
+            // 
+            this.lblRow.AutoSize = true;
+            this.lblRow.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblRow.Location = new System.Drawing.Point(51, 0);
+            this.lblRow.Name = "lblRow";
+            this.lblRow.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.lblRow.Size = new System.Drawing.Size(52, 26);
+            this.lblRow.TabIndex = 4;
+            this.lblRow.Text = "{0} / {1}";
+            this.lblRow.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // timerCount
+            // 
+            this.timerCount.AutoSize = true;
+            this.timerCount.Dock = System.Windows.Forms.DockStyle.Right;
+            this.timerCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timerCount.Location = new System.Drawing.Point(550, 0);
+            this.timerCount.Margin = new System.Windows.Forms.Padding(4);
+            this.timerCount.Name = "timerCount";
+            this.timerCount.Size = new System.Drawing.Size(55, 30);
+            this.timerCount.TabIndex = 6;
+            // 
+            // lblFillter
+            // 
+            this.lblFillter.AutoSize = true;
+            this.lblFillter.Location = new System.Drawing.Point(109, 7);
+            this.lblFillter.Name = "lblFillter";
+            this.lblFillter.Size = new System.Drawing.Size(45, 16);
+            this.lblFillter.TabIndex = 7;
+            this.lblFillter.Text = "label2";
+            // 
+            // DataGridViewUtil
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dgvResult);
+            this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "DataGridViewUtil";
+            this.Size = new System.Drawing.Size(755, 371);
+            this.Load += new System.EventHandler(this.DataGridViewUtil_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Label lblRow;
+        private TimerCount timerCount;
+        public System.Windows.Forms.DataGridView dgvResult;
+        private System.Windows.Forms.Label lblFillter;
+    }
+}

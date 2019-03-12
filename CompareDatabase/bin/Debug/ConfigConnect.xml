@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ConfigConnectSQL xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FromServerName>10.6.8.252</FromServerName>
+  <FromUserName>sa</FromUserName>
+  <FromPassword>gmc$#@!1234zaqwsx</FromPassword>
+  <FromDatabase>Expert_FW_OnSite</FromDatabase>
+  <ToServerName>10.6.8.252</ToServerName>
+  <ToUserName>sa</ToUserName>
+  <ToPassword>gmc$#@!1234zaqwsx</ToPassword>
+  <ToDatabase>Expert_FW_Thue_OnSite</ToDatabase>
+</ConfigConnectSQL>

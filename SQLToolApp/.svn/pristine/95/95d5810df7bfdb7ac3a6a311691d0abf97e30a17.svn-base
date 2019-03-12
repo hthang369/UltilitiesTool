@@ -1,0 +1,4 @@
+ALTER TABLE [dbo].[CSCompanys] DROP
+	CONSTRAINT [FK_CSCompanys_ICStocks]
+
+ALTER TABLE CSCompanys ADD   	[FK_ICStockID] int  NULL

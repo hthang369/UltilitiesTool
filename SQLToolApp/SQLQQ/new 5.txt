@@ -1,0 +1,31 @@
+
+drop table #GroupTreeList
+
+select row_number() over(order by ADUserGroupSectionID ASC) Line,0 as LineParent,* into #GroupTreeList
+from ADUserGroupSections where ADUserGroupID = 1
+
+--select a.*,b.ADUserGroupSectionID,b.Line
+update a set a.LineParent = b.Line
+from #GroupTreeList a
+join #GroupTreeList b on a.FK_ADParentUserGroupSectionID = b.ADUserGroupSectionID
+
+DECLARE @SeekValue int
+SELECT @SeekValue = ISNULL(MAX(ADUserGroupSectionID),0) FROM ADUserGroupSections
+DBCC CHECKIDENT('#GroupTreeList', RESEED, @SeekValue)
+
+insert into #GroupTreeList(Line, LineParent,ADUserGroupID,ADUserGroupSectionName,ADUserGroupSectionDesc,ADUserGroupSectionSortOrder,FK_ADParentUserGroupSectionID)
+select Line, LineParent,82,ADUserGroupSectionName,ADUserGroupSectionDesc,ADUserGroupSectionSortOrder,FK_ADParentUserGroupSectionID
+from #GroupTreeList
+
+delete from #GroupTreeList where ADUserGroupID = 1
+
+update a set a.FK_ADParentUserGroupSectionID = b.ADUserGroupSectionID
+from #GroupTreeList a
+join #GroupTreeList b on a.LineParent = b.Line
+
+--select IDENT_CURRENT('#GroupTreeList')
+--select * from #GroupTreeList
+set identity_insert ADUserGroupSections ON
+insert into ADUserGroupSections(ADUserGroupSectionID,ADUserGroupID,ADUserGroupSectionName,ADUserGroupSectionDesc,ADUserGroupSectionSortOrder,FK_ADParentUserGroupSectionID) 
+select ADUserGroupSectionID,ADUserGroupID,ADUserGroupSectionName,ADUserGroupSectionDesc,ADUserGroupSectionSortOrder,FK_ADParentUserGroupSectionID from #GroupTreeList --where ADUserGroupID = 82
+set identity_insert ADUserGroupSections OFF

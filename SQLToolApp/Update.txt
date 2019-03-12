@@ -1,0 +1,54 @@
+[1.0.0.0]
+New Function:
+	Find Module: Ctrl + 1
+	Find Column In Table: Ctrl + F
+	View Data In Table: Alt + 1
+	
+[01.08.16 - QQ]
+New Function
+	Auto Resize Width ++ Column focus : M
+    Auto Resize Width -- Column focus : N
+	History data Search
+	Design frmData : Information Data Foreign 
+	Auto Resize all Foreign Column on Grid : Alt + B
+	
+[04.08.16 - QQ]
+New Function
+	Resize All width size FK_Column on Grid : shift + b
+	Resize "FK_" width size FK_Column on Grid : Alt + B
+    Copy Header to ClipBoard (Column Name) : Key H 
+	Show data column by condition search column : Key Alt + V
+	Show Notifycation!
+
+[12.08.16 - T]
+New Function:
+	Create Module: Ctrl + Shift + A
+	ViewConnectSQL: Ctrl + 0
+	
+[12.08.2016 QQ]
+New function : 
+		Set Color column by View Text : Alt + C
+		Set and Get data login history
+		Set and Get data search table name history
+Fix bug :
+		Resize cell on group when use function F5 on form data
+		Show Information Table Name on Title Form Data
+Interface System :
+		Show form Form Search,Condition Text on : Center Screen
+
+[13.08.2016 QQ]
+Fix bug :
+		Show form Main when Esc Form Data last
+		Search Data No by foreign key column
+		Config detail
+
+
+
+
+
+
+
+
+
+
+

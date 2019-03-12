@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C7CCD26-1060-4CFF-A862-11D756CDE78D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SQLQQ</RootNamespace>
+    <AssemblyName>SQLQQ</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet, Version=41.3.30.1122, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <HintPath>..\packages\GemBox.Spreadsheet.41.3.30.1122\lib\net30\GemBox.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="SQLAppLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SQLAppLib\bin\Debug\SQLAppLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formtext.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formtext.Designer.cs">
+      <DependentUpon>Formtext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUtil\DataGridViewUtil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUtil\DataGridViewUtil.Designer.cs">
+      <DependentUpon>DataGridViewUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUtil\frmFunctionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUtil\frmFunctionList.Designer.cs">
+      <DependentUpon>frmFunctionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUtil\frmSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUtil\frmSearch.Designer.cs">
+      <DependentUpon>frmSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUtil\frmViewKQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUtil\frmViewKQ.Designer.cs">
+      <DependentUpon>frmViewKQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUtil\TimerCount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUtil\TimerCount.Designer.cs">
+      <DependentUpon>TimerCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmColumn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmColumn.Designer.cs">
+      <DependentUpon>frmColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConditionForSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConditionForSearch.Designer.cs">
+      <DependentUpon>frmConditionForSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmData_Foreign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmData_Foreign.Designer.cs">
+      <DependentUpon>frmData_Foreign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportConfig.Designer.cs">
+      <DependentUpon>frmImportConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmData.Designer.cs">
+      <DependentUpon>frmData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmModule.Designer.cs">
+      <DependentUpon>frmModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNotifycation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNotifycation.Designer.cs">
+      <DependentUpon>frmNotifycation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuery_SQL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuery_SQL.Designer.cs">
+      <DependentUpon>frmQuery_SQL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSearchColumByTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchColumByTest.Designer.cs">
+      <DependentUpon>frmSearchColumByTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSyncDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSyncDB.Designer.cs">
+      <DependentUpon>frmSyncDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUnPost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUnPost.Designer.cs">
+      <DependentUpon>frmUnPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdateVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateVersion.Designer.cs">
+      <DependentUpon>frmUpdateVersion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWaiting.Designer.cs">
+      <DependentUpon>frmWaiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetTabIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetTabIndex.Designer.cs">
+      <DependentUpon>SetTabIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\BaseUtil.cs" />
+    <Compile Include="Util\FunctionList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\STFieldsInfo.cs" />
+    <Compile Include="Util\TreeFieldNode.cs" />
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formtext.resx">
+      <DependentUpon>Formtext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUtil\DataGridViewUtil.resx">
+      <DependentUpon>DataGridViewUtil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUtil\frmFunctionList.resx">
+      <DependentUpon>frmFunctionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUtil\frmSearch.resx">
+      <DependentUpon>frmSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUtil\frmViewKQ.resx">
+      <DependentUpon>frmViewKQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUtil\TimerCount.resx">
+      <DependentUpon>TimerCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmColumn.resx">
+      <DependentUpon>frmColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConditionForSearch.resx">
+      <DependentUpon>frmConditionForSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmData_Foreign.resx">
+      <DependentUpon>frmData_Foreign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportConfig.resx">
+      <DependentUpon>frmImportConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmData.resx">
+      <DependentUpon>frmData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmModule.resx">
+      <DependentUpon>frmModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNotifycation.resx">
+      <DependentUpon>frmNotifycation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuery_SQL.resx">
+      <DependentUpon>frmQuery_SQL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchColumByTest.resx">
+      <DependentUpon>frmSearchColumByTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSyncDB.resx">
+      <DependentUpon>frmSyncDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUnPost.resx">
+      <DependentUpon>frmUnPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateVersion.resx">
+      <DependentUpon>frmUpdateVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWaiting.resx">
+      <DependentUpon>frmWaiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmColumn.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmConditionForSearch.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmData.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmData_Foreign.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmMain.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmModule.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmQuery_SQL.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmSearch.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.frmWaiting.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\SQLQQ.Properties.Resources.resources" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SetTabIndex.resx">
+      <DependentUpon>SetTabIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="bin\Debug\config.ini" />
+    <None Include="bin\Debug\SQLQQ.vshost.exe.manifest" />
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\x86\Debug\GenerateResource.read.1.tlog" />
+    <None Include="obj\x86\Debug\GenerateResource.write.1.tlog" />
+    <None Include="obj\x86\Debug\ResolveAssemblyReference.cache" />
+    <None Include="obj\x86\Debug\SQLQQ.csproj.GenerateResource.Cache" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\HistoryData.txt" />
+    <Content Include="bin\Debug\InsertTypeData.txt" />
+    <Content Include="bin\Debug\LastDataSearch.txt" />
+    <Content Include="bin\Debug\Login.txt" />
+    <Content Include="bin\Debug\Operation.txt" />
+    <Content Include="bin\Debug\Scripts\FindModule.sql" />
+    <Content Include="bin\Debug\SQL.txt" />
+    <Content Include="bin\Debug\SQLAppLib.dll" />
+    <Content Include="bin\Debug\SQLQQ.exe" />
+    <Content Include="bin\Debug\SQLQQ.pdb" />
+    <Content Include="bin\Debug\SQLQQ.vshost.exe" />
+    <Content Include="bin\Debug\Support.txt" />
+    <Content Include="Lib\SQLAppLib.dll" />
+    <Content Include="obj\x86\Debug\SQLQQ.csproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\x86\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomFormStyle\CustomFormStyle.csproj">
+      <Project>{1698d0ba-f100-4722-9f1c-5651d08cbede}</Project>
+      <Name>CustomFormStyle</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
