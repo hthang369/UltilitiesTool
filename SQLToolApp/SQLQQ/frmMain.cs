@@ -20,6 +20,7 @@ namespace SQLQQ
         //public static SqlConnection sqlconn;
         public static String strServer_Public;
         public static String strDatabase_Public;
+
         public static String strUserName_Public;
         public static String strPassWord_Public;
         //private string section = "SqlServer";
@@ -47,7 +48,7 @@ namespace SQLQQ
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //SQLAppWaitingDialog.ShowWaitForm();
+            SQLAppWaitingDialog.ShowWaitForm();
             Application.DoEvents();
             _frmSearch = new frmSearch();
             SQLApp.ShowAnimate(this.Handle, Util.FunctionList.GetAnimateWindowTime());

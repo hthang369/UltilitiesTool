@@ -16,3 +16,13 @@ D:\gmc\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.csprojResolveAssem
 D:\gmc\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.frmWaiting.resources
 D:\gmc\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.Properties.Resources.resources
 D:\gmc\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.csproj.GenerateResource.Cache
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\bin\Debug\SQLAppLib.exe.config
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\bin\Debug\SQLAppLib.exe
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\bin\Debug\SQLAppLib.pdb
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.csprojAssemblyReference.cache
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.frmWaiting.resources
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.Properties.Resources.resources
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.csproj.GenerateResource.cache
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.csproj.CoreCompileInputs.cache
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.exe
+D:\Project\UltilitiesTool\SQLAppLib\SQLAppLib\obj\Debug\SQLAppLib.pdb

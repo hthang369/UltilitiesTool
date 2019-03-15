@@ -61,9 +61,9 @@
             // statusStrip1
             // 
             this.statusStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 359);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 389);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(323, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(331, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -76,7 +76,7 @@
             this.helpsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 26);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(323, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(331, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -122,7 +122,7 @@
             this.unPostToolStripMenuItem,
             this.importConfigToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // functionsToolStripMenuItem
@@ -196,7 +196,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 72);
+            this.groupBox1.Size = new System.Drawing.Size(331, 72);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -258,7 +258,7 @@
             this.lstFunction.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lstFunction.Location = new System.Drawing.Point(0, 122);
             this.lstFunction.Name = "lstFunction";
-            this.lstFunction.Size = new System.Drawing.Size(323, 237);
+            this.lstFunction.Size = new System.Drawing.Size(331, 267);
             this.lstFunction.TabIndex = 4;
             this.lstFunction.UseCompatibleStateImageBehavior = false;
             this.lstFunction.View = System.Windows.Forms.View.Details;
@@ -272,7 +272,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(323, 381);
+            this.ClientSize = new System.Drawing.Size(331, 411);
             this.Controls.Add(this.lstFunction);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
