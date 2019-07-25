@@ -10,18 +10,87 @@ using System.Data.Common;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
+using MySql.Data.MySqlClient;
 
 namespace SQLAppLib
 {
+    public enum SqlDbConnectionType
+    {
+        Sql,
+        MySql
+    }
+    public class SqlDbConnection
+    {
+        private DbConnection _dbConnection;
+        private SqlDbConnectionType _connectionType;
+        public SqlDbConnection(SqlDbConnectionType connectionType, string connectionString)
+        {
+            _connectionType = connectionType;
+            switch (connectionType)
+            {
+                case SqlDbConnectionType.MySql:
+                    _dbConnection = new MySqlConnection(connectionString);
+                    break;
+                default:
+                    _dbConnection = new SqlConnection(connectionString);
+                    break;
+            }
+        }
+        public DbConnection Connection
+        {
+            get { return _dbConnection; }
+        }
+        public DbDataAdapter CreateDataAdapter()
+        {
+            DbDataAdapter dataAdapter = null;
+            switch (_connectionType)
+            {
+                case SqlDbConnectionType.MySql:
+                    dataAdapter = new SqlDataAdapter();
+                    break;
+                default:
+                    dataAdapter = new MySqlDataAdapter();
+                    break;
+            }
+            return dataAdapter;
+        }
+        public DbCommand CreateDbCommand(string strQueryCommand)
+        {
+            DbCommand command = null;
+            switch (_connectionType)
+            {
+                case SqlDbConnectionType.MySql:
+                    command = new SqlCommand(strQueryCommand, Connection as SqlConnection);
+                    break;
+                default:
+                    command = new MySqlCommand(strQueryCommand, Connection as MySqlConnection);
+                    break;
+            }
+            return command;
+        }
+        public void DeriveParameters(DbCommand command)
+        {
+            switch (_connectionType)
+            {
+                case SqlDbConnectionType.MySql:
+                    MySqlCommandBuilder.DeriveParameters(command as MySqlCommand);
+                    break;
+                default:
+                    SqlCommandBuilder.DeriveParameters(command as SqlCommand);
+                    break;
+            }
+        }
+
+    }
     public class SqlDatabaseHelper
     {
         private static string _companyName = string.Empty;
         private static string _connectionString = string.Empty;
         public static string AAStatusColumn = "AAStatus";
         private static Timer autoTestConTimer;
-        public static SqlConnection CurrentDatabase = null;
+        public static SqlDbConnection CurrentDatabase = null;
         private static Hashtable GMCDatabaseCollection = new Hashtable();
-        public static SqlTransaction Transaction = null;
+        public static DbTransaction Transaction = null;
         private static Dictionary<string, DataSet> lstForeignColumns = new Dictionary<string, DataSet>();
         private static Dictionary<string, string> lstPrimaryColumns = new Dictionary<string, string>();
         private static Dictionary<string, DbCommand> MaxIDDbCommandList = new Dictionary<string, DbCommand>();
@@ -32,12 +101,14 @@ namespace SQLAppLib
         public static string _strDatabase = string.Empty;
         public static string _strUser = string.Empty;
         public static string _strPass = string.Empty;
+        private static SqlDbConnectionType _connectionType;
 
         static SqlDatabaseHelper()
         {
             try
             {
-                CurrentDatabase = new SqlConnection(GetConnectionString(_strServer, _strDatabase, _strUser, _strPass));
+                _connectionType = SqlDbConnectionType.Sql;
+                CurrentDatabase = new SqlDbConnection(_connectionType, GetConnectionString(_connectionType, _strServer, _strDatabase, _strUser, _strPass));
             }
             catch (Exception exception)
             {
@@ -45,6 +116,10 @@ namespace SQLAppLib
             }
         }
 
+        public static void SetSqlDbConnectionType(SqlDbConnectionType connectionType)
+        {
+            _connectionType = connectionType;
+        }
         private static void AutoTestConnectionTimer_Tick(object sender, EventArgs e)
         {
             Application.DoEvents();
@@ -54,11 +129,12 @@ namespace SQLAppLib
             //    autoTestConTimer.Enabled = false;
             //}
         }
-        protected static SqlTransaction BeginTransaction()
+        protected static DbTransaction BeginTransaction()
         {
-            return CurrentDatabase.BeginTransaction();
+            Transaction = CurrentDatabase.Connection.BeginTransaction();
+            return Transaction;
         }
-        protected static void CommitTransaction(SqlTransaction transaction)
+        protected static void CommitTransaction(DbTransaction transaction)
         {
             if (transaction != null)
                 transaction.Commit();
@@ -67,10 +143,19 @@ namespace SQLAppLib
         {
             return _connectionString;
         }
-        public static string GetConnectionString(String strServer, String strDatabase, String strUsername, String strPassword)
+        public static string GetConnectionString(SqlDbConnectionType connectionType, String strServer, String strDatabase, String strUsername, String strPassword)
         {
             //return string.Format("Server={0};Database={1};User Id={2};Password={3};", strServer, strDatabase, strUsername, strPassword);
-            _connectionString = string.Format("data source={0};database={1};uid={2};pwd={3}", strServer, strDatabase, strUsername, strPassword);
+            switch (connectionType)
+            {
+                case SqlDbConnectionType.MySql:
+                    string[] lstServer = strServer.Split(':');
+                    _connectionString = string.Format("Server={0};port={1};Database={2};User Id={3};password={4}", lstServer.FirstOrDefault(), lstServer.LastOrDefault(), strDatabase, strUsername, strPassword);
+                    break;
+                default:
+                    _connectionString = string.Format("data source={0};database={1};uid={2};pwd={3}", strServer, strDatabase, strUsername, strPassword);
+                    break;
+            }
             return _connectionString;
         }
         protected static string[] GetParameters(string strQueryCommand)
@@ -96,27 +181,25 @@ namespace SQLAppLib
             }
             return null;
         }
-        protected static SqlCommand GetQuery(string strQueryCommand)
+        protected static DbCommand GetQuery(string strQueryCommand)
         {
             try
             {
-                return new SqlCommand(strQueryCommand, CurrentDatabase);
+                return CurrentDatabase.CreateDbCommand(strQueryCommand);
             }
             catch
             {
                 return null;
             }
         }
-        protected static SqlCommand GetStoredProcedure(string spName, params object[] values)
+        protected static DbCommand GetStoredProcedure(string spName, params object[] values)
         {
             try
             {
-                SqlCommand command = new SqlCommand();
-                command.Connection = CurrentDatabase;
-                command.CommandText = spName;
+                DbCommand command = CurrentDatabase.CreateDbCommand(spName);
                 command.CommandType = CommandType.StoredProcedure;
 
-                SqlCommandBuilder.DeriveParameters(command);
+                CurrentDatabase.DeriveParameters(command);
                 command.Parameters.Remove(command.Parameters["@RETURN_VALUE"]);
 
                 // Add the input parameter and set value
@@ -150,7 +233,7 @@ namespace SQLAppLib
         {
             Process.GetCurrentProcess().Kill();
         }
-        protected static void RollbackTransaction(SqlTransaction transaction)
+        protected static void RollbackTransaction(DbTransaction transaction)
         {
             if (transaction != null)
                 transaction.Rollback();
@@ -159,58 +242,62 @@ namespace SQLAppLib
         {
             return RunQuery(GetQuery(strQuery));
         }
-        protected static DataSet RunQuery(SqlCommand cmd)
+        protected static DataSet RunQuery(DbCommand cmd)
         {
             try
             {
                 if (CurrentDatabase == null)
-                    SwitchConnection(_connectionString);
-                if (CurrentDatabase.State.ToString() != "Open")
-                    CurrentDatabase.Open();
+                    SwitchConnection(_connectionType, _connectionString);
+                if (CurrentDatabase.Connection.State != ConnectionState.Open)
+                    CurrentDatabase.Connection.Open();
                 Transaction = BeginTransaction();
                 cmd.Transaction = Transaction;
                 DataSet ds = new DataSet();
-                SqlDataAdapter adapter = new SqlDataAdapter();
+                DbDataAdapter adapter = CurrentDatabase.CreateDataAdapter();
                 adapter.SelectCommand = cmd;
                 adapter.Fill(ds);
                 CommitTransaction(Transaction);
-                CurrentDatabase.Close();
+                CurrentDatabase.Connection.Close();
                 return ds;
             }
             catch (Exception exception)
             {
                 RollbackTransaction(Transaction);
-                CurrentDatabase.Close();
+                CurrentDatabase.Connection.Close();
                 MessageBox.Show(exception.Message);
                 return null;
             }
         }
-        protected static int RunQueryNonDataSet(SqlCommand cmd)
+        protected static int RunQueryNonDataSet(DbCommand cmd)
         {
             try
             {
                 if (CurrentDatabase == null)
-                    SwitchConnection(_connectionString);
-                CurrentDatabase.Open();
+                    SwitchConnection(_connectionType, _connectionString);
+                CurrentDatabase.Connection.Open();
                 Transaction = BeginTransaction();
                 cmd.Transaction = Transaction;
                 int idx = cmd.ExecuteNonQuery();
                 CommitTransaction(Transaction);
-                CurrentDatabase.Close();
+                CurrentDatabase.Connection.Close();
                 return idx;
             }
             catch (Exception exception)
             {
                 RollbackTransaction(Transaction);
-                CurrentDatabase.Close();
+                CurrentDatabase.Connection.Close();
                 if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                else if (!(exception is MySqlException) || (!exception.Message.Contains("TCP Provider")))
                 {
                     MessageBox.Show(exception.Message);
                 }
                 return 0;
             }
         }
-        protected static DataSet RunStoredProcedure(SqlCommand cmd)
+        protected static DataSet RunStoredProcedure(DbCommand cmd)
         {
             try
             {
@@ -222,6 +309,10 @@ namespace SQLAppLib
                 {
                     return null;
                 }
+                else if (!(exception is MySqlException) || (!exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
                 return null;
             }
         }
@@ -229,12 +320,16 @@ namespace SQLAppLib
         {
             try
             {
-                SqlCommand storedProcCommand = GetStoredProcedure(spName);
+                DbCommand storedProcCommand = GetStoredProcedure(spName);
                 return RunQuery(storedProcCommand);
             }
             catch (Exception exception)
             {
                 if (!(exception is SqlException) || ((((SqlException)exception).ErrorCode != -2146232060) || !exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                else if (!(exception is MySqlException) || (!exception.Message.Contains("TCP Provider")))
                 {
                     MessageBox.Show(exception.Message);
                 }
@@ -253,17 +348,21 @@ namespace SQLAppLib
                 {
                     MessageBox.Show(exception.Message);
                 }
+                else if (!(exception is MySqlException) || (!exception.Message.Contains("TCP Provider")))
+                {
+                    MessageBox.Show(exception.Message);
+                }
                 return null;
             }
         }
-        public static void SwitchConnection(string strConnectionString)
+        public static void SwitchConnection(SqlDbConnectionType connectionType, string strConnectionString)
         {
             if (CurrentDatabase == null)
-                CurrentDatabase = new SqlConnection(strConnectionString);
+                CurrentDatabase = new SqlDbConnection(connectionType, strConnectionString);
             else
-                CurrentDatabase.ConnectionString = strConnectionString;
+                CurrentDatabase.Connection.ConnectionString = strConnectionString;
         }
-        public static void SwitchConnection(String strServers, String strDatabases, String strUsernames, String strPasswords)
+        public static void SwitchConnection(SqlDbConnectionType connectionType, String strServers, String strDatabases, String strUsernames, String strPasswords)
         {
             try
             {
@@ -272,24 +371,24 @@ namespace SQLAppLib
                 if (!string.IsNullOrEmpty(strUsernames)) _strUser = strUsernames;
                 if (!string.IsNullOrEmpty(strPasswords)) _strPass = strPasswords;
                 if (CurrentDatabase == null)
-                    CurrentDatabase = new SqlConnection(GetConnectionString(_strServer, _strDatabase, _strUser, _strPass));
-                else if (CurrentDatabase.State == ConnectionState.Closed)
-                    CurrentDatabase.ConnectionString = GetConnectionString(_strServer, _strDatabase, _strUser, _strPass);
+                    CurrentDatabase = new SqlDbConnection(connectionType, GetConnectionString(connectionType, _strServer, _strDatabase, _strUser, _strPass));
+                else if (CurrentDatabase.Connection.State == ConnectionState.Closed)
+                    CurrentDatabase.Connection.ConnectionString = GetConnectionString(connectionType, _strServer, _strDatabase, _strUser, _strPass);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Can't not change connection!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public static void ChangeDatabase(string strDBName)
+        public static void ChangeDatabase(SqlDbConnectionType connectionType, string strDBName)
         {
             try
             {
                 _strDatabase = strDBName;
-                SwitchConnection(_strServer, strDBName, _strUser, _strPass);
-                if (CurrentDatabase.State != ConnectionState.Open)
-                    CurrentDatabase.Open();
-                CurrentDatabase.ChangeDatabase(strDBName);
+                SwitchConnection(connectionType, _strServer, strDBName, _strUser, _strPass);
+                if (CurrentDatabase.Connection.State != ConnectionState.Open)
+                    CurrentDatabase.Connection.Open();
+                CurrentDatabase.Connection.ChangeDatabase(strDBName);
             }
             catch (Exception e) { }
         }
@@ -301,12 +400,16 @@ namespace SQLAppLib
         {
             get { return lstPrimaryColumns; }
         }
-        public static void ChangeConnection(String strServers, String strUsernames, String strPasswords)
+        public static SqlDbConnectionType ConnectionType
+        {
+            get => _connectionType;
+        }
+        public static void ChangeConnection(SqlDbConnectionType connectionType, String strServers, String strUsernames, String strPasswords)
         {
             _strDatabase = string.Empty;
-            if (CurrentDatabase != null && CurrentDatabase.State == ConnectionState.Open)
-                CurrentDatabase.Close();
-            SwitchConnection(strServers, "", strUsernames, strPasswords);
+            if (CurrentDatabase != null && CurrentDatabase.Connection.State == ConnectionState.Open)
+                CurrentDatabase.Connection.Close();
+            SwitchConnection(connectionType, strServers, "", strUsernames, strPasswords);
         }
     }
     public class SQLDBUtil : SqlDatabaseHelper
@@ -336,16 +439,46 @@ namespace SQLAppLib
         }
         public static DataSet GetAllDatabases()
         {
-            ChangeDatabase("master");
-            return RunQuery(@"select name from sys.databases where name not in('master','model','msdb','tempdb') order by 1");
+            ChangeDatabase(ConnectionType, "master");
+            string strQuery = string.Empty;
+            switch(ConnectionType)
+            {
+                case SqlDbConnectionType.MySql:
+                    strQuery = @"SELECT * FROM information_schema.SCHEMATA WHERE SCHEMA_NAME NOT IN('information_schema','mysql','performance_schema')";
+                    break;
+                default:
+                    strQuery = @"SELECT name FROM sys.databases WHERE name NOT IN('master','model','msdb','tempdb') ORDER BY 1";
+                    break;
+            }
+            return RunQuery(strQuery);
         }
         public static DataSet GetAllTables()
         {
-            return RunQuery("SELECT name AS TableName FROM sys.tables ORDER BY name");
+            string strQuery = string.Empty;
+            switch (ConnectionType)
+            {
+                case SqlDbConnectionType.MySql:
+                    strQuery = @"SHOW TABLES";
+                    break;
+                default:
+                    strQuery = @"SELECT name AS TableName FROM sys.tables ORDER BY name";
+                    break;
+            }
+            return RunQuery(strQuery);
         }
         public static DataSet GetAllStoreProcedures()
         {
-            return RunQuery("SELECT name AS STORENAME FROM sys.objects WHERE type = 'P' ORDER BY name");
+            string strQuery = string.Empty;
+            switch (ConnectionType)
+            {
+                case SqlDbConnectionType.MySql:
+                    strQuery = string.Format(@"SHOW FUNCTION STATUS WHERE Db = '{0}'", CurrentDatabase.Connection.Database);
+                    break;
+                default:
+                    strQuery = @"SELECT name AS STORENAME FROM sys.objects WHERE type = 'P' ORDER BY name";
+                    break;
+            }
+            return RunQuery(strQuery);
         }
         public static DataSet GetAllTableColumns(string strTableName, string strColumnName = "")
         {
