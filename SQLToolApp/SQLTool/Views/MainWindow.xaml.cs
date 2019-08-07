@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -23,6 +24,13 @@ namespace SQLTool
         public MainWindow()
         {
             InitializeComponent();
+            //BindingSource
+            List<string> lstSources = new List<string>()
+            {
+                SQLAppLib.SqlDbConnectionType.MySql.ToString(),
+                SQLAppLib.SqlDbConnectionType.Sql.ToString(),
+            };
+            ctrlTo.cboSqlType.ItemsSource = lstSources;
         }
     }
 }

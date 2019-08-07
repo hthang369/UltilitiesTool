@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLTool.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace SQLTool.Views
     /// </summary>
     public partial class SqlControlView : UserControl
     {
+        private SqlControlViewModel userControlViewModel;
         public SqlControlView()
         {
             InitializeComponent();
+            DataContext = userControlViewModel = new SqlControlViewModel();
         }
     }
 }
