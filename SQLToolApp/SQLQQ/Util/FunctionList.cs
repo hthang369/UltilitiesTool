@@ -568,17 +568,23 @@ namespace SQLQQ.Util
         #endregion
 
         #region Load config
+        public static List<string> LoadConfigInitToList()
+        {
+            List<string> lst = new List<string>();
+            string count = SQLApp.GetIniFile(strFileName, section, serverCnt);
+            for (int i = 0; i < Convert.ToInt32(count); i++)
+            {
+                lst.Add(SQLApp.GetIniFile(strFileName, section, _serverDesc + (i + 1)));
+            }
+            return lst;
+        }
         public static void LoadConfigIniFromServer(ComboBox cbbData)
         {
             try
             {
                 #region Code mới lấy thông tin từ file config
-                string count = SQLApp.GetIniFile(strFileName, section, serverCnt);
                 cbbData.Items.Clear();
-                for (int i = 0; i < Convert.ToInt32(count); i++)
-                {
-                    cbbData.Items.Add(SQLApp.GetIniFile(strFileName, section, _serverDesc + (i + 1)));
-                }
+                cbbData.Items.AddRange(LoadConfigInitToList().ToArray());
                 #endregion
             }
             catch
