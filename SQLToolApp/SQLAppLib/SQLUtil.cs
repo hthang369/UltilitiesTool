@@ -128,7 +128,7 @@ namespace SQLAppLib
                     strPassWord = SQLApp.GetIniFile(strFileName, section, _serverPWD + (idx + 1));
                     strDBOld = SQLApp.GetIniFile(strFileName, section, _serverDBOld + (idx + 1));
 
-                    SQLDBUtil.SwitchConnection(strServer, strDBOld, strUserName, strPassWord);
+                    SQLDBUtil.SwitchConnection(SQLDBUtil.ConnectionType, strServer, strDBOld, strUserName, strPassWord);
                     DataTable dtSource = SQLDBUtil.GetDataTableByDataSet(SQLDBUtil.GetAllDatabases());
                     if (dtSource != null)
                         lst = dtSource.Select().Select(x => x["name"].ToString()).ToList();
