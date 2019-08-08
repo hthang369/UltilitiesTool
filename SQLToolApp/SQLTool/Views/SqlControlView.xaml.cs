@@ -24,7 +24,7 @@ namespace SQLTool.Views
         public SqlControlView()
         {
             InitializeComponent();
-            DataContext = userControlViewModel = new SqlControlViewModel();
+            DataContext = userControlViewModel = new SqlControlViewModel(this);
         }
     }
 }

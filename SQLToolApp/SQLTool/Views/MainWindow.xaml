@@ -17,5 +17,8 @@
             <Views:SqlControlView x:Name="ctrlTo" Grid.Column="0" Margin="2,0,2,0" />
             <Views:SqlControlView x:Name="ctrlFrom" Grid.Column="1" Margin="2,0,2,0" />
         </Grid>
+        <Grid Grid.Row="1">
+            <ListView x:Name="lstFunction"></ListView>
+        </Grid>
     </Grid>
 </dx:ThemedWindow>
