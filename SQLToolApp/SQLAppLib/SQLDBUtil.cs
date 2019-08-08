@@ -16,7 +16,7 @@ namespace SQLAppLib
 {
     public enum SqlDbConnectionType
     {
-        Sql,
+        SqlServer,
         MySql
     }
     public class SqlDbConnection
@@ -107,7 +107,7 @@ namespace SQLAppLib
         {
             try
             {
-                _connectionType = SqlDbConnectionType.Sql;
+                _connectionType = SqlDbConnectionType.SqlServer;
                 CurrentDatabase = new SqlDbConnection(_connectionType, GetConnectionString(_connectionType, _strServer, _strDatabase, _strUser, _strPass));
             }
             catch (Exception exception)
@@ -366,11 +366,14 @@ namespace SQLAppLib
         {
             try
             {
+                _connectionType = connectionType;
                 if (!string.IsNullOrEmpty(strServers)) _strServer = strServers;
                 if (!string.IsNullOrEmpty(strDatabases)) _strDatabase = strDatabases;
                 if (!string.IsNullOrEmpty(strUsernames)) _strUser = strUsernames;
                 if (!string.IsNullOrEmpty(strPasswords)) _strPass = strPasswords;
                 if (CurrentDatabase == null)
+                    CurrentDatabase = new SqlDbConnection(connectionType, GetConnectionString(connectionType, _strServer, _strDatabase, _strUser, _strPass));
+                else if(!CurrentDatabase.Connection.GetType().Name.StartsWith(SqlDbConnectionType.MySql.ToString()))
                     CurrentDatabase = new SqlDbConnection(connectionType, GetConnectionString(connectionType, _strServer, _strDatabase, _strUser, _strPass));
                 else if (CurrentDatabase.Connection.State == ConnectionState.Closed)
                     CurrentDatabase.Connection.ConnectionString = GetConnectionString(connectionType, _strServer, _strDatabase, _strUser, _strPass);
@@ -407,6 +410,7 @@ namespace SQLAppLib
         public static void ChangeConnection(SqlDbConnectionType connectionType, String strServers, String strUsernames, String strPasswords)
         {
             _strDatabase = string.Empty;
+            _connectionType = connectionType;
             if (CurrentDatabase != null && CurrentDatabase.Connection.State == ConnectionState.Open)
                 CurrentDatabase.Connection.Close();
             SwitchConnection(connectionType, strServers, "", strUsernames, strPasswords);
@@ -439,17 +443,20 @@ namespace SQLAppLib
         }
         public static DataSet GetAllDatabases()
         {
-            ChangeDatabase(ConnectionType, "master");
             string strQuery = string.Empty;
-            switch(ConnectionType)
+            string strTable = string.Empty;
+            switch (ConnectionType)
             {
                 case SqlDbConnectionType.MySql:
+                    strTable = "mysql";
                     strQuery = @"SELECT * FROM information_schema.SCHEMATA WHERE SCHEMA_NAME NOT IN('information_schema','mysql','performance_schema')";
                     break;
                 default:
+                    strTable = "master";
                     strQuery = @"SELECT name FROM sys.databases WHERE name NOT IN('master','model','msdb','tempdb') ORDER BY 1";
                     break;
             }
+            ChangeDatabase(ConnectionType, strTable);
             return RunQuery(strQuery);
         }
         public static DataSet GetAllTables()
