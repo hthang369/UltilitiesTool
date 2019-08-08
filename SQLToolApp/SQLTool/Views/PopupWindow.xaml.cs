@@ -9,23 +9,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
-using SQLTool.ViewModels;
 
-namespace SQLTool
+
+namespace SQLTool.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PopupWindow.xaml
     /// </summary>
-    public partial class MainWindow : ThemedWindow
+    public partial class PopupWindow : ThemedWindow
     {
-        MainViewModel mainViewModel;
-        public MainWindow()
+        public PopupWindow()
         {
             InitializeComponent();
-            DataContext = mainViewModel = new MainViewModel();
         }
     }
 }

@@ -626,7 +626,7 @@ namespace SQLTool.Util
             strPassWord = GetPassWordConfig(keySection, idx);
             //strDBOld = SQLApp.GetIniFile(strFileName, section, _serverDBOld + (cboServer.SelectedIndex + 1));
 
-            SQLDBUtil.SwitchConnection((SqlDbConnectionType)Enum.Parse(typeof(SqlDbConnectionType), keySection), strServer, "", strUserName, strPassWord);
+            SQLDBUtil.ChangeConnection((SqlDbConnectionType)Enum.Parse(typeof(SqlDbConnectionType), keySection), strServer, strUserName, strPassWord);
             return SQLDBUtil.GetDataTableByDataSet(SQLDBUtil.GetAllDatabases());
         }
         public static string GetItemConfig(string keySection, string keyPrefix, int idx)
