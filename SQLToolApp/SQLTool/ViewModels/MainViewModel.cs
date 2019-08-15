@@ -45,7 +45,8 @@ namespace SQLTool.ViewModels
 
         private void AddCommand(object item)
         {
-
+            string val = string.Empty;
+            DialogResult result = Util.PromptForm.ShowText("abdgdd", "", ref val);
         }
     }
 }

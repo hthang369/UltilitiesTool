@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-        Title="SQL Tool" Height="500" Width="600">
+        Title="SQL Tool" Height="500" Width="600" FontSize="15">
     <Grid RenderTransformOrigin="0.489,0.508">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

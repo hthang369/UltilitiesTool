@@ -697,6 +697,11 @@ namespace SQLTool.Util
         public static DialogResult Show(string title, string promptText, ref string value, bool bIsText, bool bIsCombobox, bool isShowLstTbl, string[] lstFunctionList,
                                         InputBoxValidation validation)
         {
+            ViewModels.PopupViewModel popupView = new ViewModels.PopupViewModel();
+            Views.PopupWindow popup = new Views.PopupWindow() { DataContext = popupView };
+            popupView.Header = title;
+            popupView.Title = promptText;
+            popupView.isText = bIsText;
             //frmSearch frmInput = new frmSearch(_frmParent, bIsText, bIsCombobox, isShowLstTbl);
             //frmInput.SetCaption(promptText);
             //frmInput.Text = title;
@@ -727,10 +732,14 @@ namespace SQLTool.Util
             //        }
             //    };
             //}
-            //DialogResult dialogResult = frmInput.ShowDialog();
+            DevExpress.Mvvm.UICommand uICommand = new DevExpress.Mvvm.UICommand("ok", "OK", popupView.okCommand, true, false, null, true, System.Windows.Controls.Dock.Left);
+            //System.Windows.MessageBoxResult messResult = popup.ShowDialog(System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxResult.OK);
+            List<DevExpress.Mvvm.UICommand> lst = new List<DevExpress.Mvvm.UICommand>() { uICommand };
+            DevExpress.Mvvm.UICommand cmd = popup.ShowDialog(lst);
             //value = (bIsText) ? frmInput.GetText() : frmInput.GetSelectedText();
-            //return dialogResult;
-            return DialogResult.OK;
+            //DialogResult dialogResult = messResult == System.Windows.MessageBoxResult.OK ? DialogResult.OK : DialogResult.Cancel;
+            DialogResult dialogResult = DialogResult.OK;
+            return dialogResult;
         }
         public static DialogResult ShowText(string title, string promptText, ref string value)
         {
