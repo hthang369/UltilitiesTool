@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace SQLTool.Util
@@ -18,13 +19,13 @@ namespace SQLTool.Util
         private static string _serverUID = "UID";
         private static string _serverPWD = "PWD";
         private static string _serverDBOld = "DB_Old";
-        private static string strFileName = Application.StartupPath + "\\config.ini";
+        private static string strFileName = System.Windows.Forms.Application.StartupPath + "\\config.ini";
         private static string strServer;
         private static string strDatabase;
         private static string strUserName;
         private static string strPassWord;
         private static string strDBOld;
-        public static string strPath = Application.StartupPath + "\\Scripts\\";
+        public static string strPath = System.Windows.Forms.Application.StartupPath + "\\Scripts\\";
         public static string strFileCfgScript = strPath + "scripts.ini";
         public static Dictionary<string, string> lstFuncLst;
         public static string strDynPara = "DynPara";
@@ -35,8 +36,8 @@ namespace SQLTool.Util
         {
             PromptForm._frmParent = frmParent;
             string moduleName = "";
-            DialogResult result = PromptForm.ShowText("Find Module", "ModuleName", ref moduleName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText("Find Module", "ModuleName", ref moduleName);
+            if (result == MessageBoxResult.Cancel) return;
             string strQuery = SQLApp.GetFile(strPath + "FindModule.sql");
             strQuery = strQuery.Replace("@ModuleName@", moduleName);
             DataTable dt = SQLDBUtil.GetDataTable(strQuery);
@@ -49,11 +50,11 @@ namespace SQLTool.Util
         {
             PromptForm._frmParent = frmParent;
             string tableName = "";
-            DialogResult result = PromptForm.ShowCombobox("FindColumn", "Table Name", ref tableName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowCombobox("FindColumn", "Table Name", ref tableName);
+            if (result == MessageBoxResult.Cancel) return;
             string colName = "";
             result = PromptForm.ShowText("FindColumn", "Column Name", ref colName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             DataSet ds = SQLDBUtil.GetAllTableColumns(tableName, colName);
             DataTable dtData = SQLDBUtil.GetDataTableByDataSet(ds);
             if (dtData == null) return;
@@ -65,11 +66,11 @@ namespace SQLTool.Util
         {
             PromptForm._frmParent = frmParent;
             string tableName = "";
-            DialogResult result = PromptForm.ShowCombobox("ViewDataByNo", "Table Name", ref tableName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowCombobox("ViewDataByNo", "Table Name", ref tableName);
+            if (result == MessageBoxResult.Cancel) return;
             string colName = "";
             result = PromptForm.ShowText("ViewDataByNo", "Column Name", ref colName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             if (string.IsNullOrEmpty(colName)) colName = "*";
             string strWhere = string.Empty;
             if (SQLDBUtil.ColumnIsExistInTable(tableName, "AAStatus")) strWhere = "AAStatus = 'Alive'";
@@ -103,14 +104,14 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strModuleName = "";
-            DialogResult result = PromptForm.ShowText(str, "Module Name", ref strModuleName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText(str, "Module Name", ref strModuleName);
+            if (result == MessageBoxResult.Cancel) return;
             string strModuleDesc = "";
             result = PromptForm.ShowText(str, "Module Descreiption", ref strModuleDesc);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             string strModuleCode = "";
             result = PromptForm.ShowText(str, "Module Code", ref strModuleCode);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             if (!string.IsNullOrEmpty(strModuleName) && !string.IsNullOrEmpty(strModuleDesc) && !string.IsNullOrEmpty(strModuleCode))
             {
                 string strQuery = SQLApp.GetFile(strPath + "CreateModule.sql");
@@ -126,8 +127,8 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTableName = "";
-            DialogResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTableName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTableName);
+            if (result == MessageBoxResult.Cancel) return;
             string strQuery = SQLApp.GetFile(strPath + "GenCreateTable.sql");
             strQuery = strQuery.Replace("@TableName@", strTableName);
             DataTable dt = SQLDBUtil.GetDataTable(strQuery);
@@ -138,11 +139,11 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTableName = "";
-            DialogResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTableName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTableName);
+            if (result == MessageBoxResult.Cancel) return;
             string strColumnName = "";
             result = PromptForm.ShowCombobox(str, "Column Name", ref strTableName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             string strQuery = SQLApp.GetFile(strPath + "GenCreateTable.sql");
             strQuery = strQuery.Replace("@TableName@", strTableName);
             DataTable dt = SQLDBUtil.GetDataTable(strQuery);
@@ -153,14 +154,14 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTableName = "";
-            DialogResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTableName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTableName);
+            if (result == MessageBoxResult.Cancel) return;
             string strType = string.Empty;
             result = PromptForm.ShowCombobox(str, "Gen Controller", new string[] { "YES", "NO" }, ref strType);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             string strQuery = SQLApp.GetFile(strPath + "GenInfo.sql");
             strQuery = strQuery.Replace("@TableName@", strTableName);
-            strQuery = strQuery.Replace("@Version@", Application.ProductName + " - " + Application.ProductVersion);
+            strQuery = strQuery.Replace("@Version@", System.Windows.Forms.Application.ProductName + " - " + System.Windows.Forms.Application.ProductVersion);
             strQuery = strQuery.Replace("@CreatedDate@", DateTime.Now.ToShortDateString());
             DataTable dt = SQLDBUtil.GetDataTable(strQuery);
             if (dt != null)
@@ -174,7 +175,7 @@ namespace SQLTool.Util
             {
                 strQuery = SQLApp.GetFile(strPath + "GenController.sql");
                 strQuery = strQuery.Replace("@TableName@", strTableName);
-                strQuery = strQuery.Replace("@Version@", Application.ProductName + " - " + Application.ProductVersion);
+                strQuery = strQuery.Replace("@Version@", System.Windows.Forms.Application.ProductName + " - " + System.Windows.Forms.Application.ProductVersion);
                 strQuery = strQuery.Replace("@CreatedDate@", DateTime.Now.ToShortDateString());
                 dt = SQLDBUtil.GetDataTable(strQuery);
                 if (dt != null)
@@ -197,14 +198,14 @@ namespace SQLTool.Util
         //        string strName = SQLApp.GetIniFile(strFileCfgScript, strDynPara, obj.Text + "Name" + i);
         //        string strVal = SQLApp.GetIniFile(strFileCfgScript, strDynPara, obj.Text + "Val" + i);
         //        string strValList = SQLApp.GetIniFile(strFileCfgScript, strDynPara, obj.Text + "ValList" + i);
-        //        DialogResult result = DialogResult.Cancel;
+        //        MessageBoxResult result = MessageBoxResult.Cancel;
         //        if (strName.Contains("TableName"))
         //            result = PromptForm.ShowCombobox(obj.Text, strName, ref strVal);
         //        else if(!string.IsNullOrEmpty(strValList))
         //            result = PromptForm.ShowCombobox(obj.Text, strName, strValList.Split('|'), ref strVal);
         //        else
         //            result = PromptForm.ShowText(obj.Text, strName, ref strVal);
-        //        if (result == DialogResult.Cancel) return;
+        //        if (result == MessageBoxResult.Cancel) return;
         //        dicPara.AddItem(strName, strVal);
         //    }
         //    string strQuery = SQLApp.GetFile(strPath + obj.Text + ".sql");
@@ -321,8 +322,8 @@ namespace SQLTool.Util
             GetFunctionList();
             string[] lstSource = lstFuncLst.Keys.ToArray();
             string value = "";
-            DialogResult result = PromptForm.ShowCombobox("Action", "Action", lstSource, ref value);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowCombobox("Action", "Action", lstSource, ref value);
+            if (result == MessageBoxResult.Cancel) return;
             //switch (value)
             //{
             FunctionList lstThis = new FunctionList();
@@ -335,14 +336,14 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowText(str, "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText(str, "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             string strColOld = "";
             result = PromptForm.ShowText(str, "Column Name", ref strColOld);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             string strColNew = "";
             result = PromptForm.ShowText(str, "New Column Name", ref strColNew);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("ALTER TABLE {0} RENAME COLUMN {1} TO {2}", strTblName, strColOld, strColNew));
             ShowMessenger(iResult);
         }
@@ -350,11 +351,11 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowText(str, "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText(str, "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             string strColName = "";
             result = PromptForm.ShowText(str, "Column Name", ref strColName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("ALTER TABLE {0} DROP COLUMN {1}", strTblName, strColName));
             ShowMessenger(iResult);
         }
@@ -362,14 +363,14 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             string strColName = "";
             result = PromptForm.ShowText("Column Name", "Column Name", ref strColName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             string strColType = SQLDBUtil.GetColumnDBType(strTblName, strColName);
             result = PromptForm.ShowText("Column Type", "Column Type", ref strColType);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("ALTER TABLE {0} ALTER COLUMN {1} {2}", strTblName, strColName, strColType));
             ShowMessenger(iResult);
         }
@@ -377,11 +378,11 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             string strColName = "";
             result = PromptForm.ShowText(str, "Column Name", ref strColName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("ALTER TABLE {0} ADD {1}", strTblName, strColName));
             ShowMessenger(iResult);
         }
@@ -389,11 +390,11 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             string strColName = "";
             result = PromptForm.ShowText("Column Name", "Column Name", ref strColName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("ALTER TABLE {0} ADD CONSTRAINT PK_{0} PRIMARY KEY({1})", strTblName, strColName));
             ShowMessenger(iResult);
         }
@@ -401,14 +402,14 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowCombobox(str, "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             string strColName = "";
             result = PromptForm.ShowText(str, "Column Name", ref strColName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             string strIdxName = "";
             result = PromptForm.ShowText(str, "Index Name", ref strIdxName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("CREATE INDEX {0} ON {1}({2})", strIdxName, strTblName, strColName));
             ShowMessenger(iResult);
         }
@@ -416,11 +417,11 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             string strColName = "";
             result = PromptForm.ShowText("Column Name", "Column Name", ref strColName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("ALTER TABLE {0} DROP CONSTRAINT PK_{1}", strTblName, strColName));
             ShowMessenger(iResult);
         }
@@ -428,11 +429,11 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             string strIdxName = "";
             result = PromptForm.ShowText("Index Name", "Index Name", ref strIdxName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("DROP INDEX {0}.{1}", strTblName, strIdxName));
             ShowMessenger(iResult);
         }
@@ -440,8 +441,8 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("DROP TABLE {0}", strTblName));
             ShowMessenger(iResult);
         }
@@ -449,8 +450,8 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strDBName = "";
-            DialogResult result = PromptForm.ShowText("Database Name", "Database Name", ref strDBName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText("Database Name", "Database Name", ref strDBName);
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("DROP DATABASE {0}", strDBName));
             ShowMessenger(iResult);
         }
@@ -464,8 +465,8 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText("Table Name", "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("ALTER TABLE {0} DROP CONSTRAINT FK_{1}", strTblName));
             ShowMessenger(iResult);
         }
@@ -473,11 +474,11 @@ namespace SQLTool.Util
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTblName = "";
-            DialogResult result = PromptForm.ShowText(str, "Table Name", ref strTblName);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText(str, "Table Name", ref strTblName);
+            if (result == MessageBoxResult.Cancel) return;
             string strToTblName = "";
             result = PromptForm.ShowText(str, "New Table Name", ref strToTblName);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             int iResult = SQLDBUtil.ExecuteNonQuery(string.Format("RENAME TABLE {0} TO {1}", strTblName, strToTblName));
             ShowMessenger(iResult);
         }
@@ -508,9 +509,9 @@ namespace SQLTool.Util
         public static void ShowMessenger(int idx)
         {
             if (idx != 0)
-                MessageBox.Show("Thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                System.Windows.MessageBox.Show("Thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             else
-                MessageBox.Show("Thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Windows.MessageBox.Show("Thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         #endregion
         #endregion
@@ -521,17 +522,17 @@ namespace SQLTool.Util
             string cnt = SQLApp.GetIniFile(strFileName, section, serverCnt);
             int index = Convert.ToInt32(cnt);
             string strDesc = SQLApp.GetIniFile(strFileName, section, _serverDesc + idx);
-            DialogResult result = PromptForm.ShowText("Description", "Description", ref strDesc);
-            if (result == DialogResult.Cancel) return;
+            MessageBoxResult result = PromptForm.ShowText("Description", "Description", ref strDesc);
+            if (result == MessageBoxResult.Cancel) return;
             string strServer = SQLApp.GetIniFile(strFileName, section, _serverName + idx);
             result = PromptForm.ShowText("Server", "Server", ref strServer);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             string strUser = SQLApp.GetIniFile(strFileName, section, _serverUID + idx);
             result = PromptForm.ShowText("User", "User", ref strUser);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             string strPass = SQLApp.GetIniFile(strFileName, section, _serverPWD + idx);
             result = PromptForm.ShowText("Pass", "Pass", ref strPass);
-            if (result == DialogResult.Cancel) return;
+            if (result == MessageBoxResult.Cancel) return;
             if (status == "add")
             {
                 if (!string.IsNullOrEmpty(strDesc) && !string.IsNullOrEmpty(strServer) && !string.IsNullOrEmpty(strUser) && !string.IsNullOrEmpty(strPass))
@@ -694,7 +695,7 @@ namespace SQLTool.Util
     public class PromptForm
     {
         public static Form _frmParent;
-        public static DialogResult Show(string title, string promptText, ref string value, bool bIsText, bool bIsCombobox, bool isShowLstTbl, string[] lstFunctionList,
+        public static MessageBoxResult Show(string title, string promptText, ref string value, bool bIsText, bool bIsCombobox, bool isShowLstTbl, string[] lstFunctionList,
                                         InputBoxValidation validation)
         {
             ViewModels.PopupViewModel popupView = new ViewModels.PopupViewModel();
@@ -720,7 +721,7 @@ namespace SQLTool.Util
             //{
             //    frmInput.FormClosing += delegate (object sender, FormClosingEventArgs e)
             //    {
-            //        if (frmInput.DialogResult == DialogResult.OK)
+            //        if (frmInput.MessageBoxResult == MessageBoxResult.OK)
             //        {
             //            string errorText = validation(text);
             //            if (e.Cancel = (errorText != ""))
@@ -732,24 +733,23 @@ namespace SQLTool.Util
             //        }
             //    };
             //}
-            DevExpress.Mvvm.UICommand uICommand = new DevExpress.Mvvm.UICommand("ok", "OK", popupView.okCommand, true, false, null, true, System.Windows.Controls.Dock.Left);
-            //System.Windows.MessageBoxResult messResult = popup.ShowDialog(System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxResult.OK);
-            List<DevExpress.Mvvm.UICommand> lst = new List<DevExpress.Mvvm.UICommand>() { uICommand };
-            DevExpress.Mvvm.UICommand cmd = popup.ShowDialog(lst);
+            DevExpress.Mvvm.UICommand uIOkCommand = new DevExpress.Mvvm.UICommand(MessageBoxResult.OK, "OK", popupView.okCommand, true, false, null, true, System.Windows.Controls.Dock.Left);
+            DevExpress.Mvvm.UICommand uICancelCommand = new DevExpress.Mvvm.UICommand(MessageBoxResult.Cancel, "Cancel", null, false, true, null, true, System.Windows.Controls.Dock.Left);
+            List<DevExpress.Mvvm.UICommand> lst = new List<DevExpress.Mvvm.UICommand>() { uIOkCommand, uICancelCommand };
+            popup.ShowDialog(lst);
             //value = (bIsText) ? frmInput.GetText() : frmInput.GetSelectedText();
-            //DialogResult dialogResult = messResult == System.Windows.MessageBoxResult.OK ? DialogResult.OK : DialogResult.Cancel;
-            DialogResult dialogResult = DialogResult.OK;
+            MessageBoxResult dialogResult = popup.DialogButtonResult;
             return dialogResult;
         }
-        public static DialogResult ShowText(string title, string promptText, ref string value)
+        public static MessageBoxResult ShowText(string title, string promptText, ref string value)
         {
             return Show(title, promptText, ref value, true, false, false, null, null);
         }
-        public static DialogResult ShowCombobox(string title, string promptText, ref string value)
+        public static MessageBoxResult ShowCombobox(string title, string promptText, ref string value)
         {
             return Show(title, promptText, ref value, false, true, true, null, null);
         }
-        public static DialogResult ShowCombobox(string title, string promptText, string[] lstSource, ref string value)
+        public static MessageBoxResult ShowCombobox(string title, string promptText, string[] lstSource, ref string value)
         {
             return Show(title, promptText, ref value, false, true, false, lstSource, null);
         }
@@ -761,13 +761,14 @@ namespace SQLTool.Util
         {
             this.KeyDown += textBox_KeyDown;
         }
+
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.A)
                 this.SelectAll();
             if(e.Control && e.Shift && e.KeyCode == Keys.S)
             {
-                string str = Clipboard.GetText();
+                string str = System.Windows.Forms.Clipboard.GetText();
                 str = str.TrimEnd(Environment.NewLine.ToCharArray());
                 string[] lst = str.Split('\n');
                 this.ResetText();

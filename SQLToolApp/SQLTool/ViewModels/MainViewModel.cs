@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Xpf.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace SQLTool.ViewModels
             {
                 lstFunctions.Add(Path.GetFileNameWithoutExtension(item));
             });
-            btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => AddCommand(x));
-            btnEditCommand = new RelayCommand<object>((x) => CanExecute(), (x) => AddCommand(x));
-            btnDelCommand = new RelayCommand<object>((x) => CanExecute(), (x) => AddCommand(x));
-            btnVerCommand = new RelayCommand<object>((x) => CanExecute(), (x) => AddCommand(x));
+            btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+            btnEditCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+            btnDelCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+            btnVerCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
         }
 
         private bool CanExecute()
@@ -43,10 +44,10 @@ namespace SQLTool.ViewModels
             return true;
         }
 
-        private void AddCommand(object item)
+        private void ActionCommand(object item)
         {
-            string val = string.Empty;
-            DialogResult result = Util.PromptForm.ShowText("abdgdd", "", ref val);
+            SimpleButton btn = item as SimpleButton;
+            Util.FunctionList.GetConfigConnectSQL(Convert.ToString(btn.Content));
         }
     }
 }
