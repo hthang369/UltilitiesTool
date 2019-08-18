@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -28,7 +29,7 @@ namespace SQLTool.ViewModels
         public MainViewModel()
         {
             lstFunctions = new List<string>();
-            string[] arrFunctions = Directory.GetFiles(Application.StartupPath + "\\Scripts", "*.sql");
+            string[] arrFunctions = Directory.GetFiles(System.Windows.Forms.Application.StartupPath + "\\Scripts", "*.sql");
             Parallel.ForEach(arrFunctions, (item) =>
             {
                 lstFunctions.Add(Path.GetFileNameWithoutExtension(item));
@@ -47,7 +48,29 @@ namespace SQLTool.ViewModels
         private void ActionCommand(object item)
         {
             SimpleButton btn = item as SimpleButton;
-            Util.FunctionList.GetConfigConnectSQL(Convert.ToString(btn.Content));
+            FrameworkElement window = GetFrameworkElement(btn);
+            MainWindow mainWindow = (window as MainWindow);
+            string strType = Convert.ToString(mainWindow.ctrlFrom.cboSqlType.SelectedItem);
+            ResultViewModel resultView = new ResultViewModel();
+            DataResults data = new DataResults();
+            data.Title = "APPOs";
+            data.PinMode = TabPinMode.Left;
+            Task.Run(() =>
+            {
+                data.DataSource = SQLAppLib.SQLDBUtil.GetDataTable("select * from APPOs");
+            }).Wait();
+            Views.ResultView result = new Views.ResultView();
+            result.DataContext = data;
+            result.ShowDialog();
+            if(string.IsNullOrEmpty(strType))
+            {
+                DXMessageBox.Show(mainWindow, "Vui lòng chọn Loại Sql", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            int idx = mainWindow.ctrlFrom.cboServer.SelectedIndex;
+            if (idx == -1) idx = 0;
+            Util.FunctionList.section = strType;
+            Util.FunctionList.GetConfigConnectSQL(Convert.ToString(btn.Content), idx);
         }
     }
 }

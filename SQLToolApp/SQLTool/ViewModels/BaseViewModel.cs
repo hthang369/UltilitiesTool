@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SQLTool.ViewModels
@@ -33,6 +34,12 @@ namespace SQLTool.ViewModels
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        protected FrameworkElement GetFrameworkElement(FrameworkElement w)
+        {
+            if (w.Parent != null) w = GetFrameworkElement(w.Parent as FrameworkElement);
+            return w;
         }
 
         #region INotifyPropertyChanged

@@ -32,12 +32,13 @@ namespace SQLTool.ViewModels
         }
         public ICommand selectedItemChangeCommand { get; set; }
         public ICommand serverSelectedItemChangeCommand { get; set; }
-
+        public ICommand selectedDatabaseChangeCommand { get; set; }
         public SqlControlViewModel(Control ctrl)
         {
             Parent = ctrl;
             selectedItemChangeCommand = new RelayCommand<object>((x) => { return true; }, x => ChangeServerBySqlType(x));
             serverSelectedItemChangeCommand = new RelayCommand<object>((x) => { return true; }, x => ChangeDatabaseBySqlType(x));
+            selectedDatabaseChangeCommand = new RelayCommand<object>((x) => { return true; }, x => ChangeDatabaseByServer(x));
             lstSqlType = new List<string>()
             {
                 SQLAppLib.SqlDbConnectionType.MySql.ToString(),
@@ -47,8 +48,17 @@ namespace SQLTool.ViewModels
             lstDatabase = new DataTable();
         }
 
+        private void ChangeDatabaseByServer(object key)
+        {
+            string keySection = Convert.ToString((Parent as Views.SqlControlView).cboSqlType.SelectedItem);
+            SQLAppLib.SQLDBUtil.ChangeDatabase(((SQLAppLib.SqlDbConnectionType)Enum.Parse(typeof(SQLAppLib.SqlDbConnectionType), keySection)), Convert.ToString(key));
+        }
+
         private void ChangeServerBySqlType(object key)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(key))) return;
+            (Parent as Views.SqlControlView).cboServer.SelectedItem = null;
+            (Parent as Views.SqlControlView).cboDatabase.SelectedItem = null;
             lstServers = Util.FunctionList.LoadConfigInitToList(Convert.ToString(key));
         }
 

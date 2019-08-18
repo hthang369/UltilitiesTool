@@ -28,11 +28,15 @@ namespace SQLTool.ViewModels
             get => _isText;
             set => SetProperty(ref _isText, value);
         }
-        private string _valueReturn;
-        public string valueReturn
+        private object _valueReturn;
+        public object valueReturn
         {
             get => _valueReturn;
-            set => SetProperty(ref _valueReturn, value);
+            set
+            {
+                if(value != null)
+                    SetProperty(ref _valueReturn, value);
+            }
         }
         public Visibility isTextVisibility
         {
@@ -78,12 +82,6 @@ namespace SQLTool.ViewModels
         private void OKCommandEvent(object obj)
         {
             //(obj as Views.PopupWindow).set
-        }
-
-        private FrameworkElement GetFrameworkElement(FrameworkElement w)
-        {
-            if (w.Parent != null) w = GetFrameworkElement(w.Parent as FrameworkElement);
-            return w;
         }
     }
 }

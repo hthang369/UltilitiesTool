@@ -3,7 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-        Title="SQL Tool" Height="500" Width="600" FontSize="15">
+        Title="SQL Tool" Height="500" Width="600" FontSize="15"
+        Loaded="ThemedWindow_Loaded">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="00:05:00" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid RenderTransformOrigin="0.489,0.508">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,9 +26,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Views:SqlControlView x:Name="ctrlTo" Grid.Column="0" Margin="2,0,2,0" />
+            <Views:SqlControlView x:Name="ctrlFrom" Grid.Column="0" Margin="2,0,2,0" />
             <dx:SimpleButton x:Name="btnVS" Grid.Column="1" Content="&lt;V,S&gt;" Padding="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Views:SqlControlView x:Name="ctrlFrom" Grid.Column="2" Margin="2,0,2,0" />
+            <Views:SqlControlView x:Name="ctrlTo" Grid.Column="2" Margin="2,0,2,0" />
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

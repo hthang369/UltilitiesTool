@@ -12,7 +12,7 @@ namespace SQLTool.Util
 {
     public class FunctionList
     {
-        private static string section = "SqlServer";
+        public static string section = "SqlServer";
         private static string serverCnt = "ServerCount";
         private static string _serverDesc = "Descreiption";
         private static string _serverName = "Server";
@@ -622,6 +622,7 @@ namespace SQLTool.Util
         }
         public static DataTable LoadDatabaseByServer(string keySection, int idx)
         {
+            if (idx == -1) return new DataTable();
             strServer = GetServerConfig(keySection, idx);
             strUserName = GetUserNameConfig(keySection, idx);
             strPassWord = GetPassWordConfig(keySection, idx);
@@ -702,7 +703,13 @@ namespace SQLTool.Util
             Views.PopupWindow popup = new Views.PopupWindow() { DataContext = popupView };
             popupView.Header = title;
             popupView.Title = promptText;
+            popupView.valueReturn = value;
             popupView.isText = bIsText;
+            if (bIsText)
+                popup.txtInput.Focus();
+            else
+                popup.cboInput.Focus();
+
             //frmSearch frmInput = new frmSearch(_frmParent, bIsText, bIsCombobox, isShowLstTbl);
             //frmInput.SetCaption(promptText);
             //frmInput.Text = title;
@@ -737,6 +744,7 @@ namespace SQLTool.Util
             DevExpress.Mvvm.UICommand uICancelCommand = new DevExpress.Mvvm.UICommand(MessageBoxResult.Cancel, "Cancel", null, false, true, null, true, System.Windows.Controls.Dock.Left);
             List<DevExpress.Mvvm.UICommand> lst = new List<DevExpress.Mvvm.UICommand>() { uIOkCommand, uICancelCommand };
             popup.ShowDialog(lst);
+            value = Convert.ToString(popupView.valueReturn);
             //value = (bIsText) ? frmInput.GetText() : frmInput.GetSelectedText();
             MessageBoxResult dialogResult = popup.DialogButtonResult;
             return dialogResult;

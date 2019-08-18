@@ -47,7 +47,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0">Database</Label>
-            <dxe:ComboBoxEdit Grid.Column="1" x:Name="cboDatabase" ItemsSource="{Binding lstDatabase}" DisplayMember="name" ValueMember="name" />
+            <dxe:ComboBoxEdit Grid.Column="1" x:Name="cboDatabase" ItemsSource="{Binding lstDatabase}" DisplayMember="name" ValueMember="name">
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding selectedDatabaseChangeCommand}" CommandParameter="{Binding ElementName=cboDatabase, Path=EditValue}" UseDispatcher="True"/>
+                </dxmvvm:Interaction.Behaviors>
+            </dxe:ComboBoxEdit>
         </Grid>
     </StackPanel>
 </UserControl>

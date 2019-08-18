@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
+using SQLAppLib;
 using SQLTool.ViewModels;
 
 namespace SQLTool
@@ -26,6 +27,15 @@ namespace SQLTool
         {
             InitializeComponent();
             DataContext = mainViewModel = new MainViewModel();
+        }
+
+        private void ThemedWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //DXSplashScreen.Close();
+            //LoadingDecorator loading = new LoadingDecorator();
+            ////loading.spl
+            //loading.Visibility = Visibility.Visible;
+            //SQLApp.ShowAnimate(this.Handle, Util.FunctionList.GetAnimateWindowTime());
         }
     }
 }

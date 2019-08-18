@@ -1,0 +1,40 @@
+﻿<dx:ThemedWindow xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    x:Class="SQLTool.Views.ResultView"
+    Title="ResultView" Height="350" Width="525"
+    >
+
+    <Grid Margin="0,10,0.4,-0.2">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <dx:DXTabControl x:Name="tabControl" Grid.Row="0" Margin="15,11,11,11" ItemsSource="{Binding DataResults}">
+            <dx:DXTabControl.View>
+                <dx:TabControlStretchView x:Name="view"
+                                                  Tag="Stretch"
+                                                  HeaderLocation="Top"
+                                                  NewButtonShowMode="InTabPanel"
+                                                  HideButtonShowMode="InAllTabs"
+                                                  PinnedTabSize="50">
+                </dx:TabControlStretchView>
+            </dx:DXTabControl.View>
+            <dx:DXTabControl.ItemContainerStyle>
+                <Style TargetType="dx:DXTabItem">
+                    <Setter Property="Content" Value="{Binding DataSource}" />
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <dxg:GridControl x:Name="dgvDataResult" ItemsSource="{Binding}" />
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Header" Value="{Binding Title}" />
+                    <Setter Property="dx:TabControlStretchView.PinMode" Value="{Binding PinMode, Mode=TwoWay}" />
+                </Style>
+            </dx:DXTabControl.ItemContainerStyle>
+        </dx:DXTabControl>
+    </Grid>
+</dx:ThemedWindow>
