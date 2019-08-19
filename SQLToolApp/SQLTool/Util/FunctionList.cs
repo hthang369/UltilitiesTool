@@ -700,15 +700,16 @@ namespace SQLTool.Util
                                         InputBoxValidation validation)
         {
             ViewModels.PopupViewModel popupView = new ViewModels.PopupViewModel();
-            Views.PopupWindow popup = new Views.PopupWindow() { DataContext = popupView };
+            Views.BasePopupWindow popup = new Views.BasePopupWindow() { DataContext = popupView, Height = 150, Width = 600 };
             popupView.Header = title;
             popupView.Title = promptText;
             popupView.valueReturn = value;
             popupView.isText = bIsText;
+            Views.PopupView view = popup.waitLoadView.LoadingChild as Views.PopupView;
             if (bIsText)
-                popup.txtInput.Focus();
+                view.txtInput.Focus();
             else
-                popup.cboInput.Focus();
+                view.cboInput.Focus();
 
             //frmSearch frmInput = new frmSearch(_frmParent, bIsText, bIsCombobox, isShowLstTbl);
             //frmInput.SetCaption(promptText);

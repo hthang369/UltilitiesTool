@@ -7,19 +7,13 @@
     Title="ResultView" Height="350" Width="525"
     >
 
-    <Grid Margin="0,10,0.4,-0.2">
+    <Grid Margin="0,5,0,0">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <dx:DXTabControl x:Name="tabControl" Grid.Row="0" Margin="15,11,11,11" ItemsSource="{Binding DataResults}">
             <dx:DXTabControl.View>
-                <dx:TabControlStretchView x:Name="view"
-                                                  Tag="Stretch"
-                                                  HeaderLocation="Top"
-                                                  NewButtonShowMode="InTabPanel"
-                                                  HideButtonShowMode="InAllTabs"
-                                                  PinnedTabSize="50">
-                </dx:TabControlStretchView>
+                <dx:TabControlMultiLineView HeaderLocation="Top" HideButtonShowMode="InActiveTab" NewButtonShowMode="InTabPanel" RemoveTabItemsOnHiding="False" ShowHeaderMenu="False" Tag="Stretch"/>
             </dx:DXTabControl.View>
             <dx:DXTabControl.ItemContainerStyle>
                 <Style TargetType="dx:DXTabItem">
@@ -27,7 +21,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <dxg:GridControl x:Name="dgvDataResult" ItemsSource="{Binding}" />
+                                <dxg:GridControl x:Name="dgvDataResult" ItemsSource="{Binding}" AutoGenerateColumns="AddNew" />
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>

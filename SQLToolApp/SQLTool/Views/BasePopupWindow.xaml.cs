@@ -16,11 +16,11 @@ using DevExpress.Xpf.Core;
 namespace SQLTool.Views
 {
     /// <summary>
-    /// Interaction logic for PopupWindow.xaml
+    /// Interaction logic for BasePopupWindow.xaml
     /// </summary>
-    public partial class PopupWindow : ThemedWindow
+    public partial class BasePopupWindow : ThemedWindow
     {
-        public PopupWindow()
+        public BasePopupWindow()
         {
             InitializeComponent();
         }

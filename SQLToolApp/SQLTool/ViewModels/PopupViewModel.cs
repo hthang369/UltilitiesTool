@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Mvvm.DataAnnotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,9 @@ using System.Windows.Input;
 
 namespace SQLTool.ViewModels
 {
-    public class PopupViewModel : BaseViewModel
+    [POCOViewModel]
+    public class PopupViewModel : BasePopupViewModel
     {
-        private string _header;
-        public string Header
-        {
-            get => _header;
-            set => SetProperty(ref _header, value);
-        }
         private string _title;
         public string Title
         {

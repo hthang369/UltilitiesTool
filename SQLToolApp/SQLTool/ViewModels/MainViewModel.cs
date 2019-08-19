@@ -51,17 +51,22 @@ namespace SQLTool.ViewModels
             FrameworkElement window = GetFrameworkElement(btn);
             MainWindow mainWindow = (window as MainWindow);
             string strType = Convert.ToString(mainWindow.ctrlFrom.cboSqlType.SelectedItem);
-            ResultViewModel resultView = new ResultViewModel();
-            DataResults data = new DataResults();
-            data.Title = "APPOs";
-            data.PinMode = TabPinMode.Left;
-            Task.Run(() =>
-            {
-                data.DataSource = SQLAppLib.SQLDBUtil.GetDataTable("select * from APPOs");
-            }).Wait();
-            Views.ResultView result = new Views.ResultView();
-            result.DataContext = data;
-            result.ShowDialog();
+            //ResultViewModel resultView = new ResultViewModel();
+            //DataResults data = new DataResults();
+            //data.Title = "APPOs";
+            //data.PinMode = TabPinMode.Left;
+            //Task.Run(() =>
+            //{
+            //    data.DataSource = SQLAppLib.SQLDBUtil.GetDataTable("select * from APPOs");
+            //});
+            //Views.ResultView result = new Views.ResultView();
+            //result.DataContext = data;
+            //result.ShowDialog();
+            EditDataViewModel editData = new EditDataViewModel();
+            editData.Header = "T-SQL";
+            Views.BasePopupWindow popup = new Views.BasePopupWindow() { DataContext = editData };
+            popup.waitLoadView.LoadingChild = new Views.EditDataView();
+            popup.ShowDialog();
             if(string.IsNullOrEmpty(strType))
             {
                 DXMessageBox.Show(mainWindow, "Vui lòng chọn Loại Sql", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
