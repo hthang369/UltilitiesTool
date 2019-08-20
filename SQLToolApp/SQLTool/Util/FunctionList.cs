@@ -32,7 +32,7 @@ namespace SQLTool.Util
 
         #region function list
         //Ctrl + 1 tìm module
-        public static void FindModule(Form frmParent)
+        public static void FindModule(Window frmParent)
         {
             PromptForm._frmParent = frmParent;
             string moduleName = "";
@@ -46,7 +46,7 @@ namespace SQLTool.Util
             ShowResultData(frmParent, dt, strQuery);
         }
         //Ctrl + F Find Column
-        public static void FindColumn(Form frmParent)
+        public static void FindColumn(Window frmParent)
         {
             PromptForm._frmParent = frmParent;
             string tableName = "";
@@ -62,7 +62,7 @@ namespace SQLTool.Util
             ShowResultData(frmParent, dtData, "");
         }
         //Alt + 1 View Data by No
-        public static void GetViewDataByNo(Form frmParent)
+        public static void GetViewDataByNo(Window frmParent)
         {
             PromptForm._frmParent = frmParent;
             string tableName = "";
@@ -79,7 +79,7 @@ namespace SQLTool.Util
             dtData.TableName = tableName;
             ShowResultData(frmParent, dtData, "");
         }
-        private static void ShowResultData(Form frmParent, DataTable dtSource, string strQuery)
+        private static void ShowResultData(Window frmParent, DataTable dtSource, string strQuery)
         {
             //frmData _frmData = new frmData(frmParent);
             //_frmData._strQuery_RecentData = strQuery;
@@ -93,7 +93,7 @@ namespace SQLTool.Util
             //_frmData.ShowDialog();
         }
         //Ctrl + 0 View Connect Sql
-        public static void GetViewConnectToSQL(Form frmParent)
+        public static void GetViewConnectToSQL(Window frmParent)
         {
             string strQuery = SQLApp.GetFile(strPath + "ViewConnectSql.sql");
             DataTable dtSource = SQLDBUtil.GetDataTable(strQuery);
@@ -123,7 +123,7 @@ namespace SQLTool.Util
             }
         }
         //Ctrl + Alt + T : Gen Script Create Table
-        public static void GenScriptCreateTable(Form frmParent)
+        public static void GenScriptCreateTable(Window frmParent)
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTableName = "";
@@ -135,7 +135,7 @@ namespace SQLTool.Util
             ShowResultData(frmParent, dt, strQuery);
         }
         //Ctrl + Alt + T : Gen Script Create Table
-        public static void GenScriptCreateColumn(Form frmParent)
+        public static void GenScriptCreateColumn(Window frmParent)
         {
             string str = MethodInfo.GetCurrentMethod().Name;
             string strTableName = "";
@@ -695,7 +695,7 @@ namespace SQLTool.Util
 
     public class PromptForm
     {
-        public static Form _frmParent;
+        public static Window _frmParent;
         public static MessageBoxResult Show(string title, string promptText, ref string value, bool bIsText, bool bIsCombobox, bool isShowLstTbl, string[] lstFunctionList,
                                         InputBoxValidation validation)
         {

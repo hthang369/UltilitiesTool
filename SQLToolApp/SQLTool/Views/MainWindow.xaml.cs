@@ -26,7 +26,7 @@ namespace SQLTool
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = mainViewModel = new MainViewModel();
+            DataContext = mainViewModel = new MainViewModel(this);
         }
 
         private void ThemedWindow_Loaded(object sender, RoutedEventArgs e)
@@ -36,6 +36,16 @@ namespace SQLTool
             ////loading.spl
             //loading.Visibility = Visibility.Visible;
             //SQLApp.ShowAnimate(this.Handle, Util.FunctionList.GetAnimateWindowTime());
+            //InputGesture gesture = new KeyGesture(Key.D1, ModifierKeys.Alt, "ALT+D1");
+
+            InputBinding inputBinding = new KeyBinding(mainViewModel.KeyBindingCommand, Key.D1, ModifierKeys.Alt);
+            inputBinding.CommandParameter = "Alt+D1";
+            InputBindings.Add(inputBinding);
+        }
+
+        private void ThemedWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            mainViewModel.KeyActionCommand(sender, e);
         }
     }
 }

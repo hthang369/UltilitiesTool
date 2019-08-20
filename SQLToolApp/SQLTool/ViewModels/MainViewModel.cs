@@ -13,6 +13,7 @@ namespace SQLTool.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        Window frmMain;
         private List<string> _lstFunctions;
         public List<string> lstFunctions
         {
@@ -25,9 +26,11 @@ namespace SQLTool.ViewModels
         public ICommand btnVerCommand { get; set; }
         public ICommand btnCompareCommand { get; set; }
         public ICommand btnRefeshCommand { get; set; }
+        public ICommand KeyBindingCommand { get; set; }
 
-        public MainViewModel()
+        public MainViewModel(Window window)
         {
+            frmMain = window;
             lstFunctions = new List<string>();
             string[] arrFunctions = Directory.GetFiles(System.Windows.Forms.Application.StartupPath + "\\Scripts", "*.sql");
             Parallel.ForEach(arrFunctions, (item) =>
@@ -38,6 +41,8 @@ namespace SQLTool.ViewModels
             btnEditCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnDelCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnVerCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+
+            KeyBindingCommand = new RelayCommand<object>((x) => CanExecute(), (x) => KeyBindingActionCommand(x));
         }
 
         private bool CanExecute()
@@ -76,6 +81,61 @@ namespace SQLTool.ViewModels
             if (idx == -1) idx = 0;
             Util.FunctionList.section = strType;
             Util.FunctionList.GetConfigConnectSQL(Convert.ToString(btn.Content), idx);
+        }
+
+        internal void KeyActionCommand(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.F9:
+                    ShowEditDataView();
+                    break;
+                case Key.System:
+                    if(e.KeyboardDevice.Modifiers == ModifierKeys.Alt)
+                    {
+
+                    }
+                    break;
+            }
+        }
+
+        private void ShowEditDataView()
+        {
+            ViewModels.PopupViewModel popupView = new PopupViewModel();
+            Views.BasePopupWindow popupWindow = new Views.BasePopupWindow() { DataContext = popupView };
+            popupView.isNoTabControl = Visibility.Visible;
+            popupView.isTabControl = Visibility.Hidden;
+            popupWindow.waitLoadView.LoadingChild = new Views.EditDataView();
+            popupWindow.Show();
+            //popupWindow.tabResults.AddNewTabItem();
+        }
+
+        private void KeyBindingActionCommand(object x)
+        {
+            string[] arr = Convert.ToString(x).Split('+');
+            Key key = (Key)Enum.Parse(typeof(Key), arr.LastOrDefault());
+            ModifierKeys modifier = (ModifierKeys)Enum.Parse(typeof(ModifierKeys), arr.FirstOrDefault());
+            switch (modifier)
+            {
+                case ModifierKeys.Alt:
+                    switch (key)
+                    {
+                        case Key.D1:
+                            Util.FunctionList.FindModule(frmMain);
+                            break;
+                    }
+                    break;
+                case ModifierKeys.Control:
+                    break;
+                case ModifierKeys.Shift:
+                    break;
+            }
+            //DevExpress.Xpf.Editors.SearchControl
+        }
+
+        private void KeyModifierCommand(ModifierKeys modifier, Key key)
+        {
+
         }
     }
 }
