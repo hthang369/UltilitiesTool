@@ -1,4 +1,5 @@
 ﻿using DevExpress.Xpf.Core;
+using SQLAppLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,6 +37,11 @@ namespace SQLTool.ViewModels
             Parallel.ForEach(arrFunctions, (item) =>
             {
                 lstFunctions.Add(Path.GetFileNameWithoutExtension(item));
+            });
+            List<string> funcKeysIni = SQLApp.GetKeysIniFile(System.Windows.Forms.Application.StartupPath + "\\Scripts\\config.ini", "Funcs");
+            Parallel.ForEach(funcKeysIni, (item) =>
+            {
+                lstFunctions.Add(item);
             });
             btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnEditCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
@@ -128,6 +134,12 @@ namespace SQLTool.ViewModels
                 case ModifierKeys.Control:
                     break;
                 case ModifierKeys.Shift:
+                    break;
+                case ModifierKeys.None:
+                    if(key == Key.Enter)
+                    {
+                        Util.FunctionList.FindAllProcessLockedFile(frmMain);
+                    }
                     break;
             }
             //DevExpress.Xpf.Editors.SearchControl

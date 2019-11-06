@@ -1,7 +1,9 @@
 ﻿using SQLAppLib;
+using SQLTool.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -91,6 +93,15 @@ namespace SQLTool.Util
             //_frmData.StartPosition = FormStartPosition.CenterScreen;
             //frmParent.Hide();
             //_frmData.ShowDialog();
+            ResultViewModel resultView = new ResultViewModel();
+            resultView.DataResults = new DataResults
+            {
+                Title = "Xem Data",
+                DataSource = dtSource
+            };
+            Views.ResultView view = new Views.ResultView();
+            view.DataContext = resultView;
+            view.ShowDialog();
         }
         //Ctrl + 0 View Connect Sql
         public static void GetViewConnectToSQL(Window frmParent)
@@ -514,6 +525,29 @@ namespace SQLTool.Util
                 System.Windows.MessageBox.Show("Thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         #endregion
+
+        #region Function Extra
+        public static void FindAllProcessLockedFile(Window frmParent)
+        {
+            string strFilePath = "";
+            using (OpenFileDialog open = new OpenFileDialog())
+            {
+                if(open.ShowDialog() == DialogResult.OK)
+                    strFilePath = open.FileName;
+            }
+            List<Process> lstProcess = Win32Processes.GetProcessesLockingFile(strFilePath);
+            DataTable dt = new DataTable();
+            dt.Columns.Add(new DataColumn("name"));
+            foreach (Process item in lstProcess)
+            {
+                DataRow dr = dt.NewRow();
+                dr["name"] = item.ProcessName;
+                dt.Rows.Add(dr);
+                item.Kill();
+            }
+            ShowResultData(frmParent, dt, "");
+        }
+        #endregion
         #endregion
 
         #region config Connect
@@ -775,7 +809,7 @@ namespace SQLTool.Util
         {
             if (e.Control && e.KeyCode == Keys.A)
                 this.SelectAll();
-            if(e.Control && e.Shift && e.KeyCode == Keys.S)
+            if (e.Control && e.Shift && e.KeyCode == Keys.S)
             {
                 string str = System.Windows.Forms.Clipboard.GetText();
                 str = str.TrimEnd(Environment.NewLine.ToCharArray());
