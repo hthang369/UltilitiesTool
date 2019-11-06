@@ -24,8 +24,8 @@ namespace SQLTool.ViewModels
         private Visibility _isNoTabControl;
         public Visibility isNoTabControl
         {
-            get => _isTabControl;
-            set => SetProperty(ref _isTabControl, value);
+            get => _isNoTabControl;
+            set => SetProperty(ref _isNoTabControl, value);
         }
     }
 }

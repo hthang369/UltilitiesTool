@@ -38,11 +38,12 @@ namespace SQLTool.ViewModels
             {
                 lstFunctions.Add(Path.GetFileNameWithoutExtension(item));
             });
-            List<string> funcKeysIni = SQLApp.GetKeysIniFile(System.Windows.Forms.Application.StartupPath + "\\Scripts\\config.ini", "Funcs");
-            Parallel.ForEach(funcKeysIni, (item) =>
-            {
-                lstFunctions.Add(item);
-            });
+            //List<string> funcKeysIni = SQLApp.GetKeysIniFile(System.Windows.Forms.Application.StartupPath + "\\Scripts\\config.ini", "Funcs");
+            //Parallel.ForEach(funcKeysIni, (item) =>
+            //{
+            //    lstFunctions.Add(item);
+            //});
+            
             btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnEditCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnDelCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
@@ -138,7 +139,8 @@ namespace SQLTool.ViewModels
                 case ModifierKeys.None:
                     if(key == Key.Enter)
                     {
-                        Util.FunctionList.FindAllProcessLockedFile(frmMain);
+                        //Util.FunctionList.FindAllProcessLockedFile(frmMain);
+                        Util.FunctionList.ShowYoutubeView();
                     }
                     break;
             }
