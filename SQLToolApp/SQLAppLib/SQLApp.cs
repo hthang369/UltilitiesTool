@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -43,6 +43,8 @@ namespace SQLAppLib
         private static extern long WritePrivateProfileString(string section, string key, string val, string filepath);
         [DllImport("kernel32")]
         private static extern long GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filepath);
+        [DllImport("kernel32", CallingConvention = CallingConvention.Winapi, CharSet = CharSet.Auto)]
+        private static extern int GetPrivateProfileSection(string section, string lpszReturnBuffer, int nSize, string filepath);
         [DllImport("user32.dll")]
         private static extern int AnimateWindow(IntPtr hwand, int dwTime, AnimateWindowFlag dwFlags);
         public static string GetIniFile(string szFile, string szSection, string szKey)
@@ -54,6 +56,14 @@ namespace SQLAppLib
         public static void SetIniFile(string szFile, string szSection, string szKey, string szData)
         {
             WritePrivateProfileString(szSection, szKey, szData, szFile);
+        }
+        public static List<string> GetKeysIniFile(string szFile, string szSection)
+        {
+            string value = new string(' ', 1000);
+            int uiNumCharCopied = GetPrivateProfileSection(szSection, value, 1000, szFile);
+            List<string> lstOutputs = new List<string>();
+            lstOutputs = value.Split('\0').Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.TrimEnd(Convert.ToChar(0)).Split('=').FirstOrDefault()).ToList();
+            return lstOutputs;
         }
         public static bool IsNumber(string pText)
         {
