@@ -137,5 +137,24 @@ namespace CheckKintal
             }
             MessageBox.Show("Lưu thành Công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void mnItemCloseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void mnItemShowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
+        }
     }
 }

@@ -34,6 +34,10 @@
             this.lblUrl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnItemShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnItemCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtUrl = new System.Windows.Forms.TextBox();
             this.txtCheckInStart = new System.Windows.Forms.DateTimePicker();
             this.txtCheckInEnd = new System.Windows.Forms.DateTimePicker();
@@ -47,6 +51,7 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRecheck)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,8 +83,37 @@
             // 
             // notifyIcon1
             // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnItemShowToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.mnItemCloseToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(169, 54);
+            // 
+            // mnItemShowToolStripMenuItem
+            // 
+            this.mnItemShowToolStripMenuItem.Name = "mnItemShowToolStripMenuItem";
+            this.mnItemShowToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.mnItemShowToolStripMenuItem.Text = "Hiện thị giao diện";
+            this.mnItemShowToolStripMenuItem.Click += new System.EventHandler(this.mnItemShowToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(165, 6);
+            // 
+            // mnItemCloseToolStripMenuItem
+            // 
+            this.mnItemCloseToolStripMenuItem.Name = "mnItemCloseToolStripMenuItem";
+            this.mnItemCloseToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.mnItemCloseToolStripMenuItem.Text = "Thoát";
+            this.mnItemCloseToolStripMenuItem.Click += new System.EventHandler(this.mnItemCloseToolStripMenuItem_Click);
             // 
             // txtUrl
             // 
@@ -254,6 +288,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Check ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtRecheck)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -279,6 +315,10 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnItemShowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem mnItemCloseToolStripMenuItem;
     }
 }
 
