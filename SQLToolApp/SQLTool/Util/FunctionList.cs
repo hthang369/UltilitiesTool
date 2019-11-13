@@ -547,15 +547,6 @@ namespace SQLTool.Util
             }
             ShowResultData(frmParent, dt, "");
         }
-        public static void ShowYoutubeView()
-        {
-            YoutubeViewModel popupView = new YoutubeViewModel();
-            Views.BasePopupWindow popupWindow = new Views.BasePopupWindow() { DataContext = popupView };
-            popupView.isNoTabControl = Visibility.Visible;
-            popupView.isTabControl = Visibility.Hidden;
-            popupWindow.waitLoadView.LoadingChild = new Views.YoutubeView();
-            popupWindow.Show();
-        }
         #endregion
         #endregion
 
