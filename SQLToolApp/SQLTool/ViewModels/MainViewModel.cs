@@ -51,11 +51,6 @@ namespace SQLTool.ViewModels
             KeyBindingCommand = new RelayCommand<object>((x) => CanExecute(), (x) => KeyBindingActionCommand(x));
         }
 
-        private bool CanExecute()
-        {
-            return true;
-        }
-
         private void ActionCommand(object item)
         {
             SimpleButton btn = item as SimpleButton;
@@ -73,20 +68,25 @@ namespace SQLTool.ViewModels
             //Views.ResultView result = new Views.ResultView();
             //result.DataContext = data;
             //result.ShowDialog();
-            EditDataViewModel editData = new EditDataViewModel();
-            editData.Header = "T-SQL";
-            Views.BasePopupWindow popup = new Views.BasePopupWindow() { DataContext = editData };
-            popup.waitLoadView.LoadingChild = new Views.EditDataView();
-            popup.ShowDialog();
             if(string.IsNullOrEmpty(strType))
             {
                 DXMessageBox.Show(mainWindow, "Vui lòng chọn Loại Sql", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            int idx = mainWindow.ctrlFrom.cboServer.SelectedIndex;
-            if (idx == -1) idx = 0;
-            Util.FunctionList.section = strType;
-            Util.FunctionList.GetConfigConnectSQL(Convert.ToString(btn.Content), idx);
+            switch(Convert.ToString(btn.Content).ToLower())
+            {
+                case "add":
+                case "edit":
+                    int idx = mainWindow.ctrlFrom.cboServer.SelectedIndex;
+                    if (idx == -1) idx = 0;
+                    Util.FunctionList.section = strType;
+                    Util.FunctionList.GetConfigConnectSQL(Convert.ToString(btn.Content), idx);
+                    break;
+                case "ver":
+                    //SQLDBUtil.
+                    break;
+            }
+            
         }
 
         internal void KeyActionCommand(object sender, System.Windows.Input.KeyEventArgs e)
@@ -94,7 +94,7 @@ namespace SQLTool.ViewModels
             switch (e.Key)
             {
                 case Key.F9:
-                    ShowEditDataView();
+                    Util.FunctionList.ShowEditDataView();
                     break;
                 case Key.System:
                     if(e.KeyboardDevice.Modifiers == ModifierKeys.Alt)
@@ -138,7 +138,8 @@ namespace SQLTool.ViewModels
                 case ModifierKeys.None:
                     if(key == Key.Enter)
                     {
-                        Util.FunctionList.FindAllProcessLockedFile(frmMain);
+                        //Util.FunctionList.FindAllProcessLockedFile(frmMain);
+                        Util.FunctionList.ShowFlashDealView();
                     }
                     break;
             }

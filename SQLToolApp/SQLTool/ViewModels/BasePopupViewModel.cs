@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace SQLTool.ViewModels
 {
@@ -24,8 +25,18 @@ namespace SQLTool.ViewModels
         private Visibility _isNoTabControl;
         public Visibility isNoTabControl
         {
-            get => _isTabControl;
-            set => SetProperty(ref _isTabControl, value);
+            get => _isNoTabControl;
+            set => SetProperty(ref _isNoTabControl, value);
+        }
+        public ICommand KeyBindingCommand { get; set; }
+
+        public BasePopupViewModel()
+        {
+            KeyBindingCommand = new RelayCommand<object>((x) => CanExecute(), (x) => KeyBindingActionCommand(x));
+        }
+
+        protected virtual void KeyBindingActionCommand(object x)
+        {
         }
     }
 }

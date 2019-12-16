@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace SQLTool.Util
 {
@@ -547,6 +548,49 @@ namespace SQLTool.Util
             }
             ShowResultData(frmParent, dt, "");
         }
+        private static void ShowPopupViewModal(BasePopupViewModel viewModel, System.Windows.Controls.UserControl view)
+        {
+            Views.BasePopupWindow popupWindow = new Views.BasePopupWindow() { DataContext = viewModel };
+            viewModel.isNoTabControl = Visibility.Visible;
+            viewModel.isTabControl = Visibility.Hidden;
+            popupWindow.waitLoadView.LoadingChild = view;
+            popupWindow.Show();
+        }
+        private static void AddEventByView(System.Windows.Controls.Control view, BasePopupViewModel viewModel, Key _key, ModifierKeys _modifierKeys)
+        {
+            InputBinding inputBinding = new KeyBinding(viewModel.KeyBindingCommand, _key, _modifierKeys);
+            inputBinding.CommandParameter = string.Format("{0}+{1}",_modifierKeys.ToString(), _key.ToString());
+            view.InputBindings.Add(inputBinding);
+        }
+        public static void ShowYoutubeView()
+        {
+            ViewModels.YoutubeViewModel popupView = new YoutubeViewModel();
+            ShowPopupViewModal(popupView, new Views.YoutubeView());
+        }
+        public static void ShowFlashDealView()
+        {
+            ViewModels.FlashDealViewModel popupView = new FlashDealViewModel();
+            ShowPopupViewModal(popupView, new Views.FlashDealView());
+        }
+        public static void ShowEditDataView()
+        {
+            Views.EditDataView view = new Views.EditDataView();
+            ViewModels.EditDataViewModel popupView = new EditDataViewModel(view);
+            popupView.Title = "T-SQL";
+            popupView.Header = "T-SQL";
+            AddEventByView(view.reditData, popupView, Key.F9, ModifierKeys.None);
+            AddEventByView(view.reditData, popupView, Key.G, ModifierKeys.Control);
+            ShowPopupViewModal(popupView, view);
+        }
+        public static void ShowResultDataView(string strQuery)
+        {
+            ViewModels.ResultDataViewModel popupView = new ResultDataViewModel();
+            popupView.Title = "T-SQL";
+            popupView.Header = "T-SQL Result";
+            popupView.RunQuery(strQuery);
+            ShowPopupViewModal(popupView, new Views.ResultData());
+
+        }
         #endregion
         #endregion
 
@@ -805,7 +849,7 @@ namespace SQLTool.Util
             this.KeyDown += textBox_KeyDown;
         }
 
-        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        private void textBox_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.A)
                 this.SelectAll();

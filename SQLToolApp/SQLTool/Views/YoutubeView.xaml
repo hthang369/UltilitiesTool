@@ -4,40 +4,100 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:SQLTool.Views"
-             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="SQLTool.Views.YoutubeView"
-             mc:Ignorable="d" d:DesignWidth="300">
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" x:Class="SQLTool.Views.YoutubeView"
+            xmlns:clr="clr-namespace:SQLTool.Util"
+            
+    mc:Ignorable="d" d:DesignWidth="300">
     <Grid Margin="0">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <Label Content="{Binding Title}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
-        </StackPanel>
-        <Grid Grid.Row="1" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="Link Video" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0"/>
-            <dxe:TextEdit Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,10,0"/>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="Resolution" HorizontalAlignment="Left" Margin="10,0" Grid.Row="1" VerticalAlignment="Center"/>
-            <dxe:ComboBoxEdit ItemsSource="{Binding lstResolution}" Grid.Column="1" Margin="0,0,10,0" VerticalAlignment="Center"/>
-        </Grid>
-        <StackPanel Grid.Row="3">
-            <dxe:ProgressBarEdit Margin="10,0" VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel Grid.Row="4">
-            <dx:SimpleButton Content="Download" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" IsDefault="True"/>
-        </StackPanel>
+        <dx:DXTabControl >
+            <dx:DXTabItem Header="Tìm kiếm video" dxb:BarNameScope.IsScopeOwner="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <Label Content="{Binding Title}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
+                    </StackPanel>
+                    <Grid Grid.Row="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Tìm Video" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0"/>
+                        <dxe:TextEdit Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,10,0" Text="{Binding SearchKey}"/>
+                        <dx:SimpleButton Grid.Column="2" Content="Tìm" Command="{Binding searchCommand}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" IsDefault="True"/>
+                    </Grid>
+                    <ListView x:Name="lvwResult" Grid.Row="2" ItemsSource="{Binding lstResults}" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Content="{Binding Snippet.Title}" />
+                                    <Label Grid.Row="1" Content="{Binding Id.VideoId}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel Grid.Column="1">
+                        <MediaElement x:Name="mediaSource" LoadedBehavior="Manual" Source="" />
+                        
+                    </StackPanel>
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="Download video" dxb:BarNameScope.IsScopeOwner="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <Label Content="{Binding Title}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" />
+                    </StackPanel>
+                    <Grid Grid.Row="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Link Video" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0"/>
+                        <dxe:TextEdit Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,10,0"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Resolution" HorizontalAlignment="Left" Margin="10,0" Grid.Row="1" VerticalAlignment="Center"/>
+                        <dxe:ComboBoxEdit ItemsSource="{Binding lstResolution}" Grid.Column="1" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    </Grid>
+                    <StackPanel Grid.Row="3">
+                        <dxe:ProgressBarEdit Margin="10,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4">
+                        <dx:SimpleButton Content="Download" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" IsDefault="True"/>
+                    </StackPanel>
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="web">
+                <!--<WindowsFormsHost>-->
+                    <!--<winForms:WebBrowser x:Name="frmMediaSource" ScriptErrorsSuppressed="True" AllowWebBrowserDrop="False" ></winForms:WebBrowser>
+                </WindowsFormsHost>-->
+                <!--<WebBrowser x:Name="frmMediaSource" Source="https://www.youtube-nocookie.com/embed/W152nHe9rkM?rel=0&amp;showinfo=0" />-->
+                <!--<MediaElement LoadedBehavior="Play" Source="blob:https://www.youtube.com/bfcb0bf1-cba5-4ebc-822e-6203ce8f371c"/>-->
+                <!--<you:ChromiumWebBrowser x:Name="frmMediaSource" />-->
+            </dx:DXTabItem>
+        </dx:DXTabControl>
     </Grid>
 </UserControl>

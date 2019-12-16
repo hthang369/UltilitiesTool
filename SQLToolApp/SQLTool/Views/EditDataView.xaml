@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <dxre:RichEditControl x:Name="reditData" CommandBarStyle="Empty" ActiveViewType="Simple">
+        <dxre:RichEditControl x:Name="reditData" CommandBarStyle="Empty" ActiveViewType="Simple" FontSize="14" DocumentLoader="{Binding strQuery}">
             <dxre:RichEditControl.SearchOptions>
                 <dxre:DXRichEditDocumentSearchOptions RegExResultMaxGuaranteedLength="500"/>
             </dxre:RichEditControl.SearchOptions>

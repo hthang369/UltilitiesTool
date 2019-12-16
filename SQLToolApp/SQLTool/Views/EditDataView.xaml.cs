@@ -18,6 +18,29 @@ namespace SQLTool.Views
         {
             InitializeComponent();
             reditData.ReplaceService<ISyntaxHighlightService>(new CustomSyntaxHighlightService(reditData.Document));
+            reditData.KeyDown += ReditData_KeyDown;
+            //reditData.InputBindings.
+            //reditData.AssignShortcutKeyToCommand
+            //reditData.GetShortcutKey
+            //DevExpress.XtraRichEdit.Commands.RichEditCommandId.BackSpaceKey
+        }
+
+        private void ReditData_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case System.Windows.Input.Key.LeftCtrl:
+                case System.Windows.Input.Key.RightCtrl:
+                    if(e.Key == System.Windows.Input.Key.R)
+                    {
+                        //Util.FunctionList.ShowResultDataView();
+                    }
+                    else if(e.Key == System.Windows.Input.Key.G)
+                    {
+
+                    }
+                    break;
+            }
         }
     }
 

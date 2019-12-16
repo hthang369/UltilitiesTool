@@ -42,6 +42,11 @@ namespace SQLTool.ViewModels
             return w;
         }
 
+        protected virtual bool CanExecute()
+        {
+            return true;
+        }
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
