@@ -156,5 +156,12 @@ namespace CheckKintal
                 this.Hide();
             }
         }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            float BatteryLifePercent = SystemInformation.PowerStatus.BatteryLifePercent;
+            if (BatteryLifePercent * 100 <= 20)
+                this.notifyIcon1.ShowBalloonTip(100, "Thông báo", string.Format("Dung lượng pin còn {0}", BatteryLifePercent.ToString("P0")), ToolTipIcon.Info);
+        }
     }
 }

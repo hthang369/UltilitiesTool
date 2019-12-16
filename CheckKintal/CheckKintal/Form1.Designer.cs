@@ -51,6 +51,7 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRecheck)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +85,7 @@
             // notifyIcon1
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
-            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Text = "Nhắc nhở check kintai";
             this.notifyIcon1.Visible = true;
             // 
             // contextMenuStrip1
@@ -264,6 +265,12 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 60000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +293,7 @@
             this.Controls.Add(this.lblUrl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Check ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -319,6 +327,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnItemShowToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem mnItemCloseToolStripMenuItem;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
