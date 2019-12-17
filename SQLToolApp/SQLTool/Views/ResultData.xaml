@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  x:Class="SQLTool.Views.ResultData"
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"   x:Class="SQLTool.Views.ResultData"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,7 +9,7 @@
     <Grid>
         <dxg:GridControl x:Name="dgcResultData" ItemsSource="{Binding dataSource}" AutoGenerateColumns="AddNew" ItemsSourceChanged="DgcResultData_ItemsSourceChanged">
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="False" ShowGroupPanel="False" ShowAutoFilterRow="True" AllowEditing="False" />
+                <dxg:TableView AutoWidth="False" ShowGroupPanel="False" ShowAutoFilterRow="True" AllowEditing="False" AllowResizing="True" ShowDataNavigator="True" UseEvenRowBackground="True" />
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>

@@ -564,8 +564,8 @@ namespace SQLTool.Util
         }
         public static void ShowYoutubeView()
         {
-            ViewModels.YoutubeViewModel popupView = new YoutubeViewModel();
-            ShowPopupViewModal(popupView, new Views.YoutubeView());
+            //ViewModels.YoutubeViewModel popupView = new YoutubeViewModel();
+            //ShowPopupViewModal(popupView, new Views.YoutubeView());
         }
         public static void ShowFlashDealView()
         {
