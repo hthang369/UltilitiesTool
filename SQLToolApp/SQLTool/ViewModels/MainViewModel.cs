@@ -127,11 +127,17 @@ namespace SQLTool.ViewModels
                     switch (key)
                     {
                         case Key.D1:
-                            Util.FunctionList.FindModule(frmMain);
+                            Util.FunctionList.(frmMain);
                             break;
                     }
                     break;
                 case ModifierKeys.Control:
+                    switch (key)
+                    {
+                        case Key.D1:
+                            Util.FunctionList.FindModule(frmMain);
+                            break;
+                    }
                     break;
                 case ModifierKeys.Shift:
                     break;

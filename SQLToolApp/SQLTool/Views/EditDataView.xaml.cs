@@ -73,8 +73,10 @@ namespace SQLTool.Views
             this.document.Sections[0].LineNumbering.Start = 1;
             this.document.Sections[0].LineNumbering.RestartType = LineNumberingRestart.NewSection;
             //Declare keywords
-            string[] keywords = { "INSERT", "SELECT", "CREATE", "TABLE", "USE", "IDENTITY", "ON", "OFF", "NOT", "NULL", "WITH", "SET", "GO", "DECLARE", "EXECUTE", "NVARCHAR", "FROM", "INTO", "VALUES", "WHERE", "AND" };
-            this._keywords = new Regex(@"\b(" + string.Join("|", keywords.Select(w => Regex.Escape(w))) + @")\b");
+            string[] keywords = { "INSERT", "SELECT", "CREATE", "TABLE", "USE", "IDENTITY",
+                "ON", "OFF", "NOT", "NULL", "WITH", "SET", "GO", "DECLARE", "EXECUTE", "NVARCHAR", "FROM",
+                "INTO", "VALUES", "WHERE", "AND", "OR", "GROUP BY", "HAVING", "IN", "UPDATE", "DELETE", "ORDER BY", "ALL" };
+            this._keywords = new Regex(@"\b(" + string.Join("|", keywords.Select(w => Regex.Escape(w))) + @")\b", RegexOptions.IgnoreCase);
         }
 
         private List<SyntaxHighlightToken> ParseTokens()

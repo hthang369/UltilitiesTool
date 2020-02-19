@@ -46,10 +46,10 @@ namespace SQLAppLib
             switch (_connectionType)
             {
                 case SqlDbConnectionType.MySql:
-                    dataAdapter = new SqlDataAdapter();
+                    dataAdapter = new MySqlDataAdapter();
                     break;
                 default:
-                    dataAdapter = new MySqlDataAdapter();
+                    dataAdapter = new SqlDataAdapter();
                     break;
             }
             return dataAdapter;
@@ -60,10 +60,10 @@ namespace SQLAppLib
             switch (_connectionType)
             {
                 case SqlDbConnectionType.MySql:
-                    command = new SqlCommand(strQueryCommand, Connection as SqlConnection);
+                    command = new MySqlCommand(strQueryCommand, Connection as MySqlConnection);
                     break;
                 default:
-                    command = new MySqlCommand(strQueryCommand, Connection as MySqlConnection);
+                    command = new SqlCommand(strQueryCommand, Connection as SqlConnection);
                     break;
             }
             return command;
@@ -79,6 +79,12 @@ namespace SQLAppLib
                     SqlCommandBuilder.DeriveParameters(command as SqlCommand);
                     break;
             }
+        }
+        public DbTransaction BeginTransaction()
+        {
+            if (Connection is MySqlConnection)
+                return (Connection as MySqlConnection).BeginTransaction();
+            return (Connection as SqlConnection).BeginTransaction();
         }
 
     }
@@ -131,7 +137,7 @@ namespace SQLAppLib
         }
         protected static DbTransaction BeginTransaction()
         {
-            Transaction = CurrentDatabase.Connection.BeginTransaction();
+            Transaction = CurrentDatabase.BeginTransaction();
             return Transaction;
         }
         protected static void CommitTransaction(DbTransaction transaction)
@@ -242,6 +248,10 @@ namespace SQLAppLib
         {
             return RunQuery(GetQuery(strQuery));
         }
+        protected static DataTable RunQueryTable(string strQuery)
+        {
+            return RunQueryTable(GetQuery(strQuery));
+        }
         protected static DataSet RunQuery(DbCommand cmd)
         {
             try
@@ -268,6 +278,32 @@ namespace SQLAppLib
                 return null;
             }
         }
+
+        protected static DataTable RunQueryTable(DbCommand cmd)
+        {
+            try
+            {
+                if (CurrentDatabase == null)
+                    SwitchConnection(_connectionType, _connectionString);
+                if (CurrentDatabase.Connection.State != ConnectionState.Open)
+                    CurrentDatabase.Connection.Open();
+                Transaction = BeginTransaction();
+                cmd.Transaction = Transaction;
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                CommitTransaction(Transaction);
+                CurrentDatabase.Connection.Close();
+                return dt;
+            }
+            catch (Exception exception)
+            {
+                RollbackTransaction(Transaction);
+                CurrentDatabase.Connection.Close();
+                MessageBox.Show(exception.Message);
+                return null;
+            }
+        }
+
         protected static int RunQueryNonDataSet(DbCommand cmd)
         {
             try
@@ -367,13 +403,15 @@ namespace SQLAppLib
             try
             {
                 _connectionType = connectionType;
-                if (!string.IsNullOrEmpty(strServers)) _strServer = strServers;
-                if (!string.IsNullOrEmpty(strDatabases)) _strDatabase = strDatabases;
-                if (!string.IsNullOrEmpty(strUsernames)) _strUser = strUsernames;
-                if (!string.IsNullOrEmpty(strPasswords)) _strPass = strPasswords;
+                if (!string.IsNullOrEmpty(strServers) || strServers != _strServer) _strServer = strServers;
+                if (!string.IsNullOrEmpty(strDatabases) || strDatabases != _strDatabase) _strDatabase = strDatabases;
+                if (!string.IsNullOrEmpty(strUsernames) || strUsernames != _strUser) _strUser = strUsernames;
+                if (!string.IsNullOrEmpty(strPasswords) || strPasswords != _strPass) _strPass = strPasswords;
                 if (CurrentDatabase == null)
                     CurrentDatabase = new SqlDbConnection(connectionType, GetConnectionString(connectionType, _strServer, _strDatabase, _strUser, _strPass));
                 else if(!CurrentDatabase.Connection.GetType().Name.StartsWith(SqlDbConnectionType.MySql.ToString()))
+                    CurrentDatabase = new SqlDbConnection(connectionType, GetConnectionString(connectionType, _strServer, _strDatabase, _strUser, _strPass));
+                else if (!CurrentDatabase.Connection.GetType().Name.StartsWith("Sql"))
                     CurrentDatabase = new SqlDbConnection(connectionType, GetConnectionString(connectionType, _strServer, _strDatabase, _strUser, _strPass));
                 else if (CurrentDatabase.Connection.State == ConnectionState.Closed)
                     CurrentDatabase.Connection.ConnectionString = GetConnectionString(connectionType, _strServer, _strDatabase, _strUser, _strPass);
@@ -416,6 +454,7 @@ namespace SQLAppLib
             SwitchConnection(connectionType, strServers, "", strUsernames, strPasswords);
         }
     }
+    
     public class SQLDBUtil : SqlDatabaseHelper
     {
         private static Dictionary<string, DataTable> TableColumnCaptionList = new Dictionary<string, DataTable>();
@@ -425,10 +464,8 @@ namespace SQLAppLib
         }
         public static DataTable GetDataTable(string strQuery)
         {
-            DataSet ds = RunQuery(strQuery);
-            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                return ds.Tables[0];
-            return null;
+            DataTable dt = RunQueryTable(strQuery);
+            return dt;
         }
         public static DataSet GetDataSet(string strQuery)
         {
@@ -449,7 +486,7 @@ namespace SQLAppLib
             {
                 case SqlDbConnectionType.MySql:
                     strTable = "mysql";
-                    strQuery = @"SELECT * FROM information_schema.SCHEMATA WHERE SCHEMA_NAME NOT IN('information_schema','mysql','performance_schema')";
+                    strQuery = @"SELECT SCHEMA_NAME AS name FROM information_schema.SCHEMATA WHERE SCHEMA_NAME NOT IN('information_schema','mysql','performance_schema')";
                     break;
                 default:
                     strTable = "master";

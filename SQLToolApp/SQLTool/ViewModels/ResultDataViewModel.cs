@@ -18,7 +18,7 @@ namespace SQLTool.ViewModels
 
         public ResultDataViewModel()
         {
-            dataSource = SQLAppLib.SQLDBUtil.GetDataTable("SHOW VARIABLES LIKE '%version%'");
+            //dataSource = SQLAppLib.SQLDBUtil.GetDataTable("SHOW VARIABLES LIKE '%version%'");
         }
 
         public void RunQuery(string strQuery)

@@ -34,6 +34,19 @@ namespace SQLTool.Util
         public static string strDynPara = "DynPara";
 
         #region function list
+        public static void LoadDataByTable(Window frmParent)
+        {
+            PromptForm._frmParent = frmParent;
+            string moduleName = "";
+            MessageBoxResult result = PromptForm.ShowText("Find Module", "ModuleName", ref moduleName);
+            if (result == MessageBoxResult.Cancel) return;
+            string strQuery = SQLApp.GetFile(strPath + "FindModule.sql");
+            strQuery = strQuery.Replace("@ModuleName@", moduleName);
+            DataTable dt = SQLDBUtil.GetDataTable(strQuery);
+            if (dt == null) return;
+            dt.TableName = "STModules";
+            ShowResultData(frmParent, dt, strQuery);
+        }
         //Ctrl + 1 tìm module
         public static void FindModule(Window frmParent)
         {
@@ -611,7 +624,7 @@ namespace SQLTool.Util
             string strPass = SQLApp.GetIniFile(strFileName, section, _serverPWD + idx);
             result = PromptForm.ShowText("Pass", "Pass", ref strPass);
             if (result == MessageBoxResult.Cancel) return;
-            if (status == "add")
+            if (status == "Add")
             {
                 if (!string.IsNullOrEmpty(strDesc) && !string.IsNullOrEmpty(strServer) && !string.IsNullOrEmpty(strUser) && !string.IsNullOrEmpty(strPass))
                 {
@@ -788,7 +801,7 @@ namespace SQLTool.Util
                 view.txtInput.Focus();
             else
                 view.cboInput.Focus();
-
+            //view.txtInpu
             //frmSearch frmInput = new frmSearch(_frmParent, bIsText, bIsCombobox, isShowLstTbl);
             //frmInput.SetCaption(promptText);
             //frmInput.Text = title;
