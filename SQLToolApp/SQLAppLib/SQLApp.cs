@@ -39,9 +39,9 @@ namespace SQLAppLib
             }
         }
 
-        [DllImport("kernel32")]
+        [DllImport("kernel32", CharSet = CharSet.Unicode)]
         private static extern long WritePrivateProfileString(string section, string key, string val, string filepath);
-        [DllImport("kernel32")]
+        [DllImport("kernel32", CharSet = CharSet.Unicode)]
         private static extern long GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filepath);
         [DllImport("kernel32", CallingConvention = CallingConvention.Winapi, CharSet = CharSet.Auto)]
         private static extern int GetPrivateProfileSection(string section, string lpszReturnBuffer, int nSize, string filepath);
