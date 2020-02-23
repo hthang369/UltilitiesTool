@@ -1,4 +1,5 @@
 ﻿using DevExpress.Xpf.Core;
+using DevExpress.Xpf.Grid;
 using SQLAppLib;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,17 @@ namespace SQLTool.ViewModels
     public class MainViewModel : BaseViewModel
     {
         Window frmMain;
-        private List<string> _lstFunctions;
-        public List<string> lstFunctions
+        private List<FunctionList> _lstFunctions;
+        public List<FunctionList> lstFunctions
         {
             get => _lstFunctions;
             set => SetProperty(ref _lstFunctions, value);
+        }
+        private double _iLvsWidth;
+        public double iLvsWidth
+        {
+            get => _iLvsWidth;
+            set => SetProperty(ref _iLvsWidth, value);
         }
         public ICommand btnAddCommand { get; set; }
         public ICommand btnEditCommand { get; set; }
@@ -32,17 +39,28 @@ namespace SQLTool.ViewModels
         public MainViewModel(Window window)
         {
             frmMain = window;
-            lstFunctions = new List<string>();
+            iLvsWidth = window.Width - 30;
+            lstFunctions = new List<FunctionList>();
+            string strPath = System.Windows.Forms.Application.StartupPath + "\\Scripts\\config.ini";
+            string strSectionCaption = "Captions";
             string[] arrFunctions = Directory.GetFiles(System.Windows.Forms.Application.StartupPath + "\\Scripts", "*.sql");
+            List<string> funcCaptions = SQLApp.GetKeysIniFile(strPath, strSectionCaption);
             Parallel.ForEach(arrFunctions, (item) =>
             {
-                lstFunctions.Add(Path.GetFileNameWithoutExtension(item));
+                string strName = Path.GetFileNameWithoutExtension(item);
+                string strKey = funcCaptions.Find(x => x.Equals(strName));
+                string strText = string.IsNullOrEmpty(strKey) ? strName : SQLApp.GetIniFile(strPath, strSectionCaption, strKey);
+                lstFunctions.Add(new FunctionList { Name = strName, Text = strText, Path = item });
             });
             List<string> funcKeysIni = SQLApp.GetKeysIniFile(System.Windows.Forms.Application.StartupPath + "\\Scripts\\config.ini", "Funcs");
             Parallel.ForEach(funcKeysIni, (item) =>
             {
-                lstFunctions.Add(item);
+                string strName = item;
+                string strKey = funcCaptions.Find(x => x.Equals(strName));
+                string strText = SQLApp.GetIniFile(strPath, strSectionCaption, strKey);
+                lstFunctions.Add(new FunctionList { Name = strName, Text = strText });
             });
+
             btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnEditCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnDelCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
@@ -68,12 +86,12 @@ namespace SQLTool.ViewModels
             //Views.ResultView result = new Views.ResultView();
             //result.DataContext = data;
             //result.ShowDialog();
-            if(string.IsNullOrEmpty(strType))
+            if (string.IsNullOrEmpty(strType))
             {
                 DXMessageBox.Show(mainWindow, "Vui lòng chọn Loại Sql", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            switch(Convert.ToString(btn.Content).ToLower())
+            switch (Convert.ToString(btn.Content).ToLower())
             {
                 case "add":
                 case "edit":
@@ -86,7 +104,7 @@ namespace SQLTool.ViewModels
                     //SQLDBUtil.
                     break;
             }
-            
+
         }
 
         internal void KeyActionCommand(object sender, System.Windows.Input.KeyEventArgs e)
@@ -97,9 +115,15 @@ namespace SQLTool.ViewModels
                     Util.FunctionList.ShowEditDataView();
                     break;
                 case Key.System:
-                    if(e.KeyboardDevice.Modifiers == ModifierKeys.Alt)
+                    if (e.KeyboardDevice.Modifiers == ModifierKeys.Alt)
                     {
 
+                    }
+                    break;
+                case Key.Enter:
+                    if(sender is TableView)
+                    {
+                        FunctionList func = (sender as TableView).SelectedRows.Cast<FunctionList>().FirstOrDefault();
                     }
                     break;
             }
@@ -127,7 +151,7 @@ namespace SQLTool.ViewModels
                     switch (key)
                     {
                         case Key.D1:
-                            Util.FunctionList.(frmMain);
+                            Util.FunctionList.FindModule(frmMain);
                             break;
                     }
                     break;
@@ -142,7 +166,7 @@ namespace SQLTool.ViewModels
                 case ModifierKeys.Shift:
                     break;
                 case ModifierKeys.None:
-                    if(key == Key.Enter)
+                    if (key == Key.Enter)
                     {
                         //Util.FunctionList.FindAllProcessLockedFile(frmMain);
                         Util.FunctionList.ShowFlashDealView();
@@ -156,5 +180,12 @@ namespace SQLTool.ViewModels
         {
 
         }
+    }
+
+    public class FunctionList
+    {
+        public string Name { get; set; }
+        public string Text { get; set; }
+        public string Path { get; set; }
     }
 }

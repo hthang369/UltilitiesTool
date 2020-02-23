@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -51,20 +52,34 @@ namespace SQLTool
             //stream2.FlushFinalBlock();
             //byte[] buffer = stream.ToArray();
             //stream2.Close();
+            //List<string> funcHotKeysIni = SQLApp.GetKeysIniFile(System.Windows.Forms.Application.StartupPath + "\\config.ini", "HotKeyApp");
+            //Parallel.ForEach(funcHotKeysIni, (item) =>
+            //{
+            //    InputBinding inputBinding = new KeyBinding(mainViewModel.KeyBindingCommand, Key.D1, ModifierKeys.Alt);
+            //    inputBinding.CommandParameter = "Alt+D1";
+            //    InputBindings.Add(inputBinding);
+            //});
 
 
-            InputBinding inputBinding = new KeyBinding(mainViewModel.KeyBindingCommand, Key.D1, ModifierKeys.Alt);
-            inputBinding.CommandParameter = "Alt+D1";
-            InputBindings.Add(inputBinding);
 
-            inputBinding = new KeyBinding(mainViewModel.KeyBindingCommand, Key.Enter, ModifierKeys.None);
-            inputBinding.CommandParameter = "None+Enter";
-            lstFunction.InputBindings.Add(inputBinding);
+            //InputBinding inputBinding = new KeyBinding(mainViewModel.KeyBindingCommand, Key.Enter, ModifierKeys.None);
+            //inputBinding.CommandParameter = "None+Enter";
+            //lstFunction.InputBindings.Add(inputBinding);
         }
 
         private void ThemedWindow_KeyDown(object sender, KeyEventArgs e)
         {
             mainViewModel.KeyActionCommand(sender, e);
+        }
+
+        private void LstFunction_KeyDown(object sender, KeyEventArgs e)
+        {
+            mainViewModel.KeyActionCommand(sender, e);
+        }
+
+        private void LstFunction_SelectedItemChanged(object sender, DevExpress.Xpf.Grid.SelectedItemChangedEventArgs e)
+        {
+
         }
     }
 }
