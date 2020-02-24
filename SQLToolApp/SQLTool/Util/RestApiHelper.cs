@@ -70,7 +70,8 @@ namespace SQLTool.Services
         }
         private string SetUrl(string url)
         {
-            return string.Join("/", baseUrl, prefixUrl, url);
+            List<string> lstUrl = new List<string> { baseUrl, prefixUrl, url };
+            return string.Join("/", lstUrl.Where(x => !string.IsNullOrEmpty(x)));
         }
         private Task<ApiResult> ProgressAsync()
         {

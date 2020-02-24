@@ -16,8 +16,8 @@ namespace SQLTool.ViewModels
     public class MainViewModel : BaseViewModel
     {
         Window frmMain;
-        private List<FunctionList> _lstFunctions;
-        public List<FunctionList> lstFunctions
+        private List<FunctionListObject> _lstFunctions;
+        public List<FunctionListObject> lstFunctions
         {
             get => _lstFunctions;
             set => SetProperty(ref _lstFunctions, value);
@@ -40,9 +40,10 @@ namespace SQLTool.ViewModels
         {
             frmMain = window;
             iLvsWidth = window.Width - 30;
-            lstFunctions = new List<FunctionList>();
+            lstFunctions = new List<FunctionListObject>();
             string strPath = System.Windows.Forms.Application.StartupPath + "\\Scripts\\config.ini";
             string strSectionCaption = "Captions";
+            string strSectionFunc = "Funcs";
             string[] arrFunctions = Directory.GetFiles(System.Windows.Forms.Application.StartupPath + "\\Scripts", "*.sql");
             List<string> funcCaptions = SQLApp.GetKeysIniFile(strPath, strSectionCaption);
             Parallel.ForEach(arrFunctions, (item) =>
@@ -50,15 +51,16 @@ namespace SQLTool.ViewModels
                 string strName = Path.GetFileNameWithoutExtension(item);
                 string strKey = funcCaptions.Find(x => x.Equals(strName));
                 string strText = string.IsNullOrEmpty(strKey) ? strName : SQLApp.GetIniFile(strPath, strSectionCaption, strKey);
-                lstFunctions.Add(new FunctionList { Name = strName, Text = strText, Path = item });
+                lstFunctions.Add(new FunctionListObject { Name = strName, Text = strText, Path = item });
             });
-            List<string> funcKeysIni = SQLApp.GetKeysIniFile(System.Windows.Forms.Application.StartupPath + "\\Scripts\\config.ini", "Funcs");
+            List<string> funcKeysIni = SQLApp.GetKeysIniFile(strPath, strSectionFunc);
             Parallel.ForEach(funcKeysIni, (item) =>
             {
                 string strName = item;
                 string strKey = funcCaptions.Find(x => x.Equals(strName));
                 string strText = SQLApp.GetIniFile(strPath, strSectionCaption, strKey);
-                lstFunctions.Add(new FunctionList { Name = strName, Text = strText });
+                string strFuncName = SQLApp.GetIniFile(strPath, strSectionFunc, strKey);
+                lstFunctions.Add(new FunctionListObject { Name = strName, Text = strText, FuncName = strFuncName });
             });
 
             btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
@@ -123,7 +125,9 @@ namespace SQLTool.ViewModels
                 case Key.Enter:
                     if(sender is TableView)
                     {
-                        FunctionList func = (sender as TableView).SelectedRows.Cast<FunctionList>().FirstOrDefault();
+                        FunctionListObject func = (sender as TableView).SelectedRows.Cast<FunctionListObject>().FirstOrDefault();
+                        if (!string.IsNullOrEmpty(func.FuncName))
+                            Util.FunctionList.CallMethodName(func.FuncName);
                     }
                     break;
             }
@@ -182,10 +186,11 @@ namespace SQLTool.ViewModels
         }
     }
 
-    public class FunctionList
+    public class FunctionListObject
     {
         public string Name { get; set; }
         public string Text { get; set; }
         public string Path { get; set; }
+        public string FuncName { get; set; }
     }
 }

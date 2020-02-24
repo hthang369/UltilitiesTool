@@ -33,6 +33,17 @@ namespace SQLTool.Util
         public static Dictionary<string, string> lstFuncLst;
         public static string strDynPara = "DynPara";
 
+        #region CallMethod
+        public static void CallMethodName(string strFuncName)
+        {
+            MethodInfo method = method = typeof(FunctionList).GetMethod(strFuncName, (((BindingFlags)BindingFlags.Public) | ((BindingFlags)BindingFlags.Static)));
+            if (method != null)
+            {
+                method.Invoke(null, (object[])null);
+            }
+        }
+        #endregion
+
         #region function list
         public static void LoadDataByTable(Window frmParent)
         {
@@ -582,8 +593,10 @@ namespace SQLTool.Util
         }
         public static void ShowFlashDealView()
         {
-            ViewModels.FlashDealViewModel popupView = new FlashDealViewModel();
-            ShowPopupViewModal(popupView, new Views.FlashDealView());
+            Views.FlashDealView view = new Views.FlashDealView();
+            ViewModels.FlashDealViewModel popupView = new FlashDealViewModel(view);
+            popupView.Header = "Flash sale sendo";
+            ShowPopupViewModal(popupView, view);
         }
         public static void ShowEditDataView()
         {

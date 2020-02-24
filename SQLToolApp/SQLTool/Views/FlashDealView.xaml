@@ -17,12 +17,25 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <dxe:TextEdit Grid.Row="0" Grid.Column="0" Text="{Binding TextContent}" />
-                    <dx:SimpleButton Grid.Row="0" Grid.Column="1" Content="Search" Command="{Binding searchCommand}" />
-                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                        <dxg:GridControl x:Name="dgcResults" MaxHeight="300">
+                    <dxe:DateEdit Grid.Row="0" Grid.Column="0" Text="{Binding dteContent}" MaskCulture="vi-VN" MaskIgnoreBlank="False" MaskUseAsDisplayFormat="True" />
+                    <dxe:TextEdit Grid.Row="0" Grid.Column="1" Text="{Binding TextContent}" MaskType="DateTime" MaskCulture="vi-VN" Mask="t" MaskUseAsDisplayFormat="True" />
+                    <dx:SimpleButton Grid.Row="0" Grid.Column="2" Content="Search" Command="{Binding searchCommand}" />
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+                        <dxg:GridControl x:Name="dgcResults" MaxHeight="600" ItemsSource="{Binding lstProducts}">
+                            <dxg:GridControl.View>
+                                <dxg:CardView CardHeaderBinding="{Binding name}" AllowEditing="False" ShowGroupPanel="False" FixedSize="250" MaxCardCountInRow="3" CardLayout="Rows" CardAlignment="Stretch" />
+                            </dxg:GridControl.View>
+                            <dxg:GridColumn FieldName="product_id" Header="Pro ID"/>
+                            <dxg:GridColumn FieldName="name" Header="Name"/>
+                            <dxg:GridColumn FieldName="final_price" Header="Price"/>
+                            <dxg:GridColumn FieldName="image" Header="Image">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:ImageEditSettings MaxWidth="120"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
                         </dxg:GridControl>
                     </StackPanel>
                 </Grid>

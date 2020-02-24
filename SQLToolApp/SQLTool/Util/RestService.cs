@@ -29,7 +29,7 @@ namespace SQLTool.Services
         public RestService()
         {
             this.BodyType = "application/json";
-            this.Timeout = 5.0;
+            this.Timeout = 30.0;
             this.ResponseType = "json";
             this.client = new HttpClient();
             this.client.MaxResponseContentBufferSize = (long)0x3e800L;
