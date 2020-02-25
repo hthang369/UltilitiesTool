@@ -136,6 +136,30 @@ namespace SQLAppLib
             if (string.IsNullOrEmpty(strTitle)) strNewTitle = string.Format("{0} - {1}", strTitleOld, Application.ProductVersion);
             frm.Text = string.Format("{0} (Server: {1} - DB: {2})", strNewTitle, SQLDBUtil._strServer, CurrentDatabaseName);
         }
+        public static void SetPropertyValue(object obj, string strPropertyName, object value)
+        {
+            PropertyInfo property = obj.GetType().GetProperty(strPropertyName);
+            if (property != null)
+            {
+                property.SetValue(obj, value, null);
+            }
+        }
+        public static object GetPropertyValue(object obj, string strPropertyName)
+        {
+            if (obj is DataRow)
+                return (obj as DataRow).GetFieldName(strPropertyName);
+            else if (obj is DataRowView)
+                return (obj as DataRowView).Row.GetFieldName(strPropertyName);
+            else
+            {
+                PropertyInfo property = obj.GetType().GetProperty(strPropertyName);
+                if (property != null)
+                {
+                    return property.GetValue(obj, null);
+                }
+            }
+            return null;
+        }
     }
 
     public class SQLQuery
@@ -492,5 +516,28 @@ namespace SQLAppLib
             worker_RunWorkerCompleted(null, null);
         }
     }
-
+    public static class ListExtra
+    {
+        public static string GetField(this DataRow r, string strName)
+        {
+            object obj = r.GetFieldName(strName);
+            if (obj != null && obj.GetType() == typeof(DateTime))
+                return Convert.ToDateTime(obj).ToShortDateString();
+            return Convert.ToString(obj);
+        }
+        public static object GetFieldName(this DataRow r, string strName)
+        {
+            object obj = null;
+            if (r.Table.Columns.Contains(strName))
+                obj = r[strName];
+            return obj;
+        }
+        public static T GetFieldName<T>(this DataRow r, string strName)
+        {
+            T obj = default(T);
+            if (r.Table.Columns.Contains(strName))
+                obj = (T)Convert.ChangeType(r[strName], typeof(T));
+            return obj;
+        }
+    }
 }
