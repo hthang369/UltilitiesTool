@@ -49,6 +49,29 @@
                     </StackPanel>
                 </Grid>
             </dx:DXTabItem>
+            <dx:DXTabItem Header="Mua hàng">
+                <Grid Margin="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <dxe:TextEdit Grid.Row="0" Grid.Column="0" Text="{Binding TextUrl}"/>
+                    <dx:SimpleButton Grid.Row="0" Grid.Column="1" Content="Run" Command="{Binding runCommand}"/>
+                    <dx:SimpleButton Grid.Row="0" Grid.Column="2" Content="Stop" Command="{Binding stopCommand}"/>
+                    <dxg:GridControl x:Name="dgvResultRequest" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding lstRequestInfos}" >
+                        <dxg:GridControl.View>
+                            <dxg:TableView AllowEditing="False" ShowGroupPanel="False"/>
+                        </dxg:GridControl.View>
+                        <dxg:GridColumn FieldName="Status" Header="Status"/>
+                        <dxg:GridColumn FieldName="Content" Header="Content"/>
+                    </dxg:GridControl>
+                </Grid>
+            </dx:DXTabItem>
         </dx:DXTabControl>
     </Grid>
 </UserControl>

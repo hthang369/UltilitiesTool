@@ -9,17 +9,26 @@ using System.Net;
 using System.IO;
 using System.Net.Http;
 using SQLTool.Views;
+using System.Windows.Forms;
 
 namespace SQLTool.ViewModels
 {
     [POCOViewModel]
     public class FlashDealViewModel : BasePopupViewModel
     {
+        private FlashDealView view;
+        private Timer runTimer;
         private string _textContent;
         public string TextContent
         {
             get => _textContent;
             set => SetProperty(ref _textContent, value);
+        }
+        private string _textUrl;
+        public string TextUrl
+        {
+            get => _textUrl;
+            set => SetProperty(ref _textUrl, value);
         }
         private DateTime _dteContent;
         public DateTime dteContent
@@ -28,19 +37,31 @@ namespace SQLTool.ViewModels
             set => SetProperty(ref _dteContent, value);
         }
         private List<CardProductInfo> _lstProducts;
-        private FlashDealView view;
-
         public List<CardProductInfo> lstProducts
         {
             get => _lstProducts;
             set => SetProperty(ref _lstProducts, value);
         }
+        private List<RequestInfos> _lstRequestInfos;
+        public List<RequestInfos> lstRequestInfos
+        {
+            get => _lstRequestInfos;
+            set => SetProperty(ref _lstRequestInfos, value);
+        }
         public ICommand searchCommand { get; set; }
+        public ICommand runCommand { get; set; }
+        public ICommand stopCommand { get; set; }
         public FlashDealViewModel()
         {
             dteContent = DateTime.Today;
+            runTimer = new Timer();
+            runTimer.Enabled = false;
+            runTimer.Interval = 200;
             lstProducts = new List<CardProductInfo>();
+            lstRequestInfos = new List<RequestInfos>();
             searchCommand = new RelayCommand<object>((x) => { return true; }, (x) => SearchFlashDeal(x));
+            runCommand = new RelayCommand<object>((x) => { return true; }, (x) => RunFlashDeal(x));
+            stopCommand = new RelayCommand<object>((x) => { return true; }, (x) => StopFlashDeal(x));
         }
 
         public FlashDealViewModel(FlashDealView view) : this()
@@ -76,7 +97,7 @@ namespace SQLTool.ViewModels
                             }
                         }
                     }
-                    else if(objItems.Count < 100)
+                    else if (objItems.Count < 100)
                     {
                         break;
                     }
@@ -96,6 +117,31 @@ namespace SQLTool.ViewModels
             //}
 
         }
+        Services.RestApiHelper apiHelperGlobal;
+        private async void RunFlashDeal(object x)
+        {
+            apiHelperGlobal = new Services.RestApiHelper("https://www.sendo.vn/m/wap_v2/full/san-pham", "");
+            apiHelperGlobal.AddRequestHeader("cookie", "tracking_id=38a2e70cd8bd428695e60f042163a45a; browserid=c3ee01162d7b98ce500e0a4aa46c4d2a; SSID=v5f2cjb55u1r0baqbq53kjsmu7");
+            runTimer.Tick += RunTimer_Tick;
+            runTimer.Enabled = true;
+            lstRequestInfos.Clear();
+        }
+
+        private async void RunTimer_Tick(object sender, EventArgs e)
+        {
+            SendoProductResult result = await apiHelperGlobal.Run<SendoProductResult>(this.TextUrl, Services.HttpMethodType.Get);
+            if (result != null)
+            {
+                RequestInfos info = new RequestInfos() { Status = result.statusCode.ToString(), Content = ((JObject)result.status).GetValue("message").ToString() };
+                lstRequestInfos.Add(info);
+            }
+            this.view.dgvResultRequest.RefreshData();
+        }
+
+        private void StopFlashDeal(object x)
+        {
+            runTimer.Enabled = false;
+        }
     }
 
     public class CardProductInfo
@@ -107,5 +153,29 @@ namespace SQLTool.ViewModels
         public double final_price { get; set; }
         public string url_key { get; set; }
         public string button_text { get; set; }
+    }
+    public class RequestInfos : ElementObject
+    {
+        private string _status;
+        public string Status
+        {
+            get => _status;
+            set => SetProperty(ref _status, value);
+        }
+        private string _content;
+        public string Content
+        {
+            get => _content;
+            set => SetProperty(ref _content, value);
+        }
+    }
+    public class SendoProductResult
+    {
+        public bool success { get; set; }
+        public string message { get; set; }
+        public JObject validation { get; set; }
+        public JObject status { get; set; }
+        public JObject result { get; set; }
+        public HttpStatusCode statusCode { get; set; }
     }
 }
