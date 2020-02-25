@@ -106,5 +106,6 @@ namespace SQLTool.ViewModels
         public string image { get; set; }
         public double final_price { get; set; }
         public string url_key { get; set; }
+        public string button_text { get; set; }
     }
 }

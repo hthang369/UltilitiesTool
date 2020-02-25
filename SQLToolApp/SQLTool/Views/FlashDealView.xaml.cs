@@ -23,5 +23,10 @@ namespace SQLTool.Views
         {
             InitializeComponent();
         }
+
+        private void ButtonEditSettings_DefaultButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

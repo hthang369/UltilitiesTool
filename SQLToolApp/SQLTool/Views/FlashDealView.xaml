@@ -26,7 +26,7 @@
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
                         <dxg:GridControl x:Name="dgcResults" MaxHeight="600" ItemsSource="{Binding lstProducts}">
                             <dxg:GridControl.View>
-                                <dxg:CardView CardHeaderBinding="{Binding name}" AllowEditing="False" ShowGroupPanel="False" FixedSize="250" MaxCardCountInRow="3" CardLayout="Rows" CardAlignment="Stretch" />
+                                <dxg:CardView CardHeaderBinding="{Binding name}" EditorButtonShowMode="ShowAlways" AllowEditing="False" ShowGroupPanel="False" FixedSize="250" MaxCardCountInRow="3" CardLayout="Rows" CardAlignment="Stretch" />
                             </dxg:GridControl.View>
                             <dxg:GridColumn FieldName="product_id" Header="Pro ID"/>
                             <dxg:GridColumn FieldName="name" Header="Name"/>
@@ -34,6 +34,15 @@
                             <dxg:GridColumn FieldName="image" Header="Image">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:ImageEditSettings MaxWidth="120"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="button_text" Header="">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:ButtonEditSettings DefaultButtonClick="ButtonEditSettings_DefaultButtonClick" AcceptsReturn="True" AllowDefaultButton="True">
+                                        <dxe:ButtonEditSettings.Buttons>
+                                            <dxe:ButtonInfo Content="Mua hàng"/>
+                                        </dxe:ButtonEditSettings.Buttons>
+                                    </dxe:ButtonEditSettings>
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
                         </dxg:GridControl>

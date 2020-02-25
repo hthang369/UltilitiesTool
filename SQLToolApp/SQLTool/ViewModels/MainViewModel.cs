@@ -48,19 +48,25 @@ namespace SQLTool.ViewModels
             List<string> funcCaptions = SQLApp.GetKeysIniFile(strPath, strSectionCaption);
             Parallel.ForEach(arrFunctions, (item) =>
             {
-                string strName = Path.GetFileNameWithoutExtension(item);
-                string strKey = funcCaptions.Find(x => x.Equals(strName));
-                string strText = string.IsNullOrEmpty(strKey) ? strName : SQLApp.GetIniFile(strPath, strSectionCaption, strKey);
-                lstFunctions.Add(new FunctionListObject { Name = strName, Text = strText, Path = item });
+                lock (lstFunctions)
+                {
+                    string strName = Path.GetFileNameWithoutExtension(item);
+                    string strKey = funcCaptions.Find(x => x.Equals(strName));
+                    string strText = string.IsNullOrEmpty(strKey) ? strName : SQLApp.GetIniFile(strPath, strSectionCaption, strKey);
+                    lstFunctions.Add(new FunctionListObject { Name = strName, Text = strText, Path = item });
+                }
             });
             List<string> funcKeysIni = SQLApp.GetKeysIniFile(strPath, strSectionFunc);
             Parallel.ForEach(funcKeysIni, (item) =>
             {
-                string strName = item;
-                string strKey = funcCaptions.Find(x => x.Equals(strName));
-                string strText = SQLApp.GetIniFile(strPath, strSectionCaption, strKey);
-                string strFuncName = SQLApp.GetIniFile(strPath, strSectionFunc, strKey);
-                lstFunctions.Add(new FunctionListObject { Name = strName, Text = strText, FuncName = strFuncName });
+                lock (lstFunctions)
+                {
+                    string strName = item;
+                    string strKey = funcCaptions.Find(x => x.Equals(strName));
+                    string strText = SQLApp.GetIniFile(strPath, strSectionCaption, strKey);
+                    string strFuncName = SQLApp.GetIniFile(strPath, strSectionFunc, strKey);
+                    lstFunctions.Add(new FunctionListObject { Name = strName, Text = strText, FuncName = strFuncName });
+                }
             });
 
             btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
