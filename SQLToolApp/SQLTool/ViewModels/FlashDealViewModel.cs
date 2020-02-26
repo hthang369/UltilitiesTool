@@ -30,6 +30,12 @@ namespace SQLTool.ViewModels
             get => _textUrl;
             set => SetProperty(ref _textUrl, value);
         }
+        private string _textTime;
+        public string TextTime
+        {
+            get => _textTime;
+            set => SetProperty(ref _textTime, value);
+        }
         private DateTime _dteContent;
         public DateTime dteContent
         {
@@ -51,12 +57,13 @@ namespace SQLTool.ViewModels
         public ICommand searchCommand { get; set; }
         public ICommand runCommand { get; set; }
         public ICommand stopCommand { get; set; }
+        int iTimeTick = 500;
         public FlashDealViewModel()
         {
             dteContent = DateTime.Today;
             runTimer = new Timer();
             runTimer.Enabled = false;
-            runTimer.Interval = 200;
+            runTimer.Interval = iTimeTick;
             lstProducts = new List<CardProductInfo>();
             lstRequestInfos = new List<RequestInfos>();
             searchCommand = new RelayCommand<object>((x) => { return true; }, (x) => SearchFlashDeal(x));
@@ -118,24 +125,42 @@ namespace SQLTool.ViewModels
 
         }
         Services.RestApiHelper apiHelperGlobal;
+        DateTime dtCurrent;
         private async void RunFlashDeal(object x)
         {
             apiHelperGlobal = new Services.RestApiHelper("https://www.sendo.vn/m/wap_v2/full/san-pham", "");
             apiHelperGlobal.AddRequestHeader("cookie", "tracking_id=38a2e70cd8bd428695e60f042163a45a; browserid=c3ee01162d7b98ce500e0a4aa46c4d2a; SSID=v5f2cjb55u1r0baqbq53kjsmu7");
             runTimer.Tick += RunTimer_Tick;
-            runTimer.Enabled = true;
+            this.view.processBar.Minimum = 0;
+            this.view.processBar.ContentDisplayMode = DevExpress.Xpf.Editors.ContentDisplayMode.Value;
+            this.view.processBar.DisplayFormatString = "{0:p}";
+            this.view.processBar.IsPercent = true;
+            DateTime dtNow = DateTime.Now;
+            dtCurrent = DateTime.Parse(TextTime);
+            TimeSpan ts = dtCurrent.AddSeconds(-3).Subtract(dtNow);
+            TimeSpan ts1 = dtCurrent.AddMinutes(1).Subtract(dtNow);
+            this.view.processBar.Maximum = ts1.TotalSeconds;
+            if (ts.Ticks >= 0)
+            {
+                runTimer.Enabled = true;
+            }
             lstRequestInfos.Clear();
         }
 
         private async void RunTimer_Tick(object sender, EventArgs e)
         {
-            SendoProductResult result = await apiHelperGlobal.Run<SendoProductResult>(this.TextUrl, Services.HttpMethodType.Get);
-            if (result != null)
+            this.view.processBar.Value += 0.5;
+            TimeSpan ts = dtCurrent.AddSeconds(-3).Subtract(DateTime.Now);
+            if (ts.TotalSeconds < 0)
             {
-                RequestInfos info = new RequestInfos() { Status = result.statusCode.ToString(), Content = ((JObject)result.status).GetValue("message").ToString() };
-                lstRequestInfos.Add(info);
+                SendoProductResult result = await apiHelperGlobal.Run<SendoProductResult>(this.TextUrl, Services.HttpMethodType.Get);
+                if (result != null)
+                {
+                    RequestInfos info = new RequestInfos() { Status = result.statusCode.ToString(), Content = ((JObject)result.status).GetValue("message").ToString() };
+                    lstRequestInfos.Add(info);
+                }
+                this.view.dgvResultRequest.RefreshData();
             }
-            this.view.dgvResultRequest.RefreshData();
         }
 
         private void StopFlashDeal(object x)

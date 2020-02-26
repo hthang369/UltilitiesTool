@@ -53,17 +53,21 @@
                 <Grid Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <dxe:TextEdit Grid.Row="0" Grid.Column="0" Text="{Binding TextUrl}"/>
-                    <dx:SimpleButton Grid.Row="0" Grid.Column="1" Content="Run" Command="{Binding runCommand}"/>
-                    <dx:SimpleButton Grid.Row="0" Grid.Column="2" Content="Stop" Command="{Binding stopCommand}"/>
-                    <dxg:GridControl x:Name="dgvResultRequest" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding lstRequestInfos}" >
+                    <dxe:TextEdit Grid.Row="0" Grid.Column="1" Text="{Binding TextTime}" MaskType="DateTime" MaskCulture="vi-VN" Mask="t" MaskUseAsDisplayFormat="True" MinWidth="100" />
+                    <dx:SimpleButton Grid.Row="0" Grid.Column="2" Content="Run" Command="{Binding runCommand}"/>
+                    <dx:SimpleButton Grid.Row="0" Grid.Column="3" Content="Stop" Command="{Binding stopCommand}"/>
+                    <dxe:ProgressBarEdit x:Name="processBar" Grid.Row="1" Grid.ColumnSpan="4" />
+                    <dxg:GridControl x:Name="dgvResultRequest" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding lstRequestInfos}" >
                         <dxg:GridControl.View>
                             <dxg:TableView AllowEditing="False" ShowGroupPanel="False"/>
                         </dxg:GridControl.View>
