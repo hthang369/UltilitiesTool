@@ -76,6 +76,9 @@
                     </dxg:GridControl>
                 </Grid>
             </dx:DXTabItem>
+            <dx:DXTabItem Header="Cấu hình">
+                
+            </dx:DXTabItem>
         </dx:DXTabControl>
     </Grid>
 </UserControl>

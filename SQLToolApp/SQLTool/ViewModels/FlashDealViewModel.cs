@@ -124,12 +124,14 @@ namespace SQLTool.ViewModels
             //}
 
         }
-        Services.RestApiHelper apiHelperGlobal;
+        Services.RestApiHelper apiHelperCheckPrice;
+        Services.RestApiHelper apiHelperSaleOrder;
         DateTime dtCurrent;
         private async void RunFlashDeal(object x)
         {
-            apiHelperGlobal = new Services.RestApiHelper("https://www.sendo.vn/m/wap_v2/full/san-pham", "");
-            apiHelperGlobal.AddRequestHeader("cookie", "tracking_id=38a2e70cd8bd428695e60f042163a45a; browserid=c3ee01162d7b98ce500e0a4aa46c4d2a; SSID=v5f2cjb55u1r0baqbq53kjsmu7");
+            apiHelperCheckPrice = new Services.RestApiHelper("https://www.sendo.vn/m/wap_v2/full/san-pham", "");
+            apiHelperSaleOrder = new Services.RestApiHelper("https://www.sendo.vn/m/wap_v2/full/san-pham", "");
+            apiHelperCheckPrice.AddRequestHeader("cookie", "tracking_id=38a2e70cd8bd428695e60f042163a45a; browserid=c3ee01162d7b98ce500e0a4aa46c4d2a; SSID=v5f2cjb55u1r0baqbq53kjsmu7");
             runTimer.Tick += RunTimer_Tick;
             this.view.processBar.Minimum = 0;
             this.view.processBar.ContentDisplayMode = DevExpress.Xpf.Editors.ContentDisplayMode.Value;
@@ -139,7 +141,7 @@ namespace SQLTool.ViewModels
             dtCurrent = DateTime.Parse(TextTime);
             TimeSpan ts = dtCurrent.AddSeconds(-3).Subtract(dtNow);
             TimeSpan ts1 = dtCurrent.AddMinutes(1).Subtract(dtNow);
-            this.view.processBar.Maximum = ts1.TotalSeconds;
+            this.view.processBar.Maximum = Math.Round(ts1.TotalSeconds);
             if (ts.Ticks >= 0)
             {
                 runTimer.Enabled = true;
@@ -153,9 +155,10 @@ namespace SQLTool.ViewModels
             TimeSpan ts = dtCurrent.AddSeconds(-3).Subtract(DateTime.Now);
             if (ts.TotalSeconds < 0)
             {
-                SendoProductResult result = await apiHelperGlobal.Run<SendoProductResult>(this.TextUrl, Services.HttpMethodType.Get);
+                SendoProductResult result = await apiHelperCheckPrice.Run<SendoProductResult>(this.TextUrl, Services.HttpMethodType.Get);
                 if (result != null)
                 {
+                    ((JObject)result.result).SelectToken("data.products_checkout");
                     RequestInfos info = new RequestInfos() { Status = result.statusCode.ToString(), Content = ((JObject)result.status).GetValue("message").ToString() };
                     lstRequestInfos.Add(info);
                 }

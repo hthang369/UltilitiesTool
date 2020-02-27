@@ -73,25 +73,10 @@ namespace SQLTool.Services
             List<string> lstUrl = new List<string> { baseUrl, prefixUrl, url };
             return string.Join("/", lstUrl.Where(x => !string.IsNullOrEmpty(x)));
         }
-        private Task<ApiResult> ProgressAsync()
-        {
-            return Task.Run<ApiResult>(async delegate
-            {
-                var res = await restService.Run<ApiResult>();
-                ApiResult result = res.Target;
-                if (res.Errors.Count > 0)
-                {
-                    result = new ApiResult();
-                    result.message = res.Errors[0].Exception.Message;
-                }
-                result.statusCode = restService.StatusCode;
-                return result;
-            });
-        }
         public RestApiHelper AddDefaultHeader()
         {
             AddRequestHeader("Accept", "application/json");
-            if(!string.IsNullOrEmpty(apiToken))
+            if (!string.IsNullOrEmpty(apiToken))
             {
                 restService.SetToken(RestService.Scheme.Bearer, apiToken);
             }
@@ -107,36 +92,76 @@ namespace SQLTool.Services
             }
             return this;
         }
-        public Task<ApiResult> GetAsync(string url)
+        public RestApiHelper SetClientTimeOut(double timeout)
+        {
+            this.TimeOut = timeout;
+            return this;
+        }
+        private Task<TResult> ProgressAsync<TResult>() where TResult : new()
+        {
+            return Task.Run<TResult>(async delegate
+            {
+                var res = await restService.Run<TResult>();
+                TResult result = res.Target;
+                if (res.Errors.Count > 0)
+                {
+                    result = default(TResult);
+                    SQLAppLib.SQLApp.SetPropertyValue(result, "message", res.Errors[0].Exception.Message);
+                }
+                SQLAppLib.SQLApp.SetPropertyValue(result, "statusCode", restService.StatusCode);
+                return result;
+            });
+        }
+        private Task<ApiResult> ProgressAsync()
+        {
+            return this.ProgressAsync<ApiResult>();
+        }
+        public Task<TResult> GetAsync<TResult>(string url) where TResult : new()
         {
             restService.Url = SetUrl(url);
             restService.Timeout = 30;
             restService.Method = HttpMethodType.Get.ToString().ToLower();
-            return ProgressAsync();
+            return ProgressAsync<TResult>();
         }
-        public Task<ApiResult> PostAsync(string url, IEnumerable<KeyValuePair<string, object>> pairs)
+        public Task<TResult> PostAsync<TResult>(string url, IEnumerable<KeyValuePair<string, object>> pairs) where TResult : new()
         {
             SetParameters(pairs);
             restService.Url = SetUrl(url);
             restService.Body = bodyContent;
             restService.Method = HttpMethodType.Post.ToString().ToLower();
-            return ProgressAsync();
+            return ProgressAsync<TResult>();
         }
-        public Task<ApiResult> PutAsync(string url, IEnumerable<KeyValuePair<string, object>> pairs)
+        public Task<TResult> PutAsync<TResult>(string url, IEnumerable<KeyValuePair<string, object>> pairs) where TResult : new()
         {
             SetParameters(pairs);
             restService.Url = SetUrl(url);
             restService.Body = bodyContent;
             restService.Method = HttpMethodType.Put.ToString().ToLower();
-            return ProgressAsync();
+            return ProgressAsync<TResult>();
         }
-        public Task<ApiResult> DeleteAsync(string url, IEnumerable<KeyValuePair<string, object>> pairs)
+        public Task<TResult> DeleteAsync<TResult>(string url, IEnumerable<KeyValuePair<string, object>> pairs) where TResult : new()
         {
             SetParameters(pairs);
             restService.Url = SetUrl(url);
             restService.Body = bodyContent;
             restService.Method = HttpMethodType.Delete.ToString().ToLower();
-            return ProgressAsync();
+            return ProgressAsync<TResult>();
+        }
+        public Task<ApiResult> GetAsyncDefault(string url)
+        {
+            return this.GetAsync<ApiResult>(url);
+        }
+        public Task<ApiResult> PostAsyncDefault(string url, IEnumerable<KeyValuePair<string, object>> pairs)
+        {
+            return this.PostAsync<ApiResult>(url, pairs);
+        }
+        public Task<ApiResult> PutAsyncDefault(string url, IEnumerable<KeyValuePair<string, object>> pairs)
+        {
+            return this.PutAsync<ApiResult>(url, pairs);
+        }
+        public Task<ApiResult> DeleteAsyncDefault(string url, IEnumerable<KeyValuePair<string, object>> pairs)
+        {
+            return this.DeleteAsync<ApiResult>(url, pairs);
         }
         private async Task<ApiResult> ProgressClientAsync(HttpResponseMessage response)
         {
@@ -159,11 +184,7 @@ namespace SQLTool.Services
             }
             return apiResult;
         }
-        public RestApiHelper SetClientTimeOut(double timeout)
-        {
-            this.TimeOut = timeout;
-            return this;
-        }
+        
         private Task<ApiResult> GetClientAsync(string url)
         {
             return Task.Run<ApiResult>(async delegate
@@ -197,17 +218,22 @@ namespace SQLTool.Services
                 return result;
             });
         }
-        public Task<ApiResult> Run(string url, HttpMethodType methodType, IEnumerable<KeyValuePair<string, object>> pairs = null)
+        public Task<TResult> Run<TResult>(string url, HttpMethodType methodType, IEnumerable<KeyValuePair<string, object>> pairs = null) where TResult : new()
         {
             MethodInfo method = this.GetType().GetMethod(string.Format("{0}Async", methodType.ToString()), ((BindingFlags)BindingFlags.NonPublic) | (((BindingFlags)BindingFlags.Public) | ((BindingFlags)BindingFlags.Instance)));
             if (method != null)
             {
+                MethodInfo methodGeneric = method.MakeGenericMethod(typeof(TResult));
                 List<object> param = new List<object> { url };
-                if (method.GetParameters().Length > 1)
+                if (methodGeneric.GetParameters().Length > 1)
                     param.Add(pairs);
-                return (Task<ApiResult>)method.Invoke(this, param.ToArray());
+                return (Task<TResult>)methodGeneric.Invoke(this, param.ToArray());
             }
             return null;
+        }
+        public Task<ApiResult> Run(string url, HttpMethodType methodType, IEnumerable<KeyValuePair<string, object>> pairs = null)
+        {
+            return this.Run<ApiResult>(url, methodType, pairs);
         }
         public Task<ApiResult> RunClient(string url, HttpMethodType methodType, IEnumerable<KeyValuePair<string, object>> pairs = null)
         {
