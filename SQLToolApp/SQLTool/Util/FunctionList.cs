@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -40,6 +41,26 @@ namespace SQLTool.Util
             if (method != null)
             {
                 method.Invoke(null, (object[])null);
+            }
+        }
+        public static void LoadQueryPath(FunctionListObject obj, Window frmParent)
+        {
+            int iCnt = Convert.ToInt32(SQLApp.GetIniFile(strFileCfgScript, strDynPara, obj.Name + "Cnt"));
+            string strQuery = SQLApp.GetFile(obj.Path);
+            if (iCnt > 0)
+            {
+                PromptForm._frmParent = frmParent;
+                string strValue = "";
+                for (int i = 1; i <= iCnt; i++)
+                {
+                    string param = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, obj.Name + "Name" + i));
+                    MessageBoxResult result = PromptForm.ShowText("Dynamic parameter for script: "+obj.Text, param, ref strValue);
+                    if (result == MessageBoxResult.Cancel) return;
+                    strQuery = strQuery.Replace(param, strValue);
+                }
+                DataTable dt = SQLDBUtil.GetDataTable(strQuery);
+                if (dt == null) return;
+                ShowResultData(frmParent, dt, strQuery);
             }
         }
         #endregion
@@ -119,11 +140,12 @@ namespace SQLTool.Util
             //frmParent.Hide();
             //_frmData.ShowDialog();
             ResultViewModel resultView = new ResultViewModel();
-            resultView.DataResults = new DataResults
+
+            resultView.DataResults = new List<DataResults>(){ new DataResults
             {
                 Title = "Xem Data",
                 DataSource = dtSource
-            };
+            } };
             Views.ResultView view = new Views.ResultView();
             view.DataContext = resultView;
             view.ShowDialog();

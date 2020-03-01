@@ -10,8 +10,8 @@ namespace SQLTool.ViewModels
 {
     public class ResultViewModel : BaseViewModel
     {
-        private DataResults _dataResults;
-        public DataResults DataResults
+        private List<DataResults> _dataResults;
+        public List<DataResults> DataResults
         {
             get => _dataResults;
             set => SetProperty(ref _dataResults, value);

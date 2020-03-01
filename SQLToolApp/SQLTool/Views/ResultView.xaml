@@ -21,7 +21,11 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <dxg:GridControl x:Name="dgvDataResult" ItemsSource="{Binding}" AutoGenerateColumns="AddNew" />
+                                <dxg:GridControl x:Name="dgvDataResult" ItemsSource="{Binding}" AutoGenerateColumns="AddNew" >
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView ShowDataNavigator="True" ShowAutoFilterRow="True"/>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
