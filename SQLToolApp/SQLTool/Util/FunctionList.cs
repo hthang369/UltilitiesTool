@@ -45,7 +45,8 @@ namespace SQLTool.Util
         }
         public static void LoadQueryPath(FunctionListObject obj, Window frmParent)
         {
-            int iCnt = Convert.ToInt32(SQLApp.GetIniFile(strFileCfgScript, strDynPara, obj.Name + "Cnt"));
+            string strCnt = SQLApp.GetIniFile(strFileCfgScript, strDynPara, obj.Name + "Cnt");
+            int iCnt = string.IsNullOrEmpty(strCnt) ? 0 : Convert.ToInt32(strCnt);
             string strQuery = SQLApp.GetFile(obj.Path);
             if (iCnt > 0)
             {
