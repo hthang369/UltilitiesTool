@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DevExpress.Mvvm;
 using DevExpress.Xpf.Core;
 using SQLAppLib;
 using SQLTool.ViewModels;
@@ -24,11 +25,15 @@ namespace SQLTool
     public partial class MainWindow : ThemedWindow
     {
         MainViewModel mainViewModel;
+        private readonly ISplashScreenService _waitIndicatorService;
+
         public MainWindow()
         {
             InitializeComponent();
             DataContext = mainViewModel = new MainViewModel(this);
-            
+            _waitIndicatorService = ServiceContainer.Default.GetService<ISplashScreenService>("WaitIndicatorService");
+            _waitIndicatorService.ShowSplashScreen(this.Name);
+            SQLAppWaitingDialog.ShowWaitForm();
         }
 
         private void ThemedWindow_Loaded(object sender, RoutedEventArgs e)
@@ -60,8 +65,7 @@ namespace SQLTool
             //    InputBindings.Add(inputBinding);
             //});
 
-
-
+            _waitIndicatorService.HideSplashScreen();
             //InputBinding inputBinding = new KeyBinding(mainViewModel.KeyBindingCommand, Key.Enter, ModifierKeys.None);
             //inputBinding.CommandParameter = "None+Enter";
             //lstFunction.InputBindings.Add(inputBinding);
