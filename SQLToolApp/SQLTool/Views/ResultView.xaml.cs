@@ -18,7 +18,7 @@ namespace SQLTool.Views
     /// <summary>
     /// Interaction logic for ResultView.xaml
     /// </summary>
-    public partial class ResultView : ThemedWindow
+    public partial class ResultView : UserControl
     {
         public ResultView()
         {

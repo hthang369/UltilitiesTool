@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SQLTool.ViewModels
 {
-    public class ResultViewModel : BaseViewModel
+    public class ResultViewModel : BasePopupViewModel
     {
         private List<DataResults> _dataResults;
         public List<DataResults> DataResults

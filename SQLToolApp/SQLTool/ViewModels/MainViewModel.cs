@@ -133,7 +133,7 @@ namespace SQLTool.ViewModels
                     {
                         FunctionListObject func = (sender as TableView).SelectedRows.Cast<FunctionListObject>().FirstOrDefault();
                         if (!string.IsNullOrEmpty(func.FuncName))
-                            Util.FunctionList.CallMethodName(func.FuncName);
+                            Util.FunctionList.CallMethodName(func.FuncName, this.frmMain);
                         else if (!string.IsNullOrEmpty(func.Path))
                             Util.FunctionList.LoadQueryPath(func, this.frmMain);
                     }

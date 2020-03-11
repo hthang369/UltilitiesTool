@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -35,12 +36,15 @@ namespace SQLTool.Util
         public static string strDynPara = "DynPara";
 
         #region CallMethod
-        public static void CallMethodName(string strFuncName)
+        public static void CallMethodName(string strFuncName, Window frmParent)
         {
             MethodInfo method = method = typeof(FunctionList).GetMethod(strFuncName, (((BindingFlags)BindingFlags.Public) | ((BindingFlags)BindingFlags.Static)));
             if (method != null)
             {
-                method.Invoke(null, (object[])null);
+                if (method.GetParameters().Length == 0)
+                    method.Invoke(null, (object[])null);
+                else
+                    method.Invoke(null, new Window[] { frmParent });
             }
         }
         public static void LoadQueryPath(FunctionListObject obj, Window frmParent)
@@ -126,7 +130,8 @@ namespace SQLTool.Util
             DataTable dtData = SQLDBUtil.GetDataByTable(tableName, strWhere, colName);
             if (dtData == null) return;
             dtData.TableName = tableName;
-            ShowResultData(frmParent, dtData, "");
+            //ShowResultDataView()
+            //ShowResultData(frmParent, dtData, "");
         }
         private static void ShowResultData(Window frmParent, DataTable dtSource, string strQuery)
         {
@@ -140,16 +145,16 @@ namespace SQLTool.Util
             //_frmData.StartPosition = FormStartPosition.CenterScreen;
             //frmParent.Hide();
             //_frmData.ShowDialog();
-            ResultViewModel resultView = new ResultViewModel();
+            //ResultViewModel resultView = new ResultViewModel();
 
-            resultView.DataResults = new List<DataResults>(){ new DataResults
-            {
-                Title = "Xem Data",
-                DataSource = dtSource
-            } };
-            Views.ResultView view = new Views.ResultView();
-            view.DataContext = resultView;
-            view.ShowDialog();
+            //resultView.DataResults = new List<DataResults>(){ new DataResults
+            //{
+            //    Title = "Xem Data",
+            //    DataSource = dtSource
+            //} };
+            //Views.ResultView view = new Views.ResultView();
+            //view.DataContext = resultView;
+            //view.ShowDialog();
         }
         //Ctrl + 0 View Connect Sql
         public static void GetViewConnectToSQL(Window frmParent)
@@ -633,11 +638,18 @@ namespace SQLTool.Util
         }
         public static void ShowResultDataView(string strQuery)
         {
-            ViewModels.ResultDataViewModel popupView = new ResultDataViewModel();
+            ViewModels.ResultViewModel popupView = new ResultViewModel();
             popupView.Title = "T-SQL";
             popupView.Header = "T-SQL Result";
-            popupView.RunQuery(strQuery);
-            ShowPopupViewModal(popupView, new Views.ResultData());
+            popupView.DataResults = new List<DataResults>();
+            Task.Factory.StartNew(() =>
+            {
+                DataResults results = new DataResults();
+                results.DataSource = SQLAppLib.SQLDBUtil.GetDataTable(strQuery);
+                results.Title = results.DataSource.TableName;
+                popupView.DataResults.Add(results);
+            }).Wait();
+            ShowPopupViewModal(popupView, new Views.ResultView());
 
         }
         #endregion
