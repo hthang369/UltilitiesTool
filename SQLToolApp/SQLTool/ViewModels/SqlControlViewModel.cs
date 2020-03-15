@@ -64,9 +64,15 @@ namespace SQLTool.ViewModels
 
         private void ChangeDatabaseBySqlType(object idx)
         {
-            string keySection = Convert.ToString((Parent as Views.SqlControlView).cboSqlType.SelectedItem);
-            lstDatabase = Util.FunctionList.LoadDatabaseByServer(keySection, (int)idx);
-            //lstServers = Util.FunctionList.LoadConfigInitToList(Convert.ToString(key));
+            ShowWaitIndicator(Parent);
+            try
+            {
+                string keySection = Convert.ToString((Parent as Views.SqlControlView).cboSqlType.SelectedItem);
+                lstDatabase = Util.FunctionList.LoadDatabaseByServer(keySection, (int)idx);
+                //lstServers = Util.FunctionList.LoadConfigInitToList(Convert.ToString(key));
+            }
+            catch(Exception ex) { }
+            HideWaitIndicator(Parent);
         }
     }
 }

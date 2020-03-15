@@ -119,6 +119,7 @@ namespace SQLTool.Util
         {
             PromptForm._frmParent = frmParent;
             string tableName = "";
+
             MessageBoxResult result = PromptForm.ShowCombobox("ViewDataByNo", "Table Name", ref tableName);
             if (result == MessageBoxResult.Cancel) return;
             string colName = "";
@@ -844,6 +845,11 @@ namespace SQLTool.Util
             popupView.Title = promptText;
             popupView.valueReturn = value;
             popupView.isText = bIsText;
+            if (isShowLstTbl)
+            {
+                DataTable dt = SQLDBUtil.GetDataTableByDataSet(SQLDBUtil.GetAllTables());
+                popupView.dataSource = dt.Select().Select(x => Convert.ToString(x[0])).ToList();
+            }
             Views.PopupView view = popup.waitLoadView.LoadingChild as Views.PopupView;
             if (bIsText)
                 view.txtInput.Focus();

@@ -9,6 +9,7 @@ namespace SQLTool.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        MainWindow mainWindow;
         bool isBusy = false;
         public bool IsBusy
         {
@@ -40,6 +41,26 @@ namespace SQLTool.ViewModels
         {
             if (w.Parent != null) w = GetFrameworkElement(w.Parent as FrameworkElement);
             return w;
+        }
+
+        protected void GetMainWindow(FrameworkElement ctrl)
+        {
+            if (mainWindow == null)
+                mainWindow = GetFrameworkElement(ctrl) as MainWindow;
+        }
+
+        protected void ShowWaitIndicator(FrameworkElement ctrl)
+        {
+            GetMainWindow(ctrl);
+            if (mainWindow != null)
+                mainWindow._waitIndicatorService.ShowSplashScreen(mainWindow.Name);
+        }
+
+        protected void HideWaitIndicator(FrameworkElement ctrl)
+        {
+            GetMainWindow(ctrl);
+            if (mainWindow != null)
+                mainWindow._waitIndicatorService.HideSplashScreen();
         }
 
         protected virtual bool CanExecute()

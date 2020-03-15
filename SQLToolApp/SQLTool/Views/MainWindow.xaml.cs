@@ -25,15 +25,15 @@ namespace SQLTool
     public partial class MainWindow : ThemedWindow
     {
         MainViewModel mainViewModel;
-        private readonly ISplashScreenService _waitIndicatorService;
+        public readonly ISplashScreenService _waitIndicatorService;
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = mainViewModel = new MainViewModel(this);
             _waitIndicatorService = ServiceContainer.Default.GetService<ISplashScreenService>("WaitIndicatorService");
-            _waitIndicatorService.ShowSplashScreen(this.Name);
-            SQLAppWaitingDialog.ShowWaitForm();
+            if (_waitIndicatorService != null)
+                _waitIndicatorService.ShowSplashScreen(this.Name);
         }
 
         private void ThemedWindow_Loaded(object sender, RoutedEventArgs e)
@@ -64,8 +64,9 @@ namespace SQLTool
             //    inputBinding.CommandParameter = "Alt+D1";
             //    InputBindings.Add(inputBinding);
             //});
-
-            _waitIndicatorService.HideSplashScreen();
+            if (_waitIndicatorService != null)
+                _waitIndicatorService.HideSplashScreen();
+            // SQLAppWaitingDialog.HideDialog();
             //InputBinding inputBinding = new KeyBinding(mainViewModel.KeyBindingCommand, Key.Enter, ModifierKeys.None);
             //inputBinding.CommandParameter = "None+Enter";
             //lstFunction.InputBindings.Add(inputBinding);

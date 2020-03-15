@@ -34,6 +34,17 @@ namespace SQLTool.ViewModels
                     SetProperty(ref _valueReturn, value);
             }
         }
+        private object _dataSource;
+        public object dataSource
+        {
+            get => _dataSource;
+            set
+            {
+                if (value != null)
+                    SetProperty(ref _dataSource, value);
+            }
+        }
+        
         public Visibility isTextVisibility
         {
             get

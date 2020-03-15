@@ -18,7 +18,7 @@ namespace SQLTool
         {
             base.OnStartup(e);
             //DXSplashScreen.Show<SplashScreenView>(WindowStartupLocation.CenterScreen);
-            //SQLAppLib.SQLAppWaitingDialog.ShowWaitForm();
+            //SQLAppLib.SQLAppWaitingDialog.ShowDialog();
         }
     }
 }
