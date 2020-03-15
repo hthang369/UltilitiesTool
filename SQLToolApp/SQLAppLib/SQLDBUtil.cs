@@ -612,10 +612,24 @@ namespace SQLAppLib
             try
             {
                 TableName = strTableName;
-                DataSet set = RunQuery(string.Format(@"select c.name 
-                                                        from sys.tables t 
-                                                        join sys.columns c on t.object_id = c.object_id
-                                                        where t.name = '{0}' and c.name = '{1}'", strTableName, strColumnName));
+                string strQuery = string.Empty;
+                switch (ConnectionType)
+                {
+                    case SqlDbConnectionType.MySql:
+                        strQuery = @"select c.column_name 
+                                    from information_schema.tables t 
+                                    join information_schema.columns c on t.table_name = c.table_name
+                                    where t.table_schema = DATABASE() and t.table_name = '{0}' and c.column_name = '{1}'";
+                        
+                        break;
+                    default:
+                        strQuery = @"select c.name 
+                                    from sys.tables t 
+                                    join sys.columns c on t.object_id = c.object_id
+                                    where t.name = '{0}' and c.name = '{1}'";
+                        break;
+                }
+                DataSet set = RunQuery(string.Format(strQuery, strTableName, strColumnName));
                 return ((set != null) && (set.Tables.Count > 0) && (set.Tables[0].Rows.Count > 0));
             }
             catch (Exception exception)

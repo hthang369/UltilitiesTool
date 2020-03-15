@@ -349,6 +349,9 @@ namespace SQLAppLib
                     }
                 }
             }
+            catch (System.Threading.ThreadAbortException ex)
+            {
+            }
             catch (Exception ex)
             {
             }
