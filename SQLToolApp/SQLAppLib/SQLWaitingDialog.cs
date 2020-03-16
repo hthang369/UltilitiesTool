@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraWaitForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace SQLAppLib
 {
-    public partial class SQLWaitingDialog : Form
+    public partial class SQLWaitingDialog : WaitForm
     {
         //private ManualResetEvent initEvent;
         //private ManualResetEvent abortEvent;

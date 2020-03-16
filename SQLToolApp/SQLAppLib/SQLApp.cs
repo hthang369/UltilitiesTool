@@ -12,6 +12,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.Data;
 using System.Reflection;
+using DevExpress.XtraSplashScreen;
 
 namespace SQLAppLib
 {
@@ -278,184 +279,242 @@ namespace SQLAppLib
         private static event HideDialogDelegate HideDialogEvent;
         private static event ShowDialogDelegate ShowDialogEvent;
         public static event StopDialogDelegate StopDialogEvent;
-        public static void ShowWaitForm()
-        {
-            StartThead(new ThreadStart(SQLAppWaitingDialog.Thread_CallBack_ShowWaitingDialog));
-            Application.Idle += OnLoaded;
-            Thread.Sleep(400);
-        }
-        public static void Show()
-        {
-            StartThead(new ThreadStart(SQLAppWaitingDialog.Thread_CallBack_ShowWaitingDialog));
-            Thread.Sleep(400);
-        }
-        public static void ShowDialog()
-        {
-            try
-            {
-                if (CurrentThread != null)
-                {
-                    IAsyncResult result = ShowDialogEvent.BeginInvoke(null, null);
-                    result.AsyncWaitHandle.WaitOne();
-                    ShowDialogEvent.EndInvoke(result);
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-        private static void Thread_CallBack_ShowWaitingDialog()
-        {
-            if (_waitForm != null && !_waitForm.IsDisposed)
-            {
-                _waitForm = new SQLWaitingDialog();
-                _waitForm.FormClosing += new FormClosingEventHandler(Thread_DialogForm_FormClosing);
-            }
-            if (_waitForm == null)
-            {
-                _waitForm = new SQLWaitingDialog();
-                _waitForm.FormClosing += new FormClosingEventHandler(Thread_DialogForm_FormClosing);
-            }
-            Thread_ShowDialog();
-        }
+        public static bool IsShow = false;
+        #region code cũ
+        //public static void ShowWaitForm()
+        //{
+        //    StartThead(new ThreadStart(SQLAppWaitingDialog.Thread_CallBack_ShowWaitingDialog));
+        //    Application.Idle += OnLoaded;
+        //    Thread.Sleep(400);
+        //}
+        //public static void Show()
+        //{
+        //    StartThead(new ThreadStart(SQLAppWaitingDialog.Thread_CallBack_ShowWaitingDialog));
+        //    Thread.Sleep(400);
+        //}
+        //public static void ShowDialog()
+        //{
+        //    try
+        //    {
+        //        if (CurrentThread != null)
+        //        {
+        //            IAsyncResult result = ShowDialogEvent.BeginInvoke(null, null);
+        //            result.AsyncWaitHandle.WaitOne();
+        //            ShowDialogEvent.EndInvoke(result);
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
+        //private static void Thread_CallBack_ShowWaitingDialog()
+        //{
+        //    if (_waitForm != null && !_waitForm.IsDisposed)
+        //    {
+        //        _waitForm = new SQLWaitingDialog();
+        //        _waitForm.FormClosing += new FormClosingEventHandler(Thread_DialogForm_FormClosing);
+        //    }
+        //    if (_waitForm == null)
+        //    {
+        //        _waitForm = new SQLWaitingDialog();
+        //        _waitForm.FormClosing += new FormClosingEventHandler(Thread_DialogForm_FormClosing);
+        //    }
+        //    Thread_ShowDialog();
+        //}
 
-        private static void Thread_DialogForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                IAsyncResult result = StopDialogEvent.BeginInvoke(null, null);
-                result.AsyncWaitHandle.WaitOne();
-                StopDialogEvent.EndInvoke(result);
-            }
-            catch (Exception)
-            {
-            }
-        }
+        //private static void Thread_DialogForm_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    try
+        //    {
+        //        IAsyncResult result = StopDialogEvent.BeginInvoke(null, null);
+        //        result.AsyncWaitHandle.WaitOne();
+        //        StopDialogEvent.EndInvoke(result);
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
 
-        private static void Thread_ShowDialog()
-        {
-            try
-            {
-                if (_waitForm != null)
-                {
-                    if (_waitForm.InvokeRequired)
-                    {
-                        _waitForm.Invoke(new ShowDialogDelegate(Thread_ShowDialog));
-                    }
-                    else
-                    {
-                        _waitForm.TopMost = true;
-                        _waitForm.ShowDialog();
-                    }
-                }
-            }
-            catch (System.Threading.ThreadAbortException ex)
-            {
-            }
-            catch (Exception ex)
-            {
-            }
-        }
+        //private static void Thread_ShowDialog()
+        //{
+        //    try
+        //    {
+        //        if (_waitForm != null)
+        //        {
+        //            if (_waitForm.InvokeRequired)
+        //            {
+        //                _waitForm.Invoke(new ShowDialogDelegate(Thread_ShowDialog));
+        //            }
+        //            else
+        //            {
+        //                _waitForm.TopMost = true;
+        //                _waitForm.ShowDialog();
+        //            }
+        //        }
+        //    }
+        //    catch (System.Threading.ThreadAbortException ex)
+        //    {
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //}
 
-        private static void StartThead(ThreadStart threadStart)
-        {
-            if (!((CurrentThread != null) && CurrentThread.IsAlive))
-            {
-                CurrentThread = new Thread(threadStart);
-                CurrentThread.IsBackground = true;
-                CurrentThread.Start();
-            }
-            else
-            {
-                ShowDialog();
-            }
-        }
+        //private static void StartThead(ThreadStart threadStart)
+        //{
+        //    if (!((CurrentThread != null) && CurrentThread.IsAlive))
+        //    {
+        //        CurrentThread = new Thread(threadStart);
+        //        CurrentThread.IsBackground = true;
+        //        CurrentThread.Start();
+        //    }
+        //    else
+        //    {
+        //        ShowDialog();
+        //    }
+        //}
 
-        private static void OnLoaded(object sender, EventArgs e)
-        {
-            Application.Idle -= OnLoaded;
-            HideDialog();
-        }
-        public static void CleanStopEventHandler()
-        {
-            try
-            {
-                if (StopDialogEvent != null)
-                {
-                    StopDialogDelegate delegate2 = (StopDialogDelegate)Delegate.Combine(new Delegate[] { StopDialogEvent });
-                    if (delegate2 != null)
-                    {
-                        foreach (StopDialogDelegate delegate3 in delegate2.GetInvocationList())
-                        {
-                            StopDialogEvent -= delegate3;
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
+        //private static void OnLoaded(object sender, EventArgs e)
+        //{
+        //    Application.Idle -= OnLoaded;
+        //    HideDialog();
+        //}
+        //public static void CleanStopEventHandler()
+        //{
+        //    try
+        //    {
+        //        if (StopDialogEvent != null)
+        //        {
+        //            StopDialogDelegate delegate2 = (StopDialogDelegate)Delegate.Combine(new Delegate[] { StopDialogEvent });
+        //            if (delegate2 != null)
+        //            {
+        //                foreach (StopDialogDelegate delegate3 in delegate2.GetInvocationList())
+        //                {
+        //                    StopDialogEvent -= delegate3;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
+        //public static void Close()
+        //{
+        //    try
+        //    {
+        //        CleanStopEventHandler();
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //    try
+        //    {
+        //        HideDialog();
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
+        //public static void HideDialog()
+        //{
+        //    try
+        //    {
+        //        if (CurrentThread != null)
+        //        {
+        //            CleanStopEventHandler();
+        //            IAsyncResult result = HideDialogEvent.BeginInvoke(null, null);
+        //            result.AsyncWaitHandle.WaitOne();
+        //            HideDialogEvent.EndInvoke(result);
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        if (CurrentThread != null)
+        //        {
+        //            CurrentThread.Abort();
+        //            CurrentThread = null;
+        //        }
+        //    }
+        //}
+        //public static void Quit()
+        //{
+        //    try
+        //    {
+        //        if (CurrentThread != null)
+        //        {
+        //            while (CurrentThread.IsAlive)
+        //            {
+        //                CurrentThread.Abort();
+        //                Thread.Sleep(1000);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
+        #endregion
+
+        #region Code mới
         public static void Close()
         {
-            try
-            {
-                CleanStopEventHandler();
-            }
-            catch (Exception)
-            {
-            }
-            try
-            {
-                HideDialog();
-            }
-            catch (Exception)
-            {
-            }
+            HideDialog();
         }
         public static void HideDialog()
         {
             try
             {
-                if (CurrentThread != null)
-                {
-                    CleanStopEventHandler();
-                    IAsyncResult result = HideDialogEvent.BeginInvoke(null, null);
-                    result.AsyncWaitHandle.WaitOne();
-                    HideDialogEvent.EndInvoke(result);
-                }
+                SplashScreenManager.CloseForm(false);
+                IsShow = false;
             }
             catch (Exception)
             {
-                if (CurrentThread != null)
-                {
-                    CurrentThread.Abort();
-                    CurrentThread = null;
-                }
+            }
+        }
+        public static bool IsWaiting()
+        {
+            if (SplashScreenManager.Default == null)
+            {
+                return false;
+            }
+            return SplashScreenManager.Default.IsSplashFormVisible;
+        }
+        public static void PerformStep()
+        {
+            if (SplashScreenManager.Default != null && IsShow)
+            {
+                SplashScreenManager.Default.SendCommand(WaitFormCommand.PerformStep, null);
             }
         }
         public static void Quit()
         {
-            try
-            {
-                if (CurrentThread != null)
-                {
-                    while (CurrentThread.IsAlive)
-                    {
-                        CurrentThread.Abort();
-                        Thread.Sleep(1000);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
+            HideDialog();
         }
+        public static void Show(Form pscrAtv = null)
+        {
+            SplashScreenManager.ShowForm(Form.ActiveForm, typeof(SQLWaitingDialog), true, true, false);
+            IsShow = true;
+        }
+        public static void ShowDialog()
+        {
+            SplashScreenManager.ShowForm(Form.ActiveForm, typeof(SQLWaitingDialog), true, true, false);
+            IsShow = true;
+        }
+        #endregion
         private delegate void HideDialogDelegate();
 
         private delegate void ShowDialogDelegate();
 
         public delegate void StopDialogDelegate();
+
+        public enum WaitFormCommand
+        {
+            SetPosition,
+            SetProgress,
+            PerformStep,
+            ProcessTitile
+        }
     }
     public class SQLNotifycationAler
     {
