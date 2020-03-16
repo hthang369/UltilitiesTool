@@ -146,6 +146,7 @@ namespace SQLTool.Util
                     DataResults results = new DataResults();
                     results.DataSource = dtSource;
                     results.Title = dtSource.TableName;
+                    results.KeyBindingCommand = new RelayCommand<object>((x) => true, (x) => popupView.KeyBindingActionCommand(x));
                     popupView.DataResults.Add(results);
                 }).Wait();
                 ShowPopupViewModal(popupView, new Views.ResultView());

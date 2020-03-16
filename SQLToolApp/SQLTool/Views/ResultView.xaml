@@ -26,7 +26,12 @@
                             <DataTemplate>
                                 <dxg:GridControl x:Name="dgvDataResult" ItemsSource="{Binding}" AutoGenerateColumns="AddNew" Margin="0" >
                                     <dxg:GridControl.View>
-                                        <dxg:TableView ShowDataNavigator="True" ShowAutoFilterRow="True" AllowEditing="False" />
+                                        <dxg:TableView ShowDataNavigator="True" ShowAutoFilterRow="True" AllowEditing="False">
+                                            <dxg:TableView.InputBindings>
+                                                <KeyBinding Key="F" Command="{Binding KeyBindingCommand}" CommandParameter="" />
+                                                <KeyBinding Modifiers="Ctrl" Key="M" Command="{Binding KeyBindingCommand}" CommandParameter="" />
+                                            </dxg:TableView.InputBindings>
+                                        </dxg:TableView>
                                     </dxg:GridControl.View>
                                 </dxg:GridControl>
                             </DataTemplate>

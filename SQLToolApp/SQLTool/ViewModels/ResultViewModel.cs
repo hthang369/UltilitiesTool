@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SQLTool.ViewModels
 {
@@ -16,11 +17,17 @@ namespace SQLTool.ViewModels
             get => _dataResults;
             set => SetProperty(ref _dataResults, value);
         }
+        
+        public void KeyBindingActionCommand(object x)
+        {
+            
+        }
     }
     public class DataResults
     {
         public string Title { get; set; }
         public DataTable DataSource { get; set; }
         public TabPinMode PinMode { get; set; }
+        public ICommand KeyBindingCommand { get; set; }
     }
 }
