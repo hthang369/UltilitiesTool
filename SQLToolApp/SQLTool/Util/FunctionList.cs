@@ -131,31 +131,29 @@ namespace SQLTool.Util
             DataTable dtData = SQLDBUtil.GetDataByTable(tableName, strWhere, colName);
             if (dtData == null) return;
             dtData.TableName = tableName;
-            //ShowResultDataView()
-            //ShowResultData(frmParent, dtData, "");
+            ShowResultData(frmParent, dtData);
         }
-        private static void ShowResultData(Window frmParent, DataTable dtSource, string strQuery)
+        private static void ShowResultData(Window frmParent, DataTable dtSource, string strQuery = "")
         {
-            //frmData _frmData = new frmData(frmParent);
-            //_frmData._strQuery_RecentData = strQuery;
-            //_frmData._strTableName_SearchPublic = dtSource.TableName;
-            //_frmData.Text = "Table Name : " + dtSource.TableName;
-            //_frmData.Text += " - (Server : " + SQLDBUtil._strServer + " Database : " + SQLDBUtil._strDatabase + ")";
-            //_frmData._iCountSearch = dtSource.Rows.Count;
-            //_frmData._dgrSearch.DataSource = dtSource;
-            //_frmData.StartPosition = FormStartPosition.CenterScreen;
-            //frmParent.Hide();
-            //_frmData.ShowDialog();
-            //ResultViewModel resultView = new ResultViewModel();
-
-            //resultView.DataResults = new List<DataResults>(){ new DataResults
-            //{
-            //    Title = "Xem Data",
-            //    DataSource = dtSource
-            //} };
-            //Views.ResultView view = new Views.ResultView();
-            //view.DataContext = resultView;
-            //view.ShowDialog();
+            if (dtSource != null)
+            {
+                ViewModels.ResultViewModel popupView = new ResultViewModel();
+                popupView.Title = "T-SQL";
+                popupView.Header = "T-SQL Result";
+                popupView.DataResults = new List<DataResults>();
+                Task.Factory.StartNew(() =>
+                {
+                    DataResults results = new DataResults();
+                    results.DataSource = dtSource;
+                    results.Title = dtSource.TableName;
+                    popupView.DataResults.Add(results);
+                }).Wait();
+                ShowPopupViewModal(popupView, new Views.ResultView());
+            }
+            else if(!string.IsNullOrEmpty(strQuery))
+            {
+                ShowResultDataView(strQuery);
+            }
         }
         //Ctrl + 0 View Connect Sql
         public static void GetViewConnectToSQL(Window frmParent)

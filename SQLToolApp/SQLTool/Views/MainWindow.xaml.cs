@@ -31,9 +31,9 @@ namespace SQLTool
         {
             InitializeComponent();
             DataContext = mainViewModel = new MainViewModel(this);
-            _waitIndicatorService = ServiceContainer.Default.GetService<ISplashScreenService>("WaitIndicatorService");
-            if (_waitIndicatorService != null)
-                _waitIndicatorService.ShowSplashScreen(this.Name);
+            //_waitIndicatorService = ServiceContainer.Default.GetService<ISplashScreenService>("WaitIndicatorService");
+            //if (_waitIndicatorService != null)
+            //    _waitIndicatorService.ShowSplashScreen(this.Name);
         }
 
         private void ThemedWindow_Loaded(object sender, RoutedEventArgs e)
@@ -64,9 +64,9 @@ namespace SQLTool
             //    inputBinding.CommandParameter = "Alt+D1";
             //    InputBindings.Add(inputBinding);
             //});
-            if (_waitIndicatorService != null)
-                _waitIndicatorService.HideSplashScreen();
-            // SQLAppWaitingDialog.HideDialog();
+            //if (_waitIndicatorService != null)
+            //    _waitIndicatorService.HideSplashScreen();
+            SQLAppWaitingDialog.HideDialog();
             //InputBinding inputBinding = new KeyBinding(mainViewModel.KeyBindingCommand, Key.Enter, ModifierKeys.None);
             //inputBinding.CommandParameter = "None+Enter";
             //lstFunction.InputBindings.Add(inputBinding);

@@ -53,14 +53,26 @@ namespace SQLTool.ViewModels
         {
             GetMainWindow(ctrl);
             if (mainWindow != null)
-                mainWindow._waitIndicatorService.ShowSplashScreen(mainWindow.Name);
+            {
+                if (mainWindow._waitIndicatorService != null)
+                    mainWindow._waitIndicatorService.ShowSplashScreen(mainWindow.Name);
+                else
+                    SQLAppLib.SQLAppWaitingDialog.ShowDialog();
+            }
+                
         }
 
         protected void HideWaitIndicator(FrameworkElement ctrl)
         {
             GetMainWindow(ctrl);
             if (mainWindow != null)
-                mainWindow._waitIndicatorService.HideSplashScreen();
+            {
+                if (mainWindow._waitIndicatorService != null)
+                    mainWindow._waitIndicatorService.HideSplashScreen();
+                else
+                    SQLAppLib.SQLAppWaitingDialog.HideDialog();
+            }
+                
         }
 
         protected virtual bool CanExecute()
