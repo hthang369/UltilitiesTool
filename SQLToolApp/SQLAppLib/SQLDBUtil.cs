@@ -156,7 +156,7 @@ namespace SQLAppLib
             {
                 case SqlDbConnectionType.MySql:
                     string[] lstServer = strServer.Split(':');
-                    _connectionString = string.Format("Server={0};port={1};Database={2};User Id={3};password={4}", lstServer.FirstOrDefault(), lstServer.LastOrDefault(), strDatabase, strUsername, strPassword);
+                    _connectionString = string.Format("Server={0};port={1};Database={2};User Id={3};password={4};Convert Zero Datetime=True", lstServer.FirstOrDefault(), lstServer.LastOrDefault(), strDatabase, strUsername, strPassword);
                     break;
                 default:
                     _connectionString = string.Format("data source={0};database={1};uid={2};pwd={3}", strServer, strDatabase, strUsername, strPassword);
@@ -291,6 +291,25 @@ namespace SQLAppLib
                 cmd.Transaction = Transaction;
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
+                //Task.Run(delegate
+                //{
+                //    using (DbDataReader read = cmd.ExecuteReader())
+                //    {
+                //        for (int i = 0; i < read.FieldCount; i++)
+                //        {
+                //            DataColumn col = new DataColumn(read.GetName(i), read.GetFieldType(i));
+                //            dt.Columns.Add(col);
+                //        }
+                //        while (read.Read())
+                //        {
+                //            object[] values = new object[read.FieldCount];
+                //            read.GetValues(values);
+                //            dt.LoadDataRow(values, false);
+                //        }
+                //    }
+
+                //        return dt;
+                //}).Wait();
                 CommitTransaction(Transaction);
                 CurrentDatabase.Connection.Close();
                 return dt;
@@ -804,7 +823,7 @@ namespace SQLAppLib
         public static DataTable GetDataByTable(string strTblName, string strWhere = "", string strCol = "*")
         {
             string strSubWhere = (!string.IsNullOrEmpty(strWhere)) ? "WHERE " + strWhere : "";
-            return GetDataTableByDataSet(RunQuery(string.Format("SELECT {0} FROM {1} {2}", strCol, strTblName, strSubWhere)));
+            return RunQueryTable(string.Format("SELECT {0} FROM {1} {2}", strCol, strTblName, strSubWhere));
         }
         public static DataTable GetTableColumns(string strTblName)
         {
