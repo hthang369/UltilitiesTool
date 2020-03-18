@@ -32,6 +32,7 @@ namespace SQLTool.Util
         private static string strDBOld;
         public static string strPath = System.Windows.Forms.Application.StartupPath + "\\Scripts\\";
         public static string strFileCfgScript = strPath + "scripts.ini";
+        public static string strCfgScriptName = strPath + "config.ini";
         public static Dictionary<string, string> lstFuncLst;
         public static string strDynPara = "DynPara";
 
@@ -66,6 +67,34 @@ namespace SQLTool.Util
                 DataTable dt = SQLDBUtil.GetDataTable(strQuery);
                 if (dt == null) return;
                 ShowResultData(frmParent, dt, strQuery);
+            }
+        }
+        public static void ShowFunctionList(string strFuncName, Window frmParent)
+        {
+            string sourceUrl = SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
+            bool isReturn = false;
+            if(string.IsNullOrEmpty(sourceUrl))
+            {
+                isReturn = true;
+                FolderBrowserDialog folder = new FolderBrowserDialog();
+                if (folder.ShowDialog() == DialogResult.Yes)
+                {
+                    SQLApp.SetIniFile(strFileName, "SourceCode", "SourceUrl", folder.SelectedPath);
+                    isReturn = false;
+                }
+            }
+            if (isReturn) return;
+            List<string> lstFuncs = SQLApp.GetKeysIniFile(strCfgScriptName, strFuncName);
+            PromptForm._frmParent = frmParent;
+            string value = string.Empty;
+            MessageBoxResult messageResult = PromptForm.ShowCombobox("Function List In Source", "Function Name", lstFuncs.ToArray(), ref value);
+            if(messageResult == MessageBoxResult.Yes)
+            {
+                string functionName = SQLApp.GetIniFile(strCfgScriptName, strFuncName, value);
+                if (functionName.StartsWith("Cmd"))
+                {
+                    FunctionList.CallMethodName(functionName, frmParent);
+                }
             }
         }
         #endregion
@@ -655,6 +684,13 @@ namespace SQLTool.Util
         #endregion
         #endregion
 
+        #region Function list cmd
+        public static void PhpClearCache()
+        {
+            SQLApp.ExecutedCommandLine("");
+        }
+        #endregion
+
         #region config Connect
         public static void GetConfigConnectSQL(string status, int idx = 0)
         {
@@ -849,6 +885,8 @@ namespace SQLTool.Util
                 DataTable dt = SQLDBUtil.GetDataTableByDataSet(SQLDBUtil.GetAllTables());
                 popupView.dataSource = dt.Select().Select(x => Convert.ToString(x[0])).ToList();
             }
+            else
+                popupView.dataSource = lstFunctionList;
             Views.PopupView view = popup.waitLoadView.LoadingChild as Views.PopupView;
             if (bIsText)
                 view.txtInput.Focus();

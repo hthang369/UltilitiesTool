@@ -122,6 +122,12 @@ namespace SQLTool.ViewModels
                 case Key.F9:
                     Util.FunctionList.ShowEditDataView();
                     break;
+                case Key.F10:
+                    Util.FunctionList.ShowFunctionList("FuncsF10", this.frmMain);
+                    break;
+                case Key.F11:
+                    Util.FunctionList.ShowFunctionList("FuncsF11", this.frmMain);
+                    break;
                 case Key.System:
                     if (e.KeyboardDevice.Modifiers == ModifierKeys.Alt)
                     {
