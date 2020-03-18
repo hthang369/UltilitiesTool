@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using DevExpress.XtraSplashScreen;
+using System.Diagnostics;
 
 namespace SQLAppLib
 {
@@ -160,6 +161,17 @@ namespace SQLAppLib
                 }
             }
             return null;
+        }
+        public static string ExecutedCommandLine(string strCmdLine)
+        {
+            Process pro = new Process();
+            pro.StartInfo.FileName = "cmd.exe";
+            pro.StartInfo.Arguments = strCmdLine;
+            pro.StartInfo.UseShellExecute = false;
+            pro.StartInfo.CreateNoWindow = true;
+            pro.StartInfo.RedirectStandardOutput = true;
+            pro.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            return pro.StandardOutput.ReadToEnd();
         }
     }
 
