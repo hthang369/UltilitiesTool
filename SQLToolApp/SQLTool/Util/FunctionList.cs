@@ -77,7 +77,7 @@ namespace SQLTool.Util
             {
                 isReturn = true;
                 FolderBrowserDialog folder = new FolderBrowserDialog();
-                if (folder.ShowDialog() == DialogResult.Yes)
+                if (folder.ShowDialog() == DialogResult.OK)
                 {
                     SQLApp.SetIniFile(strFileName, "SourceCode", "SourceUrl", folder.SelectedPath);
                     isReturn = false;
@@ -88,7 +88,7 @@ namespace SQLTool.Util
             PromptForm._frmParent = frmParent;
             string value = string.Empty;
             MessageBoxResult messageResult = PromptForm.ShowCombobox("Function List In Source", "Function Name", lstFuncs.ToArray(), ref value);
-            if(messageResult == MessageBoxResult.Yes)
+            if(messageResult == MessageBoxResult.OK)
             {
                 string functionName = SQLApp.GetIniFile(strCfgScriptName, strFuncName, value);
                 if (functionName.StartsWith("Cmd"))
@@ -685,9 +685,13 @@ namespace SQLTool.Util
         #endregion
 
         #region Function list cmd
-        public static void PhpClearCache()
+        public static void CmdPhpClearCache()
         {
-            SQLApp.ExecutedCommandLine("");
+            SQLAppWaitingDialog.ShowDialog();
+            string sourceUrl = SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
+            string output = SQLApp.ExecutedPowerShell(string.Format("cd {0} {1} {2}",sourceUrl, Environment.NewLine, " php artisan cache:clear"));
+            SQLAppWaitingDialog.HideDialog();
+            System.Windows.MessageBox.Show(output, "Thông báo");
         }
         #endregion
 
