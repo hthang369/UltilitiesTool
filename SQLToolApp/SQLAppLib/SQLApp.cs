@@ -14,6 +14,9 @@ using System.Data;
 using System.Reflection;
 using DevExpress.XtraSplashScreen;
 using System.Diagnostics;
+using System.Management.Automation.Runspaces;
+using System.Collections.ObjectModel;
+using System.Management.Automation;
 
 namespace SQLAppLib
 {
@@ -171,7 +174,22 @@ namespace SQLAppLib
             pro.StartInfo.CreateNoWindow = true;
             pro.StartInfo.RedirectStandardOutput = true;
             pro.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            pro.Start();
             return pro.StandardOutput.ReadToEnd();
+        }
+        public static string ExecutedPowerShell(string strCmdLine)
+        {
+            Runspace runspace = RunspaceFactory.CreateRunspace();
+            runspace.Open();
+            Pipeline pipeline = runspace.CreatePipeline();
+            pipeline.Commands.AddScript(strCmdLine);
+            pipeline.Commands.Add("Out-String");
+            
+            Collection<PSObject> results = pipeline.Invoke();
+            runspace.Close();
+            StringBuilder builder = new StringBuilder();
+            results.ToList().ForEach(x => builder.AppendLine(x.ToString()));
+            return builder.ToString();
         }
     }
 
