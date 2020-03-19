@@ -35,6 +35,7 @@ namespace SQLTool.Util
         public static string strCfgScriptName = strPath + "config.ini";
         public static Dictionary<string, string> lstFuncLst;
         public static string strDynPara = "DynPara";
+        static Dictionary<string, string> dicFuncFns = new Dictionary<string, string>();
 
         #region CallMethod
         public static void CallMethodName(string strFuncName, Window frmParent)
@@ -72,8 +73,9 @@ namespace SQLTool.Util
         public static void ShowFunctionList(string strFuncName, Window frmParent)
         {
             string sourceUrl = SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
+
             bool isReturn = false;
-            if(string.IsNullOrEmpty(sourceUrl))
+            if(string.IsNullOrEmpty(sourceUrl) || !Directory.Exists(sourceUrl))
             {
                 isReturn = true;
                 FolderBrowserDialog folder = new FolderBrowserDialog();
@@ -85,14 +87,22 @@ namespace SQLTool.Util
             }
             if (isReturn) return;
             List<string> lstFuncs = SQLApp.GetKeysIniFile(strCfgScriptName, strFuncName);
+            Dictionary<string, string> dicFuncList = new Dictionary<string, string>();
+            lstFuncs.ForEach(x =>
+            {
+                string caption = SQLApp.GetIniFile(strCfgScriptName, "Captions", x);
+                if (string.IsNullOrEmpty(caption)) caption = string.Join(" ", x.ToUpper().Split('_'));
+                dicFuncList.Add(caption, x);
+            });
             PromptForm._frmParent = frmParent;
             string value = string.Empty;
-            MessageBoxResult messageResult = PromptForm.ShowCombobox("Function List In Source", "Function Name", lstFuncs.ToArray(), ref value);
+            MessageBoxResult messageResult = PromptForm.ShowCombobox("Function List In Source", "Function Name", dicFuncList.Keys.ToArray(), ref value);
             if(messageResult == MessageBoxResult.OK)
             {
-                string functionName = SQLApp.GetIniFile(strCfgScriptName, strFuncName, value);
+                string functionName = SQLApp.GetIniFile(strCfgScriptName, strFuncName, dicFuncList[value]);
                 if (functionName.StartsWith("Cmd"))
                 {
+                    dicFuncFns.AddItem(functionName, dicFuncList[value]);
                     FunctionList.CallMethodName(functionName, frmParent);
                 }
             }
@@ -685,13 +695,35 @@ namespace SQLTool.Util
         #endregion
 
         #region Function list cmd
-        public static void CmdPhpClearCache()
+        private static void ExecutedScriptCommand(string strScript, string strFuncName)
         {
+            int iCnt = 0;
+            string strCnt = SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(strFuncName, "Cnt"));
+            if (!string.IsNullOrEmpty(strCnt)) iCnt = Convert.ToInt32(strCnt);
+            if(iCnt > 0)
+            {
+
+            }
             SQLAppWaitingDialog.ShowDialog();
             string sourceUrl = SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
-            string output = SQLApp.ExecutedPowerShell(string.Format("cd {0} {1} {2}",sourceUrl, Environment.NewLine, " php artisan cache:clear"));
+            string output = SQLApp.ExecutedPowerShell(string.Format("cd {0} {1} {2}", sourceUrl, Environment.NewLine, strScript));
             SQLAppWaitingDialog.HideDialog();
-            System.Windows.MessageBox.Show(output, "Thông báo");
+            DevExpress.XtraEditors.XtraMessageBox.Show(output, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        public static void CmdPhpClearCache()
+        {
+            string funcName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            FunctionList.ExecutedScriptCommand("php artisan cache:clear", funcName);
+        }
+        public static void CmdPhpClearConfig()
+        {
+            string funcName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            FunctionList.ExecutedScriptCommand("php artisan config:clear", funcName);
+        }
+        public static void CmdPhpPermissionFresh()
+        {
+            string funcName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            FunctionList.ExecutedScriptCommand("php artisan permission:fresh", funcName);
         }
         #endregion
 
