@@ -35,7 +35,6 @@ namespace SQLTool.Util
         public static string strCfgScriptName = strPath + "config.ini";
         public static Dictionary<string, string> lstFuncLst;
         public static string strDynPara = "DynPara";
-        static Dictionary<string, string> dicFuncFns = new Dictionary<string, string>();
 
         #region CallMethod
         public static void CallMethodName(string strFuncName, Window frmParent)
@@ -51,29 +50,16 @@ namespace SQLTool.Util
         }
         public static void LoadQueryPath(FunctionListObject obj, Window frmParent)
         {
-            string strCnt = SQLApp.GetIniFile(strFileCfgScript, strDynPara, obj.Name + "Cnt");
-            int iCnt = string.IsNullOrEmpty(strCnt) ? 0 : Convert.ToInt32(strCnt);
             string strQuery = SQLApp.GetFile(obj.Path);
-            if (iCnt > 0)
-            {
-                PromptForm._frmParent = frmParent;
-                string strValue = "";
-                for (int i = 1; i <= iCnt; i++)
-                {
-                    string param = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, obj.Name + "Name" + i));
-                    MessageBoxResult result = PromptForm.ShowText("Dynamic parameter for script: "+obj.Text, param, ref strValue);
-                    if (result == MessageBoxResult.Cancel) return;
-                    strQuery = strQuery.Replace(param, strValue);
-                }
-                DataTable dt = SQLDBUtil.GetDataTable(strQuery);
-                if (dt == null) return;
-                ShowResultData(frmParent, dt, strQuery);
-            }
+            strQuery = GenerateScriptWithParameters(obj, strQuery, frmParent);
+            if (string.IsNullOrEmpty(strQuery)) return;
+            DataTable dt = SQLDBUtil.GetDataTable(strQuery);
+            if (dt == null) return;
+            ShowResultData(frmParent, dt, strQuery);
         }
         public static void ShowFunctionList(string strFuncName, Window frmParent)
         {
             string sourceUrl = SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
-
             bool isReturn = false;
             if(string.IsNullOrEmpty(sourceUrl) || !Directory.Exists(sourceUrl))
             {
@@ -87,25 +73,48 @@ namespace SQLTool.Util
             }
             if (isReturn) return;
             List<string> lstFuncs = SQLApp.GetKeysIniFile(strCfgScriptName, strFuncName);
-            Dictionary<string, string> dicFuncList = new Dictionary<string, string>();
+            List<FunctionListObject> lstObjectFuncs = new List<FunctionListObject>();
             lstFuncs.ForEach(x =>
             {
                 string caption = SQLApp.GetIniFile(strCfgScriptName, "Captions", x);
                 if (string.IsNullOrEmpty(caption)) caption = string.Join(" ", x.ToUpper().Split('_'));
-                dicFuncList.Add(caption, x);
+                lstObjectFuncs.Add(new FunctionListObject { Name = x, Text = caption});
             });
             PromptForm._frmParent = frmParent;
             string value = string.Empty;
-            MessageBoxResult messageResult = PromptForm.ShowCombobox("Function List In Source", "Function Name", dicFuncList.Keys.ToArray(), ref value);
+            MessageBoxResult messageResult = PromptForm.ShowCombobox("Function List In Source", "Function Name", lstObjectFuncs.Select(x => x.Text).ToArray(), ref value);
             if(messageResult == MessageBoxResult.OK)
             {
-                string functionName = SQLApp.GetIniFile(strCfgScriptName, strFuncName, dicFuncList[value]);
+                FunctionListObject functionObj = lstObjectFuncs.Find(x => x.Text.Equals(value));
+                string strKey = (functionObj != null) ? functionObj.Name : string.Empty;
+                string functionName = SQLApp.GetIniFile(strCfgScriptName, strFuncName, strKey);
                 if (functionName.StartsWith("Cmd"))
                 {
-                    dicFuncFns.AddItem(functionName, dicFuncList[value]);
-                    FunctionList.CallMethodName(functionName, frmParent);
+                    ExecutedScriptCommand(functionObj, frmParent);
+                }
+                else
+                {
+                    CallMethodName(functionName, frmParent);
                 }
             }
+        }
+        private static string GenerateScriptWithParameters(FunctionListObject functionObj, string strScript, Window frmParent)
+        {
+            string strCnt = SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "Cnt"));
+            int iCnt = string.IsNullOrEmpty(strCnt) ? 0 : Convert.ToInt32(strCnt);
+            if (iCnt > 0)
+            {
+                PromptForm._frmParent = frmParent;
+                string strValue = "";
+                for (int i = 1; i <= iCnt; i++)
+                {
+                    string param = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "Name", i)));
+                    MessageBoxResult result = PromptForm.ShowText("Dynamic parameter for script: " + functionObj.Text, param, ref strValue);
+                    if (result == MessageBoxResult.Cancel) return string.Empty;
+                    strScript = strScript.Replace(param, strValue);
+                }
+            }
+            return strScript;
         }
         #endregion
 
@@ -695,36 +704,24 @@ namespace SQLTool.Util
         #endregion
 
         #region Function list cmd
-        private static void ExecutedScriptCommand(string strScript, string strFuncName)
+        private static void ExecutedScriptCommand(FunctionListObject functionObj, Window frmParent)
         {
-            int iCnt = 0;
-            string strCnt = SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(strFuncName, "Cnt"));
-            if (!string.IsNullOrEmpty(strCnt)) iCnt = Convert.ToInt32(strCnt);
-            if(iCnt > 0)
-            {
-
-            }
+            //string funcName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            //Lấy tên function hiện tại
+            string strScript = GetScriptCommandByFuncName(functionObj.Name);
+            strScript = GenerateScriptWithParameters(functionObj, strScript, frmParent);
+            if (string.IsNullOrEmpty(strScript))
+                DevExpress.XtraEditors.XtraMessageBox.Show("Không có mã thực thi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             SQLAppWaitingDialog.ShowDialog();
             string sourceUrl = SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
             string output = SQLApp.ExecutedPowerShell(string.Format("cd {0} {1} {2}", sourceUrl, Environment.NewLine, strScript));
             SQLAppWaitingDialog.HideDialog();
             DevExpress.XtraEditors.XtraMessageBox.Show(output, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        public static void CmdPhpClearCache()
+        public static string GetScriptCommandByFuncName(string strFuncName)
         {
-            string funcName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            FunctionList.ExecutedScriptCommand("php artisan cache:clear", funcName);
-        }
-        public static void CmdPhpClearConfig()
-        {
-            string funcName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            FunctionList.ExecutedScriptCommand("php artisan config:clear", funcName);
-        }
-        public static void CmdPhpPermissionFresh()
-        {
-            string funcName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            FunctionList.ExecutedScriptCommand("php artisan permission:fresh", funcName);
-        }
+            return SQLApp.GetIniFile(string.Concat(strPath, "ScriptCommand.ini"), "Laravel", strFuncName);
+        } 
         #endregion
 
         #region config Connect
