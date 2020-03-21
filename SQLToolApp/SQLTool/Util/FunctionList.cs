@@ -90,6 +90,7 @@ namespace SQLTool.Util
                 string functionName = SQLApp.GetIniFile(strCfgScriptName, strFuncName, strKey);
                 if (functionName.StartsWith("Cmd"))
                 {
+                    functionObj.FuncName = functionName;
                     ExecutedScriptCommand(functionObj, frmParent);
                 }
                 else
@@ -109,9 +110,22 @@ namespace SQLTool.Util
                 for (int i = 1; i <= iCnt; i++)
                 {
                     string param = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "Name", i)));
-                    MessageBoxResult result = PromptForm.ShowText("Dynamic parameter for script: " + functionObj.Text, param, ref strValue);
-                    if (result == MessageBoxResult.Cancel) return string.Empty;
-                    strScript = strScript.Replace(param, strValue);
+                    strValue = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "Val", i)));
+                    string strValueDef = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "ValDef", i)));
+                    string strValList = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "ValList", i)));
+                    MessageBoxResult result;
+                    if (!string.IsNullOrEmpty(strValList))
+                        result = PromptForm.ShowCombobox("Dynamic parameter for script: " + functionObj.Text, param, strValList.Split('|'), ref strValue);
+                    else
+                        result = PromptForm.ShowText("Dynamic parameter for script: " + functionObj.Text, param, ref strValue);
+                    if (result == MessageBoxResult.Cancel)
+                    {
+                        return (string.IsNullOrEmpty(param)) ? strScript : string.Empty;
+                    }
+                    if(!string.IsNullOrEmpty(param))
+                        strScript = strScript.Replace(param, strValue);
+                    if(!string.IsNullOrEmpty(strValList) && !string.IsNullOrEmpty(strValue))
+                        strScript = string.Concat(strScript, " ", strValueDef, strValue);
                 }
             }
             return strScript;
@@ -708,7 +722,7 @@ namespace SQLTool.Util
         {
             //string funcName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             //Lấy tên function hiện tại
-            string strScript = GetScriptCommandByFuncName(functionObj.Name);
+            string strScript = GetScriptCommandByFuncName(functionObj.FuncName);
             strScript = GenerateScriptWithParameters(functionObj, strScript, frmParent);
             if (string.IsNullOrEmpty(strScript))
                 DevExpress.XtraEditors.XtraMessageBox.Show("Không có mã thực thi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
