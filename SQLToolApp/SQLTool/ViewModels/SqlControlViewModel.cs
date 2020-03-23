@@ -56,10 +56,13 @@ namespace SQLTool.ViewModels
 
         private void ChangeServerBySqlType(object key)
         {
+            ShowWaitIndicator(Parent);
             if (string.IsNullOrEmpty(Convert.ToString(key))) return;
             (Parent as Views.SqlControlView).cboServer.SelectedItem = null;
             (Parent as Views.SqlControlView).cboDatabase.SelectedItem = null;
+            lstDatabase.Clear();
             lstServers = Util.FunctionList.LoadConfigInitToList(Convert.ToString(key));
+            HideWaitIndicator(Parent);
         }
 
         private void ChangeDatabaseBySqlType(object idx)
@@ -68,6 +71,7 @@ namespace SQLTool.ViewModels
             try
             {
                 string keySection = Convert.ToString((Parent as Views.SqlControlView).cboSqlType.SelectedItem);
+                lstDatabase.Reset();
                 lstDatabase = Util.FunctionList.LoadDatabaseByServer(keySection, (int)idx);
                 //lstServers = Util.FunctionList.LoadConfigInitToList(Convert.ToString(key));
             }

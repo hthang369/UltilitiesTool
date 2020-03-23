@@ -35,6 +35,8 @@ namespace SQLTool.Util
         public static string strCfgScriptName = strPath + "config.ini";
         public static Dictionary<string, string> lstFuncLst;
         public static string strDynPara = "DynPara";
+        private static ViewModels.ResultViewModel popupView;
+        private static Views.BasePopupWindow popupWindow;
 
         #region CallMethod
         public static void CallMethodName(string strFuncName, Window frmParent)
@@ -130,6 +132,130 @@ namespace SQLTool.Util
             }
             return strScript;
         }
+        private static ViewModels.ResultViewModel GetResultPopupView()
+        {
+            if (popupView == null)
+                popupView = new ResultViewModel();
+            return popupView;
+        }
+        private static Views.BasePopupWindow GetPopupWindow()
+        {
+            if (popupWindow == null)
+                popupWindow = new Views.BasePopupWindow();
+            return popupWindow;
+        }
+        
+        private static void ShowResultData(Window frmParent, DataTable dtSource, string strQuery = "")
+        {
+            if (dtSource != null)
+            {
+                ViewModels.ResultViewModel popupView = GetResultPopupView();
+                popupView.Title = "T-SQL";
+                popupView.Header = "T-SQL Result";
+                if (popupView.DataResults == null)
+                    popupView.DataResults = new List<DataResults>();
+                Task.Factory.StartNew(() =>
+                {
+                    DataResults results = new DataResults();
+                    results.DataSource = dtSource;
+                    results.Title = dtSource.TableName;
+                    results.KeyBindingCommand = new RelayCommand<object>((x) => true, (x) => popupView.KeyBindingActionCommand(x));
+                    popupView.DataResults.Add(results);
+                }).Wait();
+                ShowPopupViewModal(popupView, new Views.ResultView());
+            }
+            else if (!string.IsNullOrEmpty(strQuery))
+            {
+                ShowResultDataView(strQuery);
+            }
+        }
+        public static void ShowResultDataView(string strQuery)
+        {
+            ViewModels.ResultViewModel popupView = GetResultPopupView();
+            popupView.Title = "T-SQL";
+            popupView.Header = "T-SQL Result";
+            if (popupView.DataResults == null)
+                popupView.DataResults = new List<DataResults>();
+            Task.Factory.StartNew(() =>
+            {
+                DataResults results = new DataResults();
+                results.DataSource = SQLAppLib.SQLDBUtil.GetDataTable(strQuery);
+                results.Title = results.DataSource.TableName;
+                popupView.DataResults.Add(results);
+            }).Wait();
+            ShowPopupViewModal(popupView, new Views.ResultView());
+        }
+        private static void ShowPopupViewModal(BasePopupViewModel viewModel, System.Windows.Controls.UserControl view)
+        {
+            Views.BasePopupWindow popupWindow = GetPopupWindow();
+            popupWindow.DataContext = viewModel;
+            viewModel.isNoTabControl = Visibility.Visible;
+            viewModel.isTabControl = Visibility.Hidden;
+            popupWindow.waitLoadView.LoadingChild = view;
+            (view as Views.ResultView).tabControl.TabContentCacheMode = DevExpress.Xpf.Core.TabContentCacheMode.None;
+            (view as Views.ResultView).tabControl.TabRemoved += TabControl_TabRemoved;
+            //(view as Views.ResultView).tabControl.KeyUp += TabControl_KeyUp;
+            ICommand commandKey = new RelayCommand<object>((x) => true, (x) => KeyBindingActionCommand(x));
+            InputBinding input = new KeyBinding(commandKey, Key.V, ModifierKeys.Alt);
+            input.CommandParameter = "Alt+V";
+            (view as Views.ResultView).tabControl.InputBindings.Add(input);
+            popupWindow.Closed += PopupWindow_Closed;
+            (view as Views.ResultView).tabControl.TabIndex = (view as Views.ResultView).tabControl.Items.Count - 1;
+            popupWindow.Show();
+        }
+
+        private static void KeyBindingActionCommand(object x)
+        {
+            string[] arr = Convert.ToString(x).Split('+');
+            Key key = (Key)Enum.Parse(typeof(Key), arr.LastOrDefault());
+            ModifierKeys modifier = (ModifierKeys)Enum.Parse(typeof(ModifierKeys), arr.FirstOrDefault());
+            switch (modifier)
+            {
+                case ModifierKeys.Alt:
+                    switch (key)
+                    {
+                        case Key.V:
+                            DevExpress.Xpf.Core.DXTabItem tabItem = ((popupWindow.waitLoadView.Child as Views.ResultView).tabControl.SelectedTabItem as DevExpress.Xpf.Core.DXTabItem);
+                            object obj = (tabItem.ContentTemplate as DataTemplate).FindName("dgvDataResult", tabItem);
+                            //Clipboard.SetDataObject();
+                            break;
+                    }
+                    break;
+                case ModifierKeys.Control:
+                    break;
+                case ModifierKeys.Shift:
+                    break;
+                case ModifierKeys.None:
+                    break;
+            }
+        }
+
+        private static void PopupWindow_Closed(object sender, EventArgs e)
+        {
+            popupWindow = null;
+            popupView = null;
+        }
+
+        private static void TabControl_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.SystemKey == Key.LeftAlt || e.SystemKey == Key.RightAlt)
+            {
+                if(e.Key == Key.V)
+                {
+                    DevExpress.Xpf.Core.DXTabItem tabItem = ((sender as DevExpress.Xpf.Core.DXTabControl).SelectedTabItem as DevExpress.Xpf.Core.DXTabItem);
+
+                }
+            }
+        }
+
+        private static void TabControl_TabRemoved(object sender, DevExpress.Xpf.Core.TabControlTabRemovedEventArgs e)
+        {
+            if ((sender as DevExpress.Xpf.Core.DXTabControl).Items.Count == 0)
+            {
+                popupWindow.Close();
+                popupWindow = null;
+            }
+        }
         #endregion
 
         #region function list
@@ -190,34 +316,13 @@ namespace SQLTool.Util
             if (string.IsNullOrEmpty(colName)) colName = "*";
             string strWhere = string.Empty;
             if (SQLDBUtil.ColumnIsExistInTable(tableName, "AAStatus")) strWhere = "AAStatus = 'Alive'";
-            DataTable dtData = SQLDBUtil.GetDataByTable(tableName, strWhere, colName);
-            if (dtData == null) return;
-            dtData.TableName = tableName;
-            ShowResultData(frmParent, dtData);
+            string strQuery = SQLDBUtil.GenerateQuery(tableName, strWhere, colName);
+            //DataTable dtData = SQLDBUtil.GetDataByTable(tableName, strWhere, colName);
+            //if (dtData == null) return;
+            //dtData.TableName = tableName;
+            ShowResultData(frmParent, null, strQuery);
         }
-        private static void ShowResultData(Window frmParent, DataTable dtSource, string strQuery = "")
-        {
-            if (dtSource != null)
-            {
-                ViewModels.ResultViewModel popupView = new ResultViewModel();
-                popupView.Title = "T-SQL";
-                popupView.Header = "T-SQL Result";
-                popupView.DataResults = new List<DataResults>();
-                Task.Factory.StartNew(() =>
-                {
-                    DataResults results = new DataResults();
-                    results.DataSource = dtSource;
-                    results.Title = dtSource.TableName;
-                    results.KeyBindingCommand = new RelayCommand<object>((x) => true, (x) => popupView.KeyBindingActionCommand(x));
-                    popupView.DataResults.Add(results);
-                }).Wait();
-                ShowPopupViewModal(popupView, new Views.ResultView());
-            }
-            else if(!string.IsNullOrEmpty(strQuery))
-            {
-                ShowResultDataView(strQuery);
-            }
-        }
+        
         //Ctrl + 0 View Connect Sql
         public static void GetViewConnectToSQL(Window frmParent)
         {
@@ -662,14 +767,7 @@ namespace SQLTool.Util
             }
             ShowResultData(frmParent, dt, "");
         }
-        private static void ShowPopupViewModal(BasePopupViewModel viewModel, System.Windows.Controls.UserControl view)
-        {
-            Views.BasePopupWindow popupWindow = new Views.BasePopupWindow() { DataContext = viewModel };
-            viewModel.isNoTabControl = Visibility.Visible;
-            viewModel.isTabControl = Visibility.Hidden;
-            popupWindow.waitLoadView.LoadingChild = view;
-            popupWindow.Show();
-        }
+        
         private static void AddEventByView(System.Windows.Controls.Control view, BasePopupViewModel viewModel, Key _key, ModifierKeys _modifierKeys)
         {
             InputBinding inputBinding = new KeyBinding(viewModel.KeyBindingCommand, _key, _modifierKeys);
@@ -698,22 +796,7 @@ namespace SQLTool.Util
             AddEventByView(view.reditData, popupView, Key.G, ModifierKeys.Control);
             ShowPopupViewModal(popupView, view);
         }
-        public static void ShowResultDataView(string strQuery)
-        {
-            ViewModels.ResultViewModel popupView = new ResultViewModel();
-            popupView.Title = "T-SQL";
-            popupView.Header = "T-SQL Result";
-            popupView.DataResults = new List<DataResults>();
-            Task.Factory.StartNew(() =>
-            {
-                DataResults results = new DataResults();
-                results.DataSource = SQLAppLib.SQLDBUtil.GetDataTable(strQuery);
-                results.Title = results.DataSource.TableName;
-                popupView.DataResults.Add(results);
-            }).Wait();
-            ShowPopupViewModal(popupView, new Views.ResultView());
-
-        }
+        
         #endregion
         #endregion
 

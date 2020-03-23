@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <dx:DXTabControl x:Name="tabControl" Grid.Row="0" Margin="0" Padding="0" ItemsSource="{Binding DataResults}">
             <dx:DXTabControl.View>
-                <dx:TabControlMultiLineView HeaderLocation="Top" HideButtonShowMode="InActiveTab" NewButtonShowMode="InTabPanel" RemoveTabItemsOnHiding="False" ShowHeaderMenu="False" Tag="Stretch"/>
+                <dx:TabControlMultiLineView HeaderLocation="Top" HideButtonShowMode="InHeaderArea" NewButtonShowMode="NoWhere" RemoveTabItemsOnHiding="True" ShowHeaderMenu="False" Tag="Stretch"/>
             </dx:DXTabControl.View>
             <dx:DXTabControl.ItemContainerStyle>
                 <Style TargetType="dx:DXTabItem">
