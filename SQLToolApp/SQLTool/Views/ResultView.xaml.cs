@@ -24,5 +24,16 @@ namespace SQLTool.Views
         {
             InitializeComponent();
         }
+
+        private void DgvDataResult_AutoGeneratingColumn(object sender, DevExpress.Xpf.Grid.AutoGeneratingColumnEventArgs e)
+        {
+            if(e.Column.FieldType.Equals(typeof(String)))
+                e.Column.AutoFilterCriteria = DevExpress.Data.Filtering.Helpers.ClauseType.Contains;
+            if (e.Column.FieldName == "id")
+            {
+                e.Column.Fixed = DevExpress.Xpf.Grid.FixedStyle.Left;
+                //e.Column.BestFit
+            }
+        }
     }
 }

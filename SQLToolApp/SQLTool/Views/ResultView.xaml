@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:SQLTool.Views"
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:c="clr-namespace:SQLTool.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-
+    <UserControl.Resources>
+        <c:MultiBindingValueConverter x:Key="myMultiBindingValue"/>
+        <c:GridColumnTemplate x:Key="myColumnTemplate"/>
+    </UserControl.Resources>
     <Grid Margin="0,3,0,0">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -20,16 +24,42 @@
                 <Style TargetType="dx:DXTabItem">
                     <Setter Property="Padding" Value="0"/>
                     <Setter Property="Margin" Value="0"/>
-                    <Setter Property="Content" Value="{Binding DataSource}" />
+                    <Setter Property="Content" Value="{Binding}" />
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <dxg:GridControl x:Name="dgvDataResult" ItemsSource="{Binding}" AutoGenerateColumns="AddNew" Margin="0" >
+                                <dxg:GridControl x:Name="dgvDataResult" ItemsSource="{Binding DataSource}" AutoGenerateColumns="AddNew" Margin="0" AutoGeneratingColumn="DgvDataResult_AutoGeneratingColumn">
                                     <dxg:GridControl.View>
-                                        <dxg:TableView ShowDataNavigator="True" ShowAutoFilterRow="True" AllowEditing="False">
+                                        <dxg:TableView ShowDataNavigator="True" AllowColumnFiltering="True" ShowAutoFilterRow="True" AllowEditing="False" x:Name="dgvResultView" SearchPanelFindFilter="Contains" SearchPanelCriteriaOperatorType="And">
                                             <dxg:TableView.InputBindings>
-                                                <KeyBinding Key="F" Command="{Binding KeyBindingCommand}" CommandParameter="" />
-                                                <KeyBinding Modifiers="Ctrl" Key="M" Command="{Binding KeyBindingCommand}" CommandParameter="" />
+                                                <KeyBinding Key="F" Command="{Binding KeyBindingCommand}">
+                                                    <KeyBinding.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource myMultiBindingValue}" ConverterParameter="None+F">
+                                                            <Binding ElementName="dgvResultView"/>
+                                                        </MultiBinding>
+                                                    </KeyBinding.CommandParameter>
+                                                </KeyBinding>
+                                                <KeyBinding Modifiers="Ctrl" Key="M" Command="{Binding KeyBindingCommand}">
+                                                    <KeyBinding.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource myMultiBindingValue}" ConverterParameter="Control+M">
+                                                            <Binding ElementName="dgvResultView"/>
+                                                        </MultiBinding>
+                                                    </KeyBinding.CommandParameter>
+                                                </KeyBinding>
+                                                <KeyBinding Modifiers="Ctrl" Key="H" Command="{Binding KeyBindingCommand}">
+                                                    <KeyBinding.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource myMultiBindingValue}" ConverterParameter="Control+H">
+                                                            <Binding ElementName="dgvResultView"/>
+                                                        </MultiBinding>
+                                                    </KeyBinding.CommandParameter>
+                                                </KeyBinding>
+                                                <KeyBinding Modifiers="Alt" Key="C" Command="{Binding KeyBindingCommand}">
+                                                    <KeyBinding.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource myMultiBindingValue}" ConverterParameter="Alt+C">
+                                                            <Binding ElementName="dgvResultView"/>
+                                                        </MultiBinding>
+                                                    </KeyBinding.CommandParameter>
+                                                </KeyBinding>
                                             </dxg:TableView.InputBindings>
                                         </dxg:TableView>
                                     </dxg:GridControl.View>

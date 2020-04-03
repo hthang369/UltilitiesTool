@@ -159,7 +159,7 @@ namespace SQLTool.Util
                     DataResults results = new DataResults();
                     results.DataSource = dtSource;
                     results.Title = dtSource.TableName;
-                    results.KeyBindingCommand = new RelayCommand<object>((x) => true, (x) => popupView.KeyBindingActionCommand(x));
+                    results.KeyBindingCommand = new RelayCommand<object>((x) => true, (x) => popupView.KeyBindingActionCommand((object[])x));
                     popupView.DataResults.Add(results);
                 }).Wait();
                 ShowPopupViewModal(popupView, new Views.ResultView());
@@ -181,6 +181,7 @@ namespace SQLTool.Util
                 DataResults results = new DataResults();
                 results.DataSource = SQLAppLib.SQLDBUtil.GetDataTable(strQuery);
                 results.Title = results.DataSource.TableName;
+                results.KeyBindingCommand = new RelayCommand<object>((x) => true, (x) => popupView.KeyBindingActionCommand((object[])x));
                 popupView.DataResults.Add(results);
             }).Wait();
             ShowPopupViewModal(popupView, new Views.ResultView());
@@ -195,39 +196,13 @@ namespace SQLTool.Util
             (view as Views.ResultView).tabControl.TabContentCacheMode = DevExpress.Xpf.Core.TabContentCacheMode.None;
             (view as Views.ResultView).tabControl.TabRemoved += TabControl_TabRemoved;
             //(view as Views.ResultView).tabControl.KeyUp += TabControl_KeyUp;
-            ICommand commandKey = new RelayCommand<object>((x) => true, (x) => KeyBindingActionCommand(x));
-            InputBinding input = new KeyBinding(commandKey, Key.V, ModifierKeys.Alt);
-            input.CommandParameter = "Alt+V";
-            (view as Views.ResultView).tabControl.InputBindings.Add(input);
+            //ICommand commandKey = new RelayCommand<object>((x) => true, (x) => KeyBindingActionCommand(x));
+            //InputBinding input = new KeyBinding(commandKey, Key.V, ModifierKeys.Alt);
+            //input.CommandParameter = "Alt+V";
+            //(view as Views.ResultView).tabControl.InputBindings.Add(input);
             popupWindow.Closed += PopupWindow_Closed;
             (view as Views.ResultView).tabControl.TabIndex = (view as Views.ResultView).tabControl.Items.Count - 1;
             popupWindow.Show();
-        }
-
-        private static void KeyBindingActionCommand(object x)
-        {
-            string[] arr = Convert.ToString(x).Split('+');
-            Key key = (Key)Enum.Parse(typeof(Key), arr.LastOrDefault());
-            ModifierKeys modifier = (ModifierKeys)Enum.Parse(typeof(ModifierKeys), arr.FirstOrDefault());
-            switch (modifier)
-            {
-                case ModifierKeys.Alt:
-                    switch (key)
-                    {
-                        case Key.V:
-                            DevExpress.Xpf.Core.DXTabItem tabItem = ((popupWindow.waitLoadView.Child as Views.ResultView).tabControl.SelectedTabItem as DevExpress.Xpf.Core.DXTabItem);
-                            object obj = (tabItem.ContentTemplate as DataTemplate).FindName("dgvDataResult", tabItem);
-                            //Clipboard.SetDataObject();
-                            break;
-                    }
-                    break;
-                case ModifierKeys.Control:
-                    break;
-                case ModifierKeys.Shift:
-                    break;
-                case ModifierKeys.None:
-                    break;
-            }
         }
 
         private static void PopupWindow_Closed(object sender, EventArgs e)
