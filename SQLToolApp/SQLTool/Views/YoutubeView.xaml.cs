@@ -29,20 +29,21 @@ namespace SQLTool.Views
 
         private void LvwResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            YouTubeApi.Views.SearchResult result = e.AddedItems[0] as YouTubeApi.Views.SearchResult;
-            YouTubeApi.YouTubeApiRestClient youTubeApi = (this.DataContext as ViewModels.YoutubeViewModel).youTubeApi;
-            youTubeApi.GetVideos("player", result.Id.VideoId);
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<iframe ");
-            sb.Append("width='420' height='315' ");
-            sb.AppendFormat("src='{0}{1}'", "http://www.youtube.com/embed/", result.Id.VideoId);
-            sb.Append(" />");
-            string result1 =  youTubeApi.GetLinkVideo(result.Id.VideoId);
+            
+            //YouTubeApi.Views.SearchResult result = e.AddedItems[0] as YouTubeApi.Views.SearchResult;
+            //YouTubeApi.YouTubeApiRestClient youTubeApi = (this.DataContext as ViewModels.YoutubeViewModel).youTubeApi;
+            //youTubeApi.GetVideos("player", result.Id.VideoId);
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append("<iframe ");
+            //sb.Append("width='420' height='315' ");
+            //sb.AppendFormat("src='{0}{1}'", "http://www.youtube.com/embed/", result.Id.VideoId);
+            //sb.Append(" />");
+            //string result1 =  youTubeApi.GetLinkVideo(result.Id.VideoId);
             //frmMediaSource.Navigated += FrmMediaSource_Navigated;
             //(this.DataContext as ViewModels.YoutubeViewModel).HtmlToDisplay = sb.ToString();
             //(this.DataContext as ViewModels.YoutubeViewModel).HtmlToDisplay = "<h1>abcvgđ</h1>";
             //frmMediaSource.Navigate(string.Format("http://www.youtube.com/embed/{0}", result.Id.VideoId));
-            System.IO.FileStream file = new System.IO.FileStream(System.Windows.Forms.Application.StartupPath + "\\player.html", System.IO.FileMode.Open);
+            //System.IO.FileStream file = new System.IO.FileStream(System.Windows.Forms.Application.StartupPath + "\\player.html", System.IO.FileMode.Open);
             //frmMediaSource.NavigateToStream(file);
             //frmMediaSource.Address = "https://www.youtube.com/embed/cMtxUc2GtlE";
             //frmMediaSource.ObjectForScripting = true;

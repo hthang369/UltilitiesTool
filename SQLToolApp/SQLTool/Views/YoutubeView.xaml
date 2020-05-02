@@ -6,7 +6,8 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:SQLTool.Views"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" x:Class="SQLTool.Views.YoutubeView"
             xmlns:clr="clr-namespace:SQLTool.Util"
-            
+    xmlns:eo="clr-namespace:EO.WebBrowser;assembly=EO.WebBrowser"
+    xmlns:eo1="http://schemas.essentialobjects.com/wpf/"
     mc:Ignorable="d" d:DesignWidth="300">
     <Grid Margin="0">
         <dx:DXTabControl >
@@ -91,6 +92,13 @@
                 </Grid>
             </dx:DXTabItem>
             <dx:DXTabItem Header="web">
+                <eo:WebView Url="https://www.youtube.com/watch?v=eZL4MNkUv-s" />
+                <!--<eo1:WebControl>
+                    <eo1:WebControl.WebView>
+                        <eo1:WebView Url="https://www.youtube.com/watch?v=eZL4MNkUv-s"/>
+                    </eo1:WebControl.WebView>
+                </eo1:WebControl>-->
+                <!--<eo:WebView x:Name="webView" Url="https://www.youtube.com/watch?v=eZL4MNkUv-s"  />-->
                 <!--<WindowsFormsHost>-->
                     <!--<winForms:WebBrowser x:Name="frmMediaSource" ScriptErrorsSuppressed="True" AllowWebBrowserDrop="False" ></winForms:WebBrowser>
                 </WindowsFormsHost>-->

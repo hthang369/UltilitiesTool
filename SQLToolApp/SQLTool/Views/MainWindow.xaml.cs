@@ -79,7 +79,7 @@ namespace SQLTool
 
         private void LstFunction_KeyDown(object sender, KeyEventArgs e)
         {
-            mainViewModel.KeyActionCommand(sender, e);
+            mainViewModel.KeyViewActionCommand(sender, e);
         }
 
         private void LstFunction_SelectedItemChanged(object sender, DevExpress.Xpf.Grid.SelectedItemChangedEventArgs e)

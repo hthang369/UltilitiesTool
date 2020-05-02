@@ -1,4 +1,5 @@
-﻿using SQLAppLib;
+﻿using DevExpress.Xpf.Core;
+using SQLAppLib;
 using SQLTool.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -74,7 +75,7 @@ namespace SQLTool.Util
                 }
             }
             if (isReturn) return;
-            List<string> lstFuncs = SQLApp.GetKeysIniFile(strCfgScriptName, strFuncName);
+            List<string> lstFuncs = SQLApp.GetKeysIniFile(strCfgScriptName, strFuncName, 3000);
             List<FunctionListObject> lstObjectFuncs = new List<FunctionListObject>();
             lstFuncs.ForEach(x =>
             {
@@ -115,8 +116,16 @@ namespace SQLTool.Util
                     strValue = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "Val", i)));
                     string strValueDef = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "ValDef", i)));
                     string strValList = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "ValList", i)));
+                    string strListFolder = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "ListFolder", i)));
                     MessageBoxResult result;
-                    if (!string.IsNullOrEmpty(strValList))
+                    if (!string.IsNullOrEmpty(strListFolder))
+                    {
+                        string sourceUrl = SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
+                        string[] lstModules = Directory.GetDirectories(string.Concat(sourceUrl,"\\",strListFolder));
+                        string[] lstModuleNames = lstModules.ToList().Select(x => new DirectoryInfo(x).Name).ToArray();
+                        result = PromptForm.ShowCombobox("Dynamic parameter for script: " + functionObj.Text, param, lstModuleNames, ref strValue);
+                    }
+                    else if (!string.IsNullOrEmpty(strValList))
                         result = PromptForm.ShowCombobox("Dynamic parameter for script: " + functionObj.Text, param, strValList.Split('|'), ref strValue);
                     else
                         result = PromptForm.ShowText("Dynamic parameter for script: " + functionObj.Text, param, ref strValue);
@@ -152,16 +161,10 @@ namespace SQLTool.Util
                 ViewModels.ResultViewModel popupView = GetResultPopupView();
                 popupView.Title = "T-SQL";
                 popupView.Header = "T-SQL Result";
-                if (popupView.DataResults == null)
-                    popupView.DataResults = new List<DataResults>();
                 Task.Factory.StartNew(() =>
                 {
-                    DataResults results = new DataResults();
-                    results.DataSource = dtSource;
-                    results.Title = dtSource.TableName;
-                    results.KeyBindingCommand = new RelayCommand<object>((x) => true, (x) => popupView.KeyBindingActionCommand((object[])x));
-                    popupView.DataResults.Add(results);
-                }).Wait();
+                    return dtSource;
+                }).ContinueWith(r => AddControlsToGrid(popupView, r.Result), TaskScheduler.FromCurrentSynchronizationContext());
                 ShowPopupViewModal(popupView, new Views.ResultView());
             }
             else if (!string.IsNullOrEmpty(strQuery))
@@ -174,17 +177,29 @@ namespace SQLTool.Util
             ViewModels.ResultViewModel popupView = GetResultPopupView();
             popupView.Title = "T-SQL";
             popupView.Header = "T-SQL Result";
-            if (popupView.DataResults == null)
-                popupView.DataResults = new List<DataResults>();
+
             Task.Factory.StartNew(() =>
             {
-                DataResults results = new DataResults();
-                results.DataSource = SQLAppLib.SQLDBUtil.GetDataTable(strQuery);
-                results.Title = results.DataSource.TableName;
-                results.KeyBindingCommand = new RelayCommand<object>((x) => true, (x) => popupView.KeyBindingActionCommand((object[])x));
-                popupView.DataResults.Add(results);
-            }).Wait();
+                return SQLAppLib.SQLDBUtil.GetDataTable(strQuery);
+            }).ContinueWith(r => AddControlsToGrid(popupView, r.Result), TaskScheduler.FromCurrentSynchronizationContext());
             ShowPopupViewModal(popupView, new Views.ResultView());
+        }
+        private static void AddControlsToGrid(BasePopupViewModel viewModel, DataTable dtSource)
+        {
+            if (viewModel is ResultViewModel)
+            {
+                ResultViewModel result = (viewModel as ResultViewModel);
+                if (result.lstTabItems == null)
+                    result.lstTabItems = new System.Collections.ObjectModel.ObservableCollection<DXTabItem>();
+                DXTabItem tabItem = new DXTabItem();
+                BaseGridControl gridControl = new BaseGridControl();
+                BaseTableView tableView = new BaseTableView();
+                gridControl.View = tableView;
+                gridControl.ItemsSource = dtSource;
+                tabItem.Header = dtSource.TableName;
+                tabItem.Content = gridControl;
+                result.lstTabItems.Add(tabItem);
+            }
         }
         private static void ShowPopupViewModal(BasePopupViewModel viewModel, System.Windows.Controls.UserControl view)
         {
@@ -193,15 +208,18 @@ namespace SQLTool.Util
             viewModel.isNoTabControl = Visibility.Visible;
             viewModel.isTabControl = Visibility.Hidden;
             popupWindow.waitLoadView.LoadingChild = view;
-            (view as Views.ResultView).tabControl.TabContentCacheMode = DevExpress.Xpf.Core.TabContentCacheMode.None;
-            (view as Views.ResultView).tabControl.TabRemoved += TabControl_TabRemoved;
+            popupWindow.Closed += PopupWindow_Closed;
             //(view as Views.ResultView).tabControl.KeyUp += TabControl_KeyUp;
             //ICommand commandKey = new RelayCommand<object>((x) => true, (x) => KeyBindingActionCommand(x));
             //InputBinding input = new KeyBinding(commandKey, Key.V, ModifierKeys.Alt);
             //input.CommandParameter = "Alt+V";
             //(view as Views.ResultView).tabControl.InputBindings.Add(input);
-            popupWindow.Closed += PopupWindow_Closed;
-            (view as Views.ResultView).tabControl.TabIndex = (view as Views.ResultView).tabControl.Items.Count - 1;
+            if (view is Views.ResultView)
+            {
+                (view as Views.ResultView).tabControl.TabContentCacheMode = DevExpress.Xpf.Core.TabContentCacheMode.None;
+                (view as Views.ResultView).tabControl.TabRemoved += TabControl_TabRemoved;
+                (view as Views.ResultView).tabControl.TabIndex = (view as Views.ResultView).tabControl.Items.Count - 1;
+            }
             popupWindow.Show();
         }
 
@@ -751,8 +769,8 @@ namespace SQLTool.Util
         }
         public static void ShowYoutubeView()
         {
-            //ViewModels.YoutubeViewModel popupView = new YoutubeViewModel();
-            //ShowPopupViewModal(popupView, new Views.YoutubeView());
+            ViewModels.YoutubeViewModel popupView = new YoutubeViewModel();
+            ShowPopupViewModal(popupView, new Views.YoutubeView());
         }
         public static void ShowFlashDealView()
         {
@@ -783,7 +801,10 @@ namespace SQLTool.Util
             string strScript = GetScriptCommandByFuncName(functionObj.FuncName);
             strScript = GenerateScriptWithParameters(functionObj, strScript, frmParent);
             if (string.IsNullOrEmpty(strScript))
+            {
                 DevExpress.XtraEditors.XtraMessageBox.Show("Không có mã thực thi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             SQLAppWaitingDialog.ShowDialog();
             string sourceUrl = SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
             string output = SQLApp.ExecutedPowerShell(string.Format("cd {0} {1} {2}", sourceUrl, Environment.NewLine, strScript));

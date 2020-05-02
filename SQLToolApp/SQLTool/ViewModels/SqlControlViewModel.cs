@@ -60,7 +60,8 @@ namespace SQLTool.ViewModels
             if (string.IsNullOrEmpty(Convert.ToString(key))) return;
             (Parent as Views.SqlControlView).cboServer.SelectedItem = null;
             (Parent as Views.SqlControlView).cboDatabase.SelectedItem = null;
-            lstDatabase.Clear();
+            if(lstDatabase != null)
+                lstDatabase.Clear();
             lstServers = Util.FunctionList.LoadConfigInitToList(Convert.ToString(key));
             HideWaitIndicator(Parent);
         }
@@ -71,7 +72,8 @@ namespace SQLTool.ViewModels
             try
             {
                 string keySection = Convert.ToString((Parent as Views.SqlControlView).cboSqlType.SelectedItem);
-                lstDatabase.Reset();
+                if(lstDatabase != null)
+                    lstDatabase.Reset();
                 lstDatabase = Util.FunctionList.LoadDatabaseByServer(keySection, (int)idx);
                 //lstServers = Util.FunctionList.LoadConfigInitToList(Convert.ToString(key));
             }

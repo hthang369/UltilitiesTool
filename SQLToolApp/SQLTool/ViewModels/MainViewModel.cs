@@ -115,6 +115,23 @@ namespace SQLTool.ViewModels
 
         }
 
+        internal void KeyViewActionCommand(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Enter:
+                    if (sender is TableView)
+                    {
+                        FunctionListObject func = (sender as TableView).SelectedRows.Cast<FunctionListObject>().FirstOrDefault();
+                        if (!string.IsNullOrEmpty(func.FuncName))
+                            Util.FunctionList.CallMethodName(func.FuncName, this.frmMain);
+                        else if (!string.IsNullOrEmpty(func.Path))
+                            Util.FunctionList.LoadQueryPath(func, this.frmMain);
+                    }
+                    break;
+            }
+        }
+
         internal void KeyActionCommand(object sender, System.Windows.Input.KeyEventArgs e)
         {
             switch (e.Key)
@@ -132,16 +149,6 @@ namespace SQLTool.ViewModels
                     if (e.KeyboardDevice.Modifiers == ModifierKeys.Alt)
                     {
 
-                    }
-                    break;
-                case Key.Enter:
-                    if(sender is TableView)
-                    {
-                        FunctionListObject func = (sender as TableView).SelectedRows.Cast<FunctionListObject>().FirstOrDefault();
-                        if (!string.IsNullOrEmpty(func.FuncName))
-                            Util.FunctionList.CallMethodName(func.FuncName, this.frmMain);
-                        else if (!string.IsNullOrEmpty(func.Path))
-                            Util.FunctionList.LoadQueryPath(func, this.frmMain);
                     }
                     break;
             }

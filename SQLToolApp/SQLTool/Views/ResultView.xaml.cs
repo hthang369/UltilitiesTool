@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
+using SQLTool.Util;
 using SQLTool.ViewModels;
 
 namespace SQLTool.Views
@@ -27,13 +28,34 @@ namespace SQLTool.Views
 
         private void DgvDataResult_AutoGeneratingColumn(object sender, DevExpress.Xpf.Grid.AutoGeneratingColumnEventArgs e)
         {
-            if(e.Column.FieldType.Equals(typeof(String)))
-                e.Column.AutoFilterCriteria = DevExpress.Data.Filtering.Helpers.ClauseType.Contains;
-            if (e.Column.FieldName == "id")
-            {
-                e.Column.Fixed = DevExpress.Xpf.Grid.FixedStyle.Left;
-                //e.Column.BestFit
-            }
+            
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            //if(this.DataContext != null)
+            //{
+            //    try
+            //    {
+            //        ResultViewModel resultView = this.DataContext as ResultViewModel;
+            //        if (resultView.isTabControl == Visibility.Hidden && resultView.DataResults.Count > 0)
+            //        {
+            //            foreach (DataResults item in resultView.DataResults)
+            //            {
+            //                DXTabItem tabItem = new DXTabItem();
+            //                tabItem.Header = item.Title;
+                            
+                            
+            //                tabControl.Items.Add(tabItem);
+            //                //tabControl.InsertTabItem(tabItem, resultView.DataResults.IndexOf(item));
+            //            }
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+
+            //    }
+            //}
         }
     }
 }
