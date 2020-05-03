@@ -9,7 +9,7 @@ namespace SQLTool.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        MainWindow mainWindow;
+        protected MainWindow mainWindow;
         bool isBusy = false;
         public bool IsBusy
         {

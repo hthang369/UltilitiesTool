@@ -41,10 +41,28 @@ namespace SQLTool.ViewModels
             frmMain = window;
             iLvsWidth = window.Width - 30;
             lstFunctions = new List<FunctionListObject>();
+
+            btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+            btnEditCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+            btnDelCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+            btnVerCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+
+            KeyBindingCommand = new RelayCommand<object>((x) => CanExecute(), (x) => KeyBindingActionCommand(x));
+
+            LoadMainMenu();
+        }
+
+        public void LoadMainMenu(string strFolder = "")
+        {
+            lstFunctions.Clear();
             string strPath = System.Windows.Forms.Application.StartupPath + "\\Scripts\\config.ini";
             string strSectionCaption = "Captions";
             string strSectionFunc = "Funcs";
-            string[] arrFunctions = Directory.GetFiles(System.Windows.Forms.Application.StartupPath + "\\Scripts", "*.sql");
+            string strPathFunc = System.Windows.Forms.Application.StartupPath + "\\Scripts";
+            List<string> arrFunctions = Directory.GetFiles(strPathFunc, "*.sql").ToList();
+            if (!string.IsNullOrEmpty(strFolder))
+                arrFunctions.AddRange(Directory.GetFiles(strPathFunc + "\\" + strFolder, "*.sql"));
+
             List<string> funcCaptions = SQLApp.GetKeysIniFile(strPath, strSectionCaption);
             Parallel.ForEach(arrFunctions, (item) =>
             {
@@ -68,13 +86,6 @@ namespace SQLTool.ViewModels
                     lstFunctions.Add(new FunctionListObject { Name = strName, Text = strText, FuncName = strFuncName });
                 }
             });
-
-            btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
-            btnEditCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
-            btnDelCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
-            btnVerCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
-
-            KeyBindingCommand = new RelayCommand<object>((x) => CanExecute(), (x) => KeyBindingActionCommand(x));
         }
 
         private void ActionCommand(object item)
@@ -136,6 +147,9 @@ namespace SQLTool.ViewModels
         {
             switch (e.Key)
             {
+                case Key.F3:
+                    Util.FunctionList.ShowChangeTheme();
+                    break;
                 case Key.F9:
                     Util.FunctionList.ShowEditDataView();
                     break;

@@ -63,6 +63,13 @@ namespace SQLTool.ViewModels
             if(lstDatabase != null)
                 lstDatabase.Clear();
             lstServers = Util.FunctionList.LoadConfigInitToList(Convert.ToString(key));
+            GetMainWindow(Parent);
+            if (mainWindow.DataContext is MainViewModel)
+            {
+                (mainWindow.DataContext as MainViewModel).LoadMainMenu(Convert.ToString(key));
+                mainWindow.lstFunction.RefreshData();
+            }
+
             HideWaitIndicator(Parent);
         }
 

@@ -38,6 +38,36 @@ namespace SQLTool.Util
         public static string strDynPara = "DynPara";
         private static ViewModels.ResultViewModel popupView;
         private static Views.BasePopupWindow popupWindow;
+        private static string _strThemeApp = "ThemeApp";
+        private static string _strThemeName = "ThemeName";
+
+        #region Theme
+        public static string GetThemeName()
+        {
+            string _themeName = SQLApp.GetIniFile(strFileName, _strThemeApp, _strThemeName);
+            if (string.IsNullOrEmpty(_themeName)) _themeName = Properties.Resources.ThemeName;
+            return _themeName;
+        }
+
+        public static void SetThemeName(string themeName)
+        {
+            SQLApp.SetIniFile(strFileName, _strThemeApp, _strThemeName, themeName);
+        }
+
+        public static void ShowChangeTheme()
+        {
+            string _themeName = ApplicationThemeHelper.ApplicationThemeName;
+            if (PromptForm.ShowCombobox("Change Theme", "Theme Name", Theme.Themes.Select(x => x.Name).ToArray(), ref _themeName) == MessageBoxResult.Cancel)
+                return;
+
+            SetThemeName(_themeName);
+
+            System.Diagnostics.Process.Start(System.Windows.Forms.Application.ExecutablePath);
+            Environment.Exit(Environment.ExitCode);
+
+            //ApplicationThemeHelper.ApplicationThemeName = _themeName;
+        }
+        #endregion
 
         #region CallMethod
         public static void CallMethodName(string strFuncName, Window frmParent)

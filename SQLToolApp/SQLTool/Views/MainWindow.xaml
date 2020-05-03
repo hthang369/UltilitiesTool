@@ -53,7 +53,7 @@
         <Grid Grid.Row="2">
             <dxg:GridControl x:Name="lstFunction" ItemsSource="{Binding lstFunctions}" SelectedItemChanged="LstFunction_SelectedItemChanged" >
                 <dxg:GridControl.View>
-                    <dxg:TableView ShowGroupPanel="False" AllowEditing="True" AutoWidth="True" AllowBestFit="True" BestFitMode="AllRows" ShowIndicator="False" PreviewKeyDown="LstFunction_KeyDown"/>
+                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False" AutoWidth="True" AllowBestFit="True" BestFitMode="AllRows" ShowIndicator="False" PreviewKeyDown="LstFunction_KeyDown" ShowColumnHeaders="False" />
                 </dxg:GridControl.View>
                 <dxg:GridColumn FixedWidth="True" FieldName="Name" Header="Name" ReadOnly="True" ShowInColumnChooser="False" Visible="False"/>
                 <dxg:GridColumn AllowResizing="False" AllowSorting="False" AllowMoving="False" FieldName="Text" Header="Text" ReadOnly="True" ShowInColumnChooser="False" BestFitMode="AllRows" AllowEditing="False"/>

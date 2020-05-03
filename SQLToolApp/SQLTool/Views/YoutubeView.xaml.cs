@@ -25,6 +25,13 @@ namespace SQLTool.Views
         {
             InitializeComponent();
             lvwResult.SelectionChanged += LvwResult_SelectionChanged;
+
+            //this.webSource. = String.Format("<html><head>" +
+            //        "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"/>" +
+            //        "</head><body>" +
+            //        "<iframe width=\"100%\" height=\"315\" src=\"https://www.youtube.com/embed/{0}?autoplay=1\"" +
+            //        "frameborder = \"0\" allow = \"autoplay; encrypted-media\" allowfullscreen></iframe>" +
+            //        "</body></html>", VideoID);
         }
 
         private void LvwResult_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -50,8 +50,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <StackPanel Grid.Column="1">
-                        <MediaElement x:Name="mediaSource" LoadedBehavior="Manual" Source="" />
-                        
+                        <!--<MediaElement x:Name="mediaSource" LoadedBehavior="Manual" Source="https://www.youtube.com/watch?v=eCvPy3OMWlw" />-->
                     </StackPanel>
                 </Grid>
             </dx:DXTabItem>
