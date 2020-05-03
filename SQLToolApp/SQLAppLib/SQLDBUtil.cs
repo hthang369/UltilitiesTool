@@ -813,6 +813,11 @@ namespace SQLAppLib
         }
 
         #endregion
+        public static string GenerateQuery(string strTblName, string strWhere = "", string strCol = "*")
+        {
+            string strSubWhere = (!string.IsNullOrEmpty(strWhere)) ? "WHERE " + strWhere : "";
+            return string.Format("SELECT {0} FROM {1} {2}", strCol, strTblName, strSubWhere);
+        }
         public static DataTable GetDataTableByDataSet(DataSet ds)
         {
             DataTable dt = null;
@@ -822,8 +827,7 @@ namespace SQLAppLib
         }
         public static DataTable GetDataByTable(string strTblName, string strWhere = "", string strCol = "*")
         {
-            string strSubWhere = (!string.IsNullOrEmpty(strWhere)) ? "WHERE " + strWhere : "";
-            return RunQueryTable(string.Format("SELECT {0} FROM {1} {2}", strCol, strTblName, strSubWhere));
+            return RunQueryTable(GenerateQuery(strTblName, strWhere, strCol));
         }
         public static DataTable GetTableColumns(string strTblName)
         {

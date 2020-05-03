@@ -62,10 +62,10 @@ namespace SQLAppLib
         {
             WritePrivateProfileString(szSection, szKey, szData, szFile);
         }
-        public static List<string> GetKeysIniFile(string szFile, string szSection)
+        public static List<string> GetKeysIniFile(string szFile, string szSection, int bufferSize = 1000)
         {
-            string value = new string(' ', 1000);
-            int uiNumCharCopied = GetPrivateProfileSection(szSection, value, 1000, szFile);
+            string value = new string(' ', bufferSize);
+            int uiNumCharCopied = GetPrivateProfileSection(szSection, value, bufferSize, szFile);
             List<string> lstOutputs = new List<string>();
             lstOutputs = value.Split('\0').Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.TrimEnd(Convert.ToChar(0)).Split('=').FirstOrDefault()).ToList();
             return lstOutputs;
