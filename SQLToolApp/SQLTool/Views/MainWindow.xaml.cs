@@ -31,6 +31,8 @@ namespace SQLTool
         {
             InitializeComponent();
             DataContext = mainViewModel = new MainViewModel(this);
+            this.ctrlFrom.RegisterName("svrFrom", true);
+            this.ctrlTo.RegisterName("svrTo", true);
             //_waitIndicatorService = ServiceContainer.Default.GetService<ISplashScreenService>("WaitIndicatorService");
             //if (_waitIndicatorService != null)
             //    _waitIndicatorService.ShowSplashScreen(this.Name);

@@ -1,7 +1,10 @@
-﻿using DevExpress.Xpf.Grid;
+﻿using DevExpress.Xpf.Core;
+using DevExpress.Xpf.Editors.Settings;
+using DevExpress.Xpf.Grid;
 using SQLTool.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,20 +90,26 @@ namespace SQLTool.Util
         {
             if (e.Column.FieldType.Equals(typeof(String)))
                 e.Column.AutoFilterCriteria = DevExpress.Data.Filtering.Helpers.ClauseType.Contains;
-            else if (e.Column.FieldType.Equals(typeof(Int32)) || 
+            else if (e.Column.FieldType.Equals(typeof(Int32)) ||
                 e.Column.FieldType.Equals(typeof(UInt32)) ||
                 e.Column.FieldType.Equals(typeof(Byte)))
                 e.Column.AutoFilterCriteria = DevExpress.Data.Filtering.Helpers.ClauseType.Equals;
+            else if (e.Column.FieldType.Equals(typeof(DateTime)) ||
+                e.Column.FieldType.Equals(typeof(DateTime?)))
+            {
+                e.Column.EditSettings = new DateEditSettings();
+                e.Column.EditSettings.DisplayFormat = "dd/MM/yyyy hh:mm:ss";
+            }
             if (e.Column.FieldName == "id")
             {
                 e.Column.Fixed = DevExpress.Xpf.Grid.FixedStyle.Left;
-                //e.Column.BestFit
+                e.Column.BestFitArea = BestFitArea.Rows;
             }
         }
 
-        protected override void OnKeyDown(KeyEventArgs e)
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
-            base.OnKeyDown(e);
+            base.OnPreviewKeyDown(e);
             object objFocusVal = this.GetFocusedValue();
             TableView objTableView = (this.View as TableView);
             switch (e.Key)
@@ -111,8 +120,23 @@ namespace SQLTool.Util
                 case Key.Escape:
                     objTableView.FocusedColumn.AutoFilterValue = string.Empty;
                     break;
-
+                case Key.F5:
+                    DXTabItem tabItem = this.Parent as DXTabItem;
+                    ViewModels.ResultViewModel resultView = tabItem.DataContext as ViewModels.ResultViewModel;
+                    string strQuery = resultView.DataResults[tabItem.Header.ToString()];
+                    SQLAppLib.SQLAppWaitingDialog.ShowDialog();
+                    Task.Factory.StartNew(() =>
+                    {
+                        return SQLAppLib.SQLDBUtil.GetDataTable(strQuery);
+                    }).ContinueWith(r => RefeshDataSource(r.Result), TaskScheduler.FromCurrentSynchronizationContext());
+                    break;
             }
+        }
+
+        protected void RefeshDataSource(DataTable dtSource)
+        {
+            this.ItemsSource = dtSource;
+            SQLAppLib.SQLAppWaitingDialog.HideDialog();
         }
     }
 }

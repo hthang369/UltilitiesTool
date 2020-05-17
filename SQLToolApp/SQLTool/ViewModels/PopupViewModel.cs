@@ -30,8 +30,7 @@ namespace SQLTool.ViewModels
             get => _valueReturn;
             set
             {
-                if(value != null)
-                    SetProperty(ref _valueReturn, value);
+                SetProperty(ref _valueReturn, value);
             }
         }
         private object _dataSource;

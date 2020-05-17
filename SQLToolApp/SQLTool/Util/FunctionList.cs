@@ -37,9 +37,34 @@ namespace SQLTool.Util
         public static Dictionary<string, string> lstFuncLst;
         public static string strDynPara = "DynPara";
         private static ViewModels.ResultViewModel popupView;
+        private static ViewModels.CompareResultViewModel comparePopupView;
         private static Views.BasePopupWindow popupWindow;
         private static string _strThemeApp = "ThemeApp";
         private static string _strThemeName = "ThemeName";
+        private static string _strFontApp = "FontApp";
+        private static string _ctrlFrom = "ctrlFrom";
+        private static string _ctrlTo = "ctrlTo";
+        private static MainWindow mainWindow;
+
+        public static void SetWindowParent(Window frm)
+        {
+            mainWindow = frm as MainWindow;
+        }
+
+        public static string GetSourceCodePath()
+        {
+            return SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
+        }
+
+        public static bool CheckSelectedDB()
+        {
+            if (mainWindow != null && string.IsNullOrEmpty(Convert.ToString(mainWindow.ctrlFrom.cboDatabase.SelectedItem)))
+            {
+                ShowMessenge("Vui lòng chọn DB", "Thông báo", MessageBoxImage.Warning);
+                return false;
+            }
+            return true;
+        }
 
         #region Theme
         public static string GetThemeName()
@@ -62,10 +87,11 @@ namespace SQLTool.Util
 
             SetThemeName(_themeName);
 
-            System.Diagnostics.Process.Start(System.Windows.Forms.Application.ExecutablePath);
-            Environment.Exit(Environment.ExitCode);
 
-            //ApplicationThemeHelper.ApplicationThemeName = _themeName;
+            //System.Diagnostics.Process.Start(System.Windows.Forms.Application.ExecutablePath);
+            //Environment.Exit(Environment.ExitCode);
+
+            ApplicationThemeHelper.ApplicationThemeName = _themeName;
         }
         #endregion
 
@@ -144,7 +170,6 @@ namespace SQLTool.Util
                 {
                     string param = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "Name", i)));
                     strValue = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "Val", i)));
-                    string strValueDef = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "ValDef", i)));
                     string strValList = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "ValList", i)));
                     string strListFolder = Convert.ToString(SQLApp.GetIniFile(strFileCfgScript, strDynPara, string.Concat(functionObj.Name, "ListFolder", i)));
                     MessageBoxResult result;
@@ -166,7 +191,7 @@ namespace SQLTool.Util
                     if(!string.IsNullOrEmpty(param))
                         strScript = strScript.Replace(param, strValue);
                     if(!string.IsNullOrEmpty(strValList) && !string.IsNullOrEmpty(strValue))
-                        strScript = string.Concat(strScript, " ", strValueDef, strValue);
+                        strScript = string.Concat(strScript, " ", strValue);
                 }
             }
             return strScript;
@@ -183,7 +208,12 @@ namespace SQLTool.Util
                 popupWindow = new Views.BasePopupWindow();
             return popupWindow;
         }
-        
+        private static ViewModels.CompareResultViewModel GetCompareResultPopupView()
+        {
+            if (comparePopupView == null)
+                comparePopupView = new CompareResultViewModel();
+            return comparePopupView;
+        }
         private static void ShowResultData(Window frmParent, DataTable dtSource, string strQuery = "")
         {
             if (dtSource != null)
@@ -194,7 +224,7 @@ namespace SQLTool.Util
                 Task.Factory.StartNew(() =>
                 {
                     return dtSource;
-                }).ContinueWith(r => AddControlsToGrid(popupView, r.Result), TaskScheduler.FromCurrentSynchronizationContext());
+                }).ContinueWith(r => AddControlsToGrid(popupView, r.Result, strQuery), TaskScheduler.FromCurrentSynchronizationContext());
                 ShowPopupViewModal(popupView, new Views.ResultView());
             }
             else if (!string.IsNullOrEmpty(strQuery))
@@ -211,17 +241,20 @@ namespace SQLTool.Util
             Task.Factory.StartNew(() =>
             {
                 return SQLAppLib.SQLDBUtil.GetDataTable(strQuery);
-            }).ContinueWith(r => AddControlsToGrid(popupView, r.Result), TaskScheduler.FromCurrentSynchronizationContext());
+            }).ContinueWith(r => AddControlsToGrid(popupView, r.Result, strQuery), TaskScheduler.FromCurrentSynchronizationContext());
             ShowPopupViewModal(popupView, new Views.ResultView());
         }
-        private static void AddControlsToGrid(BasePopupViewModel viewModel, DataTable dtSource)
+        private static void AddControlsToGrid(BasePopupViewModel viewModel, DataTable dtSource, string strQuery)
         {
             if (viewModel is ResultViewModel)
             {
                 ResultViewModel result = (viewModel as ResultViewModel);
                 if (result.lstTabItems == null)
                     result.lstTabItems = new System.Collections.ObjectModel.ObservableCollection<DXTabItem>();
+                if (result.DataResults == null)
+                    result.DataResults = new Dictionary<string, string>();
                 DXTabItem tabItem = new DXTabItem();
+                tabItem.FontSize = Convert.ToDouble(SQLApp.GetIniFile(strFileName, _strFontApp, "FontSize"));
                 BaseGridControl gridControl = new BaseGridControl();
                 BaseTableView tableView = new BaseTableView();
                 gridControl.View = tableView;
@@ -229,6 +262,7 @@ namespace SQLTool.Util
                 tabItem.Header = dtSource.TableName;
                 tabItem.Content = gridControl;
                 result.lstTabItems.Add(tabItem);
+                result.DataResults.Add(dtSource.TableName, strQuery);
             }
         }
         private static void ShowPopupViewModal(BasePopupViewModel viewModel, System.Windows.Controls.UserControl view)
@@ -252,7 +286,20 @@ namespace SQLTool.Util
             }
             popupWindow.Show();
         }
-
+        private static void ShowCompareResultView(DataTable dtSource)
+        {
+            if (dtSource != null)
+            {
+                ViewModels.CompareResultViewModel popupView = GetCompareResultPopupView();
+                popupView.Title = "Compare";
+                popupView.Header = "Compare Result";
+                Task.Factory.StartNew(() =>
+                {
+                    return dtSource;
+                }).ContinueWith(r => AddControlsToGrid(popupView, r.Result, ""), TaskScheduler.FromCurrentSynchronizationContext());
+                ShowPopupViewModal(popupView, new Views.CompareResult());
+            }
+        }
         private static void PopupWindow_Closed(object sender, EventArgs e)
         {
             popupWindow = null;
@@ -282,6 +329,27 @@ namespace SQLTool.Util
         #endregion
 
         #region function list
+        public static void ChangeDbLaravel(Window frmParent)
+        {
+            if (!CheckSelectedDB()) return;
+            
+            string sourceUrl = GetSourceCodePath();
+            string filePath = Directory.GetFiles(sourceUrl, "*.env").FirstOrDefault();
+            string[] lines = File.ReadAllLines(filePath);
+            string[] lstDBs = SQLDBUtil.GetDataTableByDataSet(SQLDBUtil.GetAllDatabases()).Select().Select(x => x[0].ToString()).ToArray();
+            string DBVal = lines.ToList().Find(x => x.StartsWith("DB_DATABASE")).Split('=').LastOrDefault();
+            if (PromptForm.ShowCombobox("Change Database Name", "Database Name", lstDBs, ref DBVal) == MessageBoxResult.OK)
+            {
+                SQLAppWaitingDialog.ShowDialog();
+                int idx = lines.ToList().FindIndex(x => x.StartsWith("DB_DATABASE"));
+                lines[idx] = string.Format("{0}={1}", "DB_DATABASE", DBVal);
+                File.WriteAllLines(filePath, lines);
+                FunctionListObject functionObj = new FunctionListObject();
+                functionObj.FuncName = "CmdLaravelConfigCache";
+                ExecutedScriptCommand(functionObj, frmParent);
+                SQLAppWaitingDialog.HideDialog();
+            }
+        }
         public static void LoadDataByTable(Window frmParent)
         {
             PromptForm._frmParent = frmParent;
@@ -558,6 +626,85 @@ namespace SQLTool.Util
             }
             return "";
         }
+        public static void CompareDatabase(SqlDbConnectionType consType, Dictionary<string, SqlDbConnection> lstCons)
+        {
+            if (!CheckSelectedDB()) return;
+            switch (consType)
+            {
+                case SqlDbConnectionType.MySql:
+                    CompareDBMySql(lstCons);
+                    break;
+                case SqlDbConnectionType.SqlServer:
+                    //(new TSQL.Tokens.
+                    break;
+            }
+        }
+        protected static void CompareDBMySql(Dictionary<string, SqlDbConnection> lstCons)
+        {
+            string strQuery = SQLDBUtil.GenerateQuery("information_schema.TABLES", "TABLE_SCHEMA = '{0}'", "TABLE_NAME");
+            CompareDifferrentData(lstCons, strQuery, "Compare Same Tables");
+
+            strQuery = SQLDBUtil.GenerateQuery("information_schema.COLUMNS", "TABLE_SCHEMA = '{0}'", "TABLE_NAME,COLUMN_NAME,DATA_TYPE");
+            CompareDifferrentData(lstCons, strQuery, "Compare Same Columns");
+
+            strQuery = SQLDBUtil.GenerateQuery("information_schema.ROUTINES", "ROUTINE_SCHEMA = '{0}'", "ROUTINE_NAME,ROUTINE_TYPE,DATA_TYPE");
+            CompareDifferrentData(lstCons, strQuery, "Compare Same Routines");
+
+            strQuery = SQLDBUtil.GenerateQuery("information_schema.TRIGGERS", "TRIGGER_SCHEMA = '{0}'", "TRIGGER_NAME,EVENT_MANIPULATION,EVENT_OBJECT_TABLE,ACTION_TIMING");
+            CompareDifferrentData(lstCons, strQuery, "Compare Same Triggers");
+
+            strQuery = SQLDBUtil.GenerateQuery("information_schema.STATISTICS", "TABLE_SCHEMA = '{0}'", "TABLE_NAME,COLUMN_NAME");
+            CompareDifferrentData(lstCons, strQuery, "Compare Same User key");
+        }
+        protected static void CompareDifferrentData(Dictionary<string, SqlDbConnection> lstCons, string strQuery, string tblName)
+        {
+            SQLDBUtil.CurrentDatabase = lstCons[_ctrlFrom];
+            DataTable dtSource = SQLDBUtil.GetDataTable(string.Format(strQuery, SQLDBUtil.CurrentDatabase.Connection.Database));
+            SQLDBUtil.CurrentDatabase = lstCons[_ctrlTo];
+            DataTable dtTarget = SQLDBUtil.GetDataTable(string.Format(strQuery, SQLDBUtil.CurrentDatabase.Connection.Database));
+            IEnumerable<DataRow> lstSameTable = dtSource.AsEnumerable().Except(dtTarget.AsEnumerable(), DataRowComparer.Default);
+            DataTable dtSame = ConvertDataRowToTable(lstSameTable, tblName);
+            ShowCompareResultView(dtSame);
+        }
+        protected static DataTable ConvertDataRowToTable(IEnumerable<DataRow> lstRows, string strTableName)
+        {
+            if(lstRows.Count() > 0)
+            {
+                using(DataTable dtSame = lstRows.CopyToDataTable())
+                {
+                    dtSame.TableName = strTableName;
+                    return dtSame;
+                }
+            }
+            else
+            {
+                using (DataTable dtSame = new DataTable())
+                {
+                    dtSame.TableName = strTableName;
+                    return dtSame;
+                }
+            }
+        }
+        private static void AddReaderToGrid(BasePopupViewModel viewModel, System.Data.Common.DbDataReader dataReader)
+        {
+            DataTable dtSource = new DataTable();
+            dtSource.TableName = "Data";
+
+            for (int i = 0; i < dataReader.FieldCount; i++)
+            {
+                DataColumn col = new DataColumn(dataReader.GetName(i), dataReader.GetFieldType(i));
+                dtSource.Columns.Add(col);
+            }
+            while (dataReader.Read())
+            {
+                object[] values = new object[dataReader.FieldCount];
+                dataReader.GetValues(values);
+                dtSource.LoadDataRow(values, false);
+            }
+            dataReader.Close();
+            
+            AddControlsToGrid(viewModel, dtSource, "");
+        }
         #endregion
 
         #region func list F10
@@ -767,6 +914,14 @@ namespace SQLTool.Util
             else
                 System.Windows.MessageBox.Show("Thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+        public static void ShowMessenge(string strContent, string strTitle, MessageBoxImage messageImage)
+        {
+            DXMessageBox.Show(strContent, strTitle, MessageBoxButton.OK, messageImage);
+        }
+        public static void ShowMessengeInfo(string strContent, string strTitle = "Thông báo")
+        {
+            ShowMessenge(strContent, strTitle, MessageBoxImage.Information);
+        }
         #endregion
 
         #region Function Extra
@@ -832,19 +987,64 @@ namespace SQLTool.Util
             strScript = GenerateScriptWithParameters(functionObj, strScript, frmParent);
             if (string.IsNullOrEmpty(strScript))
             {
-                DevExpress.XtraEditors.XtraMessageBox.Show("Không có mã thực thi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ShowMessengeInfo("Không có mã thực thi");
                 return;
             }
             SQLAppWaitingDialog.ShowDialog();
-            string sourceUrl = SQLApp.GetIniFile(strFileName, "SourceCode", "SourceUrl");
+            string sourceUrl = GetSourceCodePath();
             string output = SQLApp.ExecutedPowerShell(string.Format("cd {0} {1} {2}", sourceUrl, Environment.NewLine, strScript));
+            string strType = SQLApp.GetIniFile(strFileCfgScript, strDynPara, functionObj.Name + "Show");
+            if(!string.IsNullOrEmpty(strType))
+            {
+                ShowScriptCommand(output, strType);
+                SQLAppWaitingDialog.HideDialog();
+                return;
+            }
             SQLAppWaitingDialog.HideDialog();
-            DevExpress.XtraEditors.XtraMessageBox.Show(output, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ShowMessengeInfo(output);
         }
         public static string GetScriptCommandByFuncName(string strFuncName)
         {
             return SQLApp.GetIniFile(string.Concat(strPath, "ScriptCommand.ini"), "Laravel", strFuncName);
         } 
+        protected static void ShowScriptCommand(string output, string strType)
+        {
+            if (strType.Equals("table"))
+            {
+                string[] arr = output.Split('\n');
+                DataTable dtSoure = new DataTable();
+                dtSoure.TableName = "Route List";
+                int idx = 0;
+                arr.ToList().ForEach(r =>
+                {
+                    string[] row = r.Split('|');
+                    if (row.Length > 1)
+                    {
+                        if (idx == 0)
+                        {
+                            row.Where(c => !string.IsNullOrEmpty(c.Trim())).ToList().ForEach(c =>
+                            {
+                                DataColumn col = new DataColumn(c.Trim(), typeof(string));
+                                dtSoure.Columns.Add(col);
+                            });
+                        }
+                        else
+                            dtSoure.LoadDataRow(row.Where(c => !string.IsNullOrEmpty(c.Trim())).Select(c => c.Trim()).ToArray(), false);
+                        idx++;
+                    }
+                });
+                ShowResultData(null, dtSoure);
+            }
+            else
+            {
+                SaveFileDialog saveFile = new SaveFileDialog();
+                saveFile.Filter = "*." + strType.Replace("file", "");
+                if(saveFile.ShowDialog() == DialogResult.OK)
+                {
+                    SQLApp.WriteFile(saveFile.FileName, output);
+                }
+            }
+        }
         #endregion
 
         #region config Connect
@@ -900,6 +1100,11 @@ namespace SQLTool.Util
         #endregion
 
         #region Load config
+        public static void GetDatabaseVersion(SqlDbConnectionType connectionType)
+        {
+            string strVersion = SQLDBUtil.GetDatabaseVersion(connectionType);
+            ShowMessengeInfo(strVersion);
+        }
         public static List<string> LoadConfigInitToList(string keySection = null)
         {
             List<string> lst = new List<string>();

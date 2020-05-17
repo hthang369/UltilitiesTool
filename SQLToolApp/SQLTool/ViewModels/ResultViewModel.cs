@@ -14,8 +14,8 @@ namespace SQLTool.ViewModels
 {
     public class ResultViewModel : BasePopupViewModel
     {
-        private List<DataResults> _dataResults;
-        public List<DataResults> DataResults
+        private Dictionary<string, string> _dataResults;
+        public Dictionary<string, string> DataResults
         {
             get => _dataResults;
             set => SetProperty(ref _dataResults, value);
@@ -31,9 +31,7 @@ namespace SQLTool.ViewModels
     }
     public class DataResults
     {
-        public string Title { get; set; }
-        public DataTable DataSource { get; set; }
-        public TabPinMode PinMode { get; set; }
-        public ICommand KeyBindingCommand { get; set; }
+        public string strName { get; set; }
+        public string strQuery { get; set; }
     }
 }

@@ -52,6 +52,8 @@ namespace SQLTool.ViewModels
         {
             string keySection = Convert.ToString((Parent as Views.SqlControlView).cboSqlType.SelectedItem);
             SQLAppLib.SQLDBUtil.ChangeDatabase(((SQLAppLib.SqlDbConnectionType)Enum.Parse(typeof(SQLAppLib.SqlDbConnectionType), keySection)), Convert.ToString(key));
+            if(mainWindow.DataContext is MainViewModel)
+                (mainWindow.DataContext as MainViewModel).lstSqlDbConnections.Add(Parent.Name, SQLAppLib.SQLDBUtil.CurrentDatabase.Clone() as SQLAppLib.SqlDbConnection);
         }
 
         private void ChangeServerBySqlType(object key)

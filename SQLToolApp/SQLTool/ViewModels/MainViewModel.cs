@@ -22,6 +22,12 @@ namespace SQLTool.ViewModels
             get => _lstFunctions;
             set => SetProperty(ref _lstFunctions, value);
         }
+        private Dictionary<string, SqlDbConnection> _lstSqlDbConnections;
+        public Dictionary<string, SqlDbConnection> lstSqlDbConnections
+        {
+            get => _lstSqlDbConnections;
+            set => SetProperty(ref _lstSqlDbConnections, value);
+        }
         private double _iLvsWidth;
         public double iLvsWidth
         {
@@ -34,6 +40,7 @@ namespace SQLTool.ViewModels
         public ICommand btnVerCommand { get; set; }
         public ICommand btnCompareCommand { get; set; }
         public ICommand btnRefeshCommand { get; set; }
+        public ICommand btnCompareDataCommand { get; set; }
         public ICommand KeyBindingCommand { get; set; }
 
         public MainViewModel(Window window)
@@ -41,11 +48,16 @@ namespace SQLTool.ViewModels
             frmMain = window;
             iLvsWidth = window.Width - 30;
             lstFunctions = new List<FunctionListObject>();
+            lstSqlDbConnections = new Dictionary<string, SqlDbConnection>();
 
             btnAddCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnEditCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnDelCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
             btnVerCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+
+            btnCompareDataCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+            btnCompareCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
+            btnRefeshCommand = new RelayCommand<object>((x) => CanExecute(), (x) => ActionCommand(x));
 
             KeyBindingCommand = new RelayCommand<object>((x) => CanExecute(), (x) => KeyBindingActionCommand(x));
 
@@ -110,7 +122,8 @@ namespace SQLTool.ViewModels
                 DXMessageBox.Show(mainWindow, "Vui lòng chọn Loại Sql", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            switch (Convert.ToString(btn.Content).ToLower())
+            Util.FunctionList.SetWindowParent(mainWindow);
+            switch (Convert.ToString(btn.Content).ToLower().Replace(' ','_'))
             {
                 case "add":
                 case "edit":
@@ -120,7 +133,13 @@ namespace SQLTool.ViewModels
                     Util.FunctionList.GetConfigConnectSQL(Convert.ToString(btn.Content), idx);
                     break;
                 case "ver":
-                    //SQLDBUtil.
+                    SQLDBUtil.CurrentDatabase = lstSqlDbConnections["ctrlFrom"];
+                    Util.FunctionList.GetDatabaseVersion((SqlDbConnectionType)Enum.Parse(typeof(SqlDbConnectionType), strType));
+                    break;
+                case "compare":
+                    Util.FunctionList.CompareDatabase(Util.BaseUtil.GetConnectionType(strType), (mainWindow.DataContext as MainViewModel).lstSqlDbConnections);
+                    break;
+                case "refresh":
                     break;
             }
 
@@ -160,6 +179,8 @@ namespace SQLTool.ViewModels
                     Util.FunctionList.ShowFunctionList("FuncsF11", this.frmMain);
                     break;
                 case Key.System:
+                    if (e.SystemKey == Key.F10)
+                        Util.FunctionList.ShowFunctionList("FuncsF10", this.frmMain);
                     if (e.KeyboardDevice.Modifiers == ModifierKeys.Alt)
                     {
 

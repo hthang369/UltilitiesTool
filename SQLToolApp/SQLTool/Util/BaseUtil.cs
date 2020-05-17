@@ -1,9 +1,10 @@
-﻿using System;
+﻿using SQLAppLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SQLQQ.Util
+namespace SQLTool.Util
 {
     class BaseUtil
     {
@@ -26,5 +27,11 @@ namespace SQLQQ.Util
 
             return strTableName_Foreign;
         }
+
+        public static SqlDbConnectionType GetConnectionType(string consType)
+        {
+            return (SqlDbConnectionType)Enum.Parse(typeof(SqlDbConnectionType), consType);
+        }
     }
+
 }
