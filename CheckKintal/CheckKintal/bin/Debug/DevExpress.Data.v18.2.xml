@@ -1699,7 +1699,7 @@
     </member>
     <member name="F:DevExpress.Data.Filtering.Aggregate.Single">
       <summary>
-        <para>Returns a single object from the collection.</para>
+        <para>Returns a single object from the collection. The collection must contain no more than one object.</para>
       </summary>
     </member>
     <member name="F:DevExpress.Data.Filtering.Aggregate.Sum">
@@ -3438,7 +3438,8 @@
     </member>
     <member name="F:DevExpress.Data.Filtering.FunctionOperatorType.Iif">
       <summary>
-        <para>Returns one of two values depending upon the value of a logical expression.The function requires three operands of the  <see cref="T:DevExpress.Data.Filtering.CriteriaOperator"/> class:1 &#0045; determines the logical expression;2 &#0045; specifies the value that will be returned if the logical expression evaluates to TRUE;3 &#0045; specifies the value that  will be returned if the logical expression evaluates to FALSE.To create the Iif operator using the  method use the following syntax: CriteriaOperator.Parse(&quot;Iif(Field1 == 100, Field1, Field2)&quot;)</para>
+        <para>Returns one of several specified values depending upon the values of logical expressions.
+The function can take 2N+1 arguments (N &#0045; the number of specified logical expressions):Examples:Iif(Name = &#39;Bob&#39;, 1, 0)Iif(Name = &#39;Bob&#39;, 1, Name = &#39;Dan&#39;, 2, Name = &#39;Sam&#39;, 3, 0)</para>
       </summary>
     </member>
     <member name="F:DevExpress.Data.Filtering.FunctionOperatorType.Insert">
@@ -9821,6 +9822,28 @@ Allows you to initialize the data source and (optionally) return an initial batc
         <para>For internal use.</para>
       </summary>
       <value></value>
+    </member>
+    <member name="T:DevExpress.DataAccess.DefaultConnectionStringProvider">
+      <summary>
+        <para>Enables you to resolve connection strings by their names at runtime in .NET Core applications.</para>
+      </summary>
+    </member>
+    <member name="M:DevExpress.DataAccess.DefaultConnectionStringProvider.#ctor">
+      <summary>
+        <para>Initializes a new instance of the <see cref="T:DevExpress.DataAccess.DefaultConnectionStringProvider"/> class.</para>
+      </summary>
+    </member>
+    <member name="M:DevExpress.DataAccess.DefaultConnectionStringProvider.AssignConnectionStrings(System.Collections.Generic.IDictionary{System.String,System.String})">
+      <summary>
+        <para>Register the specified connection strings globally.</para>
+      </summary>
+      <param name="connectionStrings">A dictionary with connection strings.</param>
+    </member>
+    <member name="M:DevExpress.DataAccess.DefaultConnectionStringProvider.AssignConnectionStrings(System.Func{System.Collections.Generic.IDictionary{System.String,System.String}})">
+      <summary>
+        <para>Register connection strings that the specified function returns globally.</para>
+      </summary>
+      <param name="connectionStringProvider">A function that returns connection strings as key-value pairs.</param>
     </member>
     <member name="T:DevExpress.DataAccess.Expression">
       <summary>

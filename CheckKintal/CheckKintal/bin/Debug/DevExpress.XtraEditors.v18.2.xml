@@ -82,7 +82,6 @@
       <summary>
         <para>Occurs after the <see cref="P:DevExpress.Utils.Menu.DXEditMenuItem.EditValue"/> property&#39;s value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.Menu.DXEditMenuItem.Height">
       <summary>
@@ -856,7 +855,6 @@
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BaseCheckEdit.GetPreferredSize(System.Drawing.Size)">
       <summary>
@@ -869,7 +867,6 @@
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseCheckEdit.PreferredSize">
       <summary>
@@ -943,7 +940,6 @@
       <summary>
         <para>Occurs when the <see cref="P:DevExpress.XtraEditors.BaseCheckedListBoxControl.CheckMember"/> property value is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseCheckedListBoxControl.CheckOnClick">
       <summary>
@@ -966,7 +962,6 @@
       <summary>
         <para>Occurs when the field value is fetched from the data source and then posted back.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BaseCheckedListBoxControl.GetItemChecked(System.Int32)">
       <summary>
@@ -986,7 +981,6 @@
       <summary>
         <para>Enables you to disable specific items, in bound mode.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BaseCheckedListBoxControl.InvertCheckState">
       <summary>
@@ -1003,13 +997,11 @@
       <summary>
         <para>Fires when the checked state of an item has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseCheckedListBoxControl.ItemChecking">
       <summary>
         <para>Enables you to restrict item state changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseCheckedListBoxControl.Items">
       <summary>
@@ -1044,7 +1036,6 @@
       <summary>
         <para>Occurs when the <see cref="T:DevExpress.XtraEditors.BaseCheckedListBoxControl"/> items collection or data source changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BaseCheckedListBoxControl.SetItemChecked(System.Int32,System.Boolean)">
       <summary>
@@ -1277,7 +1268,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.BaseEdit"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseEdit.BindingManager">
       <summary>
@@ -1319,7 +1309,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Enables custom display text to be provided for an editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseEdit.DefaultErrorIcon">
       <summary>
@@ -1379,13 +1368,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires immediately after the edit value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseEdit.EditValueChanging">
       <summary>
-        <para>Fires when the editor&#39;s value is about to be changed.</para>
+        <para>Fires when the editor&#39;s value is about to change.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseEdit.EnterMoveNextControl">
       <summary>
@@ -1427,7 +1414,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.BaseEdit"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseEdit.ForeColor">
       <summary>
@@ -1439,13 +1425,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.BaseEdit"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseEdit.FormatEditValue">
       <summary>
         <para>Enables you to format the editor&#39;s value (change the editor&#39;s value when the formatting mechanism is invoked).</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BaseEdit.GetPreferredSize(System.Drawing.Size)">
       <summary>
@@ -1464,7 +1448,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Enables an appropriate response to be provided when invalid values are entered.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseEdit.IsDrawing">
       <summary>
@@ -1526,7 +1509,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires when the user starts to modify the edit value.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseEdit.OldEditValue">
       <summary>
@@ -1544,7 +1526,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Converts an input value (the one that is entered by an end-user or assigned in code) to the value to be stored by the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseEdit.PopupServiceControl">
       <summary>
@@ -1562,19 +1543,16 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires immediately after any editor&#39;s property value has changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseEdit.QueryAccessibilityHelp">
       <summary>
         <para>Fires when the help is provided to accessibility applications.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseEdit.QueryProcessKey">
       <summary>
         <para>Provides ability to specify whether the key pressed in the editor is processed by the editor or a container control (<see cref="T:DevExpress.XtraGrid.GridControl"/>, <see cref="T:DevExpress.XtraTreeList.TreeList"/>, etc.) that displays this editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseEdit.ReadOnly">
       <summary>
@@ -1731,7 +1709,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs after the <see cref="P:DevExpress.XtraEditors.BaseImageListBoxControl.ImageIndexMember"/> property value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseImageListBoxControl.ImageList">
       <summary>
@@ -1749,7 +1726,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs after the <see cref="P:DevExpress.XtraEditors.BaseImageListBoxControl.ImageMember"/> property value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseImageListBoxControl.Items">
       <summary>
@@ -1841,7 +1817,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires when a context button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseListBoxControl.ContextButtonOptions">
       <summary>
@@ -1859,43 +1834,36 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires when the <see cref="P:DevExpress.Utils.CheckContextButton.Checked"/>, <see cref="P:DevExpress.Utils.TrackBarContextButton.Value"/> or <see cref="P:DevExpress.Utils.RatingContextButton.Rating"/> property value changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseListBoxControl.CustomContextButtonToolTip">
       <summary>
         <para>Allows hints for context buttons displayed in the current <see cref="T:DevExpress.XtraEditors.BaseListBoxControl"/> to be customized. This event is only raised for <see cref="T:DevExpress.Utils.RatingContextButton"/> and <see cref="T:DevExpress.Utils.TrackBarContextButton"/> objects.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseListBoxControl.CustomDrawScroll">
       <summary>
         <para>Allows you to draw custom scrollbars, or highlight specific positions on the scrollbars.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseListBoxControl.CustomItemDisplayText">
       <summary>
         <para>Enables custom display text to be provided for control items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseListBoxControl.CustomItemTemplate">
       <summary>
         <para>Allows you to provide a custom template for listbox items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseListBoxControl.CustomizeContextItem">
       <summary>
         <para>Allows you to customize the context buttons for individual items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseListBoxControl.CustomizeItem">
       <summary>
         <para>Allows you to dynamically customize templated items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseListBoxControl.DataSource">
       <summary>
@@ -1907,12 +1875,12 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs immediately after the <see cref="P:DevExpress.XtraEditors.BaseListBoxControl.DataSource"/> property value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="F:DevExpress.XtraEditors.BaseListBoxControl.DefaultShowToolTipForTrimmedText">
       <summary>
         <para>The default value for the <see cref="P:DevExpress.XtraEditors.BaseListBoxControl.ShowToolTipForTrimmedText"/> property. Returns false.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseListBoxControl.DisplayMember">
       <summary>
@@ -1924,13 +1892,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs immediately after the list box control display member has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseListBoxControl.DrawItem">
       <summary>
         <para>Provides the ability to custom paint items displayed within the list box control.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BaseListBoxControl.EndUpdate">
       <summary>
@@ -2145,7 +2111,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Provides the ability to change an individual item&#39;s height.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseListBoxControl.MultiColumn">
       <summary>
@@ -2168,7 +2133,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Allows you to respond to item selection.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseListBoxControl.SelectedIndices">
       <summary>
@@ -2198,7 +2162,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs after a value of the selected item has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseListBoxControl.SelectionMode">
       <summary>
@@ -2283,7 +2246,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs after the <see cref="P:DevExpress.XtraEditors.BaseListBoxControl.ValueMember"/> property value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.BaseSpinEdit">
       <summary>
@@ -2304,7 +2266,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs when the <see cref="T:DevExpress.XtraEditors.BaseSpinEdit"/>-derived control&#39;s pop-up was successfully closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BaseSpinEdit.ClosePopup">
       <summary>
@@ -2315,7 +2276,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs when the <see cref="T:DevExpress.XtraEditors.BaseSpinEdit"/>-derived control&#39;s pop-up is about to close.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseSpinEdit.EditorTypeName">
       <summary>
@@ -2327,7 +2287,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs each time a <see cref="T:DevExpress.XtraEditors.BaseSpinEdit"/> control&#39;s pop-up was displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseSpinEdit.Properties">
       <summary>
@@ -2339,13 +2298,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs when the <see cref="T:DevExpress.XtraEditors.BaseSpinEdit"/> control&#39;s pop-up window is to be closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.BaseSpinEdit.QueryPopUp">
       <summary>
         <para>Occurs each time a <see cref="T:DevExpress.XtraEditors.BaseSpinEdit"/> control&#39;s pop-up is to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BaseSpinEdit.RefreshEditValue">
       <summary>
@@ -2383,7 +2340,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.BaseStyleControl"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseStyleControl.Font">
       <summary>
@@ -2395,7 +2351,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.BaseStyleControl"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BaseStyleControl.ForeColor">
       <summary>
@@ -2407,7 +2362,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.BaseStyleControl"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BaseStyleControl.ResetBackColor">
       <summary>
@@ -2449,7 +2403,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Allows you to hide the default OK and Cancel buttons shown in the editor&#39;s popup menus.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BlobBaseEdit.Properties">
       <summary>
@@ -2573,7 +2526,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs each time the current <see cref="T:DevExpress.XtraEditors.BreadCrumbEdit"/> path changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BreadCrumbEdit.Properties">
       <summary>
@@ -2601,7 +2553,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires when this <see cref="T:DevExpress.XtraEditors.BreadCrumbEdit"/>&#39;s <see cref="P:DevExpress.XtraEditors.BreadCrumbEdit.SelectedNode"/> changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BreadCrumbEdit.Selector">
       <summary>
@@ -2654,7 +2605,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs each time the <see cref="T:DevExpress.XtraEditors.BreadCrumbHistory"/> is modified.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BreadCrumbHistory.Contains(DevExpress.XtraEditors.BreadCrumbHistoryItem)">
       <summary>
@@ -2853,6 +2803,7 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BreadCrumbNode.DefaultItemText">
       <summary>
@@ -2954,6 +2905,7 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.BreadCrumbNode.NoneItemText">
       <summary>
@@ -3076,7 +3028,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs each time a <see cref="T:DevExpress.XtraEditors.BreadCrumbNode"/> was added or removed to (from) the <see cref="T:DevExpress.XtraEditors.BreadCrumbNodeCollection"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BreadCrumbNodeCollection.Contains(DevExpress.XtraEditors.BreadCrumbNode)">
       <summary>
@@ -3162,6 +3113,7 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
+      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.BreadCrumbNodeCollection.Remove(DevExpress.XtraEditors.BreadCrumbNode)">
       <summary>
@@ -3189,13 +3141,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs when a button editor&#39;s button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.ButtonEdit.ButtonPressed">
       <summary>
         <para>Occurs when pressing an editor button.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ButtonEdit.EditorTypeName">
       <summary>
@@ -3278,7 +3228,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.CalcEdit.Value"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="N:DevExpress.XtraEditors.Calendar">
       <summary>
@@ -3717,13 +3666,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires when a context button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Camera.CameraControl.ContextButtonCustomize">
       <summary>
         <para>Allows you to customize the context buttons.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Camera.CameraControl.ContextButtonOptions">
       <summary>
@@ -3747,7 +3694,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs when the camera device used by the control is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Camera.CameraControl.DeviceNotFoundString">
       <summary>
@@ -3759,7 +3705,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires when the orientation is about to be changed due to display rotation, allowing you to override the rotate angle.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Camera.CameraControl.GetDefaultDevice">
       <summary>
@@ -3922,7 +3867,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs before a series of the chart range control client is drawn in the range control&#39;s viewport.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ChartRangeControlClientBase.DataProvider">
       <summary>
@@ -4164,13 +4108,12 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Allows you to respond to the button&#39;s check state being changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.CheckButton.GroupIndex">
       <summary>
-        <para>Gets or sets the index of a logical group to which the button belongs.</para>
+        <para>Gets or sets the button&#39;s group index. Within a group, only one button may be checked at a time. When users click another button in a group, the checked state moves from the current button to the clicked one.</para>
       </summary>
-      <value>An integer value that specifies the index of the logical group to which the button belongs.</value>
+      <value>The button&#39;s group index</value>
     </member>
     <member name="M:DevExpress.XtraEditors.CheckButton.Toggle">
       <summary>
@@ -4203,7 +4146,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs whenever this <see cref="T:DevExpress.XtraEditors.CheckedComboBoxEdit"/> has to display a child list box item. Allows you to manually paint these items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.CheckedComboBoxEdit.EditorTypeName">
       <summary>
@@ -4269,7 +4211,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Enables you to disable specific items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.CheckedComboBoxEdit.GetPopupEditForm">
       <summary>
@@ -4294,7 +4235,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Provides the capability to change the height of an individual item.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.CheckedComboBoxEdit.Properties">
       <summary>
@@ -4306,13 +4246,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.CheckedComboBoxEdit"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.CheckedComboBoxEdit.QueryResultValue">
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.CheckedComboBoxEdit"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.CheckedComboBoxEdit.RefreshEditValue">
       <summary>
@@ -4321,7 +4259,7 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
     </member>
     <member name="M:DevExpress.XtraEditors.CheckedComboBoxEdit.SetEditValue(System.Object)">
       <summary>
-        <para>Assigns the specified value to the editor.</para>
+        <para>Assigns the value to the <see cref="P:DevExpress.XtraEditors.CheckedComboBoxEdit.EditValue"/> property, and checks editor items that have related values.</para>
       </summary>
       <param name="value">An object that identifies checked items in the editor&#39;s dropdown window.</param>
     </member>
@@ -4345,19 +4283,17 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires after the <see cref="P:DevExpress.XtraEditors.CheckEdit.Checked"/> property value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.CheckEdit.CheckState">
       <summary>
         <para>Gets or sets the editor&#39;s check state.</para>
       </summary>
-      <value>A <see cref="T:System.Windows.Forms.CheckState"/> enumeration value representing the check editor&#39;s state.</value>
+      <value>The check editor&#39;s state.</value>
     </member>
     <member name="E:DevExpress.XtraEditors.CheckEdit.CheckStateChanged">
       <summary>
         <para>Fires after the <see cref="P:DevExpress.XtraEditors.CheckEdit.CheckState"/> property value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.CheckEdit.EditorTypeName">
       <summary>
@@ -4381,13 +4317,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Allows for custom conversion from the edit value to a check state (checked, unchecked and indeterminate).</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.CheckEdit.QueryValueByCheckState">
       <summary>
         <para>Allows for custom conversion from a check state (checked, unchecked and indeterminate) to an edit value.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.CheckEdit.Toggle">
       <summary>
@@ -4504,7 +4438,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.ColorEdit.Color"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ColorEdit.EditorTypeName">
       <summary>
@@ -4580,13 +4513,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires after the &quot;Select Color&quot; dialog has been closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.ColorPickEditBase.ColorPickDialogShowing">
       <summary>
         <para>Fires when the &quot;Select Color&quot; dialog is about to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ColorPickEditBase.EditorTypeName">
       <summary>
@@ -4604,7 +4535,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Allows you to customize tooltips displayed when hovering over colors in the Custom and Web-Safe palettes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.ColorPickEditTooltipShowingEventArgs">
       <summary>
@@ -4683,13 +4613,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Provides the ability to custom paint the items displayed within the combo box editor&#39;s drop down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.ComboBoxEdit.DropDownCustomDrawItem">
       <summary>
         <para>Occurs when drawing a specific item in the dropdown list.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ComboBoxEdit.EditorTypeName">
       <summary>
@@ -4730,7 +4658,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs when the selection moves from one ComboBoxEditor to another.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ComboBoxEdit.SelectedItem">
       <summary>
@@ -4742,7 +4669,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs when changing the index of the selected value in the combo box editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="N:DevExpress.XtraEditors.Container">
       <summary>
@@ -4768,19 +4694,16 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Occurs when a key is pressed within an in-place editor that belongs to the container component.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Container.ComponentEditorContainer.EditorKeyPress">
       <summary>
         <para>Occurs when a character key is pressed within an in-place editor that belongs to the container component.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Container.ComponentEditorContainer.EditorKeyUp">
       <summary>
         <para>Occurs when a pressed key is released within an in-place editor that belongs to the container component.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Container.ComponentEditorContainer.EndInit">
       <summary>
@@ -4838,23 +4761,27 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
         <para>Notifies the control that the initialization has started.</para>
       </summary>
     </member>
+    <member name="M:DevExpress.XtraEditors.Container.EditorContainer.CheckActiveEditor(System.Windows.Forms.Control)">
+      <summary>
+        <para></para>
+      </summary>
+      <param name="container"></param>
+      <returns></returns>
+    </member>
     <member name="E:DevExpress.XtraEditors.Container.EditorContainer.EditorKeyDown">
       <summary>
         <para>Occurs when a key is pressed within an in-place editor that belongs to the container control.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Container.EditorContainer.EditorKeyPress">
       <summary>
         <para>Occurs when a character key is pressed within an in-place editor that belongs to the container control.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Container.EditorContainer.EditorKeyUp">
       <summary>
         <para>Occurs when a pressed key is released within an in-place editor that belongs to the container control.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Container.EditorContainer.EndInit">
       <summary>
@@ -5168,13 +5095,11 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.CalendarControl.OkClick">
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.CalendarControl.PerformTodayClick">
       <summary>
@@ -5192,7 +5117,6 @@ This member is supported by individual descendant of the <see cref="T:DevExpress
       <summary>
         <para>Fires when the Today button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Controls.CalendarControlBase">
       <summary>
@@ -5384,13 +5308,11 @@ The object specifies dates that lie in the range between the DateRange.StartDate
       <summary>
         <para>Allows you to respond to a context button click.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.CalendarControlBase.ContextButtonCustomize">
       <summary>
         <para>Allows you to customize context buttons in certain calendar cells.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.CalendarControlBase.ContextButtonOptions">
       <summary>
@@ -5408,7 +5330,6 @@ The object specifies dates that lie in the range between the DateRange.StartDate
       <summary>
         <para>Fires when the <see cref="P:DevExpress.Utils.CheckContextButton.Checked"/>, <see cref="P:DevExpress.Utils.TrackBarContextButton.Value"/> or <see cref="P:DevExpress.Utils.RatingContextButton.Rating"/> property value changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.CalendarControlBase.Converter">
       <summary>
@@ -5420,25 +5341,21 @@ The object specifies dates that lie in the range between the DateRange.StartDate
       <summary>
         <para>Allows hints for context buttons (<see cref="P:DevExpress.XtraEditors.Controls.CalendarControlBase.ContextButtons"/>) to be customized.  This event is only raised for <see cref="T:DevExpress.Utils.RatingContextButton"/> and <see cref="T:DevExpress.Utils.TrackBarContextButton"/> objects.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.CalendarControlBase.CustomDrawDayNumberCell">
       <summary>
         <para>Occurs when drawing each day cell in the calendar.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.CalendarControlBase.CustomWeekDayAbbreviation">
       <summary>
         <para>Allows you to provide custom week day abbreviations.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.CalendarControlBase.CustomWeekNumber">
       <summary>
         <para>Allows week numbers to be customized.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.CalendarControlBase.DateFormat">
       <summary>
@@ -5456,19 +5373,16 @@ The object specifies dates that lie in the range between the DateRange.StartDate
       <summary>
         <para>Fires when the <see cref="P:DevExpress.XtraEditors.Controls.CalendarControlBase.DateTime"/> property value changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.CalendarControlBase.DateTimeCommit">
       <summary>
         <para>Fires when the <see cref="P:DevExpress.XtraEditors.Controls.CalendarControlBase.DateTime"/> property value changes as a result of actions performed by an end-user.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.CalendarControlBase.DisableCalendarDate">
       <summary>
         <para>Allows you to disable certain dates to prevent them from being selected by an end-user.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.CalendarControlBase.DisabledDateProvider">
       <summary>
@@ -5486,7 +5400,6 @@ The object specifies dates that lie in the range between the DateRange.StartDate
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.CalendarControlBase.EditValue">
       <summary>
@@ -5498,7 +5411,6 @@ The object specifies dates that lie in the range between the DateRange.StartDate
       <summary>
         <para>Fires when the <see cref="P:DevExpress.XtraEditors.Controls.CalendarControlBase.EditValue"/> property value changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.CalendarControlBase.FirstDayOfWeek">
       <summary>
@@ -5522,7 +5434,6 @@ The object specifies dates that lie in the range between the DateRange.StartDate
       <summary>
         <para>Allows you to convert the EditValue to the DateTime format.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.CalendarControlBase.FullButtonsHeight">
       <summary>
@@ -5657,13 +5568,11 @@ The object specifies dates that lie in the range between the DateRange.StartDate
       <summary>
         <para>A DirectX-compatible method that replaces the standard Control.Paint method.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.CalendarControlBase.ParseEditValue">
       <summary>
         <para>Allows you to parse a new value that is about to be assigned to the <see cref="P:DevExpress.XtraEditors.Controls.CalendarControlBase.EditValue"/> property.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.CalendarControlBase.ProcessKeyDown(System.Windows.Forms.KeyEventArgs)">
       <summary>
@@ -5723,7 +5632,6 @@ Each DateRange object identifies dates that are EQUAL OR GREATER THAN the DateRa
       <summary>
         <para>Fires when the selection changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.CalendarControlBase.SelectionEnd">
       <summary>
@@ -5827,7 +5735,6 @@ The object specifies dates that lie in the range between the DateRange.StartDate
       <summary>
         <para>Allows you to mark certain dates as &quot;special&quot; dates. These dates will be painted using the dedicated settings provided by the <see cref="P:DevExpress.XtraEditors.Controls.CalendarControlBase.CalendarAppearance"/> object.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.CalendarControlBase.SpecialDateProvider">
       <summary>
@@ -6386,9 +6293,9 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.ComboBoxItem.Value">
       <summary>
-        <para>Gets or sets the item&#39;s value, which is assigned to the editor&#39;s edit value when the item is selected.</para>
+        <para>Gets or sets the item value. This value is assigned to the editor&#39;s edit value when users select the item.</para>
       </summary>
-      <value>An object representing the value associated with the current item.</value>
+      <value>The item value.</value>
     </member>
     <member name="T:DevExpress.XtraEditors.Controls.ComboBoxItemCollection">
       <summary>
@@ -6435,7 +6342,6 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
       <summary>
         <para>Occurs when changing the item collection.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.ComboBoxItemCollection.Contains(System.Object)">
       <summary>
@@ -7212,13 +7118,11 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
       <summary>
         <para>Occurs when the properties defining the button&#39;s look and feel are changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.EditorButton.Click">
       <summary>
         <para>Occurs when the current editor button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.EditorButton.Collection">
       <summary>
@@ -7417,7 +7321,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs when changing the current button collection.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.EditorButtonCollection.Contains(DevExpress.XtraEditors.Controls.EditorButton)">
       <summary>
@@ -8078,13 +7981,11 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs when an <see cref="T:DevExpress.XtraEditors.Controls.ImageSlider"/> is ready to slide to the next/previous image and navigation buttons are to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.ImageSlider.ContextButtonClick">
       <summary>
         <para>Fires when a context button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.ImageSlider.ContextButtonOptions">
       <summary>
@@ -8114,7 +8015,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs when the <see cref="T:DevExpress.XtraEditors.Controls.ImageSlider"/>&#39;s currently displayed image is about to change.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.ImageSlider.GetCurrentImageIndex">
       <summary>
@@ -8126,13 +8026,11 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs when an <see cref="T:DevExpress.XtraEditors.Controls.ImageSlider"/> needs to change the currently displayed image to another image.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Controls.ImageSlider.ImageChanged">
       <summary>
         <para>Fires when the <see cref="P:DevExpress.XtraEditors.Controls.ImageSlider.CurrentImage"/> property value changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Controls.ImageSlider.ImageList">
       <summary>
@@ -8464,7 +8362,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs after the item collection has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.ListBoxItemCollection.Remove(System.Object)">
       <summary>
@@ -8703,7 +8600,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs on changing the column collection</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.LookUpColumnInfoCollection.CreateColumn">
       <summary>
@@ -8785,7 +8681,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Obsolete. Occurs after changes are applied to the current <see cref="T:DevExpress.XtraEditors.Controls.MaskData"/> object.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.MaskData.Assign(DevExpress.XtraEditors.Controls.MaskData)">
       <summary>
@@ -9397,7 +9292,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs when any item property is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.RadioGroupItem.Clone">
       <summary>
@@ -9496,7 +9390,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs when changing the item collection.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Controls.RadioGroupItemCollection.EndUpdate">
       <summary>
@@ -12891,6 +12784,11 @@ A specific version of the addressed image is automatically chosen based on the a
         <para>Specifies the text displayed by the <see cref="T:DevExpress.XtraEditors.SearchControl"/> when it is not focused and has no search request.Return value: Enter text to search...</para>
       </summary>
     </member>
+    <member name="F:DevExpress.XtraEditors.Controls.StringId.SearchControlSearchByMemberAny">
+      <summary>
+        <para></para>
+      </summary>
+    </member>
     <member name="F:DevExpress.XtraEditors.Controls.StringId.SearchForColumn">
       <summary>
         <para>Returns &quot;Search for a column...&quot;</para>
@@ -13291,7 +13189,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs after a position in the underlying data source has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.DataNavigatorButtonCollection">
       <summary>
@@ -13422,7 +13319,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs when drawing day cells in the dropdown calendar.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.DateEdit.DateTime">
       <summary>
@@ -13434,19 +13330,16 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.DateEdit.DateTime"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.DateEdit.DisableCalendarDate">
       <summary>
         <para>Allows specific dates or date ranges to be disabled in the editor&#39;s drop-down to prevent them from being selected by an end-user.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.DateEdit.DrawItem">
       <summary>
         <para>Provides the ability to custom paint day cells in the dropdown calendar.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.DateEdit.EditorTypeName">
       <summary>
@@ -13476,7 +13369,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires when the selection changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.DateEdit.SyncSelectionWithEditValue">
       <summary>
@@ -13631,7 +13523,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Allows you to respond to clicking the drop-down arrow.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.DropDownButton.ContextMenu">
       <summary>
@@ -13696,7 +13587,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires when an attempt is made to open the associated popup control.</para>
       </summary>
-      <value></value>
     </member>
     <member name="N:DevExpress.XtraEditors.DXErrorProvider">
       <summary>
@@ -13786,7 +13676,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Allows you to provide custom error icons for editors.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetErrorIconInternal(DevExpress.XtraEditors.DXErrorProvider.ErrorType)">
       <summary>
@@ -13850,17 +13739,17 @@ A specific version of the addressed image is automatically chosen based on the a
     </member>
     <member name="M:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.SetError(System.Windows.Forms.Control,System.String)">
       <summary>
-        <para>Sets a default type error for a control.</para>
+        <para>Sets the default error icon next to a control. When a user hovers over this icon, a tooltip with an error message appears on-screen.</para>
       </summary>
-      <param name="control">A control with which an error is associated.</param>
-      <param name="errorText">A string that specifies the error text.</param>
+      <param name="control">A control where an error occurred.</param>
+      <param name="errorText">The error text.</param>
     </member>
     <member name="M:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.SetError(System.Windows.Forms.Control,System.String,DevExpress.XtraEditors.DXErrorProvider.ErrorType)">
       <summary>
-        <para>Sets an error, of a specific error type for a control.</para>
+        <para>Sets an error icon next to a control. When a user hovers over this icon, a tooltip with an error message appears on-screen.</para>
       </summary>
-      <param name="control">A control with which an error is associated.</param>
-      <param name="errorText">A string that specifies the error text.</param>
+      <param name="control">A control in which an error occurred.</param>
+      <param name="errorText">The error text.</param>
       <param name="errorType">An <see cref="T:DevExpress.XtraEditors.DXErrorProvider.ErrorType"/> value that represents the error type, and the type of error icon that will be displayed.</param>
     </member>
     <member name="M:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.SetErrorType(System.Windows.Forms.Control,DevExpress.XtraEditors.DXErrorProvider.ErrorType)">
@@ -13986,7 +13875,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Allows you to perform actions when a control&#39;s validation fails.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider.ValidationMode">
       <summary>
@@ -13998,7 +13886,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs after the validation was successfully passed and allows you to perform certain post-validation actions.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.FilterControl">
       <summary>
@@ -14020,7 +13907,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires when the active editor in the FilterControl is being validated.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.FilterControl.AllowAggregateEditing">
       <summary>
@@ -14085,13 +13971,11 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires before creating an editor used to edit operands in the FilterControl.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.FilterControl.BeforeShowValueEditor">
       <summary>
         <para>Fires before displaying an editor used to edit operands in the FilterControl.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.FilterControl.CreateCriteriaByDefaultColumn">
       <summary>
@@ -14103,31 +13987,26 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.FilterControl.CreateCriteriaParseContext">
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.FilterControl.CreateCustomRepositoryItem">
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.FilterControl.DisposeValueEditor">
       <summary>
         <para>Fires before an editor used to edit operands is disposed of.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.FilterControl.FilterChanged">
       <summary>
         <para>Occurs after filter criteria in the <see cref="T:DevExpress.XtraEditors.FilterControl"/> have been modified.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.FilterControl.FilterColumns">
       <summary>
@@ -14151,7 +14030,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires after a value of the <see cref="P:DevExpress.XtraEditors.FilterControl.FilterString"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.FilterControl.FilterViewInfo">
       <summary>
@@ -14222,13 +14100,11 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires after any element (logical operator, operand value, field name, etc.) of the Filter Control has been clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.FilterControl.ItemDoubleClick">
       <summary>
         <para>Fires after any element (logical operator, operand value, field name, etc.) of the Filter Control has been double clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.FilterControl.LevelIndent">
       <summary>
@@ -14270,7 +14146,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires when a popup menu is about to be displayed for the FilterControl&#39;s visual elements.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.FilterControl.SetDefaultColumn(DevExpress.XtraEditors.Filtering.FilterColumn)">
       <summary>
@@ -14307,7 +14182,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Allows the FilterControl&#39;s context menus to be customized.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.FilterControl.ShowGroupCommandsIcon">
       <summary>
@@ -14427,6 +14301,12 @@ A specific version of the addressed image is automatically chosen based on the a
       <param name="text">The text to be displayed in the filter popup for the specified data value.</param>
       <returns>true, if the display text is successfully changed; otherwise, false.</returns>
     </member>
+    <member name="M:DevExpress.XtraEditors.Filtering.ExcelFilteringDataEventArgs.ClearData">
+      <summary>
+        <para></para>
+      </summary>
+      <returns></returns>
+    </member>
     <member name="P:DevExpress.XtraEditors.Filtering.ExcelFilteringDataEventArgs.DataItems">
       <summary>
         <para>Provides access to the collection of data values by which the column being processed can be filtered, and the corresponding display texts.</para>
@@ -14497,6 +14377,7 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Event arguments used when actual data is not yet loaded asynchronously.</para>
       </summary>
+      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Filtering.ExcelFilteringDataEventArgs.RemoveData(System.Object)">
       <summary>
@@ -14806,7 +14687,6 @@ The range&#39;s minimum value is the lowest column value, but not greater than 0
       <summary>
         <para>Occurs when the collection is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.FormatConditionCollectionBase.CompareValues(System.Object,System.Object)">
       <summary>
@@ -15701,7 +15581,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs before hyperlink execution.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.HyperLinkEdit.Properties">
       <summary>
@@ -16036,7 +15915,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.ImageEdit.Image"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ImageEdit.Properties">
       <summary>
@@ -16271,7 +16149,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs whenever an end-user clicks a hyperlink contained within the current <see cref="T:DevExpress.XtraEditors.LabelControl"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.LabelControl.ImageAlignToText">
       <summary>
@@ -16670,25 +16547,21 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Provides the capability to perform custom painting of grid cells in the drop-down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.LookUpEdit.CustomDrawHeader">
       <summary>
         <para>Provides the capability to perform custom painting of grid column headers in the drop-down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.LookUpEdit.CustomDrawLine">
       <summary>
         <para>Provides the capability to perform custom painting of vertical grid lines in the drop-down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.LookUpEdit.CustomDrawRow">
       <summary>
         <para>Provides the capability to perform custom painting of grid rows in the drop-down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.LookUpEdit.EditorTypeName">
       <summary>
@@ -16714,7 +16587,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs when retrieving values for fields not found in the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEditBase.DataSource"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.LookUpEdit.GetPopupEditForm">
       <summary>
@@ -16744,7 +16616,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs after a record(s) in the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEditBase.DataSource"/> has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.LookUpEdit.Properties">
       <summary>
@@ -16784,7 +16655,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs when a new value entered into the edit box is validated.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.LookUpEditBase.Properties">
       <summary>
@@ -16869,7 +16739,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs after a setting of the current <see cref="T:DevExpress.XtraEditors.Mask.MaskProperties"/> object has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Mask.MaskProperties.Assign(DevExpress.XtraEditors.Controls.MaskData)">
       <summary>
@@ -16899,7 +16768,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs when a setting of the current <see cref="T:DevExpress.XtraEditors.Mask.MaskProperties"/> object is about to be changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Mask.MaskProperties.BeginUpdate">
       <summary>
@@ -17123,7 +16991,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs before a new item is added to the MRU editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.MRUEdit.EditorTypeName">
       <summary>
@@ -17147,7 +17014,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs before an item is removed from the editor&#39;s MRU list.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.NavigatorBase">
       <summary>
@@ -17164,7 +17030,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Enables you to perform custom actions when end-users click navigator buttons.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.NavigatorBase.ButtonStyle">
       <summary>
@@ -17188,7 +17053,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Provides control over exceptional situations which might occur while navigating/editing records using the data navigator.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.NavigatorBase.ShowToolTips">
       <summary>
@@ -17300,7 +17164,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs when a user clicks this navigator button.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.NavigatorButtonBase.Enabled">
       <summary>
@@ -17884,7 +17747,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Fires when a context button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.PictureEdit.CopyImage">
       <summary>
@@ -17895,7 +17757,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Allows hints for grading scale points of rating context buttons to be customized.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.PictureEdit.CutImage">
       <summary>
@@ -17948,7 +17809,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.PictureEdit.Image"/> or <see cref="P:DevExpress.XtraEditors.PictureEdit.SvgImage"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.PictureEdit.ImageToViewport(System.Drawing.Point)">
       <summary>
@@ -17967,7 +17827,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Fires when an asynchronous image load operation is completed, been canceled, or raised an exception.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.PictureEdit.LoadImage">
       <summary>
@@ -17990,7 +17849,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>A DirectX-compatible method that replaces the standard Control.Paint method.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.PictureEdit.PasteImage">
       <summary>
@@ -18001,7 +17859,6 @@ In <see cref="F:DevExpress.XtraEditors.HotTrackSelectMode.SelectItemOnHotTrack"/
       <summary>
         <para>Fires when the context menu is about to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.PictureEdit.Properties">
       <summary>
@@ -18078,7 +17935,6 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
       <summary>
         <para>Fires when the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.ZoomPercent"/> property is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.PopupBaseAutoSearchEdit">
       <summary>
@@ -18124,7 +17980,6 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
       <summary>
         <para>Fires when the editor&#39;s pop-up is about to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.PopupBaseEdit.CancelPopup">
       <summary>
@@ -18135,7 +17990,6 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
       <summary>
         <para>Allows you to perform specific actions with respect to how the popup window was closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.PopupBaseEdit.ClosePopup">
       <summary>
@@ -18146,7 +18000,6 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
       <summary>
         <para>Enables you to specify whether the modifications performed within the editor&#39;s popup window should be accepted by the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.PopupBaseEdit.EditorContainsFocus">
       <summary>
@@ -18196,13 +18049,11 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
       <summary>
         <para>Occurs after the editor&#39;s popup window has been opened.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.PopupBaseEdit.PopupAllowClick">
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.PopupBaseEdit.PopupCloseMode">
       <summary>
@@ -18220,13 +18071,11 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
       <summary>
         <para>Enables you to specify whether an attempt to close the popup window will succeed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.PopupBaseEdit.QueryPopUp">
       <summary>
         <para>Enables you to specify whether an attempt to open the popup window will succeed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.PopupBaseEdit.RefreshEditValue">
       <summary>
@@ -18347,13 +18196,11 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.False.</value>
       <summary>
         <para>Enables you to specify the textual representation of the editor&#39;s value.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.PopupContainerEdit.QueryResultValue">
       <summary>
         <para>Fires before closing the popup window enabling you to modify the edit value.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.PopupContainerEdit.ShowPopup">
       <summary>
@@ -18492,7 +18339,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.ProgressBarControl.Position"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ProgressBarControl.Properties">
       <summary>
@@ -18564,13 +18410,12 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Gets or sets the selected item&#39;s index.</para>
       </summary>
-      <value>The zero-based index of the edit value in the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup.Items"/> collection; otherwise, -1.</value>
+      <value>The selected item&#39;s index in the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup.Items"/> collection; &#0045;1 if none selected.</value>
     </member>
     <member name="E:DevExpress.XtraEditors.RadioGroup.SelectedIndexChanged">
       <summary>
         <para>Occurs when changing the index of the selected value in the radio group editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.RadioGroup.Text">
       <summary>
@@ -18652,13 +18497,11 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>A DirectX-compatible method that replaces the standard Control.Paint method.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.RangeControl.RangeChanged">
       <summary>
         <para>Fires when the selected range is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.RangeControl.SelectAll">
       <summary>
@@ -18852,7 +18695,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Raises before the rating tooltip is shown and allows you to show your custom text.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.RatingControl.EditorTypeName">
       <summary>
@@ -18864,19 +18706,16 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs when an end-user clicks a rating item in this <see cref="T:DevExpress.XtraEditors.RatingControl"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.RatingControl.ItemMouseOut">
       <summary>
         <para>Occurs when an end-user moves the mouse pointer away from the rating item area.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.RatingControl.ItemMouseOver">
       <summary>
         <para>Fires when an end-user hovers over a rating item.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.RatingControl.Properties">
       <summary>
@@ -19048,7 +18887,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires immediately after the repository item collection has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.EditorsRepositoryBase.Items">
       <summary>
@@ -19060,7 +18898,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when changing repository item properties residing within the repository.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.ExportMode">
       <summary>
@@ -19253,7 +19090,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when clicking the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.RepositoryItem.Clone">
       <summary>
@@ -19307,7 +19143,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Enables custom display text to be provided for an editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.DefaultAlignment">
       <summary>
@@ -19343,31 +19178,26 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when the editor is double clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.DragDrop">
       <summary>
         <para>Fires when an object is dropped onto the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.DragEnter">
       <summary>
         <para>Fires when a dragged object enters the editor&#39;s area.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.DragLeave">
       <summary>
         <para>Fires when a dragged object leaves the editor&#39;s area.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.DragOver">
       <summary>
         <para>Fires repeatedly when dragging an object over the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.Editable">
       <summary>
@@ -19391,7 +19221,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when the editor&#39;s <see cref="P:DevExpress.XtraEditors.BaseEdit.EditValue"/> property changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.EditValueChangedDelay">
       <summary>
@@ -19409,13 +19238,12 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Gets or sets the <see cref="E:DevExpress.XtraEditors.Repository.RepositoryItem.EditValueChanged"/> event&#39;s firing mode.</para>
       </summary>
-      <value>An <see cref="T:DevExpress.XtraEditors.Controls.EditValueChangedFiringMode"/> enumeration member which specifies when the editor&#39;s <see cref="E:DevExpress.XtraEditors.Repository.RepositoryItem.EditValueChanged"/> event should be raised.</value>
+      <value>An <see cref="T:DevExpress.XtraEditors.Controls.EditValueChangedFiringMode"/> enumeration member which specifies when the editor&#39;s <see cref="E:DevExpress.XtraEditors.Repository.RepositoryItem.EditValueChanged"/> event should occur.</value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.EditValueChanging">
       <summary>
         <para>Fires when the editor&#39;s value is about to be changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.Enabled">
       <summary>
@@ -19437,7 +19265,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when the editor receives focus.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.ExportMode">
       <summary>
@@ -19449,7 +19276,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Enables you to format the editor&#39;s value (change the editor&#39;s value when the formatting mechanism is invoked).</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.RepositoryItem.GetBorderSides(System.Boolean,System.Boolean)">
       <summary>
@@ -19516,13 +19342,11 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Enables you to specify the cursor appearance when dragging this editor&#39;s data.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.HelpRequested">
       <summary>
         <para>Fires when the end-user requests help for the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.HtmlImages">
       <summary>
@@ -19590,25 +19414,21 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when a key is pressed while the editor has focus.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.KeyPress">
       <summary>
         <para>Fires when a character key is pressed while the editor has focus.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.KeyUp">
       <summary>
         <para>Fires when a key is released while the editor has focus.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.Leave">
       <summary>
         <para>Fires when the editor loses focus.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.LinkCount">
       <summary>
@@ -19631,49 +19451,41 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when the edit value is first changed since it was last validated.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.MouseDown">
       <summary>
         <para>Fires when a mouse button is pressed while the mouse pointer is over the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.MouseEnter">
       <summary>
         <para>Fires when the mouse pointer enters the editor&#39;s area.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.MouseHover">
       <summary>
         <para>Fires when hot-tracking an editor element.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.MouseLeave">
       <summary>
         <para>Fires when the mouse pointer leaves the editor&#39;s area.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.MouseMove">
       <summary>
         <para>Fires when the mouse pointer moves over the editor&#39;s area.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.MouseUp">
       <summary>
         <para>Fires when the mouse button is released while the mouse pointer is over the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.MouseWheel">
       <summary>
         <para>Fires when the mouse wheel moves while the mouse pointer is within the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.Name">
       <summary>
@@ -19709,7 +19521,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Converts an input value (entered by a user or assigned in code) to the value that the editor will store.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.PopupOffset">
       <summary>
@@ -19727,25 +19538,21 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires immediately after a change to one of the editor&#39;s properties.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.QueryAccessibilityHelp">
       <summary>
         <para>Fires when the help is provided to accessibility applications.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.QueryContinueDrag">
       <summary>
         <para>Fires when dragging the editor&#39;s data allowing you to specify whether dragging should be continued.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.QueryProcessKey">
       <summary>
         <para>Provides the capability to specify whether the key pressed in the editor is processed by the editor or a container control (<see cref="T:DevExpress.XtraGrid.GridControl"/>, <see cref="T:DevExpress.XtraTreeList.TreeList"/>, etc.) that displays this editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItem.ReadOnly">
       <summary>
@@ -19812,9 +19619,8 @@ By default, all columns are searched through. If required, you can limit the sea
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItem.Validating">
       <summary>
-        <para>Allows you to specify whether the edit value is valid and whether the editor is allowed to lose focus.</para>
+        <para>Allows you to specify whether the edit value is valid. This event does not occur if the editor&#39;s CausesValidation property is disabled.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemBaseProgressBar">
       <summary>
@@ -19949,13 +19755,11 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs when the <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemBaseSpinEdit"/>&#39;s pop-up window is completely closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemBaseSpinEdit.CloseUp">
       <summary>
         <para>Occurs when the editor&#39;s pop-up window starts closing.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBaseSpinEdit.CloseUpKey">
       <summary>
@@ -19979,7 +19783,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs after the editor&#39;s popup window has been opened.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBaseSpinEdit.PopupBorderStyle">
       <summary>
@@ -20015,13 +19818,11 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Enables you to specify whether an attempt to close the editor&#39;s popup window will succeed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemBaseSpinEdit.QueryPopUp">
       <summary>
         <para>Enables you to specify whether an attempt to open the editor&#39;s popup window will succeed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBaseSpinEdit.ShowDropDown">
       <summary>
@@ -20055,9 +19856,9 @@ By default, all columns are searched through. If required, you can limit the sea
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBaseSpinEdit.UseCtrlIncrement">
       <summary>
-        <para>Gets or sets a value specifying how keyboard keys are used to change the editor&#39;s value.</para>
+        <para>Not supported.</para>
       </summary>
-      <value>true for editing the editor&#39;s value by pressing CTRL+UP and CTRL+DOWN combinations; false for editing the editor&#39;s value by the UP and DOWN keys.</value>
+      <value>Returns always true</value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemBlobBaseEdit">
       <summary>
@@ -20115,7 +19916,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Allows you to hide the default OK and Cancel buttons shown in popup menus of <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemBlobBaseEdit"/> class descendants.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBlobBaseEdit.PopupSizeable">
       <summary>
@@ -20215,6 +20015,7 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Returns the \ character that is the default path separator for a <see cref="T:DevExpress.XtraEditors.BreadCrumbEdit"/> control.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.EditorTypeName">
       <summary>
@@ -20259,7 +20060,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs whenever a node&#39;s drop-down list is hidden.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.History">
       <summary>
@@ -20307,25 +20107,21 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs each time a new node is about to be added to this <see cref="T:DevExpress.XtraEditors.BreadCrumbEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.NodeChanged">
       <summary>
         <para>Occurs whenever a node owned by this <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit"/> changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.NodeClick">
       <summary>
         <para>Fires when a node from this <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit"/>&#39;s <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.Nodes"/> collection is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.NodeDropDownButtonClick">
       <summary>
         <para>Occurs whenever an end-user clicks any node drop-down button within this <see cref="T:DevExpress.XtraEditors.BreadCrumbEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.NodeDropDownRowCount">
       <summary>
@@ -20355,13 +20151,11 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs whenever a <see cref="T:DevExpress.XtraEditors.BreadCrumbEdit"/>&#39;s path was changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.PathRejected">
       <summary>
         <para>Occurs when a path to which the <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit"/> was about to navigate does not pass validation.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.PathSeparator">
       <summary>
@@ -20379,7 +20173,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs when the editor needs to navigate to a dynamically populated node for the first time.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.RequireDisplayTextSorting">
       <summary>
@@ -20402,7 +20195,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when the root node&#39;s glyph is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.RootImageIndex">
       <summary>
@@ -20420,13 +20212,11 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when this <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit"/>&#39;s <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.SelectedNode"/> changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.SelectorClientEmptySpaceClick">
       <summary>
         <para>Occurs each time an end-user clicks empty space within this <see cref="T:DevExpress.XtraEditors.BreadCrumbEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.SetNavigationHistoryCurrentItemIndex(System.Int32)">
       <summary>
@@ -20438,7 +20228,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs after a node drop-down is shown completely.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.ShowRootGlyph">
       <summary>
@@ -20450,7 +20239,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when the User Action Menu is about to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit.Sorted">
       <summary>
@@ -20474,7 +20262,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs each time the <see cref="T:DevExpress.XtraEditors.BreadCrumbEdit"/> has to navigate to an unknown node.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit">
       <summary>
@@ -20501,13 +20288,11 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs when an editor button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit.ButtonPressed">
       <summary>
         <para>Occurs when an edit button is pressed within a button editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit.Buttons">
       <summary>
@@ -20536,7 +20321,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Allows you to apply custom painting to specific <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit"/>&#39;s buttons.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit.EditorTypeName">
       <summary>
@@ -20650,7 +20434,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.CalcEdit.Value"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit">
       <summary>
@@ -20744,7 +20527,6 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when assigning a new object to the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.DataSource"/> property.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.DisplayMember">
       <summary>
@@ -20756,13 +20538,11 @@ By default, all columns are searched through. If required, you can limit the sea
       <summary>
         <para>Fires when assigning a new value to the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.DisplayMember"/> property.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.DrawListBoxItem">
       <summary>
         <para>Allows you to manually paint <see cref="T:DevExpress.XtraEditors.CheckedComboBoxEdit"/> items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.DropDownRows">
       <summary>
@@ -20814,7 +20594,6 @@ formed as a string or as a List&lt;object&gt; object.</para>
       <summary>
         <para>Enables you to disable specific items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.GetItems">
       <summary>
@@ -20881,7 +20660,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Provides the capability to change the height of an individual item.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.PopupControl">
       <summary>
@@ -20893,13 +20671,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.QueryResultValue">
       <summary>
         <para>This event is not supported by the <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.RefreshDataSource">
       <summary>
@@ -20976,7 +20752,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when assigning a new value to the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.ValueMember"/> property.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit">
       <summary>
@@ -21016,13 +20791,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires after the <see cref="P:DevExpress.XtraEditors.CheckEdit.Checked"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit.CheckStateChanged">
       <summary>
         <para>Fires after the <see cref="P:DevExpress.XtraEditors.CheckEdit.CheckState"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit.CheckStyle">
       <summary>
@@ -21085,7 +20858,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs when a hyperlink within the current <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit"/> control&#39;s caption is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit.ImageIndexChecked">
       <summary>
@@ -21157,13 +20929,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Allows for custom conversion from the edit value to a check state (checked, unchecked and indeterminate).</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit.QueryValueByCheckState">
       <summary>
         <para>Allows for custom conversion from the check state (checked, unchecked and indeterminate) to an edit value.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit.RadioGroupIndex">
       <summary>
@@ -21280,7 +21050,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.ColorEdit.Color"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemColorEdit.ColorDialogType">
       <summary>
@@ -21455,13 +21224,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires after the &quot;Select Color&quot; dialog has been closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit.ColorPickDialogShowing">
       <summary>
         <para>Fires when the &quot;Select Color&quot; dialog is about to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit.CustomColors">
       <summary>
@@ -21549,7 +21316,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Allows you to customize tooltips displayed when hovering over colors in the Custom and Web-Safe palettes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemComboBox">
       <summary>
@@ -21613,7 +21379,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Enables custom display text to be provided for editor items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemComboBox.CycleOnDblClick">
       <summary>
@@ -21625,13 +21390,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Provides the ability to custom paint the items displayed within the combo box editor&#39;s drop down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemComboBox.DropDownCustomDrawItem">
       <summary>
         <para>Occurs when drawing an item in the dropdown list.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemComboBox.DropDownItemHeight">
       <summary>
@@ -21699,7 +21462,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Allows you to change the height of specific items in the dropdown window.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemComboBox.OwnerEdit">
       <summary>
@@ -21717,13 +21479,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs on changing the index of the selected value in the combo box editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemComboBox.SelectedValueChanged">
       <summary>
         <para>Occurs after changing the index of the selected value in the combo box editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemComboBox.ShowToolTipForTrimmedText">
       <summary>
@@ -21859,19 +21619,16 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs when drawing day cells in the dropdown calendar.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemDateEdit.CustomWeekDayAbbreviation">
       <summary>
         <para>Allows you to provide custom week day abbreviations.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemDateEdit.CustomWeekNumber">
       <summary>
         <para>Allows week numbers to be customized.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemDateEdit.DateOnError">
       <summary>
@@ -21883,13 +21640,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.DateEdit.DateTime"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemDateEdit.DisableCalendarDate">
       <summary>
         <para>Allows specific dates or date ranges to be disabled in the editor&#39;s drop-down to prevent them from being selected by an end-user.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemDateEdit.DisabledDateProvider">
       <summary>
@@ -21913,7 +21668,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Provides the ability to custom paint day cells in the dropdown calendar.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemDateEdit.EditFormat">
       <summary>
@@ -22057,7 +21811,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Allows you to mark certain dates as &quot;special&quot; dates. These dates will be painted using the dedicated settings provided by the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemDateEdit.AppearanceCalendar"/> object.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemDateEdit.SpecialDateProvider">
       <summary>
@@ -22075,7 +21828,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when the Today button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemDateEdit.TodayDate">
       <summary>
@@ -22325,7 +22077,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs before hyperlink execution.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit.Picture">
       <summary>
@@ -22509,7 +22260,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when a hyperlink is clicked, and a browser is about to be opened.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel.PasswordChar">
       <summary>
@@ -22737,7 +22487,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.ImageEdit.Image"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemImageEdit.PictureAlignment">
       <summary>
@@ -22837,25 +22586,21 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Provides the capability to perform custom painting of grid cells in the drop-down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit.CustomDrawHeader">
       <summary>
         <para>Provides the capability to perform custom painting of grid column headers in the drop-down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit.CustomDrawLine">
       <summary>
         <para>Provides the capability to perform custom painting of vertical grid lines in the drop-down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit.CustomDrawRow">
       <summary>
         <para>Provides the capability to perform custom painting of grid rows in the drop-down.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit.DropDownItemHeight">
       <summary>
@@ -22984,7 +22729,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs on retrieving values for fields not found in the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEditBase.DataSource"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit.HeaderClickMode">
       <summary>
@@ -23014,7 +22758,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs after a record(s) in the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEditBase.DataSource"/> has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit.MeasureColumn(DevExpress.Utils.Drawing.GraphicsCache,DevExpress.XtraEditors.Controls.LookUpColumnInfo)">
       <summary>
@@ -23047,7 +22790,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Allows you to provide a custom filter criteria.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit.PopupFilterMode">
       <summary>
@@ -23189,7 +22931,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs when a new value entered into the edit box is validated.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.RepositoryItemLookUpEditBase.ResetEvents">
       <summary>
@@ -23464,7 +23205,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs before an item is added to the MRU editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemMRUEdit.AllowRemoveMRUItems">
       <summary>
@@ -23542,7 +23282,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs before an item is removed from the MRU edit.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.RepositoryItemMRUEdit.SaveItemsToStream(System.IO.Stream)">
       <summary>
@@ -23653,7 +23392,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when a context button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.ContextButtonOptions">
       <summary>
@@ -23671,13 +23409,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when the <see cref="P:DevExpress.Utils.CheckContextButton.Checked"/>, <see cref="P:DevExpress.Utils.TrackBarContextButton.Value"/> or <see cref="P:DevExpress.Utils.RatingContextButton.Rating"/> property value changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.CustomContextButtonToolTip">
       <summary>
         <para>Allows hints for the <see cref="T:DevExpress.Utils.RatingContextButton"/> objects displayed in the <see cref="T:DevExpress.XtraEditors.PictureEdit"/> to be customized.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.CustomHeight">
       <summary>
@@ -23726,13 +23462,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.ImageChanged">
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.PictureEdit.Image"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.InitialImage">
       <summary>
@@ -23756,7 +23490,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when an asynchronous image load operation is completed, been canceled, or raised an exception.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.OptionsMask">
       <summary>
@@ -23792,7 +23525,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when the context menu is about to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.Properties">
       <summary>
@@ -23826,9 +23558,9 @@ In bound mode, this method populates the item collection before returning it.</p
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.SizeMode">
       <summary>
-        <para>Gets or sets a value specifying how the image is displayed within the picture editor.</para>
+        <para>Gets or sets how the image changes size within the picture editor.</para>
       </summary>
-      <value>A <see cref="T:DevExpress.XtraEditors.Controls.PictureSizeMode"/> enumeration value specifying the size mode of the displayed image.</value>
+      <value>The displayed image&#39;s size mode.</value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.SvgImageSize">
       <summary>
@@ -23870,7 +23602,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit.ZoomPercent"/> property is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase">
       <summary>
@@ -23910,19 +23641,16 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when the editor&#39;s pop-up is about to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.Closed">
       <summary>
         <para>Allows you to perform specific actions with respect to how the popup window was closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.CloseUp">
       <summary>
         <para>Enables you to specify whether changes are saved or discarded when closing the popup window.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.CloseUpKey">
       <summary>
@@ -23934,7 +23662,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when a context button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.ContextButtonOptions">
       <summary>
@@ -23952,7 +23679,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires when the <see cref="P:DevExpress.Utils.CheckContextButton.Checked"/>, <see cref="P:DevExpress.Utils.TrackBarContextButton.Value"/> or <see cref="P:DevExpress.Utils.RatingContextButton.Rating"/> property value changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.CreateDefaultButton">
       <summary>
@@ -23963,7 +23689,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Allows you to customize the context buttons for individual items.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.EditorTypeName">
       <summary>
@@ -23981,13 +23706,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs after the editor&#39;s popup window has been opened.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.PopupAllowClick">
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.PopupBorderStyle">
       <summary>
@@ -24029,13 +23752,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Enables you to specify whether an attempt to close the editor&#39;s popup window will succeed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.QueryPopUp">
       <summary>
         <para>Enables you to specify whether an attempt to open the editor&#39;s popup window will succeed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPopupBase.ShowDropDown">
       <summary>
@@ -24185,13 +23906,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Enables you to specify the display text for the editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit.QueryResultValue">
       <summary>
         <para>Fires when closing the popup window, enabling you to specify the editor&#39;s value based on the state of controls residing within the popup.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit.ShowPopupCloseButton">
       <summary>
@@ -24328,7 +24047,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.ProgressBarControl.Position"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemProgressBar.Properties">
       <summary>
@@ -24489,7 +24207,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs on changing the index of the selected item in the radio group editor.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemRangeTrackBar">
       <summary>
@@ -24569,7 +24286,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs when an end-user hovers over a rating item and allows you to display a unique hint for this item.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemRatingControl.BorderStyle">
       <summary>
@@ -24638,7 +24354,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Fires whenever an end-user clicks a rating item within this <see cref="T:DevExpress.XtraEditors.RatingControl"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemRatingControl.ItemCount">
       <summary>
@@ -24656,13 +24371,11 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs when the mouse pointer leaves the rating item&#39;s bounds.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemRatingControl.ItemMouseOver">
       <summary>
         <para>Occurs when an end-user hovers a rating item within this <see cref="T:DevExpress.XtraEditors.RatingControl"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemRatingControl.Padding">
       <summary>
@@ -24836,6 +24549,11 @@ In bound mode, this method populates the item collection before returning it.</p
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemSearchControl.QueryIsSearchColumn">
       <summary>
         <para>Enables you to specify the attached object&#39;s columns through which a search is performed.</para>
+      </summary>
+    </member>
+    <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemSearchControl.SearchByCaptions">
+      <summary>
+        <para></para>
       </summary>
       <value></value>
     </member>
@@ -25050,7 +24768,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.SpinEdit.Value"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemTextEdit">
       <summary>
@@ -25096,7 +24813,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs before the editor&#39;s context menu is displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTextEdit.CharacterCasing">
       <summary>
@@ -25197,9 +24913,9 @@ In bound mode, this method populates the item collection before returning it.</p
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTextEdit.PasswordChar">
       <summary>
-        <para>Gets or sets the password character displayed instead of actual characters.</para>
+        <para>Gets or sets the password character that appears instead of actual characters.</para>
       </summary>
-      <value>A character displayed instead of actual characters.</value>
+      <value>A character that appears instead of actual characters.</value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTextEdit.Properties">
       <summary>
@@ -25217,7 +24933,6 @@ In bound mode, this method populates the item collection before returning it.</p
       <summary>
         <para>Occurs when either the UP or DOWN ARROW key is pressed or the mouse wheel is rotated.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTextEdit.UseReadOnlyAppearance">
       <summary>
@@ -25276,13 +24991,11 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Allows you to perform specific actions with respect to how the popup window was closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit.CloseUp">
       <summary>
         <para>Occurs when the editor&#39;s dropdown window starts closing.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit.CloseUpKey">
       <summary>
@@ -25331,7 +25044,6 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Occurs after the editor&#39;s popup window has been opened.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit.PopupBorderStyle">
       <summary>
@@ -25367,13 +25079,11 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Enables you to specify whether an attempt to close the editor&#39;s popup window will succeed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit.QueryPopUp">
       <summary>
         <para>Enables you to specify whether an attempt to open the editor&#39;s popup window will succeed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit.ShowDropDown">
       <summary>
@@ -25600,6 +25310,7 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>The class name of an edit control corresponding to the current repository item.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTimeSpanEdit.TouchUIMaxValue">
       <summary>
@@ -25696,7 +25407,6 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Fires when the control&#39;s state is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch.ValueOff">
       <summary>
@@ -25780,13 +25490,11 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Fires before this <see cref="T:DevExpress.XtraEditors.TokenEdit"/> control&#39;s popup menu is shown. Allows you to customize items within this menu.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.BeforeShowPopupPanel">
       <summary>
         <para>Occurs before the peek panel assigned to this <see cref="T:DevExpress.XtraEditors.TokenEdit"/> is displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.CheckedItems">
       <summary>
@@ -25810,19 +25518,16 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Occurs each time a token needs to be displayed and allows you to manually draw its background.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.CustomDrawTokenGlyph">
       <summary>
         <para>Allows you to re-draw the default token glyph.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.CustomDrawTokenText">
       <summary>
         <para>Allows you to re-paint the token text area.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.CustomDropDownControl">
       <summary>
@@ -25834,16 +25539,19 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Stores the default <see cref="T:DevExpress.XtraEditors.TokenEdit"/> drop-down list capacity, equal to 7 lines.</para>
       </summary>
+      <value></value>
     </member>
     <member name="F:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.DefaultEditValueSeparatorChar">
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
+      <value></value>
     </member>
     <member name="F:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.DefaultMaxExpandLines">
       <summary>
         <para>Stores the default number of lines (4) a <see cref="T:DevExpress.XtraEditors.TokenEdit"/> can be expanded to. If a Token Edit needs more than 4 lines to display its content, vertical scroll bar appears. To modify this line count, use the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.MaxExpandLines"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.DeleteTokenOnGlyphClick">
       <summary>
@@ -25958,7 +25666,6 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Occurs whenever a token is added or removed to (from) the <see cref="T:DevExpress.XtraEditors.TokenEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.Separators">
       <summary>
@@ -26000,31 +25707,26 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Occurs after a new token was successfully added to this <see cref="T:DevExpress.XtraEditors.TokenEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.TokenAdding">
       <summary>
         <para>Occurs when a new token is about to be added to this <see cref="T:DevExpress.XtraEditors.TokenEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.TokenCheckStateChanged">
       <summary>
         <para>Occurs when an end-user checks or unchecks a token within the corresponding <see cref="T:DevExpress.XtraEditors.TokenEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.TokenClick">
       <summary>
         <para>Fires whenever an end-user clicks a token displayed within this <see cref="T:DevExpress.XtraEditors.TokenEdit"/> control.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.TokenDoubleClick">
       <summary>
         <para>Occurs when an end-user double clicks a token within this <see cref="T:DevExpress.XtraEditors.TokenEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.TokenGlyphLocation">
       <summary>
@@ -26036,19 +25738,16 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Fires whenever a user focuses a token.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.TokenMouseHover">
       <summary>
         <para>Occurs when an end-user hovers a token within this <see cref="T:DevExpress.XtraEditors.TokenEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.TokenMouseLeave">
       <summary>
         <para>Fires when a <see cref="T:DevExpress.XtraEditors.TokenEdit"/> token loses mouse focus.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.TokenPopulateMode">
       <summary>
@@ -26060,13 +25759,11 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Occurs after a token is removed from this <see cref="T:DevExpress.XtraEditors.TokenEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.TokenRemoving">
       <summary>
         <para>Fires when a token is about to be removed from this <see cref="T:DevExpress.XtraEditors.TokenEdit"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.Tokens">
       <summary>
@@ -26089,7 +25786,6 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Allows you to perform the custom validation on text currently entered in this <see cref="T:DevExpress.XtraEditors.TokenEdit"/> control.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTokenEdit.ValidationRules">
       <summary>
@@ -26141,13 +25837,11 @@ The default value is <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/>.</v
       <summary>
         <para>Fires after the value of the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemTrackBar.AutoSize"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemTrackBar.BeforeShowValueToolTip">
       <summary>
         <para>Allows you to provide custom tooltips for the thumb(s).</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemTrackBar.DisplayFormat">
       <summary>
@@ -26281,7 +25975,6 @@ scrolling using the keyboard arrow keys (and the mouse wheel, provided that <see
       <summary>
         <para>Fires after the value of the <see cref="P:DevExpress.XtraEditors.TrackBarControl.Value"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.Repository.RepositoryItemZoomTrackBar">
       <summary>
@@ -26315,13 +26008,11 @@ scrolling using the keyboard arrow keys (and the mouse wheel, provided that <see
       <summary>
         <para>Occurs after the ZoomTrackBar control&#39;s pressed button has been released.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemZoomTrackBar.ButtonPressed">
       <summary>
         <para>Occurs immediately after the ZoomTrackBar control&#39;s button has been pressed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemZoomTrackBar.DistanceFromTickToLabel">
       <summary>
@@ -26432,6 +26123,7 @@ scrolling using the keyboard arrow keys (and the mouse wheel, provided that <see
       <summary>
         <para>Gets the <see cref="T:DevExpress.XtraEditors.Repository.TrackBarRange"/> object whose minimum and maximum limits of the range are equal to 0. To determine whether the <see cref="T:DevExpress.XtraEditors.Repository.TrackBarRange"/> object is empty, use the <see cref="P:DevExpress.XtraEditors.Repository.TrackBarRange.IsEmpty"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.Repository.TrackBarRange.Equals(DevExpress.XtraEditors.Repository.TrackBarRange)">
       <summary>
@@ -26514,7 +26206,6 @@ scrolling using the keyboard arrow keys (and the mouse wheel, provided that <see
       <summary>
         <para>Enables you to specify the attached object&#39;s columns through which a search is performed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.SearchControl.SetFilter(System.String)">
       <summary>
@@ -26597,7 +26288,7 @@ scrolling using the keyboard arrow keys (and the mouse wheel, provided that <see
       <summary>
         <para>Gets or sets the button&#39;s image.</para>
       </summary>
-      <value>An <see cref="T:System.Drawing.Image"/> object representing the image to be displayed on the button.</value>
+      <value>The button&#39;s image.</value>
     </member>
     <member name="P:DevExpress.XtraEditors.SimpleButton.ImageAlignment">
       <summary>
@@ -26742,7 +26433,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs after the value of the <see cref="P:DevExpress.XtraEditors.SpinEdit.Value"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.StyleController">
       <summary>
@@ -26844,7 +26534,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires immediately after any property value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.StyleFormatConditionBase">
       <summary>
@@ -27108,7 +26797,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs when either the UP or DOWN ARROW key is pressed or the mouse wheel is rotated.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TextEdit.TabStop">
       <summary>
@@ -27273,13 +26961,11 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires when a context button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.TileControl.ContextButtonCustomize">
       <summary>
         <para>Allows you to customize the context buttons for individual tiles.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileControl.ContextButtonOptions">
       <summary>
@@ -27297,7 +26983,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Allows you to dynamically customize item tooltips.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileControl.DefaultItemPadding">
       <summary>
@@ -27321,7 +27006,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires after the dragged tile item is released.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.TileControl.EndUpdate">
       <summary>
@@ -27481,7 +27165,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileC
       <summary>
         <para>Fires when a <see cref="T:DevExpress.XtraEditors.TileItem"/>&#39;s check state is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileControl.ItemCheckMode">
       <summary>
@@ -27493,7 +27176,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileC
       <summary>
         <para>Fires when an end-user clicks a <see cref="T:DevExpress.XtraEditors.TileItem"/> within the <see cref="T:DevExpress.XtraEditors.TileControl"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileControl.ItemContentAnimation">
       <summary>
@@ -27505,13 +27187,11 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileC
       <summary>
         <para>Occurs when an end-user double-clicks a <see cref="T:DevExpress.XtraEditors.TileItem"/> within the current <see cref="T:DevExpress.XtraEditors.TileControl"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.TileControl.ItemDropped">
       <summary>
         <para>Occurs after a tile that was dragged at runtime lands on its final position.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileControl.ItemImageAlignment">
       <summary>
@@ -27535,7 +27215,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileC
       <summary>
         <para>Fires when an end-user presses a <see cref="T:DevExpress.XtraEditors.TileItem"/> within the current <see cref="T:DevExpress.XtraEditors.TileControl"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileControl.ItemSize">
       <summary>
@@ -27616,7 +27295,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileC
       <summary>
         <para>A DirectX-compatible method that replaces the standard Control.Paint method.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileControl.Position">
       <summary>
@@ -27651,7 +27329,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileC
       <summary>
         <para>Fires after any <see cref="T:DevExpress.XtraEditors.TileItem"/> within the current <see cref="T:DevExpress.XtraEditors.TileControl"/> was clicked with the right mouse button.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileControl.RowCount">
       <summary>
@@ -27706,7 +27383,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileC
       <summary>
         <para>Fires when a tile item selection occurs for the first time or item selection jumps from one <see cref="T:DevExpress.XtraEditors.TileItem"/> to another.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileControl.SelectionColor">
       <summary>
@@ -27736,7 +27412,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileC
       <summary>
         <para>Fires after an end-user starts dragging a tile item.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.TileControl.SuspendAnimation">
       <summary>
@@ -28094,7 +27769,6 @@ The DefaultBoolean.Default value is equivalent to DefaultBoolean.True.</value>
       <summary>
         <para>Fires after the current <see cref="T:DevExpress.XtraEditors.TileItem"/>&#39;s check state was changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileItem.ContentAnimation">
       <summary>
@@ -28221,13 +27895,11 @@ This property is obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileItemE
       <summary>
         <para>Fires when an end-user clicks the current <see cref="T:DevExpress.XtraEditors.TileItem"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.TileItem.ItemDoubleClick">
       <summary>
         <para>Occurs when an end-user double-clicks the current <see cref="T:DevExpress.XtraEditors.TileItem"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileItem.ItemInfo">
       <summary>
@@ -28239,7 +27911,6 @@ This property is obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileItemE
       <summary>
         <para>Fires when an end-user presses the current <see cref="T:DevExpress.XtraEditors.TileItem"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileItem.ItemSize">
       <summary>
@@ -28309,7 +27980,6 @@ This property is obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileItemE
       <summary>
         <para>Fires after the current <see cref="T:DevExpress.XtraEditors.TileItem"/> was clicked with the right mouse button.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TileItem.RowCount">
       <summary>
@@ -29334,7 +29004,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       <summary>
         <para>Occurs when the <see cref="T:DevExpress.XtraEditors.TimeEdit"/> control&#39;s pop-up window is completely closed and allows you to specify exactly how it was closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.TimeEdit.ClosePopup">
       <summary>
@@ -29345,7 +29014,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       <summary>
         <para>Allows you to accept or discard the modified <see cref="T:DevExpress.XtraEditors.TimeEdit"/> control&#39;s value after the pop-up window is closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TimeEdit.EditorTypeName">
       <summary>
@@ -29363,7 +29031,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       <summary>
         <para>Occurs after the <see cref="T:DevExpress.XtraEditors.TimeEdit"/> control&#39;s pop-up window is completely displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TimeEdit.Properties">
       <summary>
@@ -29375,13 +29042,11 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       <summary>
         <para>Occurs when the current <see cref="T:DevExpress.XtraEditors.TimeEdit"/> attempts to close its pop-up window.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.TimeEdit.QueryPopUp">
       <summary>
         <para>Occurs when the <see cref="T:DevExpress.XtraEditors.TimeEdit"/> control attempts to open its pop-up window.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.TimeEdit.RefreshEditValue">
       <summary>
@@ -29483,7 +29148,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       <summary>
         <para>Fires when the <see cref="P:DevExpress.XtraEditors.ToggleSwitch.IsOn"/> property value changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ToggleSwitch.Properties">
       <summary>
@@ -29506,7 +29170,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       <summary>
         <para>Fires when the control&#39;s state is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.TokenEdit">
       <summary>
@@ -29541,7 +29204,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       <summary>
         <para>Occurs before the peek panel assigned to this <see cref="T:DevExpress.XtraEditors.TokenEdit"/> is displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.TokenEdit.CalcHitInfo(System.Drawing.Point)">
       <summary>
@@ -29598,13 +29260,11 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       <summary>
         <para>Allows you to re-draw the default token glyph.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.TokenEdit.CustomDrawTokenText">
       <summary>
         <para>Allows you to re-paint the token text area.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TokenEdit.EditorTypeName">
       <summary>
@@ -29676,6 +29336,12 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       </summary>
       <value>A DevExpress.XtraEditors.TokenEditMaskBox object that is the editor&#39;s text box.</value>
     </member>
+    <member name="P:DevExpress.XtraEditors.TokenEdit.PopupAutoWidthCalculationLimit">
+      <summary>
+        <para></para>
+      </summary>
+      <value></value>
+    </member>
     <member name="P:DevExpress.XtraEditors.TokenEdit.Properties">
       <summary>
         <para>Provides access to an object that stores the main <see cref="T:DevExpress.XtraEditors.TokenEdit"/> settings.</para>
@@ -29704,7 +29370,6 @@ This property is now obsolete. Use the <see cref="P:DevExpress.XtraEditors.TileI
       <summary>
         <para>Occurs whenever the <see cref="P:DevExpress.XtraEditors.TokenEdit.SelectedItems"/> collection changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.TokenEdit.SelectItem(System.Object)">
       <summary>
@@ -29734,7 +29399,6 @@ Always equal to true.</para>
       <summary>
         <para>Occurs when a token in this <see cref="T:DevExpress.XtraEditors.TokenEdit"/> changed its checked state.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TokenEdit.TopRow">
       <summary>
@@ -29757,7 +29421,6 @@ Always equal to true.</para>
       <summary>
         <para>Allows you to perform the custom validation on text currently entered in this <see cref="T:DevExpress.XtraEditors.TokenEdit"/> control.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.TrackBarControl">
       <summary>
@@ -29779,7 +29442,6 @@ Always equal to true.</para>
       <summary>
         <para>Fires after the value of the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemTrackBar.AutoSize"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TrackBarControl.BackgroundImage">
       <summary>
@@ -29791,7 +29453,6 @@ Always equal to true.</para>
       <summary>
         <para>Fires after the value of the <see cref="P:DevExpress.XtraEditors.TrackBarControl.BackgroundImage"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TrackBarControl.BackgroundImageLayout">
       <summary>
@@ -29803,13 +29464,11 @@ Always equal to true.</para>
       <summary>
         <para>This member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.TrackBarControl.BeforeShowValueToolTip">
       <summary>
         <para>Allows you to provide custom tooltips for the thumb(s).</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.TrackBarControl.CalcMinHeight">
       <summary>
@@ -29821,7 +29480,6 @@ Always equal to true.</para>
       <summary>
         <para>Occurs when a label within the current <see cref="T:DevExpress.XtraEditors.TrackBarControl"/> needs to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TrackBarControl.EditorTypeName">
       <summary>
@@ -29851,7 +29509,6 @@ Always equal to true.</para>
       <summary>
         <para>This member supports the .NET Framework infrastructure and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.TrackBarControl.GetPreferredSize(System.Drawing.Size)">
       <summary>
@@ -29870,7 +29527,6 @@ Always equal to true.</para>
       <summary>
         <para>Fires after the value of the <see cref="P:DevExpress.XtraEditors.TrackBarControl.ImeMode"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.TrackBarControl.InplaceType">
       <summary>
@@ -29935,7 +29591,6 @@ Always equal to true.</para>
       <summary>
         <para>Fires after the value of the <see cref="P:DevExpress.XtraEditors.TrackBarControl.Text"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.TrackBarControl.ToString">
       <summary>
@@ -29953,7 +29608,6 @@ Always equal to true.</para>
       <summary>
         <para>Fires after the value of the <see cref="P:DevExpress.XtraEditors.TrackBarControl.Value"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.VistaCalendarViewStyle">
       <summary>
@@ -31042,13 +30696,11 @@ Always equal to true.</para>
       <summary>
         <para>Occurs after the ZoomTrackBar control&#39;s pressed button has been released.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.ZoomTrackBarControl.ButtonPressed">
       <summary>
         <para>Occurs immediately after the ZoomTrackBar control&#39;s button has been pressed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.ZoomTrackBarControl.CalcMinHeight">
       <summary>
@@ -32617,7 +32269,6 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Occurs when the current custom header buttons collection is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraTab.Buttons.CustomHeaderButtonCollection.Contains(DevExpress.XtraTab.Buttons.CustomHeaderButton)">
       <summary>
@@ -32723,7 +32374,6 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Fires after the <see cref="T:DevExpress.XtraTab.PageAppearance"/> object&#39;s settings have been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraTab.PageAppearance.Dispose">
       <summary>
@@ -33218,7 +32868,6 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Occurs when the Close button displayed within the XtraTabControl&#39;s header is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraTab.XtraTabControl.ClosePageButtonShowMode">
       <summary>
@@ -33236,7 +32885,6 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Occurs when a custom header button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraTab.XtraTabControl.CustomHeaderButtons">
       <summary>
@@ -33248,13 +32896,11 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Occurs after a page has been deselected.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraTab.XtraTabControl.Deselecting">
       <summary>
         <para>Occurs when a page is about to be deselected, and allows cancellation of the operation.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraTab.XtraTabControl.DisplayRectangle">
       <summary>
@@ -33300,7 +32946,6 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Occurs when a built-in header button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraTab.XtraTabControl.HeaderButtons">
       <summary>
@@ -33330,7 +32975,6 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Fires after the hot-tracked page header has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraTab.XtraTabControl.HotTrackedTabPage">
       <summary>
@@ -33407,25 +33051,21 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Occurs after a page has been selected.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraTab.XtraTabControl.SelectedPageChangeAnimationCompleted">
       <summary>
         <para>Fires when the tab change animation completes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraTab.XtraTabControl.SelectedPageChanged">
       <summary>
         <para>Fires after a new XtraTabControl page has been selected.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraTab.XtraTabControl.SelectedPageChanging">
       <summary>
         <para>Allows you to prevent a specific tab page from being activated.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraTab.XtraTabControl.SelectedTabPage">
       <summary>
@@ -33443,7 +33083,6 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Occurs when a specific page is about to be selected, and allows cancellation of the operation.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraTab.XtraTabControl.ShowHeaderFocus">
       <summary>
@@ -33467,7 +33106,6 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Fires when an end-user presses the middle mouse button over a tab. To ensure that this event fires, set the <see cref="P:DevExpress.XtraTab.XtraTabControl.TabMiddleClickFiringMode"/> property to MouseDown or MouseUp.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraTab.XtraTabControl.TabMiddleClickFiringMode">
       <summary>
@@ -33806,7 +33444,6 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Fires after the page collection has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraTab.XtraTabPageCollection.Contains(DevExpress.XtraTab.XtraTabPage)">
       <summary>
@@ -33989,11 +33626,13 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
       <summary>
         <para>Gets the <see cref="P:DevExpress.XtraWaitForm.ProgressPanel.Caption"/> property&#39;s default value, which can be localized.</para>
       </summary>
+      <value></value>
     </member>
     <member name="F:DevExpress.XtraWaitForm.ProgressPanel.DefaultDescription">
       <summary>
         <para>Gets the <see cref="P:DevExpress.XtraWaitForm.ProgressPanel.Description"/> property&#39;s default value, which can be localized.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.XtraWaitForm.ProgressPanel.Description">
       <summary>
@@ -34076,9 +33715,9 @@ Allows you to disable fade-in and fade-out effects for the image and draw custom
     </member>
     <member name="P:DevExpress.XtraWaitForm.ProgressPanel.WaitAnimationType">
       <summary>
-        <para>Gets or sets the type of wait indicator.</para>
+        <para>Gets or sets the wait animation&#39;s type.</para>
       </summary>
-      <value>A DevExpress.Utils.Animation.WaitingAnimatorType enumeration value that specifies the type of wait indicator.</value>
+      <value>The wait animation&#39;s type.</value>
     </member>
     <member name="T:DevExpress.XtraWaitForm.ShowFormOnTopMode">
       <summary>

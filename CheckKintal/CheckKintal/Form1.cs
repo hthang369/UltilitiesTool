@@ -1,4 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +27,11 @@ namespace CheckKintal
         string keyCheckRecheck = "CheckRecheck";
         string keyCheckUrl = "CheckUrl";
         string timeCheckUrl = "";
+        string strListUser = "ListUser";
+        UserAccount currentAccount;
+        string strDomain = "";
+        Services.RequestApiHelper apiHelper;
+
         public Form1()
         {
             InitializeComponent();
@@ -43,16 +51,41 @@ namespace CheckKintal
             txtCheckOutEnd.Value = Convert.ToDateTime(timeCheckOutEnd);
             txtRecheck.Value = Convert.ToInt32(timeCheckRecheck);
             txtUrl.Text = timeCheckUrl;
+            apiHelper = new Services.RequestApiHelper(strDomain);
+            ConfigGridUser();
+            LoadDataUsers();
+        }
+
+        private void ConfigGridUser()
+        {
+            GridView view = (gdcListUser.MainView as GridView);
+            view.Columns.ToList().ForEach(x => x.OptionsColumn.AllowEdit = false);
+            view.Columns.ColumnByFieldName("chkSelected").OptionsColumn.AllowEdit = true;
+
+            view.FocusedRowChanged += View_FocusedRowChanged;
+        }
+
+        private void View_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int iRow = e.FocusedRowHandle;
+            if (iRow >= 0)
+            {
+                currentAccount = view.GetFocusedRow() as UserAccount;
+                userAuth1.txtUsername.Text = currentAccount.Username;
+                userAuth1.txtPassword.Text = currentAccount.Password;
+                userAuth1.chkAuthoCheck.Checked = currentAccount.AutoCheckIn;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
             int timeSystem = TotalMinute(dt);
-            int iCheckInStart = TotalMinute(Convert.ToDateTime(txtCheckInStart.Text));
-            int iCheckInEnd = TotalMinute(Convert.ToDateTime(txtCheckInEnd.Text));
-            int iCheckOutStart = TotalMinute(Convert.ToDateTime(txtCheckOutStart.Text));
-            int iCheckOutEnd = TotalMinute(Convert.ToDateTime(txtCheckOutEnd.Text));
+            int iCheckInStart = TotalMinute(Convert.ToDateTime(txtCheckInStart.Value));
+            int iCheckInEnd = TotalMinute(Convert.ToDateTime(txtCheckInEnd.Value));
+            int iCheckOutStart = TotalMinute(Convert.ToDateTime(txtCheckOutStart.Value));
+            int iCheckOutEnd = TotalMinute(Convert.ToDateTime(txtCheckOutEnd.Value));
             if ((iCheckInStart <= timeSystem) && (timeSystem <= iCheckInEnd))
             {
                 this.timer1.Interval = (1000 * 60 * Convert.ToInt32(txtRecheck.Text));
@@ -60,6 +93,7 @@ namespace CheckKintal
                 if (count == 0)
                 {
                     RunChromeCmd(timeCheckUrl);
+                    RunAutoCheckIn();
                 }
                 count++;
             }
@@ -162,6 +196,119 @@ namespace CheckKintal
             float BatteryLifePercent = SystemInformation.PowerStatus.BatteryLifePercent;
             if (BatteryLifePercent * 100 <= 20)
                 this.notifyIcon1.ShowBalloonTip(100, "Thông báo", string.Format("Dung lượng pin còn {0}", BatteryLifePercent.ToString("P0")), ToolTipIcon.Info);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            int iCntUser = getCntUser();
+
+            iCntUser++;
+
+            UserAccount item = new UserAccount();
+            item.Username = userAuth1.txtUsername.Text;
+            item.Password = userAuth1.txtPassword.Text ?? "Hito@123";
+            item.AutoCheckIn = userAuth1.chkAuthoCheck.Checked;
+            item.UserAgent = userAuth1.txtUserAgent.Text ?? "";
+
+            SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "CntUser", iCntUser.ToString());
+
+            SaveUserAccountToFile(item);
+        }
+
+        private void SaveUserAccountToFile(UserAccount item)
+        {
+            int iCntUser = item.index;
+
+            SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "Username" + iCntUser, item.Username);
+            SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "Password" + iCntUser, item.Password);
+            SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "AutoCheckIn" + iCntUser, item.AutoCheckIn ? "1" : "0");
+
+            userAuth1.txtUsername.Text = "";
+            userAuth1.txtPassword.Text = "";
+            userAuth1.chkAuthoCheck.Checked = false;
+        }
+
+        private int getCntUser()
+        {
+            string strCnt = SQLAppLib.SQLApp.GetIniFile(fileName, strListUser, "CntUser");
+            int iCntUser = 0;
+            if (!string.IsNullOrEmpty(strCnt))
+                iCntUser = Convert.ToInt32(strCnt);
+
+            return iCntUser;
+        }
+
+        private void LoadDataUsers()
+        {
+            int iCntUser = getCntUser();
+
+            List<UserAccount> listUser = new List<UserAccount>();
+
+            for (int i = 1; i <= iCntUser; i++)
+            {
+                UserAccount item = new UserAccount();
+                item.Username = SQLAppLib.SQLApp.GetIniFile(fileName, strListUser, "Username" + i);
+                item.Password = SQLAppLib.SQLApp.GetIniFile(fileName, strListUser, "Password" + i);
+                item.index = i;
+                string strAutoCheck = SQLAppLib.SQLApp.GetIniFile(fileName, strListUser, "AutoCheckIn" + i);
+                if (!string.IsNullOrEmpty(strAutoCheck))
+                    item.AutoCheckIn = Convert.ToBoolean(Convert.ToInt32(strAutoCheck));
+
+                listUser.Add(item);
+            }
+
+            gdcListUser.DataSource = listUser;
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            SaveUserAccountToFile(currentAccount);
+            LoadDataUsers();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //SQLAppLib.SQLApp.del
+        }
+
+        private void RunAutoCheckIn()
+        {
+            string strUrl = "";
+            List<UserAccount> listUser = (gdcListUser.DataSource as List<UserAccount>);
+            foreach (UserAccount item in listUser)
+            {
+                if (!item.AutoCheckIn) continue;
+                apiHelper = new Services.RequestApiHelper(strDomain);
+                apiHelper.AddDefaultRequestHeader();
+                apiHelper.SetUserAgent(item.UserAgent);
+                string token = RunLoginUser(item);
+                apiHelper.SetApiToken(token);
+                apiHelper.AddRequestParam("", "");
+                string content = apiHelper.Post(strUrl).ToString();
+
+                item.lblShow = "";
+                SaveUserAccountToFile(item);
+            }
+            LoadDataUsers();
+        }
+
+        private string RunLoginUser(UserAccount item)
+        {
+            string strUrl = "";
+            if (apiHelper == null)
+            {
+                apiHelper = new Services.RequestApiHelper(strDomain);
+                apiHelper.AddDefaultRequestHeader();
+            }
+            apiHelper.AddRequestParam("", "");
+            xNet.HttpResponse response = apiHelper.Post(strUrl);
+            string content = response.ToString();
+
+            object objContent = JsonConvert.DeserializeObject(content);
+            string resultData = ((JObject)objContent).GetValue("user").ToString();
+            UserInfo info = JsonConvert.DeserializeObject<UserInfo>(resultData);
+
+            return "";
         }
     }
 }

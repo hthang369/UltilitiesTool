@@ -46,7 +46,6 @@
       <summary>
         <para>Hides the <see cref="E:System.Windows.Forms.Control.BackgroundImageChanged"/> event of the base class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.DocumentView.Controls.DocumentViewerBase.BackgroundImageLayout">
       <summary>
@@ -58,7 +57,6 @@
       <summary>
         <para>Hides the <see cref="E:System.Windows.Forms.Control.BackgroundImageLayoutChanged"/> event of the base class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.DocumentView.Controls.DocumentViewerBase.BorderStyle">
       <summary>
@@ -88,7 +86,6 @@
       <summary>
         <para>Occurs when a <see cref="T:DevExpress.XtraPrinting.Preview.DocumentViewer"/> receives a document change notification.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.DocumentView.Controls.DocumentViewerBase.DocumentIsCreating">
       <summary>
@@ -222,7 +219,6 @@
       <summary>
         <para>Occurs when the selected page within the print preview is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.DocumentView.Controls.DocumentViewerBase.SelectedPageIndex">
       <summary>
@@ -365,7 +361,6 @@
       <summary>
         <para>Occurs after the document current zoom factor has changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.DocumentView.Controls.DocumentViewerBase.ZoomIn">
       <summary>
@@ -641,14 +636,15 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
     </member>
     <member name="P:DevExpress.LookAndFeel.UserLookAndFeel.Default">
       <summary>
-        <para>Gets the Default LookAndFeel object which should be used for painting controls when the <see cref="P:DevExpress.LookAndFeel.UserLookAndFeel.UseDefaultLookAndFeel"/> property is set to true.</para>
+        <para>Gets the Default LookAndFeel object to use for controls when the <see cref="P:DevExpress.LookAndFeel.UserLookAndFeel.UseDefaultLookAndFeel"/> property is set to true.</para>
       </summary>
-      <value>A <see cref="T:DevExpress.LookAndFeel.UserLookAndFeel"/> object referring to the Default LookAndFeel object.</value>
+      <value>The Default LookAndFeel object.</value>
     </member>
     <member name="F:DevExpress.LookAndFeel.UserLookAndFeel.DefaultSkinName">
       <summary>
         <para>Gets the name of the default skin style.</para>
       </summary>
+      <value></value>
     </member>
     <member name="M:DevExpress.LookAndFeel.UserLookAndFeel.DestroyDefaultLookAndFeel">
       <summary>
@@ -901,7 +897,7 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
     </member>
     <member name="P:DevExpress.LookAndFeel.UserLookAndFeel.SkinName">
       <summary>
-        <para>Gets or sets the name of a skin style.</para>
+        <para>Gets or sets the active skin name. This property is in effect when UserLookAndFeel.UseDefaultLookAndFeel and UserLookAndFeel.UseWindowsXPTheme properties are set to false, and UserLookAndFeel.Style property is set to LookAndFeelStyle.Skin.</para>
       </summary>
       <value>A string value specifying the skin style&#39;s name.</value>
     </member>
@@ -915,7 +911,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Occurs on changing properties of the current <see cref="T:DevExpress.LookAndFeel.UserLookAndFeel"/> object or the parent LookAndFeel specified by the <see cref="P:DevExpress.LookAndFeel.UserLookAndFeel.ParentLookAndFeel"/> member.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.LookAndFeel.UserLookAndFeel.ToString">
       <summary>
@@ -1019,6 +1014,7 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Gets the name of the default skin, which is used by controls by default.</para>
       </summary>
+      <value></value>
     </member>
     <member name="M:DevExpress.Skins.SkinManager.DisableFormSkins">
       <summary>
@@ -1124,6 +1120,7 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.Skins.SkinManager.IsSkinHitTestingEnabled">
       <summary>
@@ -1228,19 +1225,16 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Serves as a notification event that an animated transition between a control&#39;s states is complete.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.Animation.TransitionManager.BeforeTransitionStarts">
       <summary>
         <para>Allows you to perform custom actions before a transition between control states starts, or allows you to cancel the transition.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.Animation.TransitionManager.CustomTransition">
       <summary>
         <para>Allows you to customize an animated state transition.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.Animation.TransitionManager.EndTransition">
       <summary>
@@ -1634,7 +1628,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Fires when the appearance object&#39;s properties are changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.AppearanceObject.Clone">
       <summary>
@@ -2166,7 +2159,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Occurs when specific settings that control the text appearance are changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.AppearanceObject.ParentAppearance">
       <summary>
@@ -2189,7 +2181,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Occurs when specific settings that control the size of text are changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.AppearanceObject.TextOptions">
       <summary>
@@ -2368,7 +2359,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Fires when the collection is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.BaseAppearanceCollection.Combine(DevExpress.Utils.BaseAppearanceCollection,DevExpress.Utils.AppearanceDefaultInfo[])">
       <summary>
@@ -2424,7 +2414,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Occurs when specific settings that control the text appearance are changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.BaseAppearanceCollection.Reset">
       <summary>
@@ -2477,7 +2466,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Occurs when specific settings that control text size  are changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.BaseAppearanceCollection.UpdateRightToLeft(System.Boolean)">
       <summary>
@@ -2682,7 +2670,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Fires when a hyperlink in the button caption is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.ContextButtonBase.HyperLinkColor">
       <summary>
@@ -2817,7 +2804,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Fires when the current item is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.ContextItem.Clone">
       <summary>
@@ -2835,7 +2821,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Allows the hint for the current item to be customized. This event is only raised for <see cref="T:DevExpress.Utils.RatingContextButton"/> objects.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.ContextItem.Enabled">
       <summary>
@@ -3088,7 +3073,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>The control that implements this interface must fire the Changed event when specific settings that affect the layout information have been changed, and the Layout Control must update the layout as a result.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.Controls.IXtraResizableControl.IsCaptionVisible">
       <summary>
@@ -3231,7 +3215,6 @@ The following screenshot shows the UltraFlat style applied to a button edit cont
       <summary>
         <para>Occurs whenever the <see cref="T:DevExpress.Utils.DPIAwareImageCollection"/> changes its image set and allows you to respond to these changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.DPIAwareImageCollection.EndInit">
       <summary>
@@ -4696,7 +4679,6 @@ The <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/> value is equal to <s
       <summary>
         <para>Occurs whenever the <see cref="T:DevExpress.Utils.Drawing.StubGlyphOptions"/> object changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.Drawing.StubGlyphOptions.ColorMode">
       <summary>
@@ -4891,19 +4873,16 @@ The <see cref="F:DevExpress.Utils.DefaultBoolean.Default"/> value is equal to <s
       <summary>
         <para>Fires when a check button within the button panel of this <see cref="T:DevExpress.Utils.FlyoutPanel"/> is checked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.FlyoutPanel.ButtonClick">
       <summary>
         <para>Occurs when a button in the <see cref="T:DevExpress.Utils.FlyoutPanel"/>&#39;s built-in button panel is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.FlyoutPanel.ButtonUnchecked">
       <summary>
         <para>Fires when a check button within the button panel of this <see cref="T:DevExpress.Utils.FlyoutPanel"/> is unchecked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.FlyoutPanel.Dock">
       <summary>
@@ -4941,7 +4920,6 @@ Use the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.AnchorType"/> property 
       <summary>
         <para>Fires after the panel has been hidden.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.FlyoutPanel.Hide">
       <summary>
@@ -4974,7 +4952,6 @@ Use the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.AnchorType"/> property 
       <summary>
         <para>Fires when a panel is about to be hidden.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.FlyoutPanel.IsPopupOpen">
       <summary>
@@ -5102,13 +5079,11 @@ Use the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.AnchorType"/> property 
       <summary>
         <para>Fires when the panel is about to be displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.FlyoutPanel.Shown">
       <summary>
         <para>Fires after the panel has been displayed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.FlyoutPanel.ShowPopup">
       <summary>
@@ -5247,36 +5222,43 @@ Use the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.AnchorType"/> property 
       <summary>
         <para>The default value for the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.AnchorType"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="F:DevExpress.Utils.FlyoutPanelOptions.DefaultAnimationType">
       <summary>
         <para>The default value for the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.AnimationType"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="F:DevExpress.Utils.FlyoutPanelOptions.DefaultCloseOnHidingOwner">
       <summary>
         <para>The default value for the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.CloseOnHidingOwner"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="F:DevExpress.Utils.FlyoutPanelOptions.DefaultCloseOnOuterClick">
       <summary>
         <para>The default value for the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.CloseOnOuterClick"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="F:DevExpress.Utils.FlyoutPanelOptions.DefaultHorzIndent">
       <summary>
         <para>The default value for the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.HorzIndent"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="F:DevExpress.Utils.FlyoutPanelOptions.DefaultLocation">
       <summary>
         <para>The default value for the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.Location"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="F:DevExpress.Utils.FlyoutPanelOptions.DefaultVertIndent">
       <summary>
         <para>The default value for the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.VertIndent"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.Utils.FlyoutPanelOptions.HorzIndent">
       <summary>
@@ -5422,7 +5404,6 @@ The ImageCollection is also used as a part of the <see cref="T:DevExpress.Utils.
       <summary>
         <para>Fires after the image collection has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.ImageCollection.Clear">
       <summary>
@@ -5600,7 +5581,6 @@ The ImageCollection is also used as a part of the <see cref="T:DevExpress.Utils.
       <summary>
         <para>When the <see cref="P:DevExpress.Utils.ImageCollection.IsDpiAware"/> option is enabled, the GetImageSize event allows you to customize the size of images returned by the <see cref="T:DevExpress.Utils.ImageCollection"/>. This event is fired on finishing an <see cref="T:DevExpress.Utils.ImageCollection"/> object initialization.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.ImageCollection.ImageFromFile(System.String)">
       <summary>
@@ -5734,7 +5714,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>When requesting an image from the ImageCollection, the ResolveImage event fires when the project resources do not contain a DPI-specific image that matches the requested image and allows you to provide this DPI-specific image manually. This event is in effect when the <see cref="P:DevExpress.Utils.ImageCollection.IsDpiAware"/> option is enabled and the requested image was loaded into the ImageCollection from the project resources.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.ImageCollection.SupportAnimation(System.Object,System.Int32)">
       <summary>
@@ -6030,6 +6009,7 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Gets the static <see cref="T:DevExpress.Utils.KeyShortcut"/> object whose <see cref="P:DevExpress.Utils.KeyShortcut.Key"/> property is set to <see cref="F:System.Windows.Forms.Keys.None"/>.</para>
       </summary>
+      <value></value>
     </member>
     <member name="M:DevExpress.Utils.KeyShortcut.Equals(System.Object)">
       <summary>
@@ -6399,7 +6379,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Occurs when the menu item&#39;s check state is toggled.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.Menu.DXMenuCheckItem.Dispose">
       <summary>
@@ -6559,7 +6538,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Occurs when the menu item&#39;s functionality needs to be invoked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.Menu.DXMenuItem.CloseMenuOnClick">
       <summary>
@@ -6742,7 +6720,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Fires after the menu has been closed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.Menu.DXPopupMenu.ContextOwnerControl">
       <summary>
@@ -6782,12 +6759,12 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Fires whenever a user clicks any item that belongs to this <see cref="T:DevExpress.Utils.Menu.DXPopupMenu"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="F:DevExpress.Utils.Menu.DXPopupMenu.MaxSubMenuLevel">
       <summary>
         <para>Specifies the maximum menu depth for all <see cref="T:DevExpress.Utils.Menu.DXPopupMenu"/> descendants in this solution. Menus with a nesting level that exceeds this value will be unable to expand certain sub-menu items.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.Utils.Menu.DXPopupMenu.MenuViewType">
       <summary>
@@ -6817,7 +6794,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>This member supports the internal infrastructure and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.Menu.DXPopupMenu.ShowCaption">
       <summary>
@@ -6885,7 +6861,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Allows you to dynamically provide sub-items for the current <see cref="T:DevExpress.Utils.Menu.DXSubMenuItem"/> object.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.Menu.DXSubMenuItem.GenerateBeforePopupEvent">
       <summary>
@@ -7043,6 +7018,7 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.Utils.SharedImageCollection.ImageSource">
       <summary>
@@ -7066,6 +7042,7 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
+      <value></value>
     </member>
     <member name="T:DevExpress.Utils.SharedImageCollectionImageSizeMode">
       <summary>
@@ -7127,6 +7104,7 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>The default distance between items. This constant specifies the default value for the <see cref="P:DevExpress.Utils.SuperToolTip.DistanceBetweenItems"/> property.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.Utils.SuperToolTip.DistanceBetweenItems">
       <summary>
@@ -7650,7 +7628,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Fires when a task has been clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.Taskbar.JumpListItemTask.Clone">
       <summary>
@@ -7743,6 +7720,15 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
         <para>Unlocks the <see cref="T:DevExpress.Utils.Taskbar.TaskbarAssistant"></see> object after a call to the BeginUpdate method and causes an immediate visual update.</para>
       </summary>
     </member>
+    <member name="M:DevExpress.Utils.Taskbar.TaskbarAssistant.FlashWindow(DevExpress.Utils.Taskbar.FlashFlags,System.Int32,System.Int32)">
+      <summary>
+        <para></para>
+      </summary>
+      <param name="opt"></param>
+      <param name="count"></param>
+      <param name="timeout"></param>
+      <returns></returns>
+    </member>
     <member name="P:DevExpress.Utils.Taskbar.TaskbarAssistant.IconsAssembly">
       <summary>
         <para>Gets or sets the name of the assembly that contains icons (in resources) for Jump List tasks.</para>
@@ -7782,6 +7768,7 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>The maximum number of thumbnail buttons in the live thumbnail preview. This field is equal to 7.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.Utils.Taskbar.TaskbarAssistant.OverlayIcon">
       <summary>
@@ -7882,7 +7869,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Fires when the button is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.Taskbar.ThumbnailButton.DismissOnClick">
       <summary>
@@ -8435,13 +8421,11 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Enables you to customize the text and settings of the tooltip before displaying it onscreen.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.ToolTipController.CalcSize">
       <summary>
         <para>Enables you to specify the position  and size of the tooltip window.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.ToolTipController.CloseOnClick">
       <summary>
@@ -8459,7 +8443,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Enables a tooltip&#39;s window to be custom painted.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.ToolTipController.DefaultController">
       <summary>
@@ -8471,7 +8454,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Allows you to provide custom tooltips for any element of a control that implements the DevExpress.Utils.IToolTipControlClient interface.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.ToolTipController.GetAllowHtmlText(System.Windows.Forms.Control)">
       <summary>
@@ -8529,7 +8511,6 @@ For the <see cref="T:DevExpress.Utils.SharedImageCollection"/>, this property sp
       <summary>
         <para>Occurs when an end-user clicks a hyperlink within a control&#39;s tool-tip or super tool-tip.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.ToolTipController.IconSize">
       <summary>
@@ -9683,7 +9664,6 @@ In other cases, tooltips are painted using the <see cref="F:DevExpress.Utils.Too
       <summary>
         <para>Occurs when end-users clicks this <see cref="T:DevExpress.Utils.VisualEffects.AdornerElement"/>.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.VisualEffects.AdornerElement.Clone">
       <summary>
@@ -9759,7 +9739,6 @@ In other cases, tooltips are painted using the <see cref="F:DevExpress.Utils.Too
       <summary>
         <para>Fires when the <see cref="T:DevExpress.Utils.VisualEffects.AdornerElementCollection"/> is modified.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.VisualEffects.AdornerElementCollection.Contains(DevExpress.Utils.VisualEffects.AdornerElement)">
       <summary>
@@ -9882,19 +9861,16 @@ In other cases, tooltips are painted using the <see cref="F:DevExpress.Utils.Too
       <summary>
         <para>Allows you to paint any <see cref="T:DevExpress.Utils.VisualEffects.Badge"/> manually.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.VisualEffects.AdornerUIManager.CustomDrawGuide">
       <summary>
         <para>Allows you to paint <see cref="T:DevExpress.Utils.VisualEffects.Guide"/> objects manually.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.VisualEffects.AdornerUIManager.CustomDrawValidationHint">
       <summary>
         <para>Allows you to paint <see cref="T:DevExpress.Utils.VisualEffects.ValidationHint"/> objects manually.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.VisualEffects.AdornerUIManager.Elements">
       <summary>
@@ -9945,7 +9921,6 @@ In other cases, tooltips are painted using the <see cref="F:DevExpress.Utils.Too
       <summary>
         <para>Occurs when a <see cref="T:DevExpress.Utils.VisualEffects.Guide"/> is activated and allows you to populate a flyout panel associated with this guide.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.VisualEffects.AdornerUIManager.Refresh">
       <summary>
@@ -9962,7 +9937,6 @@ In other cases, tooltips are painted using the <see cref="F:DevExpress.Utils.Too
       <summary>
         <para>Occurs when a currently selected <see cref="T:DevExpress.Utils.VisualEffects.AdornerUIManager"/> element changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.VisualEffects.AdornerUIManager.SelectElement(DevExpress.Utils.VisualEffects.AdornerElement)">
       <summary>
@@ -10982,7 +10956,6 @@ Use the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.HorzIndent"/> and <see 
       <summary>
         <para>Occurs after a workspace was applied.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.WorkspaceManager.AllowTransitionAnimation">
       <summary>
@@ -11000,7 +10973,6 @@ Use the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.HorzIndent"/> and <see 
       <summary>
         <para>Occurs immediately after the <see cref="M:DevExpress.Utils.WorkspaceManager.ApplyWorkspace(System.String)"/> method is called.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.Utils.WorkspaceManager.CaptureWorkspace(System.String,System.Boolean)">
       <summary>
@@ -11092,13 +11064,11 @@ Use the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.HorzIndent"/> and <see 
       <summary>
         <para>Occurs whenever a property is about to be restored from a workspace.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.WorkspaceManager.PropertySerializing">
       <summary>
         <para>Occurs whenever a property is about to be written into a workspace.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.WorkspaceManager.RecentWorkspaces">
       <summary>
@@ -11212,19 +11182,16 @@ Use the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.HorzIndent"/> and <see 
       <summary>
         <para>Occurs whenever a new workspace was added to the <see cref="P:DevExpress.Utils.WorkspaceManager.Workspaces"/> collection.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.WorkspaceManager.WorkspaceCollectionChanged">
       <summary>
         <para>Occurs whenever the <see cref="P:DevExpress.Utils.WorkspaceManager.Workspaces"/> collection of the current Workspace Manager component changes.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.Utils.WorkspaceManager.WorkspaceRemoved">
       <summary>
         <para>Fires when a workspace was removed from the <see cref="P:DevExpress.Utils.WorkspaceManager.Workspaces"/> collection.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Utils.WorkspaceManager.Workspaces">
       <summary>
@@ -11236,7 +11203,6 @@ Use the <see cref="P:DevExpress.Utils.FlyoutPanelOptions.HorzIndent"/> and <see 
       <summary>
         <para>Occurs after the  method was called.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.Utils.XPThemeSupport">
       <summary>
@@ -11973,25 +11939,21 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs whenever a check button from the <see cref="P:DevExpress.XtraEditors.GroupControl.CustomHeaderButtons"/> collection is checked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.GroupControl.CustomButtonClick">
       <summary>
         <para>Occurs whenever a push button from the <see cref="P:DevExpress.XtraEditors.GroupControl.CustomHeaderButtons"/> collection is clicked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.GroupControl.CustomButtonUnchecked">
       <summary>
         <para>Occurs whenever a check button from the <see cref="P:DevExpress.XtraEditors.GroupControl.CustomHeaderButtons"/> collection is unchecked.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.GroupControl.CustomDrawCaption">
       <summary>
         <para>Enables group caption to be custom painted.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.GroupControl.CustomHeaderButtons">
       <summary>
@@ -12307,7 +12269,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs before the scroll bar is shown on-screen and allows you to manually re-paint it.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ScrollBarBase.DrawMode">
       <summary>
@@ -12490,7 +12451,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires when the scroll thumb has been moved either by a mouse or keyboard action.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ScrollBarBase.ScrollBarAutoSize">
       <summary>
@@ -12502,7 +12462,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires after the <see cref="P:DevExpress.XtraEditors.ScrollBarBase.ScrollBarAutoSize"/> property&#39;s value has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.ScrollBarBase.ScrollBarType">
       <summary>
@@ -12568,7 +12527,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Fires immediately after the <see cref="P:DevExpress.XtraEditors.ScrollBarBase.Value"/> property has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.ScrollBarType">
       <summary>
@@ -12798,7 +12756,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs when a mouse pointer enters the overlay resize zone of this panel.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.SidePanel.OverlayResizeZoneThickness">
       <summary>
@@ -12906,7 +12863,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs after an end-user clicks the <see cref="T:DevExpress.XtraEditors.SplitContainerControl"/>&#39;s splitter.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.SplitContainerControl.ButtonInterval">
       <summary>
@@ -12954,25 +12910,21 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>This property is not relevant for this class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.SplitContainerControl.CustomButtonClick">
       <summary>
         <para>This property is not relevant for this class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.SplitContainerControl.CustomButtonUnchecked">
       <summary>
         <para>This property is not relevant for this class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.SplitContainerControl.CustomDrawCaption">
       <summary>
         <para>This property is not relevant for this class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.SplitContainerControl.CustomHeaderButtons">
       <summary>
@@ -13121,13 +13073,11 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Allows you to respond to collapsing/restoring a panel.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.SplitContainerControl.SplitGroupPanelCollapsing">
       <summary>
         <para>Allows you to prevent a panel from being collapsed/restored.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.SplitContainerControl.SplitterBounds">
       <summary>
@@ -13139,13 +13089,11 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs after the splitter&#39;s position has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.SplitContainerControl.SplitterMoving">
       <summary>
         <para>Occurs when the splitter&#39;s position is being changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.SplitContainerControl.SplitterPosition">
       <summary>
@@ -13157,7 +13105,6 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Occurs after the splitter&#39;s position has been changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.SplitContainerControl.SwapPanels">
       <summary>
@@ -13497,6 +13444,7 @@ A specific version of the addressed image is automatically chosen based on the a
       <summary>
         <para>Modifies default values of various properties according to the selected DevExpress installation version.</para>
       </summary>
+      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.WindowsFormsSettings.DisableAccessibility">
       <summary>
@@ -13594,9 +13542,9 @@ A specific version of the addressed image is automatically chosen based on the a
     </member>
     <member name="P:DevExpress.XtraEditors.WindowsFormsSettings.FormThickBorder">
       <summary>
-        <para></para>
+        <para>Gets or sets whether all <see cref="T:DevExpress.XtraEditors.XtraForm"/> and <see cref="T:DevExpress.XtraBars.Ribbon.RibbonForm"/> forms in the application should display increased borders.</para>
       </summary>
-      <value></value>
+      <value>true, to display thick borders; otherwise, false.</value>
     </member>
     <member name="M:DevExpress.XtraEditors.WindowsFormsSettings.GetAllowAutoScale">
       <summary>
@@ -13720,9 +13668,9 @@ This is a static property.</para>
     </member>
     <member name="P:DevExpress.XtraEditors.WindowsFormsSettings.MdiFormThickBorder">
       <summary>
-        <para></para>
+        <para>Gets or sets whether all child MDI <see cref="T:DevExpress.XtraEditors.XtraForm"/> and <see cref="T:DevExpress.XtraBars.Ribbon.RibbonForm"/> forms in the application should display increased borders.</para>
       </summary>
-      <value></value>
+      <value>true, to display thick borders; otherwise, false.</value>
     </member>
     <member name="P:DevExpress.XtraEditors.WindowsFormsSettings.PopupAnimation">
       <summary>
@@ -13788,6 +13736,12 @@ This is a static property.</para>
         <para>Gets or sets the rendering quality of vector images.</para>
       </summary>
       <value>A DevExpress.Utils.Svg.SvgImageRenderingMode enumeration value that specifies the rendering quality, such as HighSpeed or HighQuality, of vector images. Default equals HighQuality.</value>
+    </member>
+    <member name="P:DevExpress.XtraEditors.WindowsFormsSettings.ThickBorderWidth">
+      <summary>
+        <para>Gets or sets the width of XtraForm and RibbonForm &quot;thick&quot; borders. Forms use thick borders when you enable the <see cref="P:DevExpress.XtraEditors.WindowsFormsSettings.FormThickBorder"/> and\or <see cref="P:DevExpress.XtraEditors.WindowsFormsSettings.MdiFormThickBorder"/> properties.</para>
+      </summary>
+      <value>The border thickness.</value>
     </member>
     <member name="P:DevExpress.XtraEditors.WindowsFormsSettings.TouchScaleFactor">
       <summary>
@@ -13930,7 +13884,6 @@ This is a static property.</para>
       <summary>
         <para>This member supports the internal infrastructure, and is not intended to be used directly from your code.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.XtraForm.HtmlImages">
       <summary>
@@ -13949,6 +13902,13 @@ This is a static property.</para>
         <para>Gets or sets the color of the glow adorning effect applied to the form&#39;s borders when the form is not active.</para>
       </summary>
       <value>The color of the glow adorning effect applied to the form&#39;s borders when the form is not active.</value>
+    </member>
+    <member name="M:DevExpress.XtraEditors.XtraForm.IsAfterInitializationFormShowStrategy(DevExpress.XtraEditors.XtraForm)">
+      <summary>
+        <para></para>
+      </summary>
+      <param name="form"></param>
+      <returns></returns>
     </member>
     <member name="M:DevExpress.XtraEditors.XtraForm.IsAllowSmartMouseWheel(System.Windows.Forms.Control)">
       <summary>
@@ -14088,12 +14048,6 @@ This is a static property.</para>
       </summary>
       <value>A string value.</value>
     </member>
-    <member name="P:DevExpress.XtraEditors.XtraForm.ThickBorder">
-      <summary>
-        <para></para>
-      </summary>
-      <value></value>
-    </member>
     <member name="T:DevExpress.XtraEditors.XtraPanel">
       <summary>
         <para>Represents the base class for panels.</para>
@@ -14120,7 +14074,6 @@ This is a static property.</para>
       <summary>
         <para>Fires when the value of the <see cref="P:DevExpress.XtraEditors.XtraPanel.AutoSize"/> property is changed.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.XtraPanel.AutoSizeMode">
       <summary>
@@ -14145,19 +14098,16 @@ This is a static property.</para>
       <summary>
         <para>This member is not supported by the <see cref="T:DevExpress.XtraEditors.XtraPanel"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.XtraPanel.KeyPress">
       <summary>
         <para>This member is not supported by the <see cref="T:DevExpress.XtraEditors.XtraPanel"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="E:DevExpress.XtraEditors.XtraPanel.KeyUp">
       <summary>
         <para>This member is not supported by the <see cref="T:DevExpress.XtraEditors.XtraPanel"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="M:DevExpress.XtraEditors.XtraPanel.ResetAutoSizeMode">
       <summary>
@@ -14186,7 +14136,6 @@ This is a static property.</para>
       <summary>
         <para>This member is not supported by the <see cref="T:DevExpress.XtraEditors.XtraPanel"/> class.</para>
       </summary>
-      <value></value>
     </member>
     <member name="T:DevExpress.XtraEditors.XtraScrollableControl">
       <summary>
@@ -14297,7 +14246,6 @@ This is a static property.</para>
       <summary>
         <para>Fires when the control&#39;s view is scrolled.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.XtraEditors.XtraScrollableControl.ScrollBarSmallChange">
       <summary>

@@ -2866,6 +2866,12 @@ When exporting to XLS and XLSX formats, the layout of control elements is retain
       </summary>
       <value>An object exposing the <see cref="T:DevExpress.Export.Xl.IXlPageBreaks"/> interface.</value>
     </member>
+    <member name="P:DevExpress.Export.Xl.IXlSheet.Selection">
+      <summary>
+        <para>Provides access to an object that allows you specify the cell selection.</para>
+      </summary>
+      <value>Specifies a selection and an active cell in a worksheet.</value>
+    </member>
     <member name="M:DevExpress.Export.Xl.IXlSheet.SkipColumns(System.Int32)">
       <summary>
         <para>Specifies the number of successive columns to be skipped in the worksheet before starting to generate a new column.</para>
@@ -2907,6 +2913,23 @@ When exporting to XLS and XLSX formats, the layout of control elements is retain
         <para>Gets or sets whether the current worksheet is visible, hidden or &quot;very hidden&quot;.</para>
       </summary>
       <value>An <see cref="T:DevExpress.Export.Xl.XlSheetVisibleState"/> enumeration member that specifies the worksheet visibility type</value>
+    </member>
+    <member name="T:DevExpress.Export.Xl.IXlSheetSelection">
+      <summary>
+        <para>Defines the cell selection within a worksheet.</para>
+      </summary>
+    </member>
+    <member name="P:DevExpress.Export.Xl.IXlSheetSelection.ActiveCell">
+      <summary>
+        <para>Gets or sets an active cell in a worksheet.</para>
+      </summary>
+      <value>Specifies an active cell&#39;s position in a worksheet.</value>
+    </member>
+    <member name="P:DevExpress.Export.Xl.IXlSheetSelection.SelectedRanges">
+      <summary>
+        <para>Gets or sets cell ranges selected in a worksheet.</para>
+      </summary>
+      <value>A list of selected ranges.</value>
     </member>
     <member name="T:DevExpress.Export.Xl.IXlSheetViewOptions">
       <summary>
@@ -14776,7 +14799,7 @@ in the calculation; otherwise, false.</param>
     </member>
     <member name="T:DevExpress.XtraPrinting.Brick">
       <summary>
-        <para>The base for all visual brick classes, except for the <see cref="T:DevExpress.XtraPrinting.CompositeBrick"/>.</para>
+        <para>The base for all visual brick classes.</para>
       </summary>
     </member>
     <member name="M:DevExpress.XtraPrinting.Brick.#ctor">
@@ -16089,7 +16112,7 @@ in the calculation; otherwise, false.</param>
     </member>
     <member name="T:DevExpress.XtraPrinting.CompositeBrick">
       <summary>
-        <para>A composite brick that may contain other visual bricks and the base for the <see cref="T:DevExpress.XtraPrinting.Page"/> class.</para>
+        <para>Unites multiple visual bricks and defines how to render contained bricks on a document page.</para>
       </summary>
     </member>
     <member name="M:DevExpress.XtraPrinting.CompositeBrick.#ctor">
@@ -20736,6 +20759,16 @@ in the calculation; otherwise, false.</param>
       </summary>
       <value>A <see cref="T:System.String"/> value.</value>
     </member>
+    <member name="M:DevExpress.XtraPrinting.PanelBrick.ValidatePageBottom(System.Drawing.RectangleF,System.Boolean,System.Drawing.RectangleF,DevExpress.XtraPrinting.IPrintingSystemContext)">
+      <summary>
+        <para></para>
+      </summary>
+      <param name="pageBounds"></param>
+      <param name="enforceSplitNonSeparable"></param>
+      <param name="rect"></param>
+      <param name="context"></param>
+      <returns></returns>
+    </member>
     <member name="P:DevExpress.XtraPrinting.PanelBrick.XlsxFormatString">
       <summary>
         <para>Overrides the <see cref="P:DevExpress.XtraPrinting.VisualBrick.XlsxFormatString"/> property to hide it.</para>
@@ -21644,7 +21677,7 @@ in the calculation; otherwise, false.</param>
     </member>
     <member name="E:DevExpress.XtraPrinting.PrintingSystemBase.EndPrint">
       <summary>
-        <para>Occurs after the printing system&#39;s document is printed.</para>
+        <para>Occurs after the printing system&#39;s document is set to the selected printer&#39;s printing queue. Does not indicate the success of the actual printing process.</para>
       </summary>
       <value></value>
     </member>
@@ -23766,13 +23799,13 @@ in the calculation; otherwise, false.</param>
     </member>
     <member name="P:DevExpress.XtraPrinting.VisualBrick.TextValue">
       <summary>
-        <para>Override this property to get or set the object that represents a text value for the <see cref="T:DevExpress.XtraPrinting.VisualBrick"/> descendant.</para>
+        <para>Specifies the original value for the <see cref="T:DevExpress.XtraPrinting.VisualBrick"/>.</para>
       </summary>
-      <value>A <see cref="T:System.Object"/> value.</value>
+      <value>The original value for the <see cref="T:DevExpress.XtraPrinting.VisualBrick"/>.</value>
     </member>
     <member name="P:DevExpress.XtraPrinting.VisualBrick.TextValueFormatString">
       <summary>
-        <para>Override this property to get or set the format string which is applied to the <see cref="P:DevExpress.XtraPrinting.VisualBrick.TextValue"/>.</para>
+        <para>Specifies the format string applied to the visual brick&#39;s TextValue.</para>
       </summary>
       <value>A <see cref="T:System.String"/> value.</value>
     </member>

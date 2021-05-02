@@ -4108,6 +4108,20 @@
       </summary>
       <value>A <see cref="T:System.Double"/> value that is the rotation angle of the rectangle in radians.</value>
     </member>
+    <member name="M:DevExpress.Pdf.PdfOrientedRectangle.Contains(DevExpress.Pdf.PdfOrientedRectangle)">
+      <summary>
+        <para>Determines whether the current PdfOrientedRectangle object contains the specified rectangle.</para>
+      </summary>
+      <param name="rectangle">Specifies the rectangle to test.</param>
+      <returns>true, if the specified rectangle belongs to the current PdfOrientedRectangle object; otherwise, false.</returns>
+    </member>
+    <member name="M:DevExpress.Pdf.PdfOrientedRectangle.Contains(DevExpress.Pdf.PdfPoint)">
+      <summary>
+        <para>Determines whether the current PdfOrientedRectangle object contains the specified point.</para>
+      </summary>
+      <param name="point">Specifies the point to test.</param>
+      <returns>true, if the specified point belongs to the current PdfOrientedRectangle object; otherwise, false.</returns>
+    </member>
     <member name="P:DevExpress.Pdf.PdfOrientedRectangle.Height">
       <summary>
         <para>Gets the rectangle height.</para>
@@ -4446,521 +4460,625 @@
       <summary>
         <para>The PDF paper size for the A2 paper type is 420 x 594 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A3">
       <summary>
         <para>The PDF paper size for the A3 paper type is 297 x 420 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A3Extra">
       <summary>
         <para>The PDF paper size for the A3 Extra paper type is 322 x 445 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A3ExtraTransverse">
       <summary>
         <para>The PDF paper size for the A3 Extra Transverse paper type is 322 x 445 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A3Rotated">
       <summary>
         <para>The PDF paper size for the A3 Rotated paper type is 420 x 297 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A3Transverse">
       <summary>
         <para>The PDF paper size for the A3 Transverse paper type is 297 x 420 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A4">
       <summary>
         <para>The PDF paper size for the A4 paper type is 210 x 297 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A4Extra">
       <summary>
         <para>The PDF paper size for the A4  Extra paper type is 235 x 322 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A4Plus">
       <summary>
         <para>The PDF paper size for the A4 Plus paper type is 210 x 330 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A4Rotated">
       <summary>
         <para>The PDF paper size for the A4 Rotated paper type is 297 x 210 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A4Small">
       <summary>
         <para>The PDF paper size for the A4 Small paper type is 210 x 297 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A4Transverse">
       <summary>
         <para>The PDF paper size for the A4 Transverse paper type is 210 x 297 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A5">
       <summary>
         <para>The PDF paper size for the A5 paper type is 148 x 210 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A5Extra">
       <summary>
         <para>The PDF paper size for the A5 Extra paper type is 174 x 235 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A5Rotated">
       <summary>
         <para>The PDF paper size for the A5 Rotated paper type is 210 x 148 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A5Transverse">
       <summary>
         <para>The PDF paper size for the A5 Transverse paper type is 148 x 210 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A6">
       <summary>
         <para>The PDF paper size for the A6 paper type is 105 x 148 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.A6Rotated">
       <summary>
         <para>The PDF paper size for the A6 Rotated paper type is 148 x 105 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.APlus">
       <summary>
         <para>The PDF paper size for the APlus paper type is 227 x 356 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B4">
       <summary>
         <para>The PDF paper size for the B4 paper type is 250 x 353 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B4Envelope">
       <summary>
         <para>The PDF paper size for the B4  Envelope paper type is 250 x 353 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B4JisRotated">
       <summary>
         <para>The PDF paper size for the B4 (JIS) Rotated paper type is 364 x 257 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B5">
       <summary>
         <para>The PDF paper size for the B5 paper type is 176 x 250 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B5Envelope">
       <summary>
         <para>The PDF paper size for the B5 Envelope paper type is 176 x 250 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B5Extra">
       <summary>
         <para>The PDF paper size for the B5 Extra paper type is 201 x 276 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B5JisRotated">
       <summary>
         <para>The PDF paper size for the B5 (JIS) Rotated paper type is 257 x 182 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B5Transverse">
       <summary>
         <para>The PDF paper size for the B5 Transverse paper type is 182 x 257 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B6Envelope">
       <summary>
         <para>The PDF paper size for the B6 Envelope paper type is 176 x 125 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B6Jis">
       <summary>
         <para>The PDF paper size for the B6 (JIS) paper type is 128 x 182 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.B6JisRotated">
       <summary>
         <para>The PDF paper size for the B6 (JIS) Rotated paper type is 182 x 128 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.BPlus">
       <summary>
         <para>The PDF paper size for the BPlus paper type is 305 x 487 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.C3Envelope">
       <summary>
         <para>The PDF paper size for the C3 Envelope paper type is 324 x 458 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.C4Envelope">
       <summary>
         <para>The PDF paper size for the C4 Envelope paper type is 229 x 324 mm (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.C5Envelope">
       <summary>
         <para>The PDF paper size for the C5 Envelope paper type is 162 x 229 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.C65Envelope">
       <summary>
         <para>The PDF paper size for the C65 paper type is 114 x 229 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.C6Envelope">
       <summary>
         <para>The PDF paper size for the C6 Envelope paper type is 114 x 162 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.CSheet">
       <summary>
         <para>The PDF paper size for the C paper type is 17 x 22 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.DLEnvelope">
       <summary>
         <para>The PDF paper size for the DL Envelope is 110 x 220 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.DSheet">
       <summary>
         <para>The PDF paper size for the D paper type is 22 x 34 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.ESheet">
       <summary>
         <para>The PDF paper size for the E paper type is 34 x 44 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Executive">
       <summary>
         <para>The PDF paper size for the Executive paper type is 7.25 x 10.5 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Folio">
       <summary>
         <para>The PDF paper size for the Folio paper type is 8.5 x 13 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.GermanLegalFanfold">
       <summary>
         <para>The PDF paper size for the German legal fanfold paper type is 8.5 x 13 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.GermanStandardFanfold">
       <summary>
         <para>The PDF paper size for the German standard fanfold paper type is 8.5 x 12 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.InviteEnvelope">
       <summary>
         <para>The PDF paper size for the Invitation envelope paper type is 220 x 220 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.IsoB4">
       <summary>
         <para>The PDF paper size for the ISO B4 paper type is 250 x 353 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.ItalyEnvelope">
       <summary>
         <para>The PDF paper size for the Italy envelope paper type is 110 x 230 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.JapaneseDoublePostcard">
       <summary>
         <para>The PDF paper size for the Japanese double postcard paper type is 200 x 148 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.JapaneseDoublePostcardRotated">
       <summary>
         <para>The PDF paper size for the Japanese double postcard rotated paper type is 148 x 200 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.JapanesePostcard">
       <summary>
         <para>The PDF paper size for the Japanese postcard paper type is 100 x 148 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.JapanesePostcardRotated">
       <summary>
         <para>The PDF paper size for the Japanese postcard rotated paper type is 148 x 100 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Ledger">
       <summary>
         <para>The PDF paper size for the Ledger paper type is 17 x 11 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Legal">
       <summary>
         <para>The PDF paper size for the Legal paper type is 8.5 x 14 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.LegalExtra">
       <summary>
         <para>The PDF paper size for the Legal Extra paper type is 9.275 x 15 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Letter">
       <summary>
         <para>The PDF paper size for the Letter paper type is 8.5 x 11 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.LetterExtra">
       <summary>
         <para>The PDF paper size for the Letter Extra paper type is 9.275 x 12 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.LetterExtraTransverse">
       <summary>
         <para>The PDF paper size for the Letter extra transverse paper type is 9.275 x 12 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.LetterPlus">
       <summary>
         <para>The PDF paper size for the Letter plus paper type is 8.5 x 12.69 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.LetterRotated">
       <summary>
         <para>The PDF paper size for the Letter rotated paper type is 11 x 8.5 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.LetterSmall">
       <summary>
         <para>The PDF paper size for the Letter small paper type is 8.5 x 11 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.LetterTransverse">
       <summary>
         <para>The PDF paper size for the Letter transverse paper type is 8.275 x 11 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.MonarchEnvelope">
       <summary>
         <para>The PDF paper size for the Monarch envelope paper type is 3.875 x 7.5 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Note">
       <summary>
         <para>The PDF paper size for the Note paper type is 8.5 x 11 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Number10Envelope">
       <summary>
         <para>The PDF paper size for the Number 10 envelope paper type is 4.125 x 9.5 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Number11Envelope">
       <summary>
         <para>The PDF paper size for the Number 11 envelope paper type is 4.5 x 10.375 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Number12Envelope">
       <summary>
         <para>The PDF paper size for the Number 12 envelope paper type is 4.75 x 11 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Number9Envelope">
       <summary>
         <para>The PDF paper size for the Number 9 envelope paper type is 3.875 x 8.875 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PersonalEnvelope">
       <summary>
         <para>The PDF paper size for the Personal envelope paper type is 3.625 x 6.5 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Prc16K">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China 16K paper type is 146 x 215 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Prc16KRotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China 16K rotated paper type is 146 x 215 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Prc32K">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China 32K paper type is 97 x 151 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Prc32KBig">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China 32K big paper type is 97 x 151 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Prc32KBigRotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China 32K big rotated paper type is 97 x 151 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Prc32KRotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China 32K rotated paper type is 97 x 151 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber1">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 1 envelope paper type is 102 x 165 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber10">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 10 envelope paper type is 324 x 458 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber10Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 10 rotated envelope paper type is 458 x 324 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber1Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 1 rotated envelope paper type is 165 x 102 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber2">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 2 envelope paper type is 102 x 176 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber2Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 2 rotated envelope paper type is 176 x 102 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber3">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 3 envelope paper type is 125 x 176 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber3Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 3 rotated envelope paper type is 176 x 125 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber4">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 4 envelope paper type is 110 x 208 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber4Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 4 rotated envelope paper type is 208 x 110 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber5">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 5 envelope paper type is 110 x 220 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber5Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China Envelope number 5 rotated envelope paper type is 220 x 110 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber6">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 6 envelope paper type is 120 x 230 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber6Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 6 rotated envelope paper type is 230 x 120 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber7">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 7 envelope paper type is 160 x 230 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber7Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 7 rotated envelope paper type is 230 x 160 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber8">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 8 envelope paper type is 120 x 309 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber8Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 8 rotated envelope paper type is 309 x 120 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber9">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 9 envelope paper type is 229 x 324 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.PrcEnvelopeNumber9Rotated">
       <summary>
         <para>The PDF paper size for the People&#39;s Republic of China number 9 rotated envelope paper type is 324 x 229 (millimeters). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Quarto">
       <summary>
         <para>The PDF paper size for the Quarto paper type is 215 x 275 (millimeters).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Standard10x11">
       <summary>
         <para>The PDF paper size for the Standard paper type is 10 x 11 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Standard10x14">
       <summary>
         <para>The PDF paper size for the Standard paper type is 10 x 14 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Standard11x17">
       <summary>
         <para>The PDF paper size for the Standard paper type is 11 x 17 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Standard12x11">
       <summary>
         <para>The PDF paper size for the Standard paper type is 12 x 11 (inches). Requires Windows 98, Windows NT 4.0, or later.</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Standard15x11">
       <summary>
         <para>The PDF paper size for the Standard paper type is 15 x 11 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Statement">
       <summary>
         <para>The PDF paper size for the Statement paper type is 5.5 x 8.5 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.Tabloid">
       <summary>
         <para>The PDF paper size for the Tabloid paper type is 11 x 17 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.TabloidExtra">
       <summary>
         <para>The PDF paper size for the Tabloid extra paper type is 11.69 x 18 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="F:DevExpress.Pdf.PdfPaperSize.USStandardFanfold">
       <summary>
         <para>The PDF paper size for the US standard fanfold is 14.875 x 11 (inches).</para>
       </summary>
+      <value>A page rectangle.</value>
     </member>
     <member name="T:DevExpress.Pdf.PdfPasswordRequestedEventArgs">
       <summary>
@@ -5316,7 +5434,6 @@
       <summary>
         <para>Occurs every time any of the <see cref="T:DevExpress.Pdf.PdfRGBColor"/> class properties has changed its value.</para>
       </summary>
-      <value></value>
     </member>
     <member name="P:DevExpress.Pdf.PdfRGBColor.R">
       <summary>
