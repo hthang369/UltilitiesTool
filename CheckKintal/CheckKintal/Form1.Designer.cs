@@ -253,6 +253,7 @@
             this.btnCheckin.TabIndex = 1;
             this.btnCheckin.Text = "Check in";
             this.btnCheckin.UseVisualStyleBackColor = true;
+            this.btnCheckin.Click += new System.EventHandler(this.btnCheckin_Click);
             // 
             // tabSetting
             // 

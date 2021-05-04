@@ -15,5 +15,6 @@ namespace CheckKintal
         public bool AutoCheckIn { get; set; }
         public string UserAgent { get; set; }
         public string lblShow { get; set; }
+        public string updated_at { get; set; }
     }
 }

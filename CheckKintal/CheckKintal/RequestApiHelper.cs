@@ -41,9 +41,8 @@ namespace CheckKintal.Services
 
         public HttpRequest AddDefaultRequestHeader()
         {
-            httpRequest.AddHeader("Accept", "application/json, text/plain, */*");
-            httpRequest.AddHeader("Accept-Language", "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5");
-            httpRequest.AddHeader("Content-Type", "application/json;charset=UTF-8");
+            httpRequest.AddHeader(HttpHeader.Accept, "application/json, text/plain, */*");
+            httpRequest.AddHeader(HttpHeader.AcceptLanguage, "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5");
             httpRequest.AddHeader("locale", "vi");
 
             return httpRequest;
@@ -52,15 +51,17 @@ namespace CheckKintal.Services
         public HttpRequest SetApiToken(string token)
         {
             httpRequest.AddHeader("Authorization", string.Format("Bearer {0}", token));
+            httpRequest.Authorization = string.Format("Bearer {0}", token);
 
             return httpRequest;
         }
 
         public HttpRequest SetUserAgent(string userAgent)
         {
-            string strUserAgent = string.IsNullOrEmpty(userAgent) ? httpRequest.UserAgent : userAgent;
-            httpRequest.AddHeader("User-Agent", strUserAgent);
-            
+            string strUserAgent = string.IsNullOrEmpty(userAgent) ? Http.ChromeUserAgent() : userAgent;
+            httpRequest.AddHeader(HttpHeader.UserAgent, strUserAgent);
+            httpRequest.UserAgent = strUserAgent;
+
             return httpRequest;
         }
 
@@ -85,14 +86,21 @@ namespace CheckKintal.Services
             return keyValues;
         }
 
+        public HttpRequest AddParam(string key, string value)
+        {
+            httpRequest.AddParam(key, value);
+
+            return httpRequest;
+        }
+
         private HttpResponse RunApi(HttpMethod method, string strUrl, RequestParams pairs = null)
         {
             switch(method)
             {
                 case HttpMethod.GET:
-                    return httpRequest.Get(strUrl, keyValues);
+                    return httpRequest.Get(GetUrl(strUrl), keyValues);
                 case HttpMethod.POST:
-                    return httpRequest.Post(strUrl, keyValues);
+                    return httpRequest.Post(GetUrl(strUrl), keyValues);
             }
             return httpRequest.Raw(method, strUrl);
         }

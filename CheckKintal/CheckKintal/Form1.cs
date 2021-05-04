@@ -51,17 +51,23 @@ namespace CheckKintal
             txtCheckOutEnd.Value = Convert.ToDateTime(timeCheckOutEnd);
             txtRecheck.Value = Convert.ToInt32(timeCheckRecheck);
             txtUrl.Text = timeCheckUrl;
-            apiHelper = new Services.RequestApiHelper(strDomain);
+            
             ConfigGridUser();
             LoadDataUsers();
         }
 
         private void ConfigGridUser()
         {
+            //SQLAppLib.SQLApp.SetIniFile(fileName, "CheckKintai", "CheckApiUrl", "http://api.hito.lampart-vn.com/api/v1");
+            SQLAppLib.SQLApp.SetIniFile(fileName, "CheckKintai", "CheckApiUrl", "http://dev-wsl.hito.com:3200/");
+            strDomain = SQLAppLib.SQLApp.GetIniFile(fileName, "CheckKintai", "CheckApiUrl");
+            apiHelper = new Services.RequestApiHelper(strDomain);
+
+            gdcListUser.ForeColor = Color.Black;
             GridView view = (gdcListUser.MainView as GridView);
+            view.Appearance.HeaderPanel.ForeColor = Color.Black;
             view.Columns.ToList().ForEach(x => x.OptionsColumn.AllowEdit = false);
             view.Columns.ColumnByFieldName("chkSelected").OptionsColumn.AllowEdit = true;
-
             view.FocusedRowChanged += View_FocusedRowChanged;
         }
 
@@ -209,10 +215,12 @@ namespace CheckKintal
             item.Password = userAuth1.txtPassword.Text ?? "Hito@123";
             item.AutoCheckIn = userAuth1.chkAuthoCheck.Checked;
             item.UserAgent = userAuth1.txtUserAgent.Text ?? "";
+            item.index = iCntUser;
 
             SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "CntUser", iCntUser.ToString());
 
             SaveUserAccountToFile(item);
+            LoadDataUsers();
         }
 
         private void SaveUserAccountToFile(UserAccount item)
@@ -222,6 +230,9 @@ namespace CheckKintal
             SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "Username" + iCntUser, item.Username);
             SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "Password" + iCntUser, item.Password);
             SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "AutoCheckIn" + iCntUser, item.AutoCheckIn ? "1" : "0");
+            SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "UserAgent" + iCntUser, item.UserAgent);
+            SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "lblShow" + iCntUser, item.lblShow);
+            SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "updated_at" + iCntUser, item.updated_at);
 
             userAuth1.txtUsername.Text = "";
             userAuth1.txtPassword.Text = "";
@@ -268,47 +279,95 @@ namespace CheckKintal
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //SQLAppLib.SQLApp.del
+            currentAccount.Username = null;
+            currentAccount.Password = null;
+            currentAccount.UserAgent = null;
+            SaveUserAccountToFile(currentAccount);
+            SQLAppLib.SQLApp.SetIniFile(fileName, strListUser, "AutoCheckIn" + currentAccount.index, null);
+            LoadDataUsers();
         }
 
         private void RunAutoCheckIn()
         {
-            string strUrl = "";
+            string strUrl = "/api/v1/timestamp/clock";
             List<UserAccount> listUser = (gdcListUser.DataSource as List<UserAccount>);
             foreach (UserAccount item in listUser)
             {
                 if (!item.AutoCheckIn) continue;
-                apiHelper = new Services.RequestApiHelper(strDomain);
-                apiHelper.AddDefaultRequestHeader();
-                apiHelper.SetUserAgent(item.UserAgent);
-                string token = RunLoginUser(item);
-                apiHelper.SetApiToken(token);
-                apiHelper.AddRequestParam("", "");
-                string content = apiHelper.Post(strUrl).ToString();
-
-                item.lblShow = "";
-                SaveUserAccountToFile(item);
+                RunCheckIn(item, strUrl);
             }
             LoadDataUsers();
         }
 
+        private void RunCheckIn(UserAccount item, string strUrl)
+        {
+            string token = RunLoginUser(item);
+            if (string.IsNullOrEmpty(token))
+            {
+                item.lblShow = "Login faild";
+                item.updated_at = DateTime.Now.ToString();
+                SaveUserAccountToFile(item);
+                return;
+            }
+            using (apiHelper = new Services.RequestApiHelper(strDomain))
+            {
+                try
+                {
+                    apiHelper.AddDefaultRequestHeader();
+                    apiHelper.SetUserAgent(item.UserAgent);
+                    apiHelper.SetApiToken(token);
+                    apiHelper.AddRequestParam("type_log", "1");
+                    string content = apiHelper.Post(strUrl).ToString();
+                    object objContent = JsonConvert.DeserializeObject(content);
+                    string resultData = ((JObject)objContent).GetValue("message").ToString();
+                    item.lblShow = resultData;
+                    item.updated_at = DateTime.Now.ToString();
+                    SaveUserAccountToFile(item);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+
         private string RunLoginUser(UserAccount item)
         {
-            string strUrl = "";
-            if (apiHelper == null)
+            string strUrl = "/api/v1/user/login";
+            using (apiHelper = new Services.RequestApiHelper(strDomain))
             {
-                apiHelper = new Services.RequestApiHelper(strDomain);
                 apiHelper.AddDefaultRequestHeader();
+                apiHelper.AddRequestParam("username", item.Username);
+                apiHelper.AddRequestParam("password", item.Password);
+                try
+                {
+                    xNet.HttpResponse response = apiHelper.Post(strUrl);
+                    string content = response.ToString();
+
+                    object objContent = JsonConvert.DeserializeObject(content);
+                    string resultData = ((JObject)objContent).GetValue("data").ToString();
+                    UserInfo info = JsonConvert.DeserializeObject<UserInfo>(resultData);
+
+                    return info.api_token;
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
-            apiHelper.AddRequestParam("", "");
-            xNet.HttpResponse response = apiHelper.Post(strUrl);
-            string content = response.ToString();
-
-            object objContent = JsonConvert.DeserializeObject(content);
-            string resultData = ((JObject)objContent).GetValue("user").ToString();
-            UserInfo info = JsonConvert.DeserializeObject<UserInfo>(resultData);
-
             return "";
+        }
+
+        private void btnCheckin_Click(object sender, EventArgs e)
+        {
+            string strUrl = "/api/v1/timestamp/clock";
+            List<UserAccount> listUser = (gdcListUser.DataSource as List<UserAccount>);
+            foreach (UserAccount item in listUser)
+            {
+                if (!item.chkSelected) continue;
+                RunCheckIn(item, strUrl);
+            }
+            LoadDataUsers();
         }
     }
 }
