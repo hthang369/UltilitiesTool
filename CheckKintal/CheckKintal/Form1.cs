@@ -51,7 +51,6 @@ namespace CheckKintal
             txtCheckOutEnd.Value = Convert.ToDateTime(timeCheckOutEnd);
             txtRecheck.Value = Convert.ToInt32(timeCheckRecheck);
             txtUrl.Text = timeCheckUrl;
-            
             ConfigGridUser();
             LoadDataUsers();
         }
@@ -98,7 +97,7 @@ namespace CheckKintal
                 this.notifyIcon1.ShowBalloonTip(100, "Nhắc nhở", "Đến giờ check in", ToolTipIcon.Info);
                 if (count == 0)
                 {
-                    RunChromeCmd(timeCheckUrl);
+                    RunBrowserCmd(timeCheckUrl);
                     RunAutoCheckIn();
                 }
                 count++;
@@ -109,7 +108,7 @@ namespace CheckKintal
                 this.notifyIcon1.ShowBalloonTip(100, "Nhắc nhở", "Đến giờ check out", ToolTipIcon.Info);
                 if (count == 0)
                 {
-                    RunChromeCmd(timeCheckUrl);
+                    RunBrowserCmd(timeCheckUrl);
                 }
                 count++;
             }
@@ -140,11 +139,12 @@ namespace CheckKintal
             return (dt.Hour * 60) + dt.Minute;
         }
 
-        private void RunChromeCmd(string strUrl)
+        private void RunBrowserCmd(string strUrl)
         {
+            string browser = GetSystemDefaultBrowser();
             Process pro = new Process();
             pro.StartInfo.FileName = "cmd.exe";
-            pro.StartInfo.Arguments = string.Format("/k start chrome --new-windown \"{0}\"", strUrl);
+            pro.StartInfo.Arguments = string.Format("/k start {1} --new-windown \"{0}\"", strUrl, browser);
             pro.StartInfo.UseShellExecute = false;
             pro.StartInfo.CreateNoWindow = true;
             pro.StartInfo.RedirectStandardOutput = false;
@@ -368,6 +368,52 @@ namespace CheckKintal
                 RunCheckIn(item, strUrl);
             }
             LoadDataUsers();
+        }
+
+        private string GetSystemDefaultBrowser()
+        {
+            const string userChoice = @"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice";
+            string progId;
+            string browser = "";
+            //BrowserApplication browser;
+            using (RegistryKey userChoiceKey = Registry.CurrentUser.OpenSubKey(userChoice))
+            {
+                if (userChoiceKey == null)
+                {
+                    return browser;
+                }
+                object progIdValue = userChoiceKey.GetValue("Progid");
+                if (progIdValue == null)
+                {
+                    return browser;
+                }
+                progId = progIdValue.ToString();
+                switch (progId)
+                {
+                    case "IE.HTTP":
+                        browser = "InternetExplorer";
+                        break;
+                    case "FirefoxURL":
+                        browser = "firefox";
+                        break;
+                    case "ChromeHTML":
+                        browser = "chrome";
+                        break;
+                    case "OperaStable":
+                        browser = "opera";
+                        break;
+                    case "SafariHTML":
+                        browser = "safari";
+                        break;
+                    case "AppXq0fevzme2pys62n3e0fbqa7peapykr8v":
+                        browser = "edge";
+                        break;
+                    default:
+                        browser = "";
+                        break;
+                }
+            }
+            return browser;
         }
     }
 }
